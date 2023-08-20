@@ -8,6 +8,7 @@ import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_plan.
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_scrollable.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_text.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_chat.dart';
+import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_map.dart';
 import 'package:hacking_game_ui/virtual_machine/models/conversation_data.dart';
 import 'package:hacking_game_ui/virtual_machine/models/directory_and_files.dart';
 import 'package:hacking_game_ui/virtual_machine/models/scrollable_data.dart';
@@ -190,7 +191,7 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
       return FutureBuilder<List<TimelineData>>(
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return FinderPlan(image: AssetImage('assets/images/map.png'), markers: [Offset((snapshot.data![0].value as PositionData).x, (snapshot.data![0].value as PositionData).y)]);
+              return PhoneMap(location: "Location", day: widget.currentDay, hour: widget.currentHour,);
             }
             return Center(child: CircularProgressIndicator());
           },

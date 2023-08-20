@@ -3,6 +3,7 @@ import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/utils/game_date.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/cinematic/cinematic_display.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder.dart';
+import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_characters_selector.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/phone/virtual_phone.dart';
 import 'package:hacking_game_ui/virtual_machine/models/application.dart';
 import 'package:hacking_game_ui/virtual_machine/models/cinematic.dart';
@@ -108,20 +109,28 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
             future: widget.maestro.getPhoneEvidences('1'),
             builder: (context, evidences) {
               if (evidences.hasData) {
-                return FutureBuilder<String>(
-                  future: getDayOfWeek(_maestroState!.day),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
+                return FutureBuilder<int>(
+                  future: widget.maestro.getAllCharacters(),
+                  builder: (context, nbCharacters) {
+                    if (!nbCharacters.hasData) {
                       return Container();
                     }
-                    return IPhoneFrame(
-                      maestro: widget.maestro,
-                      characterName: "John Doe",
-                      files: evidences.data!,
-                      currentDay: snapshot.data!,
-                      currentHour: "${_maestroState!.hour}:00",
-                      backgroundImageUrl: "assets/iphone.jpg",
-                      splashScreenImageUrl: "assets/images/avatar.jpeg",
+                    return FutureBuilder<List<Character>>(
+                      future: widget.maestro.getAvailableCharacters(),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData) {
+                          return Container();
+                        }
+                        return FutureBuilder<String>(
+                          future: getDayOfWeek(_maestroState!.day),
+                          builder: (context, day) {
+                            if (!day.hasData) {
+                              return Container();
+                            }
+                            return CharacterSelection(avatars: nbCharacters.data!, characters: snapshot.data!, maestro: widget.maestro, currentDay: day.data!, currentHour: "${_maestroState!.hour}:00",);
+                          }
+                        );
+                      }
                     );
                   }
                 );

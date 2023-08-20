@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/providers/cinematic_providers.dart';
 import 'package:hacking_game_ui/providers/files_providers.dart';
 import 'package:hacking_game_ui/providers/mocks/cinematic_provider_mock.dart';
 import 'package:hacking_game_ui/providers/mocks/files_provider_mock.dart';
+import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_characters_selector.dart';
 import 'package:hacking_game_ui/virtual_machine/models/directory_and_files.dart';
 
 class MaestroMock extends Maestro {
@@ -71,10 +74,10 @@ class MaestroMock extends Maestro {
   }
 
   @override
-  Future<void> submitEvidences(String characterID) async{
+  Future<void> submitEvidences(String characterID) async {
     super.streamController.add(_state);
   }
-  
+
   @override
   Future<void> start() async {
     super.streamController.add(_state);
@@ -89,7 +92,7 @@ class MaestroMock extends Maestro {
   @override
   Future<List<Files>> getPhoneEvidences(String characterID) async {
     List<Files> files = [
-    Files('File 1', 'File 1', FileType.position),
+      Files('File 1', 'File 1', FileType.position),
       Files('File_2', 'File 2', FileType.image),
       Files('File 3', 'File 3', FileType.calendar),
       Files('File 4', 'File 4', FileType.call, isMarkedAsEvidence: true),
@@ -103,4 +106,24 @@ class MaestroMock extends Maestro {
     return files;
   }
 
+  @override
+  Future<int> getAllCharacters() async {
+    return 12;
+  }
+
+  @override
+  Future<List<Character>> getAvailableCharacters() async {
+    Random random = Random();
+
+    List<Character> characters = List.generate(
+      3,
+      (index) => Character(
+        characterID: 'character-${random.nextInt(1000)}',
+        name: 'Character ${random.nextInt(1000)}',
+        avatar: 'avatar.jpeg',
+      ),
+    );
+
+    return characters;
+  }
 }

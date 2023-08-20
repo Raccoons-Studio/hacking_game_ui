@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:hacking_game_ui/providers/cinematic_providers.dart';
 import 'package:hacking_game_ui/providers/files_providers.dart';
+import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_characters_selector.dart';
 import 'package:hacking_game_ui/virtual_machine/models/directory_and_files.dart';
 
 class MaestroState {
@@ -35,6 +36,10 @@ abstract class Maestro {
   Future<void> load(String saveID);
 
   Future<void> save();
+
+  Future<List<Character>> getAvailableCharacters();
+
+  Future<int> getAllCharacters();
 
   CinematicProvider getCinematicProvider();
 
