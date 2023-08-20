@@ -4,11 +4,13 @@ class VirtualDesktopIcon extends StatelessWidget {
   final Color backgroundColor;
   final IconData icon;
   final String tooltip;
+  final String? label;
 
   VirtualDesktopIcon(
       {required this.backgroundColor,
       required this.icon,
-      required this.tooltip});
+      required this.tooltip,
+      this.label});
 
   @override
   Widget build(BuildContext context) {

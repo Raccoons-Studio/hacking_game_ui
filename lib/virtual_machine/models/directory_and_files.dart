@@ -1,5 +1,10 @@
 
 enum FileType { 
+  microphone,
+  bank,
+  deleted,
+  frontCamera,
+  rearCamera,
   position, 
   heartbeat, 
   note, 

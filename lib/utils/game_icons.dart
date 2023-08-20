@@ -25,6 +25,16 @@ IconData getIconByType(FileType type) {
         return CupertinoIcons.bookmark_fill;
       case FileType.directory:
         return CupertinoIcons.flag_circle;
+      case FileType.bank:
+        return CupertinoIcons.money_dollar_circle_fill;
+      case FileType.deleted:
+        return CupertinoIcons.trash_circle_fill;
+      case FileType.frontCamera:
+        return CupertinoIcons.camera_fill;
+      case FileType.rearCamera:
+        return CupertinoIcons.camera_rotate_fill;
+      case FileType.microphone:
+        return CupertinoIcons.mic_circle_fill;
     }
   }
 
@@ -52,5 +62,15 @@ IconData getIconByType(FileType type) {
         return CupertinoColors.systemGrey;
       case FileType.directory:
         return CupertinoColors.black;
+      case FileType.bank:
+        return CupertinoColors.systemBrown;
+      case FileType.deleted:
+        return CupertinoColors.lightBackgroundGray;
+      case FileType.frontCamera:
+        return CupertinoColors.activeOrange;
+      case FileType.rearCamera:
+        return CupertinoColors.activeOrange;
+      case FileType.microphone:
+        return CupertinoColors.systemRed;
     }
   }

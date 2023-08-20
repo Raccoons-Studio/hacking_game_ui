@@ -92,16 +92,21 @@ class MaestroMock extends Maestro {
   @override
   Future<List<Files>> getPhoneEvidences(String characterID) async {
     List<Files> files = [
-      Files('File 1', 'File 1', FileType.position),
-      Files('File_2', 'File 2', FileType.image),
-      Files('File 3', 'File 3', FileType.calendar),
-      Files('File 4', 'File 4', FileType.call, isMarkedAsEvidence: true),
-      Files('File 5', 'File 5', FileType.heartbeat),
-      Files('File 6', 'File 6', FileType.message),
-      Files('File 7', 'File 7', FileType.note),
-      Files('File 8', 'File 8', FileType.socialMedia),
-      Files('File 9', 'File 9', FileType.text),
-      Files('File 10', 'File 10', FileType.webHistory),
+      Files('File 1', 'Map', FileType.position),
+      Files('File_2', 'Gallery', FileType.image),
+      Files('File_2', 'Front camera', FileType.frontCamera),
+      Files('File_2', 'Rear camera', FileType.rearCamera),
+      Files('File_2', 'Deleted files', FileType.deleted),
+      Files('File 3', 'Calendar', FileType.calendar),
+      Files('File 4', 'Phone', FileType.call, isMarkedAsEvidence: true),
+      Files('File 4', 'Microphone', FileType.microphone),
+      Files('File 5', 'Health', FileType.heartbeat),
+      Files('File 6', 'Message', FileType.message),
+      Files('File 7', 'Note', FileType.note),
+      Files('File 7', 'Bank', FileType.bank),
+      Files('File 8', 'SocialMedia', FileType.socialMedia),
+      Files('File 9', 'Text', FileType.text),
+      Files('File 10', 'Browser', FileType.webHistory),
     ];
     return files;
   }

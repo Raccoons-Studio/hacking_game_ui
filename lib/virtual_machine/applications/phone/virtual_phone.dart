@@ -4,7 +4,6 @@ import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/utils/game_icons.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_health.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_image.dart';
-import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_plan.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_scrollable.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_text.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_chat.dart';
@@ -230,7 +229,8 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
                 child: VirtualDesktopIcon(
                     backgroundColor: getColorByType(file.type),
                     icon: getIconByType(file.type),
-                    tooltip: file.type.name),
+                    label: file.name,
+                    tooltip: file.name),
               ),
             )
             .toList(),
