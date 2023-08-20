@@ -1,7 +1,6 @@
 enum ScrollableType {
-  call,
+  note,
   webHistory,
-  message,
   socialMedia,
   calendar,
 }
@@ -13,6 +12,7 @@ class ScrollableData {
   ScrollableType type;
   String content;
   String subcontent;
+  bool isMarkedAsEvidence;
 
-  ScrollableData(this.week, this.day, this.hour, this.type, this.content, this.subcontent);
+  ScrollableData(this.week, this.day, this.hour, this.type, this.content, this.subcontent, {this.isMarkedAsEvidence = false});
 }

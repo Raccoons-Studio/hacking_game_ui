@@ -3,17 +3,17 @@ import 'dart:ui' as ui;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ImageWithMarkers extends StatefulWidget {
+class FinderPlan extends StatefulWidget {
   final ImageProvider image;
   final List<Offset> markers;
 
-  ImageWithMarkers({required this.image, required this.markers});
+  FinderPlan({required this.image, required this.markers});
 
   @override
-  _ImageWithMarkersState createState() => _ImageWithMarkersState();
+  _FinderPlanState createState() => _FinderPlanState();
 }
 
-class _ImageWithMarkersState extends State<ImageWithMarkers> {
+class _FinderPlanState extends State<FinderPlan> {
   ui.Image? image;
   late Future _fetchImage;
   double radius = 20.0;

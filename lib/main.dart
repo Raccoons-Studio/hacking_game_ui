@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:hacking_game_ui/providers/mocks/maestro_mock.dart';
 import 'package:hacking_game_ui/virtual_machine/virtual_desktop.dart';
 import 'package:macos_ui/macos_ui.dart';
 
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       darkTheme: MacosThemeData.dark(),
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
-      home: MacOSDesktop(),
+      home: MacOSDesktop(maestro: MaestroMock()),
     );
   }
 }

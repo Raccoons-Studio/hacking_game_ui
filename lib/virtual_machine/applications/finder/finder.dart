@@ -1,15 +1,20 @@
+import 'dart:io';
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hacking_game_ui/virtual_machine/applications/finder_image.dart';
-import 'package:hacking_game_ui/virtual_machine/applications/finder_scrollable.dart';
-import 'package:hacking_game_ui/virtual_machine/applications/finder_text.dart';
-import 'package:hacking_game_ui/virtual_machine/applications/finder_timeline.dart';
+import 'package:hacking_game_ui/utils/game_icons.dart';
+import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_chat.dart';
+import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_image.dart';
+import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_scrollable.dart';
+import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_text.dart';
+import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_timeline.dart';
+import 'package:hacking_game_ui/virtual_machine/models/conversation_data.dart';
+import 'package:hacking_game_ui/virtual_machine/models/directory_and_files.dart';
 import 'package:hacking_game_ui/virtual_machine/models/scrollable_data.dart';
 import 'package:hacking_game_ui/virtual_machine/models/timeline_data.dart';
-import 'package:hacking_game_ui/virtual_machine/providers/files_providers.dart';
+import 'package:hacking_game_ui/providers/files_providers.dart';
 import 'package:macos_ui/macos_ui.dart';
-
-import '../models/directory_and_files.dart';
 
 class FinderApplication extends StatefulWidget {
   final Directory rootDirectory;
@@ -50,17 +55,19 @@ class _FinderApplicationState extends State<FinderApplication> {
         ),
         ContentArea(
           builder: (_, __) {
-            return Column(
-              children: [
-                Flexible(
-                  fit: FlexFit.loose,
-                  child: Container(
-                    child: _currentFile == null
-                        ? buildFoldersAndFiles(_currentDirectory)
-                        : buildDisplayFile(),
+            return Container(
+              child: Column(
+                children: [
+                  Flexible(
+                    fit: FlexFit.loose,
+                    child: Container(
+                      child: _currentFile == null
+                          ? buildFoldersAndFiles(_currentDirectory)
+                          : buildDisplayFile(),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             );
           },
         ),
@@ -108,7 +115,14 @@ class _FinderApplicationState extends State<FinderApplication> {
       return Container();
     }
     if (_currentFile!.type == FileType.image) {
-      return FinderImage(currentFile: _currentFile);
+      return FutureBuilder<String>(
+          future: widget.filesProvider.getAssetContent(_currentFile!),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return FinderImage(assetName: snapshot.data!);
+            }
+            return Center(child: CircularProgressIndicator());
+          });
     }
     if (_currentFile!.type == FileType.text) {
       return FutureBuilder(
@@ -122,7 +136,8 @@ class _FinderApplicationState extends State<FinderApplication> {
           },
           future: widget.filesProvider.getTextContent(_currentFile!));
     }
-    if (_currentFile!.type == FileType.timeline) {
+    if (_currentFile!.type == FileType.position ||
+        _currentFile!.type == FileType.heartbeat) {
       return FutureBuilder<List<TimelineData>>(
           builder: (context, snapshot) {
             if (snapshot.hasData) {
@@ -132,7 +147,9 @@ class _FinderApplicationState extends State<FinderApplication> {
           },
           future: widget.filesProvider.getTimelineData(_currentFile!));
     }
-    if (_currentFile!.type == FileType.scrollable) {
+    if (_currentFile!.type == FileType.socialMedia ||
+        _currentFile!.type == FileType.calendar ||
+        _currentFile!.type == FileType.note) {
       return FutureBuilder<List<ScrollableData>>(
           builder: (context, snapshot) {
             if (snapshot.hasData) {
@@ -141,6 +158,17 @@ class _FinderApplicationState extends State<FinderApplication> {
             return Center(child: CircularProgressIndicator());
           },
           future: widget.filesProvider.getScrollableData(_currentFile!));
+    }
+    if (_currentFile!.type == FileType.message ||
+        _currentFile!.type == FileType.call) {
+      return FutureBuilder<Map<String, List<ConversationData>>>(
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return FinderChat(conversations: snapshot.data!);
+            }
+            return Center(child: CircularProgressIndicator());
+          },
+          future: widget.filesProvider.getConversations());
     }
     return Center(
       child: Text(_currentFile!.name),
@@ -176,69 +204,57 @@ class _FinderApplicationState extends State<FinderApplication> {
   Widget buildFile(Files file) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
+      child: Stack(
         children: [
-          GestureDetector(
-            onTap: () => setState(() => _currentFile = file),
-            child: Container(
-              width: 80,
-              height: 90,
-              color: Colors.transparent,
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  children: [
-                    Icon(
-                      getIconByType(file.type),
-                      size: 36,
-                      color: getColorByType(file.type),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              GestureDetector(
+                onTap: () => setState(() => _currentFile = file),
+                child: Container(
+                  width: 80,
+                  height: 90,
+                  color: Colors.transparent,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      children: [
+                        Icon(
+                          getIconByType(file.type),
+                          size: 36,
+                          color: getColorByType(file.type),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          file.name,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 12),
+                        ),
+                      ],
                     ),
-                    SizedBox(height: 8),
-                    Text(
-                      file.name,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 12),
-                    ),
-                  ],
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
+          if (file.isMarkedAsEvidence)
+            Positioned(
+              child: Transform.rotate(
+                angle: pi / 4,
+                child: Icon(
+                  Icons.push_pin,
+                  color: Colors.red,
+                ),
+              ),
+              top: 0,
+              right: 0,
+            ),
         ],
       ),
     );
   }
 
-  IconData getIconByType(FileType type) {
-    switch (type) {
-      case FileType.timeline:
-        return CupertinoIcons.doc_chart;
-      case FileType.image:
-        return CupertinoIcons.photo;
-      case FileType.scrollable:
-        return CupertinoIcons.switch_camera_solid;
-      case FileType.text:
-        return CupertinoIcons.pencil;
-      default:
-        return CupertinoIcons.question;
-    }
-  }
-
-  Color getColorByType(FileType type) {
-    switch (type) {
-      case FileType.timeline:
-        return CupertinoColors.systemGreen;
-      case FileType.image:
-        return CupertinoColors.activeOrange;
-      case FileType.scrollable:
-        return CupertinoColors.systemRed;
-      case FileType.text:
-        return CupertinoColors.activeBlue;
-      default:
-        return CupertinoColors.black;
-    }
-  }
+  
 
   Widget buildDirectory(Directory dir, Directory currentDirectory) {
     return Padding(

@@ -1,27 +1,69 @@
 import 'package:flutter/material.dart';
+import 'package:hacking_game_ui/maestro/maestro.dart';
+import 'package:hacking_game_ui/utils/game_date.dart';
+import 'package:hacking_game_ui/virtual_machine/applications/cinematic/cinematic_display.dart';
+import 'package:hacking_game_ui/virtual_machine/applications/finder/finder.dart';
+import 'package:hacking_game_ui/virtual_machine/applications/phone/virtual_phone.dart';
 import 'package:hacking_game_ui/virtual_machine/models/application.dart';
-import 'package:hacking_game_ui/virtual_machine/applications/finder.dart';
+import 'package:hacking_game_ui/virtual_machine/models/cinematic.dart';
 import 'package:hacking_game_ui/virtual_machine/models/directory_and_files.dart';
-import 'package:hacking_game_ui/virtual_machine/providers/mocks/files_provider_mock.dart';
 import 'package:hacking_game_ui/virtual_machine/virtual_desktop_icon.dart';
 
 class MacOSDesktop extends StatefulWidget {
+  final Maestro maestro;
+
+  const MacOSDesktop({Key? key, required this.maestro}) : super(key: key);
+
   @override
   State<MacOSDesktop> createState() => _MacOSDesktopState();
 }
 
 class _MacOSDesktopState extends State<MacOSDesktop> {
   VirtualApplication? _currentApplication;
+  MaestroState? _maestroState;
+  bool isCinematicPlaying = false;
 
   final List<VirtualApplication> applications = [
     VirtualApplication('Finder', Icons.file_copy, Colors.blue),
     VirtualApplication('Messages', Icons.message, Colors.green),
+    VirtualApplication('Cinematic', Icons.movie, Colors.purple),
+    VirtualApplication('Phones', Icons.phone, Colors.greenAccent),
+    VirtualApplication('Next', Icons.skip_next, Colors.orangeAccent),
     // Add more applications here
   ];
 
+  @override
+  void initState() {
+    super.initState();
+    widget.maestro.maestroStream.listen((event) {
+      _maestroState = event;
+      if (event.isCinematic) {
+        setState(() {
+          isCinematicPlaying = true;
+        });
+      } else {
+        setState(() {
+          isCinematicPlaying = false;
+        });
+      }
+    });
+    widget.maestro.start();
+  }
+
   AppBar buildAppBar() {
     return AppBar(
-      title: Text('My Mac OS Toolbar'),
+      // If a MaestroState is available, show the current week, day and hour
+      title: _maestroState != null
+          ? FutureBuilder<String>(
+              future: getDayOfWeek(_maestroState!.day),
+              builder: (context, snapshot) {
+                if (snapshot.hasData)
+                  return Text(
+                      'Week ${_maestroState!.week} - ${snapshot.data} ${_maestroState!.hour}:00');
+                else
+                  return Container();
+              })
+          : Container(),
       backgroundColor: Colors.grey.shade800.withAlpha(50),
     );
   }
@@ -39,23 +81,72 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
     switch (_currentApplication!.name) {
       case 'Finder':
         return FutureBuilder<Directory>(
-            future: FilesProviderMock().getDirectory("/"),
+            future: widget.maestro.getFilesProvider().getDirectory("/"),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return FinderApplication(rootDirectory: snapshot.data!, filesProvider: FilesProviderMock());
+                return FinderApplication(
+                    rootDirectory: snapshot.data!,
+                    filesProvider: widget.maestro.getFilesProvider());
               } else {
                 return Container(child: Text('Loading...'));
               }
             });
       case 'Messages':
         return FutureBuilder<Directory>(
-            future: FilesProviderMock().getDirectory("/"),
+            future: widget.maestro.getFilesProvider().getDirectory("/"),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return FinderApplication(rootDirectory: snapshot.data!, filesProvider: FilesProviderMock());
+                return FinderApplication(
+                    rootDirectory: snapshot.data!,
+                    filesProvider: widget.maestro.getFilesProvider());
               } else {
                 return Container(child: Text('Loading...'));
               }
+            });
+      case 'Phones':
+        return FutureBuilder<List<Files>>(
+            future: widget.maestro.getPhoneEvidences('1'),
+            builder: (context, evidences) {
+              if (evidences.hasData) {
+                return FutureBuilder<String>(
+                  future: getDayOfWeek(_maestroState!.day),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return Container();
+                    }
+                    return IPhoneFrame(
+                      maestro: widget.maestro,
+                      characterName: "John Doe",
+                      files: evidences.data!,
+                      currentDay: snapshot.data!,
+                      currentHour: "${_maestroState!.hour}:00",
+                      backgroundImageUrl: "assets/iphone.jpg",
+                      splashScreenImageUrl: "assets/images/avatar.jpeg",
+                    );
+                  }
+                );
+              } else {
+                return Container(child: Text('Loading...'));
+              }
+            });
+      case 'Cinematic':
+        setState(() {
+          isCinematicPlaying = true;
+        });
+        return FutureBuilder<Cinematic>(
+            future: widget.maestro.getCinematicProvider().getCinematicData(""),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return Container();
+              }
+              return CinematicWidget(
+                  cinematic: snapshot.data!,
+                  onEndCinematic: () {
+                    setState(() {
+                      _currentApplication = null;
+                      isCinematicPlaying = false;
+                    });
+                  });
             });
       default:
         return Container();
@@ -79,15 +170,21 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
               return Padding(
                 padding: EdgeInsets.symmetric(horizontal: 5.0),
                 child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      if (_currentApplication == applications[index]) {
-                        _currentApplication = null;
-                        return;
-                      } else {
-                        _currentApplication = applications[index];
+                  onTap: () async {
+                    if (applications[index].name == 'Next') {
+                      if (!await widget.maestro.nextHour()) {
+                        // TODO : Display a cinematic to show that the user need to discover more evidences
                       }
-                    });
+                    } else {
+                      setState(() {
+                        if (_currentApplication == applications[index]) {
+                          _currentApplication = null;
+                          return;
+                        } else {
+                          _currentApplication = applications[index];
+                        }
+                      });
+                    }
                   },
                   child: VirtualDesktopIcon(
                     backgroundColor: applications[index].color,
@@ -126,7 +223,9 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               buildContent(),
-              buildApplicationList(applications),
+              isCinematicPlaying
+                  ? Container()
+                  : buildApplicationList(applications),
             ],
           ),
         ),

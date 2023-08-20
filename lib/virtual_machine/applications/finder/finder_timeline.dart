@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hacking_game_ui/virtual_machine/models/timeline_data.dart';
 
+import 'finder_health.dart';
 import 'finder_plan.dart';
 
 class FinderTimeline extends StatefulWidget {
@@ -44,10 +45,8 @@ class _FinderTimelineState extends State<FinderTimeline> {
       children: <Widget>[
         Expanded(
             child: Center(
-          child: ImageWithMarkers(
-            image: AssetImage('assets/images/map.png'),
-            markers: [Offset(560, 650)],
-          ),
+          //child: ImageWithMarkers(image: AssetImage('assets/images/map.png'), markers: [Offset(560, 650)],)
+          child: buildContentWidget(widget.timelines[_currentPosition]),
         )),
         Container(
           height: 50,
@@ -76,4 +75,14 @@ class _FinderTimelineState extends State<FinderTimeline> {
       ],
     );
   }
+
+  Widget buildContentWidget(TimelineData data) {
+    if (data.type == TimelineType.position) {
+      return FinderPlan(image: AssetImage('assets/images/map.png'), markers: [Offset((data.value as PositionData).x, (data.value as PositionData).y)]);
+    } else if (data.type == TimelineType.heartbeat) {
+      return FinderHealth(beatsPerMinute: data.value as int, bpm: data.value as int,);
+    } else {
+      return Container();
+    }
+  } 
 }

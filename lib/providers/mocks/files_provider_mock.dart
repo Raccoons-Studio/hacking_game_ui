@@ -1,7 +1,10 @@
+import 'dart:math';
+
+import 'package:hacking_game_ui/virtual_machine/models/conversation_data.dart';
 import 'package:hacking_game_ui/virtual_machine/models/directory_and_files.dart';
 import 'package:hacking_game_ui/virtual_machine/models/scrollable_data.dart';
 import 'package:hacking_game_ui/virtual_machine/models/timeline_data.dart';
-import 'package:hacking_game_ui/virtual_machine/providers/files_providers.dart';
+import 'package:hacking_game_ui/providers/files_providers.dart';
 
 class FilesProviderMock extends FilesProvider {
   @override
@@ -22,21 +25,23 @@ class FilesProviderMock extends FilesProvider {
       Directory('SubDir 2', 'SubDir 2', [], [], parent: currentDirectory),
     ]);
     currentDirectory.files.addAll([
-      Files('File 1', 'File 1', FileType.timeline, parent: currentDirectory),
+      Files('File 1', 'File 1', FileType.position, parent: currentDirectory),
       Files('File_2', 'File 2', FileType.image, parent: currentDirectory),
-      Files('File 3', 'File 3', FileType.scrollable, parent: currentDirectory),
-      Files('File 4', 'File 4', FileType.image, parent: currentDirectory),
-      Files('File 5', 'File 5', FileType.image, parent: currentDirectory),
-      Files('File 6', 'File 6', FileType.image, parent: currentDirectory),
-      Files('File 7', 'File 7', FileType.text, parent: currentDirectory),
-      Files('File 8', 'File 8', FileType.text, parent: currentDirectory),
-      Files('File 9', 'File 9', FileType.image, parent: currentDirectory),
-      Files('File 10', 'File 10', FileType.image, parent: currentDirectory),
-      Files('File 11', 'File 11', FileType.timeline, parent: currentDirectory),
+      Files('File 3', 'File 3', FileType.calendar, parent: currentDirectory),
+      Files('File 4', 'File 4', FileType.call,
+          parent: currentDirectory, isMarkedAsEvidence: true),
+      Files('File 5', 'File 5', FileType.heartbeat, parent: currentDirectory),
+      Files('File 6', 'File 6', FileType.message, parent: currentDirectory),
+      Files('File 7', 'File 7', FileType.note, parent: currentDirectory),
+      Files('File 8', 'File 8', FileType.socialMedia, parent: currentDirectory),
+      Files('File 9', 'File 9', FileType.text, parent: currentDirectory),
+      Files('File 10', 'File 10', FileType.webHistory,
+          parent: currentDirectory),
+      Files('File 11', 'File 11', FileType.image, parent: currentDirectory),
       Files('File 12', 'File 12', FileType.image, parent: currentDirectory),
-      Files('File 13', 'File 13', FileType.scrollable, parent: currentDirectory),
+      Files('File 13', 'File 13', FileType.image, parent: currentDirectory),
       Files('File 14', 'File 14', FileType.image, parent: currentDirectory),
-      Files('File 15', 'File 15', FileType.scrollable, parent: currentDirectory),
+      Files('File 15', 'File 15', FileType.image, parent: currentDirectory),
       Files('File 16', 'File 16', FileType.image, parent: currentDirectory),
       Files('File 17', 'File 17', FileType.image, parent: currentDirectory),
       Files('File 18', 'File 18', FileType.image, parent: currentDirectory),
@@ -53,16 +58,33 @@ class FilesProviderMock extends FilesProvider {
   @override
   Future<List<TimelineData>> getTimelineData(Files file) async {
     List<TimelineData> timelineDataList = [];
-
-    for (int i = 1; i <= 10; i++) {
-      TimelineData timeline = TimelineData(
-        1,
-        i,
-        i * 2,
-        TimelineType.position,
-        'Dummy content $i',
-      );
-      timelineDataList.add(timeline);
+    if (file.type == FileType.position) {
+      for (int i = 1; i <= 10; i++) {
+        TimelineData timeline = TimelineData(
+            1,
+            i,
+            i * 2,
+            TimelineType.position,
+            'Dummy content $i',
+            // Random value between 0 and 1024
+            PositionData(Random().nextInt(1024).toDouble(),
+                Random().nextInt(1024).toDouble()));
+        timelineDataList.add(timeline);
+      }
+    }
+    if (file.type == FileType.heartbeat) {
+      for (int i = 1; i <= 10; i++) {
+        var bpm = (60 + Random().nextInt(90));
+        TimelineData timeline = TimelineData(
+            1,
+            i,
+            i * 2,
+            TimelineType.heartbeat,
+            // A random number between 60 and 150
+            bpm.toString(),
+            bpm);
+        timelineDataList.add(timeline);
+      }
     }
 
     return timelineDataList;
@@ -72,18 +94,77 @@ class FilesProviderMock extends FilesProvider {
   Future<List<ScrollableData>> getScrollableData(Files file) async {
     List<ScrollableData> timelineDataList = [];
 
-    for (int i = 1; i <= 10; i++) {
-      ScrollableData timeline = ScrollableData(
-        1,
-        i,
-        i * 2,
-        ScrollableType.socialMedia,
-        'Dummy content $i',
-        'Dummy subcontent $i',
-      );
-      timelineDataList.add(timeline);
+    if (file.type == FileType.socialMedia) {
+      for (int i = 1; i <= 10; i++) {
+        ScrollableData timeline = ScrollableData(
+          1,
+          i,
+          i * 2,
+          ScrollableType.socialMedia,
+          'assets/images/File_2.jpg',
+          'Eating some super food !',
+        );
+        timelineDataList.add(timeline);
+      }
+    }
+
+    if (file.type == FileType.calendar) {
+      for (int i = 1; i <= 10; i++) {
+        ScrollableData timeline = ScrollableData(
+          1,
+          i,
+          i * 2,
+          ScrollableType.calendar,
+          'Appointment with Dr. Strange',
+          'Dr. Strange Office',
+        );
+        timelineDataList.add(timeline);
+      }
+    }
+
+    if (file.type == FileType.note) {
+      for (int i = 1; i <= 10; i++) {
+        ScrollableData timeline = ScrollableData(
+          1,
+          i,
+          i * 2,
+          ScrollableType.note,
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dignissim at lorem ac sollicitudin. Phasellus ut neque blandit, cursus lectus nec, interdum tellus. Praesent efficitur mauris sit amet dolor suscipit, et bibendum purus efficitur. Donec erat enim, tincidunt et felis a, rhoncus fringilla massa. Morbi id quam in ante tempor mollis. Etiam ut arcu ut ipsum pellentesque porta. Aliquam turpis diam, commodo vel felis vitae, eleifend hendrerit mauris. Suspendisse at velit a tortor eleifend pretium. Mauris tellus lectus, tempus eu lacus eget, iaculis fermentum risus. Nam in enim odio.',
+          'Note title',
+        );
+        timelineDataList.add(timeline);
+      }
     }
 
     return timelineDataList;
+  }
+
+  @override
+  Future<Map<String, List<ConversationData>>> getConversations() async {
+    final Random random = Random();
+    final List<String> names = ['User', 'Partner'];
+    final Map<String, List<ConversationData>> conversations = {};
+
+    for (var i = 0; i < names.length; i++) {
+      List<ConversationData> convoData = [];
+      for (var j = 0; j < 5; j++) {
+        // 5 is the number of conversations
+        List<ConversationBubbleData> bubbleData = [];
+        for (var k = 0; k < 10; k++) {
+          // 10 is the number of messages in each conversation
+          bubbleData.add(ConversationBubbleData(names[random.nextInt(2)], 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dignissim at lorem ac sollicitudin. Phasellus ut neque blandit, cursus lectus nec, interdum tellus. $k'));
+        }
+        convoData.add(ConversationData((random.nextInt(52) + 1).toString() ,bubbleData, random.nextInt(52) + 1,
+            random.nextInt(7) + 1, random.nextInt(24)));
+      }
+      conversations[names[i]] = convoData;
+    }
+
+    return conversations;
+  }
+  
+  @override
+  Future<String> getAssetContent(Files file) async {
+    return "File_2.jpg";
   }
 }

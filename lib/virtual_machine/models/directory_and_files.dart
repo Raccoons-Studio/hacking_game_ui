@@ -1,13 +1,25 @@
 
-enum FileType { timeline, image, text, scrollable, directory }
+enum FileType { 
+  position, 
+  heartbeat, 
+  note, 
+  call,
+  webHistory,
+  message,
+  socialMedia,
+  calendar,
+  image,
+  text,
+  directory }
 
 class Files {
-  String uniqueID;
+  String evidenceID;
   String name;
   FileType type;
   Directory? parent;
+  bool isMarkedAsEvidence;
 
-  Files(this.uniqueID, this.name, this.type, {this.parent});
+  Files(this.evidenceID, this.name, this.type, {this.parent, this.isMarkedAsEvidence = false});
 }
 
 class Directory extends Files {
