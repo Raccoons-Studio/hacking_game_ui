@@ -43,7 +43,7 @@ class _MobileFinderChatState extends State<MobileFinderChat> {
       itemCount: conversations.length,
       itemBuilder: (context, index) {
         return ListTile(
-          leading: CircleAvatar(
+          leading: const CircleAvatar(
             radius: 30.0,
             backgroundImage: AssetImage('assets/images/avatar.jpeg'),
           ),
@@ -56,7 +56,7 @@ class _MobileFinderChatState extends State<MobileFinderChat> {
               _currentConversation = conversations.values.toList()[index];
               selectedContactIndex = index;
               showConversation = true;
-              Future.delayed(Duration(milliseconds: 500), () {
+              Future.delayed(const Duration(milliseconds: 500), () {
                 _scrollController
                     .jumpTo(_scrollController.position.maxScrollExtent);
               });

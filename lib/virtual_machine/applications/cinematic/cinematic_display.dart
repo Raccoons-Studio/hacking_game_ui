@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -21,6 +20,7 @@ class _CinematicWidgetState extends State<CinematicWidget> {
   int sequencesIndex = 0;
   int conversationsIndex = 0;
 
+  @override
   void initState() {
     super.initState();
     SystemChannels.lifecycle.setMessageHandler((msg) {
@@ -82,23 +82,23 @@ class _CinematicWidgetState extends State<CinematicWidget> {
               child: Container(
                 padding: const EdgeInsets.all(8.0),
                 color: Colors.black54,
-                constraints: BoxConstraints(minHeight: 100),
+                constraints: const BoxConstraints(minHeight: 100),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
                       widget.cinematic.cinematicSequences[sequencesIndex]
                           .cinematicConversations[conversationsIndex].character,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 24,
                           color: Colors.white,
                           fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Text(
                       widget.cinematic.cinematicSequences[sequencesIndex]
                           .cinematicConversations[conversationsIndex].text,
-                      style: TextStyle(fontSize: 18, color: Colors.white),
+                      style: const TextStyle(fontSize: 18, color: Colors.white),
                     ),
                   ],
                 ),

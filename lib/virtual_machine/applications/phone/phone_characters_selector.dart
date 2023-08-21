@@ -21,8 +21,8 @@ class CharacterSelection extends StatefulWidget {
   final List<Character> characters;
   final int avatars;
 
-  CharacterSelection(
-      {required this.maestro,
+  const CharacterSelection(
+      {super.key, required this.maestro,
       required this.characters,
       required this.avatars,
       required this.currentDay,
@@ -62,7 +62,7 @@ class _CharacterSelectionState extends State<CharacterSelection> {
                               _selectedCharacter!.characterID),
                           builder: (context, snapshot) {
                             if (!snapshot.hasData) {
-                              return CircularProgressIndicator();
+                              return const CircularProgressIndicator();
                             }
                             return IPhoneFrame(
                               maestro: widget.maestro,
@@ -80,7 +80,7 @@ class _CharacterSelectionState extends State<CharacterSelection> {
                       runSpacing: 32.0,
                       children: widget.characters
                           .map((character) => Padding(
-                                padding: EdgeInsets.all(16),
+                                padding: const EdgeInsets.all(16),
                                 child: GestureDetector(
                                   onTap: () {
                                     _handleTap(character);
@@ -90,8 +90,7 @@ class _CharacterSelectionState extends State<CharacterSelection> {
                                       CircleAvatar(
                                         radius: 50.0,
                                         backgroundImage: AssetImage(
-                                            "assets/images/" +
-                                                character.avatar),
+                                            "assets/images/${character.avatar}"),
                                       ),
                                       Padding(
                                         padding:
@@ -106,9 +105,9 @@ class _CharacterSelectionState extends State<CharacterSelection> {
                         ..addAll(List.generate(
                           widget.avatars - widget.characters.length,
                           (_) => Padding(
-                            padding: EdgeInsets.all(16),
+                            padding: const EdgeInsets.all(16),
                             child: GestureDetector(
-                              child: Column(
+                              child: const Column(
                                 children: <Widget>[
                                   CircleAvatar(
                                     radius: 50.0,
@@ -121,7 +120,7 @@ class _CharacterSelectionState extends State<CharacterSelection> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(top: 8.0),
+                                    padding: EdgeInsets.only(top: 8.0),
                                     child: Text('Unknown phone'),
                                   ),
                                 ],

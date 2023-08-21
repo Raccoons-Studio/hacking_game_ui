@@ -64,7 +64,7 @@ class _FinderChatState extends State<FinderChat> {
     for (var i = 0; i < conversations.length; i++) {
       bool isSelected = favoritePageIndex == i;
       items.add(ListTile(
-        leading: CircleAvatar(
+        leading: const CircleAvatar(
           radius: 30.0,
           backgroundImage: AssetImage('assets/images/avatar.jpeg'),
           backgroundColor: Colors.transparent,
@@ -139,7 +139,7 @@ class GenericConversation extends StatelessWidget {
           children: [
             Center(
               child: Container(
-                margin: EdgeInsets.all(10),
+                margin: const EdgeInsets.all(10),
                 child: Text(
                   'Week: ${conversation[index].week}, Day: ${conversation[index].day}, Hour: ${conversation[index].hour}',
                   style: TextStyle(
@@ -150,7 +150,7 @@ class GenericConversation extends StatelessWidget {
             ),
             ListView.builder(
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: conversation[index].conversation.length,
               itemBuilder: (context, i) {
                 return ConversationBubble(
@@ -193,8 +193,8 @@ class ConversationBubble extends StatelessWidget {
                   : CupertinoColors.lightBackgroundGray,
               borderRadius: BorderRadius.circular(20),
             ),
-            margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+            margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
             child: Text(
               data.content,
               style: TextStyle(

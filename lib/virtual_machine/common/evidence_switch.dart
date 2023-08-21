@@ -21,7 +21,7 @@ class _EvidenceSwitchState extends State<EvidenceSwitch> {
   @override
   Widget build(BuildContext context) {
     return SwitchListTile(
-      title: Text("Mark this conversation as evidence"),
+      title: const Text("Mark this conversation as evidence"),
       value: _isSwitched,
       onChanged: (value) {
         setState(() {

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hacking_game_ui/virtual_machine/models/timeline_data.dart';
 
@@ -8,7 +7,7 @@ import 'finder_plan.dart';
 class FinderTimeline extends StatefulWidget {
   final List<TimelineData> timelines;
 
-  FinderTimeline({required this.timelines});
+  const FinderTimeline({super.key, required this.timelines});
 
   @override
   _FinderTimelineState createState() => _FinderTimelineState();
@@ -55,9 +54,9 @@ class _FinderTimelineState extends State<FinderTimeline> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text('Week ${widget.timelines[_currentPosition].week}'),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Text('Day ${widget.timelines[_currentPosition].day}'),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Text('Hour ${widget.timelines[_currentPosition].hour}'),
             ],
           ),
@@ -78,7 +77,7 @@ class _FinderTimelineState extends State<FinderTimeline> {
 
   Widget buildContentWidget(TimelineData data) {
     if (data.type == TimelineType.position) {
-      return FinderPlan(image: AssetImage('assets/images/map.png'), markers: [Offset((data.value as PositionData).x, (data.value as PositionData).y)]);
+      return FinderPlan(image: const AssetImage('assets/images/map.png'), markers: [Offset((data.value as PositionData).x, (data.value as PositionData).y)]);
     } else if (data.type == TimelineType.heartbeat) {
       return FinderHealth(beatsPerMinute: data.value as int, bpm: data.value as int,);
     } else {

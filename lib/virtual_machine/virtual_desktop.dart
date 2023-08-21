@@ -4,7 +4,6 @@ import 'package:hacking_game_ui/utils/game_date.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/cinematic/cinematic_display.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_characters_selector.dart';
-import 'package:hacking_game_ui/virtual_machine/applications/phone/virtual_phone.dart';
 import 'package:hacking_game_ui/virtual_machine/models/application.dart';
 import 'package:hacking_game_ui/virtual_machine/models/cinematic.dart';
 import 'package:hacking_game_ui/virtual_machine/models/directory_and_files.dart';
@@ -58,11 +57,12 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
           ? FutureBuilder<String>(
               future: getDayOfWeek(_maestroState!.day),
               builder: (context, snapshot) {
-                if (snapshot.hasData)
+                if (snapshot.hasData) {
                   return Text(
                       'Week ${_maestroState!.week} - ${snapshot.data} ${_maestroState!.hour}:00');
-                else
+                } else {
                   return Container();
+                }
               })
           : Container(),
       backgroundColor: Colors.grey.shade800.withAlpha(50),
@@ -89,7 +89,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                     rootDirectory: snapshot.data!,
                     filesProvider: widget.maestro.getFilesProvider());
               } else {
-                return Container(child: Text('Loading...'));
+                return Container(child: const Text('Loading...'));
               }
             });
       case 'Messages':
@@ -101,7 +101,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                     rootDirectory: snapshot.data!,
                     filesProvider: widget.maestro.getFilesProvider());
               } else {
-                return Container(child: Text('Loading...'));
+                return Container(child: const Text('Loading...'));
               }
             });
       case 'Phones':
@@ -135,7 +135,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                   }
                 );
               } else {
-                return Container(child: Text('Loading...'));
+                return Container(child: const Text('Loading...'));
               }
             });
       case 'Cinematic':
@@ -165,7 +165,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
   Widget buildApplicationList(List<VirtualApplication> applications) {
     return Container(
       height: 60.0,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.transparent,
       ),
       child: Center(
@@ -177,7 +177,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
           child: ListView.builder(
             itemBuilder: (BuildContext context, int index) {
               return Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5.0),
+                padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 child: GestureDetector(
                   onTap: () async {
                     if (applications[index].name == 'Next') {
@@ -206,7 +206,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
             itemCount: applications.length,
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.symmetric(
+            padding: const EdgeInsets.symmetric(
                 horizontal:
                     5.0), // Here Padding is added around the ListView to have some inside spacing
           ),

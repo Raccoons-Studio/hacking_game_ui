@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:hacking_game_ui/virtual_machine/models/directory_and_files.dart';
 
 class FinderImage extends StatelessWidget {
   const FinderImage({
@@ -13,7 +12,7 @@ class FinderImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Image.asset(
-        'assets/images/${this.assetName}',
+        'assets/images/$assetName',
         fit: BoxFit.contain,
       ),
     );

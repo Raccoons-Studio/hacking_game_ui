@@ -6,8 +6,8 @@ class VirtualDesktopIcon extends StatelessWidget {
   final String tooltip;
   final String? label;
 
-  VirtualDesktopIcon(
-      {required this.backgroundColor,
+  const VirtualDesktopIcon(
+      {super.key, required this.backgroundColor,
       required this.icon,
       required this.tooltip,
       this.label});

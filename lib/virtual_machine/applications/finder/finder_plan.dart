@@ -7,7 +7,7 @@ class FinderPlan extends StatefulWidget {
   final ImageProvider image;
   final List<Offset> markers;
 
-  FinderPlan({required this.image, required this.markers});
+  const FinderPlan({super.key, required this.image, required this.markers});
 
   @override
   _FinderPlanState createState() => _FinderPlanState();
@@ -23,7 +23,7 @@ class _FinderPlanState extends State<FinderPlan> {
   void initState() {
     super.initState();
     _fetchImage = _loadImage(widget.image);
-    _timer = Timer.periodic(Duration(milliseconds: 200), (Timer timer) {
+    _timer = Timer.periodic(const Duration(milliseconds: 200), (Timer timer) {
       setState(() {
         radius < 60.0 ? radius += 10.0 : radius = 20.0;
       });
@@ -59,8 +59,9 @@ class _FinderPlanState extends State<FinderPlan> {
     return FutureBuilder(
       future: _fetchImage,
       builder: (context, snapshot) {
-        if (snapshot.connectionState != ConnectionState.done || image == null)
-          return Center(child: CircularProgressIndicator());
+        if (snapshot.connectionState != ConnectionState.done || image == null) {
+          return const Center(child: CircularProgressIndicator());
+        }
         return FittedBox(
           fit: BoxFit.cover,
           child: SizedBox(
@@ -106,7 +107,7 @@ class _MarkerPainter extends CustomPainter {
       ..color = Colors.red.withOpacity(0.5)
       ..style = PaintingStyle.fill;
 
-    final iconData = CupertinoIcons.map_pin_ellipse;
+    const iconData = CupertinoIcons.map_pin_ellipse;
 
     for (final marker in markers) {
       final mappedOffset = Offset(
@@ -140,7 +141,7 @@ class _MarkerPainter extends CustomPainter {
       tp.layout();
       tp.paint(
           canvas,
-          new Offset(
+          Offset(
               mappedOffset.dx - tp.width / 2, mappedOffset.dy - tp.height / 2));
     }
   }

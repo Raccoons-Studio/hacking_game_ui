@@ -4,7 +4,7 @@ import 'package:hacking_game_ui/virtual_machine/models/scrollable_data.dart';
 class FinderScrollable extends StatefulWidget {
   final List<ScrollableData> dataList;
 
-  FinderScrollable({required this.dataList});
+  const FinderScrollable({super.key, required this.dataList});
 
   @override
   State<FinderScrollable> createState() => _FinderScrollableState();
@@ -40,10 +40,10 @@ class _FinderScrollableState extends State<FinderScrollable> {
             left: 0,
             top: 0,
             child: Padding(
-              padding: EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(10.0),
               child: Text(
                 'Week: ${widget.dataList[index].week}, Day: ${widget.dataList[index].day}, Hour: ${widget.dataList[index].hour}',
-                style: TextStyle(fontSize: 12.0),
+                style: const TextStyle(fontSize: 12.0),
               ),
             ),
           ),
@@ -51,14 +51,14 @@ class _FinderScrollableState extends State<FinderScrollable> {
             right: 0,
             top: 0,
             child: Padding(
-              padding: EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(10.0),
               child: Row(
                 children: <Widget>[
                   Text(
                     widget.dataList[index].isMarkedAsEvidence
                         ? 'Added to evidences'
                         : 'Add to evidences',
-                    style: TextStyle(fontSize: 12.0),
+                    style: const TextStyle(fontSize: 12.0),
                   ),
                   Switch(
                     value: widget.dataList[index].isMarkedAsEvidence,

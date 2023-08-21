@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
 
 class FinderHealth extends StatefulWidget {
   final int bpm;
 
-  FinderHealth({required this.bpm, required int beatsPerMinute});
+  const FinderHealth({super.key, required this.bpm, required int beatsPerMinute});
 
   @override
   _HeartBeatState createState() => _HeartBeatState();
@@ -57,7 +56,7 @@ class _HeartBeatState extends State<FinderHealth> with SingleTickerProviderState
             Icon(Icons.favorite, color: Colors.red, size: _animation.value),
             Text(
               "${widget.bpm} BPM",
-              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white),
+              style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white),
             ),
           ],
         ),

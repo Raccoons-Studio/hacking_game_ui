@@ -21,7 +21,7 @@ class PhoneMap extends StatelessWidget {
           Center(
             child: Container(
               alignment: Alignment.center,
-              child: Icon(
+              child: const Icon(
                 Icons.pin_drop,
                 size: 300.0,
                 color: Colors.black,
@@ -32,8 +32,8 @@ class PhoneMap extends StatelessWidget {
             child: Container(
               alignment: Alignment.center,
               child: Text(
-                '$location',
-                style: TextStyle(
+                location,
+                style: const TextStyle(
                   fontSize: 20.0,
                   color: Colors.white,
                 ),
@@ -46,7 +46,7 @@ class PhoneMap extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 10.0),
               child: Text(
                 '$hour $day',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16.0,
                   color: Colors.black,
                 ),

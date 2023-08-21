@@ -23,7 +23,7 @@ class IPhoneFrame extends StatefulWidget {
   final String characterName;
   final Maestro maestro;
 
-  IPhoneFrame(
+  const IPhoneFrame(
       {Key? key,
       required this.maestro,
       required this.backgroundImageUrl,
@@ -47,7 +47,7 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
       _openedFile = file;
       _splashScreenVisible = true;
     });
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       setState(() {
         _splashScreenVisible = false;
       });
@@ -57,7 +57,7 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+      padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
       child: AspectRatio(
         aspectRatio: 10 / 19.5,
         child: GestureDetector(
@@ -118,7 +118,7 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
             child: Row(
               children: <Widget>[
                 IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     CupertinoIcons.back,
                     color: CupertinoColors.black,
                   ),
@@ -142,7 +142,7 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
 
   Widget buildApplicationContent(Files file) {
     if (file.type == FileType.heartbeat) {
-      return FinderHealth(
+      return const FinderHealth(
         bpm: 90,
         beatsPerMinute: 90,
       );
@@ -153,7 +153,7 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
             if (snapshot.hasData) {
               return FinderImage(assetName: snapshot.data!);
             }
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           });
     } else if (file.type == FileType.call || file.type == FileType.message) {
       return FutureBuilder<Map<String, List<ConversationData>>>(
@@ -161,7 +161,7 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
             if (snapshot.hasData) {
               return MobileFinderChat(conversations: snapshot.data!);
             }
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           },
           future: widget.maestro.getFilesProvider().getConversations());
     } else if (file.type == FileType.socialMedia ||
@@ -172,7 +172,7 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
             if (snapshot.hasData) {
               return FinderScrollable(dataList: snapshot.data!);
             }
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           },
           future: widget.maestro.getFilesProvider().getScrollableData(file));
     } else if (file.type == FileType.text) {
@@ -183,7 +183,7 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
                 snapshot.data.toString(),
               );
             }
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           },
           future: widget.maestro.getFilesProvider().getTextContent(file));
     } else if (file.type == FileType.position) {
@@ -192,7 +192,7 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
             if (snapshot.hasData) {
               return PhoneMap(location: "Location", day: widget.currentDay, hour: widget.currentHour,);
             }
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           },
           future: widget.maestro.getFilesProvider().getTimelineData(file));
     } else {
@@ -243,7 +243,7 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
       child: Text(
         "${widget.characterName}'s phone",
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
             color: Colors.white, fontSize: 24.0, fontWeight: FontWeight.w500),
       ),
     );
@@ -261,7 +261,7 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
           Text(
             widget.currentDay,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
                 color: Colors.white,
                 fontSize: 24.0,
                 fontWeight: FontWeight.w500),
@@ -269,7 +269,7 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
           Text(
             widget.currentHour,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
                 color: Colors.white,
                 fontSize: 48.0,
                 fontWeight: FontWeight.bold),

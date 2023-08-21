@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
@@ -121,7 +120,7 @@ class _FinderApplicationState extends State<FinderApplication> {
             if (snapshot.hasData) {
               return FinderImage(assetName: snapshot.data!);
             }
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           });
     }
     if (_currentFile!.type == FileType.text) {
@@ -132,7 +131,7 @@ class _FinderApplicationState extends State<FinderApplication> {
                 snapshot.data.toString(),
               );
             }
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           },
           future: widget.filesProvider.getTextContent(_currentFile!));
     }
@@ -143,7 +142,7 @@ class _FinderApplicationState extends State<FinderApplication> {
             if (snapshot.hasData) {
               return FinderTimeline(timelines: snapshot.data!);
             }
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           },
           future: widget.filesProvider.getTimelineData(_currentFile!));
     }
@@ -155,7 +154,7 @@ class _FinderApplicationState extends State<FinderApplication> {
             if (snapshot.hasData) {
               return FinderScrollable(dataList: snapshot.data!);
             }
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           },
           future: widget.filesProvider.getScrollableData(_currentFile!));
     }
@@ -166,7 +165,7 @@ class _FinderApplicationState extends State<FinderApplication> {
             if (snapshot.hasData) {
               return FinderChat(conversations: snapshot.data!);
             }
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           },
           future: widget.filesProvider.getConversations());
     }
@@ -224,11 +223,11 @@ class _FinderApplicationState extends State<FinderApplication> {
                           size: 36,
                           color: getColorByType(file.type),
                         ),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         Text(
                           file.name,
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 12),
+                          style: const TextStyle(fontSize: 12),
                         ),
                       ],
                     ),
@@ -239,15 +238,15 @@ class _FinderApplicationState extends State<FinderApplication> {
           ),
           if (file.isMarkedAsEvidence)
             Positioned(
+              top: 0,
+              right: 0,
               child: Transform.rotate(
                 angle: pi / 4,
-                child: Icon(
+                child: const Icon(
                   Icons.push_pin,
                   color: Colors.red,
                 ),
               ),
-              top: 0,
-              right: 0,
             ),
         ],
       ),
@@ -272,16 +271,16 @@ class _FinderApplicationState extends State<FinderApplication> {
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.folder,
                       size: 36,
                       color: Colors.blue,
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
                       dir.name,
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 12),
+                      style: const TextStyle(fontSize: 12),
                     ),
                   ],
                 ),
@@ -302,7 +301,7 @@ class _FinderApplicationState extends State<FinderApplication> {
           Icons.home,
           color: favoritePageIndex == 0 ? Colors.white : Colors.black,
         ),
-        label: Text('Root'),
+        label: const Text('Root'),
       ),
     ];
     for (var i = 0; i < rootDirectory.subdirectories.length; i++) {
