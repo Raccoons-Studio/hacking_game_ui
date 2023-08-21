@@ -82,24 +82,24 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
     switch (_currentApplication!.name) {
       case 'Finder':
         return FutureBuilder<Directory>(
-            future: widget.maestro.getFilesProvider().getDirectory("/"),
+            future: widget.maestro.getDirectory("/"),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return FinderApplication(
                     rootDirectory: snapshot.data!,
-                    filesProvider: widget.maestro.getFilesProvider());
+                    maestro: widget.maestro);
               } else {
                 return Container(child: const Text('Loading...'));
               }
             });
       case 'Messages':
         return FutureBuilder<Directory>(
-            future: widget.maestro.getFilesProvider().getDirectory("/"),
+            future: widget.maestro.getDirectory("/"),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return FinderApplication(
                     rootDirectory: snapshot.data!,
-                    filesProvider: widget.maestro.getFilesProvider());
+                    maestro: widget.maestro);
               } else {
                 return Container(child: const Text('Loading...'));
               }
@@ -143,7 +143,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
           isCinematicPlaying = true;
         });
         return FutureBuilder<Cinematic>(
-            future: widget.maestro.getCinematicProvider().getCinematicData(""),
+            future: widget.maestro.getCinematicData(""),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
                 return Container();

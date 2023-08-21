@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/utils/game_icons.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_chat.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_image.dart';
@@ -12,14 +13,13 @@ import 'package:hacking_game_ui/virtual_machine/models/conversation_data.dart';
 import 'package:hacking_game_ui/virtual_machine/models/directory_and_files.dart';
 import 'package:hacking_game_ui/virtual_machine/models/scrollable_data.dart';
 import 'package:hacking_game_ui/virtual_machine/models/timeline_data.dart';
-import 'package:hacking_game_ui/providers/files_providers.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 class FinderApplication extends StatefulWidget {
+  final Maestro maestro;
   final Directory rootDirectory;
-  final FilesProvider filesProvider;
   const FinderApplication(
-      {super.key, required this.rootDirectory, required this.filesProvider});
+      {super.key, required this.rootDirectory, required this.maestro});
 
   @override
   State<FinderApplication> createState() => _FinderApplicationState();
@@ -115,7 +115,7 @@ class _FinderApplicationState extends State<FinderApplication> {
     }
     if (_currentFile!.type == FileType.image) {
       return FutureBuilder<String>(
-          future: widget.filesProvider.getAssetContent(_currentFile!),
+          future: widget.maestro.getAssetContent(_currentFile!),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return FinderImage(assetName: snapshot.data!);
@@ -133,7 +133,7 @@ class _FinderApplicationState extends State<FinderApplication> {
             }
             return const Center(child: CircularProgressIndicator());
           },
-          future: widget.filesProvider.getTextContent(_currentFile!));
+          future: widget.maestro.getTextContent(_currentFile!));
     }
     if (_currentFile!.type == FileType.position ||
         _currentFile!.type == FileType.heartbeat) {
@@ -144,7 +144,7 @@ class _FinderApplicationState extends State<FinderApplication> {
             }
             return const Center(child: CircularProgressIndicator());
           },
-          future: widget.filesProvider.getTimelineData(_currentFile!));
+          future: widget.maestro.getTimelineData(_currentFile!));
     }
     if (_currentFile!.type == FileType.socialMedia ||
         _currentFile!.type == FileType.calendar ||
@@ -156,7 +156,7 @@ class _FinderApplicationState extends State<FinderApplication> {
             }
             return const Center(child: CircularProgressIndicator());
           },
-          future: widget.filesProvider.getScrollableData(_currentFile!));
+          future: widget.maestro.getScrollableData(_currentFile!));
     }
     if (_currentFile!.type == FileType.message ||
         _currentFile!.type == FileType.call) {
@@ -167,7 +167,7 @@ class _FinderApplicationState extends State<FinderApplication> {
             }
             return const Center(child: CircularProgressIndicator());
           },
-          future: widget.filesProvider.getConversations());
+          future: widget.maestro.getConversations());
     }
     return Center(
       child: Text(_currentFile!.name),

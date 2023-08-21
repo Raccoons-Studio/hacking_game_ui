@@ -1,10 +1,12 @@
 // Maestro manage everything in the app
 import 'dart:async';
 
-import 'package:hacking_game_ui/providers/cinematic_providers.dart';
-import 'package:hacking_game_ui/providers/files_providers.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_characters_selector.dart';
+import 'package:hacking_game_ui/virtual_machine/models/cinematic.dart';
+import 'package:hacking_game_ui/virtual_machine/models/conversation_data.dart';
 import 'package:hacking_game_ui/virtual_machine/models/directory_and_files.dart';
+import 'package:hacking_game_ui/virtual_machine/models/scrollable_data.dart';
+import 'package:hacking_game_ui/virtual_machine/models/timeline_data.dart';
 
 class MaestroState {
   int hour = 0;
@@ -41,7 +43,17 @@ abstract class Maestro {
 
   Future<int> getAllCharacters();
 
-  CinematicProvider getCinematicProvider();
+  Future<Cinematic> getCinematicData(String cinematicID);
 
-  FilesProvider getFilesProvider();
+  Future<Directory> getDirectory(String path);
+
+  Future<String> getAssetContent(Files file);
+
+  Future<String> getTextContent(Files file);
+
+  Future<List<TimelineData>> getTimelineData(Files file);
+
+  Future<List<ScrollableData>> getScrollableData(Files file);
+
+  Future<Map<String, List<ConversationData>>> getConversations();
 }

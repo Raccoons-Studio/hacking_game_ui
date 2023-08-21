@@ -148,7 +148,7 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
       );
     } else if (file.type == FileType.image) {
       return FutureBuilder<String>(
-          future: widget.maestro.getFilesProvider().getAssetContent(file),
+          future: widget.maestro.getAssetContent(file),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return FinderImage(assetName: snapshot.data!);
@@ -163,7 +163,7 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
             }
             return const Center(child: CircularProgressIndicator());
           },
-          future: widget.maestro.getFilesProvider().getConversations());
+          future: widget.maestro.getConversations());
     } else if (file.type == FileType.socialMedia ||
         file.type == FileType.calendar ||
         file.type == FileType.note) {
@@ -174,7 +174,7 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
             }
             return const Center(child: CircularProgressIndicator());
           },
-          future: widget.maestro.getFilesProvider().getScrollableData(file));
+          future: widget.maestro.getScrollableData(file));
     } else if (file.type == FileType.text) {
       return FutureBuilder(
           builder: (context, snapshot) {
@@ -185,7 +185,7 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
             }
             return const Center(child: CircularProgressIndicator());
           },
-          future: widget.maestro.getFilesProvider().getTextContent(file));
+          future: widget.maestro.getTextContent(file));
     } else if (file.type == FileType.position) {
       return FutureBuilder<List<TimelineData>>(
           builder: (context, snapshot) {
@@ -194,7 +194,7 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
             }
             return const Center(child: CircularProgressIndicator());
           },
-          future: widget.maestro.getFilesProvider().getTimelineData(file));
+          future: widget.maestro.getTimelineData(file));
     } else {
       return Container();
     }
