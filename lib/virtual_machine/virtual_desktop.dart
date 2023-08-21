@@ -26,7 +26,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
   final List<VirtualApplication> applications = [
     VirtualApplication('Finder', Icons.file_copy, Colors.blue),
     VirtualApplication('Messages', Icons.message, Colors.green),
-    VirtualApplication('Cinematic', Icons.movie, Colors.purple),
+    //VirtualApplication('Cinematic', Icons.movie, Colors.purple),
     VirtualApplication('Phones', Icons.phone, Colors.greenAccent),
     VirtualApplication('Next', Icons.skip_next, Colors.orangeAccent),
     // Add more applications here
@@ -40,6 +40,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
       if (event.isCinematic) {
         setState(() {
           isCinematicPlaying = true;
+          _currentApplication = VirtualApplication("Cinematic", Icons.movie, Colors.purple);
         });
       } else {
         setState(() {
@@ -143,7 +144,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
           isCinematicPlaying = true;
         });
         return FutureBuilder<Cinematic>(
-            future: widget.maestro.getCinematicData(""),
+            future: widget.maestro.getCinematicData(_maestroState!.cinematidID),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
                 return Container();

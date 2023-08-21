@@ -1,76 +1,76 @@
 import 'package:flutter/cupertino.dart';
-import 'package:hacking_game_ui/virtual_machine/models/directory_and_files.dart';
+import 'package:hacking_game_ui/engine/model_engine.dart';
 
-IconData getIconByType(FileType type) {
+IconData getIconByType(EvidenceType type) {
     switch (type) {
-      case FileType.image:
+      case EvidenceType.image:
         return CupertinoIcons.photo_fill_on_rectangle_fill;
-      case FileType.text:
+      case EvidenceType.text:
         return CupertinoIcons.pencil_ellipsis_rectangle;
-      case FileType.calendar:
+      case EvidenceType.calendar:
         return CupertinoIcons.calendar_circle_fill;
-      case FileType.call:
+      case EvidenceType.call:
         return CupertinoIcons.phone_circle_fill;
-      case FileType.heartbeat:
+      case EvidenceType.heartbeat:
         return CupertinoIcons.heart_circle_fill;
-      case FileType.message:
+      case EvidenceType.message:
         return CupertinoIcons.conversation_bubble;
-      case FileType.note:
+      case EvidenceType.note:
         return CupertinoIcons.text_bubble_fill;
-      case FileType.position:
+      case EvidenceType.position:
         return CupertinoIcons.map_fill;
-      case FileType.socialMedia:
+      case EvidenceType.socialMedia:
         return CupertinoIcons.camera_on_rectangle_fill;
-      case FileType.webHistory:
+      case EvidenceType.webHistory:
         return CupertinoIcons.bookmark_fill;
-      case FileType.directory:
+      case EvidenceType.directory:
         return CupertinoIcons.flag_circle;
-      case FileType.bank:
+      case EvidenceType.bank:
         return CupertinoIcons.money_dollar_circle_fill;
-      case FileType.deleted:
+      case EvidenceType.deleted:
         return CupertinoIcons.trash_circle_fill;
-      case FileType.frontCamera:
+      case EvidenceType.frontCamera:
         return CupertinoIcons.camera_fill;
-      case FileType.rearCamera:
+      case EvidenceType.rearCamera:
         return CupertinoIcons.camera_rotate_fill;
-      case FileType.microphone:
+      case EvidenceType.microphone:
         return CupertinoIcons.mic_circle_fill;
     }
   }
 
-  Color getColorByType(FileType type) {
+  Color getColorByType(EvidenceType type) {
     switch (type) {
-      case FileType.image:
+      case EvidenceType.image:
         return CupertinoColors.activeOrange;
-      case FileType.text:
+      case EvidenceType.text:
         return CupertinoColors.activeBlue;
-      case FileType.calendar:
+      case EvidenceType.calendar:
         return CupertinoColors.systemIndigo;
-      case FileType.call:
+      case EvidenceType.call:
         return CupertinoColors.systemGreen;
-      case FileType.heartbeat:
+      case EvidenceType.heartbeat:
         return CupertinoColors.systemPink;
-      case FileType.message:
+      case EvidenceType.message:
         return CupertinoColors.activeGreen;
-      case FileType.note:
+      case EvidenceType.note:
         return CupertinoColors.systemYellow;
-      case FileType.position:
+      case EvidenceType.position:
         return CupertinoColors.systemTeal;
-      case FileType.socialMedia:
+      case EvidenceType.socialMedia:
         return CupertinoColors.systemPurple;
-      case FileType.webHistory:
+      case EvidenceType.webHistory:
         return CupertinoColors.systemGrey;
-      case FileType.directory:
+      case EvidenceType.directory:
         return CupertinoColors.black;
-      case FileType.bank:
+      case EvidenceType.bank:
         return CupertinoColors.systemBrown;
-      case FileType.deleted:
+      case EvidenceType.deleted:
         return CupertinoColors.lightBackgroundGray;
-      case FileType.frontCamera:
+      case EvidenceType.frontCamera:
         return CupertinoColors.activeOrange;
-      case FileType.rearCamera:
+      case EvidenceType.rearCamera:
         return CupertinoColors.activeOrange;
-      case FileType.microphone:
+      case EvidenceType.microphone:
         return CupertinoColors.systemRed;
     }
   }

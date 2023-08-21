@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/utils/game_icons.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_chat.dart';
@@ -113,7 +114,7 @@ class _FinderApplicationState extends State<FinderApplication> {
     if (_currentFile == null) {
       return Container();
     }
-    if (_currentFile!.type == FileType.image) {
+    if (_currentFile!.type == EvidenceType.image) {
       return FutureBuilder<String>(
           future: widget.maestro.getAssetContent(_currentFile!),
           builder: (context, snapshot) {
@@ -123,7 +124,7 @@ class _FinderApplicationState extends State<FinderApplication> {
             return const Center(child: CircularProgressIndicator());
           });
     }
-    if (_currentFile!.type == FileType.text) {
+    if (_currentFile!.type == EvidenceType.text) {
       return FutureBuilder(
           builder: (context, snapshot) {
             if (snapshot.hasData) {
@@ -135,8 +136,8 @@ class _FinderApplicationState extends State<FinderApplication> {
           },
           future: widget.maestro.getTextContent(_currentFile!));
     }
-    if (_currentFile!.type == FileType.position ||
-        _currentFile!.type == FileType.heartbeat) {
+    if (_currentFile!.type == EvidenceType.position ||
+        _currentFile!.type == EvidenceType.heartbeat) {
       return FutureBuilder<List<TimelineData>>(
           builder: (context, snapshot) {
             if (snapshot.hasData) {
@@ -146,9 +147,9 @@ class _FinderApplicationState extends State<FinderApplication> {
           },
           future: widget.maestro.getTimelineData(_currentFile!));
     }
-    if (_currentFile!.type == FileType.socialMedia ||
-        _currentFile!.type == FileType.calendar ||
-        _currentFile!.type == FileType.note) {
+    if (_currentFile!.type == EvidenceType.socialMedia ||
+        _currentFile!.type == EvidenceType.calendar ||
+        _currentFile!.type == EvidenceType.note) {
       return FutureBuilder<List<ScrollableData>>(
           builder: (context, snapshot) {
             if (snapshot.hasData) {
@@ -158,8 +159,8 @@ class _FinderApplicationState extends State<FinderApplication> {
           },
           future: widget.maestro.getScrollableData(_currentFile!));
     }
-    if (_currentFile!.type == FileType.message ||
-        _currentFile!.type == FileType.call) {
+    if (_currentFile!.type == EvidenceType.message ||
+        _currentFile!.type == EvidenceType.call) {
       return FutureBuilder<Map<String, List<ConversationData>>>(
           builder: (context, snapshot) {
             if (snapshot.hasData) {

@@ -1,26 +1,11 @@
 
-enum FileType { 
-  microphone,
-  bank,
-  deleted,
-  frontCamera,
-  rearCamera,
-  position, 
-  heartbeat, 
-  note, 
-  call,
-  webHistory,
-  message,
-  socialMedia,
-  calendar,
-  image,
-  text,
-  directory }
+
+import 'package:hacking_game_ui/engine/model_engine.dart';
 
 class Files {
   String evidenceID;
   String name;
-  FileType type;
+  EvidenceType type;
   Directory? parent;
   bool isMarkedAsEvidence;
 
@@ -31,6 +16,6 @@ class Directory extends Files {
   List<Directory> subdirectories;
   List<Files> files;
 
-  Directory(uniqueID, name, this.subdirectories, this.files, {super.parent}) : super(uniqueID, name, FileType.directory);
+  Directory(uniqueID, name, this.subdirectories, this.files, {super.parent}) : super(uniqueID, name, EvidenceType.directory);
 }
 

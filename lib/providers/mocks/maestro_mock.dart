@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_characters_selector.dart';
 import 'package:hacking_game_ui/virtual_machine/models/cinematic.dart';
@@ -82,21 +83,21 @@ class MaestroMock extends Maestro {
   @override
   Future<List<Files>> getPhoneEvidences(String characterID) async {
     List<Files> files = [
-      Files('File 1', 'Map', FileType.position),
-      Files('File_2', 'Gallery', FileType.image),
-      Files('File_2', 'Front camera', FileType.frontCamera),
-      Files('File_2', 'Rear camera', FileType.rearCamera),
-      Files('File_2', 'Deleted files', FileType.deleted),
-      Files('File 3', 'Calendar', FileType.calendar),
-      Files('File 4', 'Phone', FileType.call, isMarkedAsEvidence: true),
-      Files('File 4', 'Microphone', FileType.microphone),
-      Files('File 5', 'Health', FileType.heartbeat),
-      Files('File 6', 'Message', FileType.message),
-      Files('File 7', 'Note', FileType.note),
-      Files('File 7', 'Bank', FileType.bank),
-      Files('File 8', 'SocialMedia', FileType.socialMedia),
-      Files('File 9', 'Text', FileType.text),
-      Files('File 10', 'Browser', FileType.webHistory),
+      Files('File 1', 'Map', EvidenceType.position),
+      Files('File_2', 'Gallery', EvidenceType.image),
+      Files('File_2', 'Front camera', EvidenceType.frontCamera),
+      Files('File_2', 'Rear camera', EvidenceType.rearCamera),
+      Files('File_2', 'Deleted files', EvidenceType.deleted),
+      Files('File 3', 'Calendar', EvidenceType.calendar),
+      Files('File 4', 'Phone', EvidenceType.call, isMarkedAsEvidence: true),
+      Files('File 4', 'Microphone', EvidenceType.microphone),
+      Files('File 5', 'Health', EvidenceType.heartbeat),
+      Files('File 6', 'Message', EvidenceType.message),
+      Files('File 7', 'Note', EvidenceType.note),
+      Files('File 7', 'Bank', EvidenceType.bank),
+      Files('File 8', 'SocialMedia', EvidenceType.socialMedia),
+      Files('File 9', 'Text', EvidenceType.text),
+      Files('File 10', 'Browser', EvidenceType.webHistory),
     ];
     return files;
   }
@@ -110,36 +111,40 @@ class MaestroMock extends Maestro {
           'SubDir 1',
           [],
           [
-            Files('File 20', 'File 20', FileType.image,
+            Files('File 20', 'File 20', EvidenceType.image,
                 parent: currentDirectory),
-            Files('File 21', 'File 21', FileType.image,
+            Files('File 21', 'File 21', EvidenceType.image,
                 parent: currentDirectory),
           ],
           parent: currentDirectory),
       Directory('SubDir 2', 'SubDir 2', [], [], parent: currentDirectory),
     ]);
     currentDirectory.files.addAll([
-      Files('File 1', 'File 1', FileType.position, parent: currentDirectory),
-      Files('File_2', 'File 2', FileType.image, parent: currentDirectory),
-      Files('File 3', 'File 3', FileType.calendar, parent: currentDirectory),
-      Files('File 4', 'File 4', FileType.call,
-          parent: currentDirectory, isMarkedAsEvidence: true),
-      Files('File 5', 'File 5', FileType.heartbeat, parent: currentDirectory),
-      Files('File 6', 'File 6', FileType.message, parent: currentDirectory),
-      Files('File 7', 'File 7', FileType.note, parent: currentDirectory),
-      Files('File 8', 'File 8', FileType.socialMedia, parent: currentDirectory),
-      Files('File 9', 'File 9', FileType.text, parent: currentDirectory),
-      Files('File 10', 'File 10', FileType.webHistory,
+      Files('File 1', 'File 1', EvidenceType.position,
           parent: currentDirectory),
-      Files('File 11', 'File 11', FileType.image, parent: currentDirectory),
-      Files('File 12', 'File 12', FileType.image, parent: currentDirectory),
-      Files('File 13', 'File 13', FileType.image, parent: currentDirectory),
-      Files('File 14', 'File 14', FileType.image, parent: currentDirectory),
-      Files('File 15', 'File 15', FileType.image, parent: currentDirectory),
-      Files('File 16', 'File 16', FileType.image, parent: currentDirectory),
-      Files('File 17', 'File 17', FileType.image, parent: currentDirectory),
-      Files('File 18', 'File 18', FileType.image, parent: currentDirectory),
-      Files('File 19', 'File 19', FileType.image, parent: currentDirectory),
+      Files('File_2', 'File 2', EvidenceType.image, parent: currentDirectory),
+      Files('File 3', 'File 3', EvidenceType.calendar,
+          parent: currentDirectory),
+      Files('File 4', 'File 4', EvidenceType.call,
+          parent: currentDirectory, isMarkedAsEvidence: true),
+      Files('File 5', 'File 5', EvidenceType.heartbeat,
+          parent: currentDirectory),
+      Files('File 6', 'File 6', EvidenceType.message, parent: currentDirectory),
+      Files('File 7', 'File 7', EvidenceType.note, parent: currentDirectory),
+      Files('File 8', 'File 8', EvidenceType.socialMedia,
+          parent: currentDirectory),
+      Files('File 9', 'File 9', EvidenceType.text, parent: currentDirectory),
+      Files('File 10', 'File 10', EvidenceType.webHistory,
+          parent: currentDirectory),
+      Files('File 11', 'File 11', EvidenceType.image, parent: currentDirectory),
+      Files('File 12', 'File 12', EvidenceType.image, parent: currentDirectory),
+      Files('File 13', 'File 13', EvidenceType.image, parent: currentDirectory),
+      Files('File 14', 'File 14', EvidenceType.image, parent: currentDirectory),
+      Files('File 15', 'File 15', EvidenceType.image, parent: currentDirectory),
+      Files('File 16', 'File 16', EvidenceType.image, parent: currentDirectory),
+      Files('File 17', 'File 17', EvidenceType.image, parent: currentDirectory),
+      Files('File 18', 'File 18', EvidenceType.image, parent: currentDirectory),
+      Files('File 19', 'File 19', EvidenceType.image, parent: currentDirectory),
     ]);
     return currentDirectory;
   }
@@ -152,7 +157,7 @@ class MaestroMock extends Maestro {
   @override
   Future<List<TimelineData>> getTimelineData(Files file) async {
     List<TimelineData> timelineDataList = [];
-    if (file.type == FileType.position) {
+    if (file.type == EvidenceType.position) {
       for (int i = 1; i <= 10; i++) {
         TimelineData timeline = TimelineData(
             1,
@@ -161,12 +166,12 @@ class MaestroMock extends Maestro {
             TimelineType.position,
             'Dummy content $i',
             // Random value between 0 and 1024
-            PositionData(Random().nextInt(1024).toDouble(),
+            PositionData('Dummy content $i', Random().nextInt(1024).toDouble(),
                 Random().nextInt(1024).toDouble()));
         timelineDataList.add(timeline);
       }
     }
-    if (file.type == FileType.heartbeat) {
+    if (file.type == EvidenceType.heartbeat) {
       for (int i = 1; i <= 10; i++) {
         var bpm = (60 + Random().nextInt(90));
         TimelineData timeline = TimelineData(
@@ -188,7 +193,7 @@ class MaestroMock extends Maestro {
   Future<List<ScrollableData>> getScrollableData(Files file) async {
     List<ScrollableData> timelineDataList = [];
 
-    if (file.type == FileType.socialMedia) {
+    if (file.type == EvidenceType.socialMedia) {
       for (int i = 1; i <= 10; i++) {
         ScrollableData timeline = ScrollableData(
           1,
@@ -202,7 +207,7 @@ class MaestroMock extends Maestro {
       }
     }
 
-    if (file.type == FileType.calendar) {
+    if (file.type == EvidenceType.calendar) {
       for (int i = 1; i <= 10; i++) {
         ScrollableData timeline = ScrollableData(
           1,
@@ -216,7 +221,7 @@ class MaestroMock extends Maestro {
       }
     }
 
-    if (file.type == FileType.note) {
+    if (file.type == EvidenceType.note) {
       for (int i = 1; i <= 10; i++) {
         ScrollableData timeline = ScrollableData(
           1,
@@ -246,17 +251,22 @@ class MaestroMock extends Maestro {
         List<ConversationBubbleData> bubbleData = [];
         for (var k = 0; k < 10; k++) {
           // 10 is the number of messages in each conversation
-          bubbleData.add(ConversationBubbleData(names[random.nextInt(2)], 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dignissim at lorem ac sollicitudin. Phasellus ut neque blandit, cursus lectus nec, interdum tellus. $k'));
+          bubbleData.add(ConversationBubbleData(names[random.nextInt(2)],
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur dignissim at lorem ac sollicitudin. Phasellus ut neque blandit, cursus lectus nec, interdum tellus. $k'));
         }
-        convoData.add(ConversationData((random.nextInt(52) + 1).toString() ,bubbleData, random.nextInt(52) + 1,
-            random.nextInt(7) + 1, random.nextInt(24)));
+        convoData.add(ConversationData(
+            (random.nextInt(52) + 1).toString(),
+            bubbleData,
+            random.nextInt(52) + 1,
+            random.nextInt(7) + 1,
+            random.nextInt(24)));
       }
       conversations[names[i]] = convoData;
     }
 
     return conversations;
   }
-  
+
   @override
   Future<String> getAssetContent(Files file) async {
     return "File_2.jpg";
@@ -286,28 +296,37 @@ class MaestroMock extends Maestro {
   @override
   Future<Cinematic> getCinematicData(String cinematicID) async {
     var random = Random();
-  int numSequences = random.nextInt(5) + 5;
-  int numConversations = random.nextInt(3) + 5;
-  
-  String characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  
-  String getCinematicID() => String.fromCharCodes(Iterable.generate(10, (_) => characters.codeUnitAt(random.nextInt(characters.length))));
-  
-  List<CinematicSequence> sequences = List.generate(numSequences, (indexSeq) {
-    String assetName = 'assets/images/landscape.jpeg';
-    List<CinematicConversation> conversations = List.generate(numConversations, (indexConv) {
-        return CinematicConversation(
-            'Character $indexSeq-$indexConv',
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim.'
-        );
+    int numSequences = random.nextInt(5) + 5;
+    int numConversations = random.nextInt(3) + 5;
+
+    String characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+    String getCinematicID() => String.fromCharCodes(Iterable.generate(
+        10, (_) => characters.codeUnitAt(random.nextInt(characters.length))));
+
+    List<CinematicSequence> sequences = List.generate(numSequences, (indexSeq) {
+      String assetName = 'assets/images/landscape.jpeg';
+      List<CinematicConversation> conversations =
+          List.generate(numConversations, (indexConv) {
+        return CinematicConversation('Character $indexSeq-$indexConv',
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim.');
+      });
+      return CinematicSequence(getCinematicID(), assetName, conversations);
     });
-    return CinematicSequence(
-        getCinematicID(),
-        assetName,
-        conversations
-    );
-  });
-  
-  return Cinematic(getCinematicID(), sequences);
+
+    return Cinematic(getCinematicID(), sequences);
+  }
+
+  @override
+  Future<TimelineData> getSingleTimelineData(Files file) async {
+    return TimelineData(
+        1,
+        1,
+        1 * 2,
+        TimelineType.position,
+        'Dummy content',
+        // Random value between 0 and 1024
+        PositionData('Dummy content', Random().nextInt(1024).toDouble(),
+            Random().nextInt(1024).toDouble()));
   }
 }

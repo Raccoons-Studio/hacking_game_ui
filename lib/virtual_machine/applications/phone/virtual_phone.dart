@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/utils/game_icons.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_health.dart';
@@ -141,12 +142,12 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
   }
 
   Widget buildApplicationContent(Files file) {
-    if (file.type == FileType.heartbeat) {
+    if (file.type == EvidenceType.heartbeat) {
       return const FinderHealth(
         bpm: 90,
         beatsPerMinute: 90,
       );
-    } else if (file.type == FileType.image) {
+    } else if (file.type == EvidenceType.image) {
       return FutureBuilder<String>(
           future: widget.maestro.getAssetContent(file),
           builder: (context, snapshot) {
@@ -155,7 +156,7 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
             }
             return const Center(child: CircularProgressIndicator());
           });
-    } else if (file.type == FileType.call || file.type == FileType.message) {
+    } else if (file.type == EvidenceType.call || file.type == EvidenceType.message) {
       return FutureBuilder<Map<String, List<ConversationData>>>(
           builder: (context, snapshot) {
             if (snapshot.hasData) {
@@ -164,9 +165,9 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
             return const Center(child: CircularProgressIndicator());
           },
           future: widget.maestro.getConversations());
-    } else if (file.type == FileType.socialMedia ||
-        file.type == FileType.calendar ||
-        file.type == FileType.note) {
+    } else if (file.type == EvidenceType.socialMedia ||
+        file.type == EvidenceType.calendar ||
+        file.type == EvidenceType.note) {
       return FutureBuilder<List<ScrollableData>>(
           builder: (context, snapshot) {
             if (snapshot.hasData) {
@@ -175,7 +176,7 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
             return const Center(child: CircularProgressIndicator());
           },
           future: widget.maestro.getScrollableData(file));
-    } else if (file.type == FileType.text) {
+    } else if (file.type == EvidenceType.text) {
       return FutureBuilder(
           builder: (context, snapshot) {
             if (snapshot.hasData) {
@@ -186,15 +187,15 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
             return const Center(child: CircularProgressIndicator());
           },
           future: widget.maestro.getTextContent(file));
-    } else if (file.type == FileType.position) {
-      return FutureBuilder<List<TimelineData>>(
+    } else if (file.type == EvidenceType.position) {
+      return FutureBuilder<TimelineData>(
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return PhoneMap(location: "Location", day: widget.currentDay, hour: widget.currentHour,);
+              return PhoneMap(location: (snapshot.data!.value as PositionData).address, day: widget.currentDay, hour: widget.currentHour,);
             }
             return const Center(child: CircularProgressIndicator());
           },
-          future: widget.maestro.getTimelineData(file));
+          future: widget.maestro.getSingleTimelineData(file));
     } else {
       return Container();
     }
@@ -229,8 +230,8 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
                 child: VirtualDesktopIcon(
                     backgroundColor: getColorByType(file.type),
                     icon: getIconByType(file.type),
-                    label: file.name,
-                    tooltip: file.name),
+                    label: file.type.name,
+                    tooltip: file.type.name),
               ),
             )
             .toList(),

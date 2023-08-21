@@ -16,8 +16,9 @@ class TimelineData {
 }
 
 class PositionData {
+  String address;
   double x;
   double y;
 
-  PositionData(this.x, this.y);
+  PositionData(this.address, this.x, this.y);
 }

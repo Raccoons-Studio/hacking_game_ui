@@ -53,6 +53,8 @@ abstract class Maestro {
 
   Future<List<TimelineData>> getTimelineData(Files file);
 
+  Future<TimelineData> getSingleTimelineData(Files file);
+
   Future<List<ScrollableData>> getScrollableData(Files file);
 
   Future<Map<String, List<ConversationData>>> getConversations();
