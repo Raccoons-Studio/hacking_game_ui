@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 class FinderHealth extends StatefulWidget {
   final int bpm;
 
-  const FinderHealth({super.key, required this.bpm, required int beatsPerMinute});
+  const FinderHealth({super.key, required this.bpm});
 
   @override
   _HeartBeatState createState() => _HeartBeatState();
 }
 
-class _HeartBeatState extends State<FinderHealth> with SingleTickerProviderStateMixin {
+class _HeartBeatState extends State<FinderHealth>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation _animation;
 
@@ -17,10 +18,18 @@ class _HeartBeatState extends State<FinderHealth> with SingleTickerProviderState
   void initState() {
     super.initState();
 
-    _controller = AnimationController(
-      duration: Duration(milliseconds: ((60 / widget.bpm * 1000) / 2).round()),
-      vsync: this,
-    );
+    if (widget.bpm > 0) {
+      _controller = AnimationController(
+        duration:
+            Duration(milliseconds: ((60 / widget.bpm * 1000) / 2).round()),
+        vsync: this,
+      );
+    } else {
+      _controller = AnimationController(
+        duration: Duration(milliseconds: 0),
+        vsync: this,
+      );
+    }
 
     _animation = Tween(begin: 140.0, end: 170.0).animate(_controller)
       ..addListener(() => setState(() {}));
@@ -39,14 +48,14 @@ class _HeartBeatState extends State<FinderHealth> with SingleTickerProviderState
   @override
   void didUpdateWidget(FinderHealth oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.bpm != widget.bpm) {
-      _controller.duration = Duration(milliseconds: ((60 / widget.bpm * 1000) / 2).round());
+    if (oldWidget.bpm != widget.bpm && widget.bpm > 0) {
+      _controller.duration =
+          Duration(milliseconds: ((60 / widget.bpm * 1000) / 2).round());
     }
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -56,7 +65,10 @@ class _HeartBeatState extends State<FinderHealth> with SingleTickerProviderState
             Icon(Icons.favorite, color: Colors.red, size: _animation.value),
             Text(
               "${widget.bpm} BPM",
-              style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white),
+              style: const TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
             ),
           ],
         ),
@@ -70,4 +82,3 @@ class _HeartBeatState extends State<FinderHealth> with SingleTickerProviderState
     super.dispose();
   }
 }
-

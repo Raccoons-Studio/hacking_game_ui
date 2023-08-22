@@ -1,12 +1,12 @@
-enum EvidenceType { 
+enum EvidenceType {
   microphone,
   bank,
   deleted,
   frontCamera,
   rearCamera,
-  position, 
-  heartbeat, 
-  note, 
+  position,
+  heartbeat,
+  note,
   call,
   webHistory,
   message,
@@ -14,7 +14,8 @@ enum EvidenceType {
   calendar,
   image,
   text,
-  directory }
+  directory
+}
 
 class StoryEngine {
   String storyID;
@@ -26,7 +27,8 @@ class StoryEngine {
   List<CaseEngine> cases;
   List<CinematicEngine> cinematics;
 
-  StoryEngine(this.storyID, this.name, this.description, this.characters, this.places, this.elements, this.cases, this.cinematics);
+  StoryEngine(this.storyID, this.name, this.description, this.characters,
+      this.places, this.elements, this.cases, this.cinematics);
 }
 
 class CharacterEngine {
@@ -35,7 +37,8 @@ class CharacterEngine {
   String avatar;
   int weekAvailability;
 
-  CharacterEngine(this.characterID, this.name, this.weekAvailability, this.avatar);
+  CharacterEngine(
+      this.characterID, this.name, this.weekAvailability, this.avatar);
 }
 
 class PlaceEngine {
@@ -46,7 +49,6 @@ class PlaceEngine {
   PlaceEngine(this.placeID, this.name, this.description);
 }
 
-
 class ElementEngine {
   String elementID;
   String name;
@@ -55,6 +57,7 @@ class ElementEngine {
   String? assetID;
   String? placeID;
   int? numberValue;
+  String? textValue;
   EvidenceType type;
   bool isEvidence;
   int week;
@@ -63,7 +66,13 @@ class ElementEngine {
 
   String? relatedCaseID;
 
-  ElementEngine(this.elementID, this.name, this.description, this.characterID, this.type, this.isEvidence, this.week, this.day, this.hour, {this.relatedCaseID, this.assetID, this.placeID, this.numberValue});
+  ElementEngine(this.elementID, this.name, this.description, this.characterID,
+      this.type, this.isEvidence, this.week, this.day, this.hour,
+      {this.relatedCaseID,
+      this.assetID,
+      this.placeID,
+      this.numberValue,
+      this.textValue});
 }
 
 class CaseEngine {
@@ -73,7 +82,8 @@ class CaseEngine {
   String description;
   int week;
 
-  CaseEngine(this.caseID, this.characterID, this.name, this.description, this.week);
+  CaseEngine(
+      this.caseID, this.characterID, this.name, this.description, this.week);
 }
 
 class CinematicEngine {
@@ -84,7 +94,8 @@ class CinematicEngine {
   int hour;
   List<CinematicSequenceEngine> sequences;
 
-  CinematicEngine(this.cinematicID, this.name, this.week, this.day, this.hour, this.sequences);
+  CinematicEngine(this.cinematicID, this.name, this.week, this.day, this.hour,
+      this.sequences);
 }
 
 class CinematicSequenceEngine {
@@ -92,7 +103,8 @@ class CinematicSequenceEngine {
   String cinematicAsset;
   List<CinematicConversationEngine> cinematicConversations;
 
-  CinematicSequenceEngine(this.cinematicSequenceID, this.cinematicAsset, this.cinematicConversations);
+  CinematicSequenceEngine(this.cinematicSequenceID, this.cinematicAsset,
+      this.cinematicConversations);
 }
 
 class CinematicConversationEngine {

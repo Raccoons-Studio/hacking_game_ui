@@ -77,11 +77,16 @@ class _FinderTimelineState extends State<FinderTimeline> {
 
   Widget buildContentWidget(TimelineData data) {
     if (data.type == TimelineType.position) {
-      return FinderPlan(image: const AssetImage('assets/images/map.png'), markers: [Offset((data.value as PositionData).x, (data.value as PositionData).y)]);
+      return FinderPlan(
+          image: const AssetImage('assets/images/map.png'),
+          markers: [
+            Offset(
+                (data.value as PositionData).x, (data.value as PositionData).y)
+          ]);
     } else if (data.type == TimelineType.heartbeat) {
-      return FinderHealth(beatsPerMinute: data.value as int, bpm: data.value as int,);
+      return FinderHealth(bpm: data.value as int);
     } else {
       return Container();
     }
-  } 
+  }
 }

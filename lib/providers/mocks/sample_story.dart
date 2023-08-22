@@ -8,7 +8,8 @@ StoryEngine getSampleStory() {
   List<CaseEngine> cases = [];
   List<CinematicEngine> cinematics = [];
 
-  places.add(PlaceEngine("REPAIR_SHOP", "Phone's repair", "The store where I work"));
+  places.add(
+      PlaceEngine("REPAIR_SHOP", "Phone's repair", "The store where I work"));
   characters.add(CharacterEngine("ANNA", "Anna", 0, "anna.jpeg"));
 
   // Cinematiques
@@ -53,25 +54,69 @@ StoryEngine getSampleStory() {
   ]));*/
 
   // Tutorial content
-  elements.add(ElementEngine("WEEK-0_DAY-1_HOUR-7_POSITION", placeID: "REPAIR_SHOP", "Phone's repair", "Anna's phone is in my hand, I think this damn spyware works.", "ANNA", EvidenceType.position, false, 0, 1, 7));
-  elements.add(ElementEngine("WEEK-0_DAY-1_HOUR-7_HEARTBEAT", numberValue: 0, "Phone's repair", "I think her watch is too far from the phone", "ANNA", EvidenceType.heartbeat, false, 0, 1, 7));
-  elements.add(ElementEngine("WEEK-0_DAY-1_HOUR-7_REARCAMERA", assetID: "week0/anna/day0/rear_camera_7.jpg", "Phone's repair", "Oh my god, it works ! I can see my desk !", "ANNA", EvidenceType.rearCamera, false, 0, 1, 7));
+  elements.add(ElementEngine(
+      "WEEK-0_DAY-1_HOUR-7_POSITION",
+      placeID: "REPAIR_SHOP",
+      "Phone's repair",
+      "Anna's phone is in my hand, I think this damn spyware works.",
+      "ANNA",
+      EvidenceType.position,
+      false,
+      0,
+      1,
+      7));
+  elements.add(ElementEngine(
+      "WEEK-0_DAY-1_HOUR-7_HEARTBEAT",
+      numberValue: 0,
+      "Phone's repair",
+      "I think her watch is too far from the phone",
+      "ANNA",
+      EvidenceType.heartbeat,
+      false,
+      0,
+      1,
+      7));
+  elements.add(ElementEngine(
+      "WEEK-0_DAY-1_HOUR-7_REARCAMERA",
+      assetID: "week0_anna_day0_rear_camera_7.jpg",
+      "Phone's repair",
+      "Oh my god, it works ! I can see my desk !",
+      "ANNA",
+      EvidenceType.rearCamera,
+      false,
+      0,
+      1,
+      7));
 
-  cinematics.add(CinematicEngine("TUTORIAL", "The tutorial is finish", 0, 1, 10, [
+  cinematics
+      .add(CinematicEngine("TUTORIAL", "The tutorial is finish", 0, 1, 10, [
     CinematicSequenceEngine("TUTORIAL-1", "intro-1.jpg", [
-      CinematicConversationEngine("Player", "Perfect, it's all working as planned. The functionalities are indeed limited for now, but they're good enough for a little sneak peek into her life."),
-      CinematicConversationEngine("Player", "Knowing those sneaky developers, they'll surely roll out some new features in the coming weeks. I'll simply have to be patient."),
+      CinematicConversationEngine("Player",
+          "Perfect, it's all working as planned. The functionalities are indeed limited for now, but they're good enough for a little sneak peek into her life."),
+      CinematicConversationEngine("Player",
+          "Knowing those sneaky developers, they'll surely roll out some new features in the coming weeks. I'll simply have to be patient."),
     ]),
     CinematicSequenceEngine("TUTORIAL-2", "intro-1.jpg", [
-      CinematicConversationEngine("Anna", "Hi again, I'm back! Is my phone ready?"),
+      CinematicConversationEngine(
+          "Anna", "Hi again, I'm back! Is my phone ready?"),
     ]),
     CinematicSequenceEngine("TUTORIAL-2", "intro-1.jpg", [
-      CinematicConversationEngine("Player", "Hi Anna, yes, your phone is all set. I managed to use a used screen for the repair, so there's no charge."),
-      CinematicConversationEngine("Anna", "Oh my god, thank you so much! That's incredibly kind of you. I can't thank you enough!"),
+      CinematicConversationEngine("Player",
+          "Hi Anna, yes, your phone is all set. I managed to use a used screen for the repair, so there's no charge."),
+      CinematicConversationEngine("Anna",
+          "Oh my god, thank you so much! That's incredibly kind of you. I can't thank you enough!"),
     ]),
   ]));
 
-  return StoryEngine("sample_story", "Sample Story", "This is a sample story to test developments", characters, places, elements, cases, cinematics);
+  return StoryEngine(
+      "sample_story",
+      "Sample Story",
+      "This is a sample story to test developments",
+      characters,
+      places,
+      elements,
+      cases,
+      cinematics);
 }
 
 Player getSamplePlayer() {
