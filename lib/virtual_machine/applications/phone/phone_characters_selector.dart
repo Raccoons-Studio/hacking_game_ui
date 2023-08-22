@@ -21,12 +21,16 @@ class CharacterSelection extends StatefulWidget {
   final List<Character> characters;
   final int avatars;
 
-  const CharacterSelection(
-      {super.key, required this.maestro,
+  Function(String) displayComment;
+
+  CharacterSelection(
+      {super.key,
+      required this.maestro,
       required this.characters,
       required this.avatars,
       required this.currentDay,
-      required this.currentHour});
+      required this.currentHour,
+      required this.displayComment});
 
   @override
   _CharacterSelectionState createState() => _CharacterSelectionState();
@@ -72,6 +76,7 @@ class _CharacterSelectionState extends State<CharacterSelection> {
                               currentHour: widget.currentHour,
                               backgroundImageUrl: "assets/iphone.jpg",
                               splashScreenImageUrl: "assets/images/avatar.jpeg",
+                              displayComment: widget.displayComment,
                             );
                           }))
                   : Wrap(

@@ -23,8 +23,9 @@ class IPhoneFrame extends StatefulWidget {
   final List<Files> files;
   final String characterName;
   final Maestro maestro;
+  Function(String) displayComment;
 
-  const IPhoneFrame(
+  IPhoneFrame(
       {Key? key,
       required this.maestro,
       required this.backgroundImageUrl,
@@ -32,7 +33,8 @@ class IPhoneFrame extends StatefulWidget {
       required this.currentDay,
       required this.currentHour,
       required this.files,
-      required this.characterName})
+      required this.characterName,
+      required this.displayComment})
       : super(key: key);
 
   @override
@@ -50,6 +52,9 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
       _splashScreenVisible = true;
     });
     Future.delayed(const Duration(seconds: 2), () {
+      if (file.description != "") {
+        widget.displayComment(file.description);
+      }
       setState(() {
         _splashScreenVisible = false;
       });

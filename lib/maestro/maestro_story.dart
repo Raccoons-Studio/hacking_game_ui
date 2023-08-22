@@ -107,7 +107,8 @@ class MaestroStory extends Maestro {
           if (e.week == j && e.characterID == characters[i].characterID) {
             for (String evidenceID in p.revealedElements) {
               if (e.elementID == evidenceID) {
-                weekDirectory.files.add(Files(e.elementID, e.name, e.type));
+                weekDirectory.files.add(Files(e.elementID, e.name, e.type,
+                    description: e.description));
               }
             }
           }
@@ -129,7 +130,8 @@ class MaestroStory extends Maestro {
           e.day == p.currentDay &&
           e.hour == p.currentHour &&
           e.characterID == characterID) {
-        evidences.add(Files(e.elementID, e.name, e.type));
+        evidences.add(
+            Files(e.elementID, e.name, e.type, description: e.description));
       }
     }
     return evidences;
