@@ -12,37 +12,30 @@ class FinderHealth extends StatefulWidget {
 class _HeartBeatState extends State<FinderHealth>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation _animation;
+  late Animation<double> _animation;
 
   @override
   void initState() {
     super.initState();
-
-    if (widget.bpm > 0) {
-      _controller = AnimationController(
-        duration:
-            Duration(milliseconds: ((60 / widget.bpm * 1000) / 2).round()),
+    _controller = AnimationController(
         vsync: this,
-      );
-    } else {
-      _controller = AnimationController(
-        duration: Duration(milliseconds: 0),
-        vsync: this,
-      );
-    }
+        duration: widget.bpm > 0
+            ? Duration(milliseconds: ((60 / widget.bpm * 1000) / 2).round())
+            : Duration(milliseconds: 0));
 
-    _animation = Tween(begin: 140.0, end: 170.0).animate(_controller)
+    _animation = Tween<double>(begin: 140.0, end: 170.0).animate(_controller)
       ..addListener(() => setState(() {}));
 
-    _controller.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _controller.reverse();
-      } else if (status == AnimationStatus.dismissed) {
-        _controller.forward();
-      }
-    });
-
-    _controller.forward();
+    if (widget.bpm > 0) {
+      _controller.addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          _controller.reverse();
+        } else if (status == AnimationStatus.dismissed) {
+          _controller.forward();
+        }
+      });
+      _controller.forward();
+    }
   }
 
   @override
@@ -51,6 +44,7 @@ class _HeartBeatState extends State<FinderHealth>
     if (oldWidget.bpm != widget.bpm && widget.bpm > 0) {
       _controller.duration =
           Duration(milliseconds: ((60 / widget.bpm * 1000) / 2).round());
+      _controller.forward();
     }
   }
 
@@ -62,7 +56,8 @@ class _HeartBeatState extends State<FinderHealth>
         Stack(
           alignment: Alignment.center,
           children: <Widget>[
-            Icon(Icons.favorite, color: Colors.red, size: _animation.value),
+            if (widget.bpm > 0)
+              Icon(Icons.favorite, color: Colors.red, size: _animation.value),
             Text(
               "${widget.bpm} BPM",
               style: const TextStyle(
