@@ -23,8 +23,9 @@ class IPhoneFrame extends StatefulWidget {
   final List<Files> files;
   final String characterName;
   final Maestro maestro;
+  Function(String) displayComment;
 
-  const IPhoneFrame(
+  IPhoneFrame(
       {Key? key,
       required this.maestro,
       required this.backgroundImageUrl,
@@ -32,7 +33,8 @@ class IPhoneFrame extends StatefulWidget {
       required this.currentDay,
       required this.currentHour,
       required this.files,
-      required this.characterName})
+      required this.characterName,
+      required this.displayComment})
       : super(key: key);
 
   @override
@@ -44,11 +46,15 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
   Files? _openedFile;
 
   void _displayApp(Files file) {
+    widget.maestro.collectEvidence(file.evidenceID);
     setState(() {
       _openedFile = file;
       _splashScreenVisible = true;
     });
     Future.delayed(const Duration(seconds: 2), () {
+      if (file.description != "") {
+        widget.displayComment(file.description);
+      }
       setState(() {
         _splashScreenVisible = false;
       });
@@ -143,20 +149,30 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
 
   Widget buildApplicationContent(Files file) {
     if (file.type == EvidenceType.heartbeat) {
-      return const FinderHealth(
-        bpm: 90,
-        beatsPerMinute: 90,
-      );
-    } else if (file.type == EvidenceType.image) {
+      return FutureBuilder<int>(
+          future: widget.maestro.getNumberContent(file),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              return Container();
+            }
+            return FinderHealth(
+              bpm: snapshot.data!,
+            );
+          });
+    } else if (file.type == EvidenceType.image ||
+        file.type == EvidenceType.rearCamera ||
+        file.type == EvidenceType.frontCamera) {
       return FutureBuilder<String>(
           future: widget.maestro.getAssetContent(file),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
+              print("assets/images/" + snapshot.data!);
               return FinderImage(assetName: snapshot.data!);
             }
             return const Center(child: CircularProgressIndicator());
           });
-    } else if (file.type == EvidenceType.call || file.type == EvidenceType.message) {
+    } else if (file.type == EvidenceType.call ||
+        file.type == EvidenceType.message) {
       return FutureBuilder<Map<String, List<ConversationData>>>(
           builder: (context, snapshot) {
             if (snapshot.hasData) {
@@ -191,7 +207,11 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
       return FutureBuilder<TimelineData>(
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return PhoneMap(location: (snapshot.data!.value as PositionData).address, day: widget.currentDay, hour: widget.currentHour,);
+              return PhoneMap(
+                location: (snapshot.data!.value as PositionData).address,
+                day: widget.currentDay,
+                hour: widget.currentHour,
+              );
             }
             return const Center(child: CircularProgressIndicator());
           },
@@ -215,6 +235,17 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
   }
 
   Padding buildApplications() {
+    // Create a list of all available types
+    List<EvidenceType> allTypes = EvidenceType.values;
+
+    // Find the types that exist in widget.files
+    List<EvidenceType> existingTypes =
+        widget.files.map((file) => file.type).toList();
+
+    // Get the types that do not exist in widget.files
+    List<EvidenceType> inactiveTypes =
+        allTypes.where((type) => !existingTypes.contains(type)).toList();
+
     return Padding(
       padding: const EdgeInsets.only(top: 130.0),
       child: GridView.count(
@@ -224,17 +255,28 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
         mainAxisSpacing: 1.0,
         crossAxisCount: 4,
         children: widget.files
-            .map(
-              (file) => InkWell(
-                onTap: () => _displayApp(file),
-                child: VirtualDesktopIcon(
-                    backgroundColor: getColorByType(file.type),
-                    icon: getIconByType(file.type),
-                    label: file.type.name,
-                    tooltip: file.type.name),
-              ),
-            )
-            .toList(),
+                .map(
+                  (file) => InkWell(
+                    onTap: () => _displayApp(file),
+                    child: VirtualDesktopIcon(
+                        backgroundColor: getColorByType(file.type),
+                        icon: getIconByType(file.type),
+                        label: file.type.name,
+                        tooltip: file.type.name),
+                  ),
+                )
+                .toList() +
+            inactiveTypes
+                .map((type) => InkWell(
+                      child: VirtualDesktopIcon(
+                          // Generate inactive icons
+                          backgroundColor: getColorByType(type)
+                              .withOpacity(0.5), // Use semi-transparent color
+                          icon: getIconByType(type),
+                          label: type.name,
+                          tooltip: type.name),
+                    ))
+                .toList(),
       ),
     );
   }

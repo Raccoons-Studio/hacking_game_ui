@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:math';
 
 import 'package:hacking_game_ui/engine/database_engine.dart';
@@ -31,14 +32,9 @@ class MaestroStory extends Maestro {
   }
 
   @override
-  Future<Files> collectEvidence(String characterID, String evidenceID) async {
-    StoryEngine s = await _dataBaseEngine!.getStory();
+  Future<void> collectEvidence(String evidenceID) async {
     Player p = await _dataBaseEngine!.getPlayer();
-    ElementEngine element =
-        s.elements.firstWhere((element) => element.elementID == evidenceID);
-    bool isMarkedAsEvidence = p.elementsMarkedAsEvidence.contains(evidenceID);
-    return Files(element.elementID, element.name, element.type,
-        isMarkedAsEvidence: isMarkedAsEvidence);
+    p.revealedElements.add(evidenceID);
   }
 
   @override
@@ -48,9 +44,11 @@ class MaestroStory extends Maestro {
   }
 
   @override
-  Future<String> getAssetContent(Files file) {
-    // TODO: implement getAssetContent
-    throw UnimplementedError();
+  Future<String> getAssetContent(Files file) async {
+    StoryEngine s = await _dataBaseEngine!.getStory();
+    ElementEngine element = s.elements
+        .firstWhere((element) => element.elementID == file.evidenceID);
+    return element.assetID != null ? element.assetID! : "";
   }
 
   @override
@@ -109,7 +107,8 @@ class MaestroStory extends Maestro {
           if (e.week == j && e.characterID == characters[i].characterID) {
             for (String evidenceID in p.revealedElements) {
               if (e.elementID == evidenceID) {
-                weekDirectory.files.add(Files(e.elementID, e.name, e.type));
+                weekDirectory.files.add(Files(e.elementID, e.name, e.type,
+                    description: e.description));
               }
             }
           }
@@ -131,7 +130,8 @@ class MaestroStory extends Maestro {
           e.day == p.currentDay &&
           e.hour == p.currentHour &&
           e.characterID == characterID) {
-        evidences.add(Files(e.elementID, e.name, e.type));
+        evidences.add(
+            Files(e.elementID, e.name, e.type, description: e.description));
       }
     }
     return evidences;
@@ -144,9 +144,11 @@ class MaestroStory extends Maestro {
   }
 
   @override
-  Future<String> getTextContent(Files file) {
-    // TODO: implement getTextContent
-    throw UnimplementedError();
+  Future<String> getTextContent(Files file) async {
+    StoryEngine s = await _dataBaseEngine!.getStory();
+    ElementEngine element = s.elements
+        .firstWhere((element) => element.elementID == file.evidenceID);
+    return element.textValue != null ? element.textValue! : "";
   }
 
   @override
@@ -232,7 +234,8 @@ class MaestroStory extends Maestro {
     if (element.type == EvidenceType.note) {
       throw UnimplementedError();
     } else if (element.type == EvidenceType.position) {
-      PlaceEngine place = s.places.firstWhere((place) => place.placeID == element.placeID);
+      PlaceEngine place =
+          s.places.firstWhere((place) => place.placeID == element.placeID);
       return TimelineData(
           element.week,
           element.day,
@@ -245,5 +248,13 @@ class MaestroStory extends Maestro {
       throw UnimplementedError();
     }
     throw UnimplementedError();
+  }
+
+  @override
+  Future<int> getNumberContent(Files file) async {
+    StoryEngine s = await _dataBaseEngine!.getStory();
+    ElementEngine element = s.elements
+        .firstWhere((element) => element.elementID == file.evidenceID);
+    return element.numberValue != null ? element.numberValue! : 0;
   }
 }

@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:math';
 
 import 'package:hacking_game_ui/engine/model_engine.dart';
@@ -75,7 +76,7 @@ class MaestroMock extends Maestro {
   }
 
   @override
-  Future<Files> collectEvidence(String characterID, String evidenceID) {
+  Future<void> collectEvidence(String evidenceID) {
     // TODO: implement collectEvidence
     throw UnimplementedError();
   }
@@ -328,5 +329,10 @@ class MaestroMock extends Maestro {
         // Random value between 0 and 1024
         PositionData('Dummy content', Random().nextInt(1024).toDouble(),
             Random().nextInt(1024).toDouble()));
+  }
+
+  @override
+  Future<int> getNumberContent(Files file) async {
+    return 90;
   }
 }

@@ -22,6 +22,8 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
   VirtualApplication? _currentApplication;
   MaestroState? _maestroState;
   bool isCinematicPlaying = false;
+  bool isDescriptionVisible = false;
+  String descriptionContent = "";
 
   final List<VirtualApplication> applications = [
     VirtualApplication('Finder', Icons.file_copy, Colors.blue),
@@ -40,7 +42,8 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
       if (event.isCinematic) {
         setState(() {
           isCinematicPlaying = true;
-          _currentApplication = VirtualApplication("Cinematic", Icons.movie, Colors.purple);
+          _currentApplication =
+              VirtualApplication("Cinematic", Icons.movie, Colors.purple);
         });
       } else {
         setState(() {
@@ -87,8 +90,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return FinderApplication(
-                    rootDirectory: snapshot.data!,
-                    maestro: widget.maestro);
+                    rootDirectory: snapshot.data!, maestro: widget.maestro);
               } else {
                 return Container(child: const Text('Loading...'));
               }
@@ -99,8 +101,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return FinderApplication(
-                    rootDirectory: snapshot.data!,
-                    maestro: widget.maestro);
+                    rootDirectory: snapshot.data!, maestro: widget.maestro);
               } else {
                 return Container(child: const Text('Loading...'));
               }
@@ -111,30 +112,34 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
             builder: (context, evidences) {
               if (evidences.hasData) {
                 return FutureBuilder<int>(
-                  future: widget.maestro.getAllCharacters(),
-                  builder: (context, nbCharacters) {
-                    if (!nbCharacters.hasData) {
-                      return Container();
-                    }
-                    return FutureBuilder<List<Character>>(
-                      future: widget.maestro.getAvailableCharacters(),
-                      builder: (context, snapshot) {
-                        if (!snapshot.hasData) {
-                          return Container();
-                        }
-                        return FutureBuilder<String>(
-                          future: getDayOfWeek(_maestroState!.day),
-                          builder: (context, day) {
-                            if (!day.hasData) {
+                    future: widget.maestro.getAllCharacters(),
+                    builder: (context, nbCharacters) {
+                      if (!nbCharacters.hasData) {
+                        return Container();
+                      }
+                      return FutureBuilder<List<Character>>(
+                          future: widget.maestro.getAvailableCharacters(),
+                          builder: (context, snapshot) {
+                            if (!snapshot.hasData) {
                               return Container();
                             }
-                            return CharacterSelection(avatars: nbCharacters.data!, characters: snapshot.data!, maestro: widget.maestro, currentDay: day.data!, currentHour: "${_maestroState!.hour}:00",);
-                          }
-                        );
-                      }
-                    );
-                  }
-                );
+                            return FutureBuilder<String>(
+                                future: getDayOfWeek(_maestroState!.day),
+                                builder: (context, day) {
+                                  if (!day.hasData) {
+                                    return Container();
+                                  }
+                                  return CharacterSelection(
+                                    avatars: nbCharacters.data!,
+                                    characters: snapshot.data!,
+                                    maestro: widget.maestro,
+                                    currentDay: day.data!,
+                                    currentHour: "${_maestroState!.hour}:00",
+                                    displayComment: displayComment,
+                                  );
+                                });
+                          });
+                    });
               } else {
                 return Container(child: const Text('Loading...'));
               }
@@ -239,7 +244,40 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
             ],
           ),
         ),
+        Positioned(
+          bottom: 0,
+          child: Visibility(
+            visible: isDescriptionVisible,
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  isDescriptionVisible = false;
+                });
+              },
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 200,
+                color: Colors.black54,
+                child: Center(
+                  child: Text(
+                    this.descriptionContent,
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        )
       ],
     );
+  }
+
+  void displayComment(String comment) {
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      setState(() {
+        this.isDescriptionVisible = true;
+        this.descriptionContent = comment;
+      });
+    });
   }
 }

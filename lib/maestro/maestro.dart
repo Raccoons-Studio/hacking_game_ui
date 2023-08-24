@@ -1,5 +1,6 @@
 // Maestro manage everything in the app
 import 'dart:async';
+import 'dart:ffi';
 
 import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_characters_selector.dart';
 import 'package:hacking_game_ui/virtual_machine/models/cinematic.dart';
@@ -17,7 +18,8 @@ class MaestroState {
 }
 
 abstract class Maestro {
-  StreamController<MaestroState> streamController = StreamController<MaestroState>.broadcast();
+  StreamController<MaestroState> streamController =
+      StreamController<MaestroState>.broadcast();
 
   Stream<MaestroState> get maestroStream => streamController.stream;
 
@@ -27,12 +29,12 @@ abstract class Maestro {
 
   Future<List<Files>> getPhoneEvidences(String characterID);
 
-  Future<Files> collectEvidence(String characterID, String evidenceID);
+  Future<void> collectEvidence(String evidenceID);
 
   Future<void> addToEvidence(String characterID, String evidenceID);
 
   Future<void> removeFromEvidence(String characterID, String evidenceID);
-  
+
   Future<void> submitEvidences(String characterID);
 
   Future<void> load(String saveID);
@@ -50,6 +52,8 @@ abstract class Maestro {
   Future<String> getAssetContent(Files file);
 
   Future<String> getTextContent(Files file);
+
+  Future<int> getNumberContent(Files file);
 
   Future<List<TimelineData>> getTimelineData(Files file);
 
