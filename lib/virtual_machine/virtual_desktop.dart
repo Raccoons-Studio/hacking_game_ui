@@ -30,6 +30,8 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
     VirtualApplication('Messages', Icons.message, Colors.green),
     //VirtualApplication('Cinematic', Icons.movie, Colors.purple),
     VirtualApplication('Phones', Icons.phone, Colors.greenAccent),
+    VirtualApplication('Webcam', Icons.camera_alt, Colors.red),
+    VirtualApplication('Settings', Icons.settings, Colors.grey),
     VirtualApplication('Next', Icons.skip_next, Colors.orangeAccent),
     // Add more applications here
   ];

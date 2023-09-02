@@ -71,8 +71,27 @@ class _CinematicWidgetState extends State<CinematicWidget> {
       child: Stack(
         children: <Widget>[
           Positioned.fill(
-            child: Image.asset("assets/images/" + widget
-                .cinematic.cinematicSequences[sequencesIndex].cinematicAsset, fit: BoxFit.cover),
+            child: Image.asset(
+                "assets/images/" +
+                    widget.cinematic.cinematicSequences[sequencesIndex]
+                        .cinematicAsset,
+                fit: BoxFit.cover),
+          ),
+          Positioned(
+            top: 10.0,
+            right: 10.0,
+            child: GestureDetector(
+              onTap: () {
+                widget.onEndCinematic();
+              },
+              child: Text(
+                "Skip",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                ),
+              ),
+            ),
           ),
           Positioned(
             bottom: 0,
