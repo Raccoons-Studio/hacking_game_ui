@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 
 class PhoneMap extends StatelessWidget {
-  final String location;
+  final String placeName;
+  final String placeAddress;
+  final String placeAsset;
   final String hour;
   final String day;
 
   const PhoneMap({
     Key? key,
-    required this.location,
+    required this.placeName,
+    required this.placeAddress,
+    required this.placeAsset,
     required this.hour,
     required this.day,
   }) : super(key: key);
@@ -16,28 +20,35 @@ class PhoneMap extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
-        alignment: Alignment.center,
         children: <Widget>[
           Center(
-            child: Container(
+            child: Image.asset(
+              "assets/$placeAsset",
+              fit: BoxFit.cover,
+              height: double.infinity,
+              width: double.infinity,
               alignment: Alignment.center,
-              child: const Icon(
-                Icons.pin_drop,
-                size: 300.0,
-                color: Colors.black,
-              ),
             ),
           ),
           Center(
-            child: Container(
-              alignment: Alignment.center,
-              child: Text(
-                location,
-                style: const TextStyle(
-                  fontSize: 20.0,
-                  color: Colors.white,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  placeName,
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    color: Colors.white,
+                  ),
                 ),
-              ),
+                Text(
+                  placeAddress,
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
             ),
           ),
           Align(
@@ -48,7 +59,7 @@ class PhoneMap extends StatelessWidget {
                 '$hour $day',
                 style: const TextStyle(
                   fontSize: 16.0,
-                  color: Colors.black,
+                  color: Colors.white,
                 ),
               ),
             ),

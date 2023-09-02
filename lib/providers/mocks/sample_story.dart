@@ -9,7 +9,7 @@ StoryEngine getSampleStory() {
   List<CinematicEngine> cinematics = [];
 
   places.add(
-      PlaceEngine("REPAIR_SHOP", "Phone's repair", "The store where I work"));
+      PlaceEngine("REPAIR_SHOP", "Phone's repair", "avatar.jpeg", "The store where I work"));
   characters.add(CharacterEngine("ANNA", "Anna", 0, "anna.jpeg"));
 
   // Cinematiques

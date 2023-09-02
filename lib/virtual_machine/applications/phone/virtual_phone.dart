@@ -116,34 +116,46 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
   }
 
   Widget buildAppContent() {
-    return Container(
-      color: CupertinoColors.white,
-      child: Column(
-        children: <Widget>[
-          Container(
-            color: Colors.white,
+    return Stack(
+      children: <Widget>[
+        Positioned.fill(
+          child: Container(
+            color: CupertinoColors.white,
+            child: buildApplicationContent(_openedFile!),
+          ),
+        ),
+        Positioned(
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 25.0,
+          child: Container(
+            color: CupertinoColors.lightBackgroundGray.withOpacity(0.8),
             child: Row(
               children: <Widget>[
-                IconButton(
-                  icon: const Icon(
-                    CupertinoIcons.back,
-                    color: CupertinoColors.black,
+                Padding(
+                  padding: EdgeInsets.only(left: 5.0),
+                  child: IconButton(
+                    iconSize: 10,
+                    icon: const Icon(
+                      CupertinoIcons.back,
+                      color: Colors.white,
+                    ),
+                    onPressed: () => setState(() => _openedFile = null),
                   ),
-                  onPressed: () {
-                    setState(() {
-                      _openedFile = null;
-                    });
-                  },
                 ),
+                Expanded(
+                  child: Center(
+                    child: Text(widget.currentHour,
+                        style: TextStyle(color: Colors.white)),
+                  ),
+                ),
+                SizedBox(width: 50.0)
               ],
             ),
           ),
-          Expanded(
-            child: buildApplicationContent(_openedFile!),
-            // You can add your application details here
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -157,6 +169,10 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
             }
             return FinderHealth(
               bpm: snapshot.data!,
+              hour: widget.currentHour,
+              calories: 345,
+              exerciseMinutes: 23,
+              steps: 4532,
             );
           });
     } else if (file.type == EvidenceType.image ||
@@ -166,7 +182,6 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
           future: widget.maestro.getAssetContent(file),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              print("assets/images/" + snapshot.data!);
               return FinderImage(assetName: snapshot.data!);
             }
             return const Center(child: CircularProgressIndicator());
@@ -208,7 +223,9 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return PhoneMap(
-                location: (snapshot.data!.value as PositionData).address,
+                placeName: (snapshot.data!.value as PositionData).name,
+                placeAddress: (snapshot.data!.value as PositionData).address,
+                placeAsset: (snapshot.data!.value as PositionData).asset,
                 day: widget.currentDay,
                 hour: widget.currentHour,
               );

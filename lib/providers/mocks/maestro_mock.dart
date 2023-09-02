@@ -36,7 +36,7 @@ class MaestroMock extends Maestro {
   }
 
   @override
-  Future<bool> nextHour() async {
+  Future<bool> nextHour(bool devMode) async {
     // TODO : Check if every evidences are collected
     // TODO : Check at the end of the day if every evidences are marked
     // TODO : Check at the end of the week if every evidences are submitted
@@ -167,7 +167,7 @@ class MaestroMock extends Maestro {
             TimelineType.position,
             'Dummy content $i',
             // Random value between 0 and 1024
-            PositionData('Dummy content $i', Random().nextInt(1024).toDouble(),
+            PositionData('Dummy content $i', 'Dummy content $i', "avatar.jpeg", Random().nextInt(1024).toDouble(),
                 Random().nextInt(1024).toDouble()));
         timelineDataList.add(timeline);
       }
@@ -327,7 +327,7 @@ class MaestroMock extends Maestro {
         TimelineType.position,
         'Dummy content',
         // Random value between 0 and 1024
-        PositionData('Dummy content', Random().nextInt(1024).toDouble(),
+        PositionData('Dummy content', 'Dummy content', "avatar.jpeg", Random().nextInt(1024).toDouble(),
             Random().nextInt(1024).toDouble()));
   }
 

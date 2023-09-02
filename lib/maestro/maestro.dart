@@ -25,7 +25,7 @@ abstract class Maestro {
 
   Future<void> start();
 
-  Future<bool> nextHour();
+  Future<bool> nextHour(bool devMode);
 
   Future<List<Files>> getPhoneEvidences(String characterID);
 

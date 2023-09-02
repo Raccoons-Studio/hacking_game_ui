@@ -107,8 +107,22 @@ class MaestroStory extends Maestro {
           if (e.week == j && e.characterID == characters[i].characterID) {
             for (String evidenceID in p.revealedElements) {
               if (e.elementID == evidenceID) {
-                weekDirectory.files.add(Files(e.elementID, e.name, e.type,
-                    description: e.description));
+                // If evidence type is other than image, we check if an evidence is already in the weekDirectory
+                if (e.type != EvidenceType.image) {
+                  bool alreadyInDirectory = false;
+                  for (Files f in weekDirectory.files) {
+                    if (f.type == e.type) {
+                      alreadyInDirectory = true;
+                    }
+                  }
+                  if (!alreadyInDirectory) {
+                    weekDirectory.files.add(Files(e.elementID, e.name, e.type,
+                        description: e.description));
+                  }
+                } else {
+                  weekDirectory.files.add(Files(e.elementID, e.name, e.type,
+                      description: e.description));
+                }
               }
             }
           }
@@ -137,6 +151,21 @@ class MaestroStory extends Maestro {
     return evidences;
   }
 
+  Future<List<Files>> getAllCurrentEvidence() async {
+    StoryEngine s = await _dataBaseEngine!.getStory();
+    Player p = await _dataBaseEngine!.getPlayer();
+    List<Files> evidences = [];
+    for (ElementEngine e in s.elements) {
+      if (e.week == p.currentWeek &&
+          e.day == p.currentDay &&
+          e.hour == p.currentHour) {
+        evidences.add(
+            Files(e.elementID, e.name, e.type, description: e.description));
+      }
+    }
+    return evidences;
+  }
+
   @override
   Future<List<ScrollableData>> getScrollableData(Files file) {
     // TODO: implement getScrollableData
@@ -152,9 +181,41 @@ class MaestroStory extends Maestro {
   }
 
   @override
-  Future<List<TimelineData>> getTimelineData(Files file) {
-    // TODO: implement getTimelineData
-    throw UnimplementedError();
+  Future<List<TimelineData>> getTimelineData(Files file) async {
+    // Make a list with all revealed evidences of this type
+    List<TimelineData> timelineData = [];
+
+    StoryEngine s = await _dataBaseEngine!.getStory();
+    Player p = await _dataBaseEngine!.getPlayer();
+
+    for (ElementEngine e in s.elements) {
+      if (p.revealedElements.contains(e.elementID) && e.type == file.type) {
+        switch (e.type) {
+          case EvidenceType.position:
+            PlaceEngine place =
+                s.places.firstWhere((place) => place.placeID == e.placeID);
+            timelineData.add(TimelineData(
+                e.week,
+                e.day,
+                e.hour,
+                TimelineType.position,
+                e.description,
+                PositionData(
+                    place.name,
+                    place.address,
+                    place.asset,
+                    Random().nextInt(1024).toDouble(),
+                    Random().nextInt(1024).toDouble())));
+          case EvidenceType.heartbeat:
+            timelineData.add(TimelineData(e.week, e.day, e.hour,
+                TimelineType.heartbeat, e.description, e.numberValue!));
+          default:
+            break;
+        }
+      }
+    }
+
+    return timelineData;
   }
 
   @override
@@ -165,8 +226,25 @@ class MaestroStory extends Maestro {
   }
 
   @override
-  Future<bool> nextHour() async {
+  Future<bool> nextHour(bool devMode) async {
     Player p = await _dataBaseEngine!.getPlayer();
+
+    if (devMode) {
+      // With dev mod we collect all evidences automatically
+      for (var currentEvidence in await this.getAllCurrentEvidence()) {
+        if (!p.revealedElements.contains(currentEvidence.evidenceID)) {
+          p.revealedElements.add(currentEvidence.evidenceID);
+        }
+      }
+    }
+
+    // Check if every evidences are collected
+    for (var currentEvidence in await this.getAllCurrentEvidence()) {
+      if (!p.revealedElements.contains(currentEvidence.evidenceID)) {
+        return false;
+      }
+    }
+
     if (p.currentHour >= 22) {
       p.currentHour = 7;
       p.currentDay++;
@@ -216,7 +294,7 @@ class MaestroStory extends Maestro {
   @override
   Future<void> start() async {
     await load("anna_story.yml");
-    await nextHour();
+    await nextHour(false);
   }
 
   @override
@@ -242,7 +320,11 @@ class MaestroStory extends Maestro {
           element.hour,
           TimelineType.position,
           element.description,
-          PositionData(place.name, Random().nextInt(1024).toDouble(),
+          PositionData(
+              place.name,
+              place.address,
+              place.asset,
+              Random().nextInt(1024).toDouble(),
               Random().nextInt(1024).toDouble()));
     } else if (element.type == TimelineType.heartbeat) {
       throw UnimplementedError();

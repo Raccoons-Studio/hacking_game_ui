@@ -16,9 +16,11 @@ class TimelineData {
 }
 
 class PositionData {
+  String name;
   String address;
+  String asset;
   double x;
   double y;
 
-  PositionData(this.address, this.x, this.y);
+  PositionData(this.name, this.address, this.asset, this.x, this.y);
 }

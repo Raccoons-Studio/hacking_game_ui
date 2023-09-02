@@ -10,10 +10,10 @@ class FinderImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Expanded(
       child: Image.asset(
         'assets/images/$assetName',
-        fit: BoxFit.contain,
+        fit: BoxFit.fitHeight,
       ),
     );
   }

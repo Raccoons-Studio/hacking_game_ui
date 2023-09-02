@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/utils/game_date.dart';
@@ -33,6 +35,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
     VirtualApplication('Webcam', Icons.camera_alt, Colors.red),
     VirtualApplication('Settings', Icons.settings, Colors.grey),
     VirtualApplication('Next', Icons.skip_next, Colors.orangeAccent),
+    VirtualApplication('Next Dev', Icons.developer_board, Colors.deepOrange),
     // Add more applications here
   ];
 
@@ -189,9 +192,12 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                 child: GestureDetector(
                   onTap: () async {
                     if (applications[index].name == 'Next') {
-                      if (!await widget.maestro.nextHour()) {
-                        // TODO : Display a cinematic to show that the user need to discover more evidences
+                      if (!await widget.maestro.nextHour(false)) {
+                        displayComment(
+                            "I think I need to collect more evidences before going to the next hour");
                       }
+                    } if (applications[index].name == 'Next Dev') {
+                      await widget.maestro.nextHour(true);
                     } else {
                       setState(() {
                         if (_currentApplication == applications[index]) {
@@ -275,10 +281,10 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
   }
 
   void displayComment(String comment) {
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    scheduleMicrotask(() {
       setState(() {
-        this.isDescriptionVisible = true;
-        this.descriptionContent = comment;
+        isDescriptionVisible = true;
+        descriptionContent = comment;
       });
     });
   }

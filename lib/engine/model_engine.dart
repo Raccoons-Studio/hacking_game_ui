@@ -90,8 +90,9 @@ class PlaceEngine {
   String name;
   String description;
   String address;
+  String asset;
 
-  PlaceEngine(this.placeID, this.name, this.description, {this.address = ""});
+  PlaceEngine(this.placeID, this.name, this.description, this.asset, {this.address = ""});
 
   Map<String, dynamic> toMap() {
     return {
@@ -99,6 +100,7 @@ class PlaceEngine {
       'name': name,
       'description': description,
       'address': address,
+      'asset': asset,
     };
   }
 
@@ -107,6 +109,7 @@ class PlaceEngine {
       map['placeID'],
       map['name'],
       map['description'],
+      map['asset'],
       address: map['address'],
     );
   }

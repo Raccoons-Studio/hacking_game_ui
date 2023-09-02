@@ -84,7 +84,7 @@ class _FinderTimelineState extends State<FinderTimeline> {
                 (data.value as PositionData).x, (data.value as PositionData).y)
           ]);
     } else if (data.type == TimelineType.heartbeat) {
-      return FinderHealth(bpm: data.value as int);
+      return FinderHealth(bpm: data.value as int, hour: data.hour.toString(), calories: 345, exerciseMinutes: 23, steps: 4532,);
     } else {
       return Container();
     }
