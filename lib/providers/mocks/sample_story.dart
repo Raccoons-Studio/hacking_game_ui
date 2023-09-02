@@ -13,7 +13,7 @@ StoryEngine getSampleStory() {
   characters.add(CharacterEngine("ANNA", "Anna", 0, "anna.jpeg"));
 
   // Cinematiques
-  /*cinematics.add(CinematicEngine("INTRO", "Introduction", 0, 1, 7, [
+  cinematics.add(CinematicEngine("INTRO", "Introduction", 0, 1, 7, [
     CinematicSequenceEngine("INTRO-1", "week0_day1_cinematic_intro.jpg", [
       CinematicConversationEngine("Me", "Another day in this dingy phone repair shop. I swear the walls are closing in."),
       CinematicConversationEngine("Me", "Fixing cracked screens and water damaged phones for unappreciative customers really takes its toll."),
@@ -51,7 +51,7 @@ StoryEngine getSampleStory() {
       CinematicConversationEngine("Player", "Just a quick install...and it's done. The icon is hidden, she'll never suspect a thing."),
       CinematicConversationEngine("Player", "Now, let's just test this real quick. I need to confirm it's sending data correctly before she takes the phone."),
     ]),
-  ]));*/
+  ]));
 
   // Tutorial content
   elements.add(ElementEngine(

@@ -1,0 +1,40 @@
+storyID: "Story1"
+name: "Story One"
+description: "This is the first story."
+characters:
+  - characterID: "Char1"
+    name: "Character One"
+    avatar: "Avatar One"
+    weekAvailability: 1
+places:
+  - placeID: "Place1"
+    name: "Place One"
+    description: "This is the first place."
+elements:
+  - elementID: "Element1"
+    name: "Element One"
+    description: "This is the first element."
+    characterID: "Char1"
+    type: "microphone"
+    isEvidence: true
+    week: 1
+    day: 1
+    hour: 1
+cases:
+  - caseID: "Case1"
+    characterID: "Char1"
+    name: "Case One"
+    description: "This is the first case."
+    week: 1
+cinematics:
+  - cinematicID: "Cinematic1"
+    name: "Cinematic One"
+    week: 1
+    day: 1
+    hour: 1
+    sequences:
+      - cinematicSequenceID: "Cinematic Sequence1"
+        cinematicAsset: "Cinematic Asset1"
+        cinematicConversations:
+          - character: "Char1"
+            text: "Hello, this is character one."

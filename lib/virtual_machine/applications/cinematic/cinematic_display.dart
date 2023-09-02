@@ -72,7 +72,7 @@ class _CinematicWidgetState extends State<CinematicWidget> {
         children: <Widget>[
           Positioned.fill(
             child: Image.asset("assets/images/" + widget
-                .cinematic.cinematicSequences[sequencesIndex].cinematicAsset),
+                .cinematic.cinematicSequences[sequencesIndex].cinematicAsset, fit: BoxFit.cover),
           ),
           Positioned(
             bottom: 0,

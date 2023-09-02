@@ -1,9 +1,9 @@
-import 'dart:ffi';
 import 'dart:math';
 
 import 'package:hacking_game_ui/engine/database_engine.dart';
 import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/engine/player_engine.dart';
+import 'package:hacking_game_ui/engine/save_load_engine.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/providers/mocks/sample_story.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_characters_selector.dart';
@@ -159,7 +159,7 @@ class MaestroStory extends Maestro {
 
   @override
   Future<void> load(String saveID) async {
-    StoryEngine story = getSampleStory();
+    StoryEngine story = await SaveAndLoadEngine.loadStoryEngine(saveID);
     Player player = getSamplePlayer();
     _dataBaseEngine = DataBaseEngine(story, player);
   }
@@ -215,7 +215,7 @@ class MaestroStory extends Maestro {
 
   @override
   Future<void> start() async {
-    await load("");
+    await load("anna_story.yml");
     await nextHour();
   }
 
