@@ -61,16 +61,18 @@ class CharacterEngine {
   String characterID;
   String name;
   String avatar;
+  String wallpaper;
   int weekAvailability;
 
   CharacterEngine(
-      this.characterID, this.name, this.weekAvailability, this.avatar);
+      this.characterID, this.name, this.weekAvailability, this.avatar, this.wallpaper);
   
   Map<String, dynamic> toMap() {
     return {
       'characterID': characterID,
       'name': name,
       'avatar': avatar,
+      'wallpaper': wallpaper,
       'weekAvailability': weekAvailability,
     };
   }
@@ -81,6 +83,7 @@ class CharacterEngine {
       map['name'],
       map['weekAvailability'],
       map['avatar'],
+      map['wallpaper'],
     );
   }
 }

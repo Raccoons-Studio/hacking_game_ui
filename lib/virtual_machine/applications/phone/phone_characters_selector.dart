@@ -9,9 +9,10 @@ class Character {
   String characterID;
   String name;
   String avatar;
+  String wallpaper;
 
   Character(
-      {required this.characterID, required this.name, required this.avatar});
+      {required this.characterID, required this.name, required this.avatar, required this.wallpaper});
 }
 
 class CharacterSelection extends StatefulWidget {
@@ -75,7 +76,7 @@ class _CharacterSelectionState extends State<CharacterSelection> {
                               currentDay: widget.currentDay,
                               currentHour: widget.currentHour,
                               backgroundImageUrl: "assets/iphone.jpg",
-                              splashScreenImageUrl: "assets/images/avatar.jpeg",
+                              splashScreenImageUrl: _selectedCharacter!.wallpaper,
                               displayComment: widget.displayComment,
                             );
                           }))
@@ -95,7 +96,7 @@ class _CharacterSelectionState extends State<CharacterSelection> {
                                       CircleAvatar(
                                         radius: 50.0,
                                         backgroundImage: AssetImage(
-                                            "assets/images/${character.avatar}"),
+                                            "assets/${character.avatar}"),
                                       ),
                                       Padding(
                                         padding:

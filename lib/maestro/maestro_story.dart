@@ -59,7 +59,7 @@ class MaestroStory extends Maestro {
     for (CharacterEngine c in s.characters) {
       if (c.weekAvailability >= p.currentWeek) {
         characters.add(Character(
-            characterID: c.characterID, name: c.name, avatar: c.avatar));
+            characterID: c.characterID, name: c.name, avatar: c.avatar, wallpaper: c.wallpaper));
       }
     }
     return characters;

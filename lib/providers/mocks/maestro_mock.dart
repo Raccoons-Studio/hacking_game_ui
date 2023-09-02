@@ -288,6 +288,7 @@ class MaestroMock extends Maestro {
         characterID: 'character-${random.nextInt(1000)}',
         name: 'Character ${random.nextInt(1000)}',
         avatar: 'avatar.jpeg',
+        wallpaper: 'wallpaper.jpeg',
       ),
     );
 

@@ -88,7 +88,7 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
               children: <Widget>[
                 Image.asset(
                   _splashScreenVisible
-                      ? widget.splashScreenImageUrl
+                      ? "assets/" + widget.splashScreenImageUrl
                       : widget.backgroundImageUrl,
                   fit: BoxFit.cover,
                 ),

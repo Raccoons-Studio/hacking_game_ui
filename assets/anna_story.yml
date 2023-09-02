@@ -5,7 +5,8 @@ characters:
   - characterID: "ANNA"
     name: "Anna"
     weekAvailability: 0
-    avatar: "anna.jpeg"
+    avatar: "images/anna_avatar.jpg"
+    wallpaper: "images/anna_wallpaper.jpg"
 places:
     - placeID: "REPAIR_SHOP"
       name: "Phone's repair"
@@ -31,6 +32,11 @@ places:
       name: "University Dormitory"
       description: "The dormitory where I was living during my studies. A lot of students are living here."
       address: "621, Park Avenue"
+      asset: "images/avatar.jpeg"
+    - placeID: "MALL"
+      name: "The mall"
+      description: "You can buy everything in this mall."
+      address: "1, Mall Street"
       asset: "images/avatar.jpeg"
 elements:
     - elementID: "WEEK-0_DAY-1_HOUR-7_ANNA_POSITION"
@@ -486,7 +492,7 @@ elements:
       numberValue: 71
     - elementID: "WEEK-0_DAY-3_HOUR-10_ANNA_REARCAMERA"
       name: "University"
-      description: "Wake up Anna, you're looking tired !"
+      description: "It's black, maybe she put the phone in her pocket."
       characterID: "ANNA"
       type: "rearCamera"
       isEvidence: true
@@ -495,6 +501,138 @@ elements:
       hour: 10
       relatedCaseID: null
       assetID: "WEEK-0_DAY-3_HOUR-10_ANNA_REARCAMERA.jpg"
+    - elementID: "WEEK-0_DAY-3_HOUR-13_ANNA_POSITION"
+      name: "University"
+      description: "A little desire for shopping Anna?"
+      characterID: "ANNA"
+      type: "position"
+      isEvidence: false
+      week: 0
+      day: 3
+      hour: 13
+      relatedCaseID: null
+      placeID: "MALL"
+    - elementID: "WEEK-0_DAY-3_HOUR-13_ANNA_HEARTBEAT"
+      name: "University"
+      description: "A normal heart rate, Anna is relaxed."
+      characterID: "ANNA"
+      type: "heartbeat"
+      isEvidence: true
+      week: 0
+      day: 3
+      hour: 13
+      relatedCaseID: null
+      numberValue: 67
+    - elementID: "WEEK-0_DAY-3_HOUR-13_ANNA_REARCAMERA"
+      name: "University"
+      description: "Love this underwear Anna!"
+      characterID: "ANNA"
+      type: "rearCamera"
+      isEvidence: true
+      week: 0
+      day: 3
+      hour: 13
+      relatedCaseID: null
+      assetID: "WEEK-0_DAY-3_HOUR-13_ANNA_REARCAMERA.jpg"
+    - elementID: "WEEK-0_DAY-3_HOUR-16_ANNA_POSITION"
+      name: "University"
+      description: "A whole shopping day, enjoy it!"
+      characterID: "ANNA"
+      type: "position"
+      isEvidence: false
+      week: 0
+      day: 3
+      hour: 16
+      relatedCaseID: null
+      placeID: "MALL"
+    - elementID: "WEEK-0_DAY-3_HOUR-16_ANNA_HEARTBEAT"
+      name: "University"
+      description: "Anna seems to be excited."
+      characterID: "ANNA"
+      type: "heartbeat"
+      isEvidence: true
+      week: 0
+      day: 3
+      hour: 16
+      relatedCaseID: null
+      numberValue: 80
+    - elementID: "WEEK-0_DAY-3_HOUR-16_ANNA_REARCAMERA"
+      name: "University"
+      description: "Cute dress, you need to take it!"
+      characterID: "ANNA"
+      type: "rearCamera"
+      isEvidence: true
+      week: 0
+      day: 3
+      hour: 16
+      relatedCaseID: null
+      assetID: "WEEK-0_DAY-3_HOUR-16_ANNA_REARCAMERA.jpg"
+    - elementID: "WEEK-0_DAY-3_HOUR-19_ANNA_POSITION"
+      name: "University"
+      description: "Main Street ? Maybe she's going to the restaurant after this shopping day."
+      characterID: "ANNA"
+      type: "position"
+      isEvidence: false
+      week: 0
+      day: 3
+      hour: 19
+      relatedCaseID: null
+      placeID: "MAIN_STREET"
+    - elementID: "WEEK-0_DAY-3_HOUR-19_ANNA_HEARTBEAT"
+      name: "University"
+      description: "Anna is relaxed"
+      characterID: "ANNA"
+      type: "heartbeat"
+      isEvidence: true
+      week: 0
+      day: 3
+      hour: 19
+      relatedCaseID: null
+      numberValue: 65
+    - elementID: "WEEK-0_DAY-3_HOUR-19_ANNA_REARCAMERA"
+      name: "University"
+      description: "Anna is dinning with a friend, she seems to be happy."
+      characterID: "ANNA"
+      type: "rearCamera"
+      isEvidence: true
+      week: 0
+      day: 3
+      hour: 19
+      relatedCaseID: null
+      assetID: "WEEK-0_DAY-3_HOUR-19_ANNA_REARCAMERA.jpg"
+    - elementID: "WEEK-0_DAY-3_HOUR-22_ANNA_POSITION"
+      name: "University"
+      description: "Still eating dinner ! You'll be tired tomorrow Anna !"
+      characterID: "ANNA"
+      type: "position"
+      isEvidence: false
+      week: 0
+      day: 3
+      hour: 19
+      relatedCaseID: null
+      placeID: "MAIN_STREET"
+    - elementID: "WEEK-0_DAY-3_HOUR-22_ANNA_HEARTBEAT"
+      name: "University"
+      description: "Anna is relaxed, but a little higher than usual, maybe she's drunk?"
+      characterID: "ANNA"
+      type: "heartbeat"
+      isEvidence: true
+      week: 0
+      day: 3
+      hour: 22
+      relatedCaseID: null
+      numberValue: 78
+    - elementID: "WEEK-0_DAY-3_HOUR-22_ANNA_REARCAMERA"
+      name: "University"
+      description: "Anna's friend is cute too"
+      characterID: "ANNA"
+      type: "rearCamera"
+      isEvidence: true
+      week: 0
+      day: 3
+      hour: 22
+      relatedCaseID: null
+      assetID: "WEEK-0_DAY-3_HOUR-19_ANNA_REARCAMERA.jpg"
 cases: []
 cinematics:
   - cinematicID: "INTRO"
