@@ -5,8 +5,8 @@ characters:
   - characterID: "ANNA"
     name: "Anna"
     weekAvailability: 0
-    avatar: "images/anna_avatar.jpg"
-    wallpaper: "images/anna_wallpaper.jpg"
+    avatar: "images/Anna_avatar.jpg"
+    wallpaper: "images/Anna_wallpaper.jpg"
 places:
     - placeID: "REPAIR_SHOP"
       name: "Phone's repair"

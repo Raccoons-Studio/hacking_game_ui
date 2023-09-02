@@ -1,6 +1,5 @@
 // Maestro manage everything in the app
 import 'dart:async';
-import 'dart:ffi';
 
 import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_characters_selector.dart';
 import 'package:hacking_game_ui/virtual_machine/models/cinematic.dart';
