@@ -274,7 +274,7 @@ class MaestroStory extends Maestro {
   @override
   Future<void> load(String saveID) async {
     StoryEngine story = await SaveAndLoadEngine.loadStoryEngine(saveID);
-    var integrity = await this.checkIntegrity(story);
+    //var integrity = await this.checkIntegrity(story);
     Player player = getSamplePlayer();
     _dataBaseEngine = DataBaseEngine(story, player);
   }
