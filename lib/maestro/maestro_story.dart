@@ -1,5 +1,7 @@
+import 'dart:io';
 import 'dart:math';
 
+import 'package:flutter/services.dart';
 import 'package:hacking_game_ui/engine/database_engine.dart';
 import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/engine/player_engine.dart';
@@ -46,8 +48,8 @@ class MaestroStory extends Maestro {
   @override
   Future<String> getAssetContent(Files file) async {
     StoryEngine s = await _dataBaseEngine!.getStory();
-    ElementEngine element = s.elements
-        .firstWhere((element) => element.elementID == file.evidenceID);
+    ElementEngine element =
+        s.elements.firstWhere((element) => element.ID == file.evidenceID);
     return element.assetID != null ? element.assetID! : "";
   }
 
@@ -59,7 +61,7 @@ class MaestroStory extends Maestro {
     for (CharacterEngine c in s.characters) {
       if (c.weekAvailability >= p.currentWeek) {
         characters.add(Character(
-            characterID: c.characterID,
+            characterID: c.ID,
             name: c.name,
             avatar: c.avatar,
             wallpaper: c.wallpaper));
@@ -71,8 +73,8 @@ class MaestroStory extends Maestro {
   @override
   Future<Cinematic> getCinematicData(String cinematicID) async {
     StoryEngine s = await _dataBaseEngine!.getStory();
-    CinematicEngine cinematic = s.cinematics
-        .firstWhere((cinematic) => cinematic.cinematicID == cinematicID);
+    CinematicEngine cinematic =
+        s.cinematics.firstWhere((cinematic) => cinematic.ID == cinematicID);
     List<CinematicSequence> cinematicSequences = [];
     for (var sequence in cinematic.sequences) {
       List<CinematicConversation> cinematicConversations = [];
@@ -80,8 +82,8 @@ class MaestroStory extends Maestro {
         cinematicConversations.add(
             CinematicConversation(conversation.character, conversation.text));
       }
-      cinematicSequences.add(CinematicSequence(sequence.cinematicSequenceID,
-          sequence.cinematicAsset, cinematicConversations));
+      cinematicSequences.add(
+          CinematicSequence(sequence.cinematicAsset, cinematicConversations));
     }
     return Cinematic(cinematicID, cinematicSequences);
   }
@@ -109,7 +111,7 @@ class MaestroStory extends Maestro {
         for (ElementEngine e in s.elements) {
           if (e.week == j && e.characterID == characters[i].characterID) {
             for (String evidenceID in p.revealedElements) {
-              if (e.elementID == evidenceID) {
+              if (e.ID == evidenceID) {
                 // If evidence type is other than image, we check if an evidence is already in the weekDirectory
                 if (e.type != EvidenceType.image) {
                   bool alreadyInDirectory = false;
@@ -119,12 +121,12 @@ class MaestroStory extends Maestro {
                     }
                   }
                   if (!alreadyInDirectory) {
-                    weekDirectory.files.add(Files(e.elementID, e.name, e.type,
+                    weekDirectory.files.add(Files(e.ID, e.name, e.type,
                         description: e.description));
                   }
                 } else {
-                  weekDirectory.files.add(Files(e.elementID, e.name, e.type,
-                      description: e.description));
+                  weekDirectory.files.add(
+                      Files(e.ID, e.name, e.type, description: e.description));
                 }
               }
             }
@@ -150,8 +152,8 @@ class MaestroStory extends Maestro {
         ElementEngine nsfwLevelElement = _getClosestNsfwElement(characterID,
             e.type, e.week, e.day, e.hour, p.nsfwLevel, s.elements);
         if (!evidences.any((element) => element.type == e.type)) {
-          evidences.add(Files(nsfwLevelElement.elementID, nsfwLevelElement.name,
-              nsfwLevelElement.type,
+          evidences.add(Files(
+              nsfwLevelElement.ID, nsfwLevelElement.name, nsfwLevelElement.type,
               description: nsfwLevelElement.description));
         }
       }
@@ -183,17 +185,10 @@ class MaestroStory extends Maestro {
     return filteredElements.first;
   }
 
-  CinematicEngine _getClosestNsfwCinematic(
-      int week,
-      int day,
-      int hour,
-      int nsfwLevel,
-      List<CinematicEngine> elements) {
+  CinematicEngine _getClosestNsfwCinematic(int week, int day, int hour,
+      int nsfwLevel, List<CinematicEngine> elements) {
     List<CinematicEngine> filteredElements = elements
-        .where((e) =>
-            e.week == week &&
-            e.day == day &&
-            e.hour == hour)
+        .where((e) => e.week == week && e.day == day && e.hour == hour)
         .toList();
 
     filteredElements.sort((a, b) => (a.nsfwLevel - nsfwLevel)
@@ -215,8 +210,8 @@ class MaestroStory extends Maestro {
             e.type, e.week, e.day, e.hour, p.nsfwLevel, s.elements);
         // If evidences doesn't already contains an evidence of this type
         if (!evidences.any((element) => element.type == e.type)) {
-          evidences.add(Files(nsfwLevelElement.elementID, nsfwLevelElement.name,
-              nsfwLevelElement.type,
+          evidences.add(Files(
+              nsfwLevelElement.ID, nsfwLevelElement.name, nsfwLevelElement.type,
               description: nsfwLevelElement.description));
         }
       }
@@ -233,8 +228,8 @@ class MaestroStory extends Maestro {
   @override
   Future<String> getTextContent(Files file) async {
     StoryEngine s = await _dataBaseEngine!.getStory();
-    ElementEngine element = s.elements
-        .firstWhere((element) => element.elementID == file.evidenceID);
+    ElementEngine element =
+        s.elements.firstWhere((element) => element.ID == file.evidenceID);
     return element.textValue != null ? element.textValue! : "";
   }
 
@@ -247,11 +242,11 @@ class MaestroStory extends Maestro {
     Player p = await _dataBaseEngine!.getPlayer();
 
     for (ElementEngine e in s.elements) {
-      if (p.revealedElements.contains(e.elementID) && e.type == file.type) {
+      if (p.revealedElements.contains(e.ID) && e.type == file.type) {
         switch (e.type) {
           case EvidenceType.position:
             PlaceEngine place =
-                s.places.firstWhere((place) => place.placeID == e.placeID);
+                s.places.firstWhere((place) => place.ID == e.placeID);
             timelineData.add(TimelineData(
                 e.week,
                 e.day,
@@ -279,6 +274,7 @@ class MaestroStory extends Maestro {
   @override
   Future<void> load(String saveID) async {
     StoryEngine story = await SaveAndLoadEngine.loadStoryEngine(saveID);
+    var integrity = await this.checkIntegrity(story);
     Player player = getSamplePlayer();
     _dataBaseEngine = DataBaseEngine(story, player);
   }
@@ -324,8 +320,9 @@ class MaestroStory extends Maestro {
       if (c.week == p.currentWeek &&
           c.day == p.currentDay &&
           c.hour == p.currentHour) {
-        var cinematicNsfw = _getClosestNsfwCinematic(c.week, c.day, c.hour, p.nsfwLevel, s.cinematics);
-        state.cinematidID = cinematicNsfw.cinematicID;
+        var cinematicNsfw = _getClosestNsfwCinematic(
+            c.week, c.day, c.hour, p.nsfwLevel, s.cinematics);
+        state.cinematidID = cinematicNsfw.ID;
         state.isCinematic = true;
         break;
       }
@@ -367,13 +364,13 @@ class MaestroStory extends Maestro {
   Future<TimelineData> getSingleTimelineData(Files file) async {
     StoryEngine s = await _dataBaseEngine!.getStory();
     // We find the element in the story
-    ElementEngine element = s.elements
-        .firstWhere((element) => element.elementID == file.evidenceID);
+    ElementEngine element =
+        s.elements.firstWhere((element) => element.ID == file.evidenceID);
     if (element.type == EvidenceType.note) {
       throw UnimplementedError();
     } else if (element.type == EvidenceType.position) {
       PlaceEngine place =
-          s.places.firstWhere((place) => place.placeID == element.placeID);
+          s.places.firstWhere((place) => place.ID == element.placeID);
       return TimelineData(
           element.week,
           element.day,
@@ -395,8 +392,8 @@ class MaestroStory extends Maestro {
   @override
   Future<int> getNumberContent(Files file) async {
     StoryEngine s = await _dataBaseEngine!.getStory();
-    ElementEngine element = s.elements
-        .firstWhere((element) => element.elementID == file.evidenceID);
+    ElementEngine element =
+        s.elements.firstWhere((element) => element.ID == file.evidenceID);
     return element.numberValue != null ? element.numberValue! : 0;
   }
 
@@ -404,5 +401,108 @@ class MaestroStory extends Maestro {
   Future<List<ContactEngine>> getContacts() {
     // TODO: implement getContacts
     throw UnimplementedError();
+  }
+
+  @override
+  Future<List<IntegrityError>> checkIntegrity(StoryEngine story) async {
+    var errors = <IntegrityError>[];
+
+    errors.addAll(_checkForDuplicateIDs(story.characters, 'Character'));
+    errors.addAll(_checkForDuplicateIDs(story.places, 'Place'));
+    errors.addAll(_checkForDuplicateIDs(story.elements, 'Element'));
+    errors.addAll(_checkForDuplicateIDs(story.cases, 'Case'));
+    errors.addAll(_checkForDuplicateIDs(story.cinematics, 'Cinematic'));
+
+    errors.addAll(
+        _checkPlaceIDExistence(story.elements, story.places, 'Element'));
+
+    errors.addAll(await _checkAssetFileExistence(story.elements, 'Element'));
+
+    errors.addAll(
+        await _checkCinematicAssetExistence(story.cinematics, 'Cinematic'));
+
+    errors.addAll(await _checkAssetFileExistence(story.elements, 'Element'));
+
+    // TODO : Cases
+
+    return errors;
+  }
+
+  List<IntegrityError> _checkForDuplicateIDs(List list, String type) {
+    var errors = <IntegrityError>[];
+    var ids = <String>{};
+    for (var item in list) {
+      if (!ids.add(item.ID)) {
+        errors.add(IntegrityError(IntegrityErrorType.dupplicateID, item.ID,
+            '$type ID is duplicate', true));
+      }
+    }
+    return errors;
+  }
+
+  List<IntegrityError> _checkPlaceIDExistence(
+      List items, List<PlaceEngine> places, String type) {
+    var errors = <IntegrityError>[];
+    var placeIDs = places.map((place) => place.ID).toSet();
+    for (var item in items) {
+      if (item.placeID != null && !placeIDs.contains(item.placeID)) {
+        errors.add(IntegrityError(IntegrityErrorType.unexistingPlace, item.ID,
+            '$type references nonexistent place : ${item.placeID}', true));
+      }
+    }
+    return errors;
+  }
+
+  Future<List<IntegrityError>> _checkAssetFileExistence(
+      List items, String type) async {
+    var errors = <IntegrityError>[];
+    for (var item in items) {
+      if (item.assetID != null) {
+        var assetPath = 'assets/images/${item.assetID}';
+        try {
+          await rootBundle.load(assetPath);
+        } catch (e) {
+          errors.add(IntegrityError(IntegrityErrorType.unexistingAsset, item.ID,
+              "$type references nonexistent asset (${item.assetID})", true));
+        }
+      }
+    }
+    return errors;
+  }
+
+  Future<List<IntegrityError>> _checkCinematicAssetExistence(
+      List<CinematicEngine> cinematics, String type) async {
+    var errors = <IntegrityError>[];
+    for (var cinematic in cinematics) {
+      for (var sequence in cinematic.sequences) {
+        if (sequence.cinematicAsset != null) {
+          var assetPath = 'assets/images/${sequence.cinematicAsset}';
+          try {
+            await rootBundle.load(assetPath);
+          } catch (e) {
+            errors.add(IntegrityError(
+                IntegrityErrorType.unexistingAsset,
+                cinematic.ID,
+                "$type references nonexistent asset (${sequence.cinematicAsset})",
+                true));
+          }
+        }
+      }
+    }
+    return errors;
+  }
+
+  Future<List<IntegrityError>> _checkCharacterIDExistence(
+      List items, List<CharacterEngine> characters, String type) async {
+    var errors = <IntegrityError>[];
+    var characterIDs = characters.map((c) => c.ID).toSet();
+    for (var item in items) {
+      if (item.characterID != null &&
+          !characterIDs.contains(item.characterID)) {
+        errors.add(IntegrityError(IntegrityErrorType.unexistingCharacter,
+            item.ID, '$type references nonexistent character', true));
+      }
+    }
+    return errors;
   }
 }

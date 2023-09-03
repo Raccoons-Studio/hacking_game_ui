@@ -6,11 +6,10 @@ class Cinematic {
 }
 
 class CinematicSequence {
-  String cinematicSequenceID;
   String cinematicAsset;
   List<CinematicConversation> cinematicConversations;
 
-  CinematicSequence(this.cinematicSequenceID, this.cinematicAsset, this.cinematicConversations);
+  CinematicSequence(this.cinematicAsset, this.cinematicConversations);
 }
 
 class CinematicConversation {

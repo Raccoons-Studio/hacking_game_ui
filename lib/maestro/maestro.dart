@@ -17,6 +17,30 @@ class MaestroState {
   String cinematidID = '';
 }
 
+enum IntegrityErrorType {
+  dupplicateID,
+  unexistingPlace,
+  unexistingCase,
+  unexistingAsset,
+  unexistingCharacter
+}
+
+class IntegrityError {
+  IntegrityErrorType type;
+  String elementID;
+  String reason;
+  bool blocking;
+
+  IntegrityError(this.type, this.elementID, this.reason, this.blocking);
+}
+
+class NextDayError {
+  String characterID;
+  String reason;
+
+  NextDayError(this.characterID, this.reason);
+}
+
 abstract class Maestro {
   StreamController<MaestroState> streamController =
       StreamController<MaestroState>.broadcast();
@@ -64,4 +88,6 @@ abstract class Maestro {
   Future<Map<String, List<ConversationData>>> getConversations();
 
   Future<List<ContactEngine>> getContacts();
+
+  Future<List<IntegrityError>> checkIntegrity(StoryEngine story);
 }

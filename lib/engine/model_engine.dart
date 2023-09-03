@@ -58,18 +58,18 @@ class StoryEngine {
 }
 
 class CharacterEngine {
-  String characterID;
+  String ID;
   String name;
   String avatar;
   String wallpaper;
   int weekAvailability;
 
   CharacterEngine(
-      this.characterID, this.name, this.weekAvailability, this.avatar, this.wallpaper);
+      this.ID, this.name, this.weekAvailability, this.avatar, this.wallpaper);
   
   Map<String, dynamic> toMap() {
     return {
-      'characterID': characterID,
+      'ID': ID,
       'name': name,
       'avatar': avatar,
       'wallpaper': wallpaper,
@@ -79,7 +79,7 @@ class CharacterEngine {
 
   static CharacterEngine fromMap(Map<String, dynamic> map) {
     return CharacterEngine(
-      map['characterID'],
+      map['ID'],
       map['name'],
       map['weekAvailability'],
       map['avatar'],
@@ -89,17 +89,17 @@ class CharacterEngine {
 }
 
 class ContactEngine {
-  String contactID;
+  String ID;
   String name;
   String avatar;
   int weekAvailability;
 
   ContactEngine(
-      this.contactID, this.name, this.weekAvailability, this.avatar);
+      this.ID, this.name, this.weekAvailability, this.avatar);
   
   Map<String, dynamic> toMap() {
     return {
-      'contactID': contactID,
+      'ID': ID,
       'name': name,
       'avatar': avatar,
       'weekAvailability': weekAvailability,
@@ -108,7 +108,7 @@ class ContactEngine {
 
   static ContactEngine fromMap(Map<String, dynamic> map) {
     return ContactEngine(
-      map['contactID'],
+      map['ID'],
       map['name'],
       map['weekAvailability'],
       map['avatar'],
@@ -117,17 +117,17 @@ class ContactEngine {
 }
 
 class PlaceEngine {
-  String placeID;
+  String ID;
   String name;
   String description;
   String address;
   String asset;
 
-  PlaceEngine(this.placeID, this.name, this.description, this.asset, {this.address = ""});
+  PlaceEngine(this.ID, this.name, this.description, this.asset, {this.address = ""});
 
   Map<String, dynamic> toMap() {
     return {
-      'placeID': placeID,
+      'ID': ID,
       'name': name,
       'description': description,
       'address': address,
@@ -137,7 +137,7 @@ class PlaceEngine {
 
   static PlaceEngine fromMap(Map<String, dynamic> map) {
     return PlaceEngine(
-      map['placeID'],
+      map['ID'],
       map['name'],
       map['description'],
       map['asset'],
@@ -147,7 +147,7 @@ class PlaceEngine {
 }
 
 class ElementEngine {
-  String elementID;
+  String ID;
   String name;
   String description;
   String characterID;
@@ -165,7 +165,7 @@ class ElementEngine {
 
   String? relatedCaseID;
 
-  ElementEngine(this.elementID, this.name, this.description, this.characterID,
+  ElementEngine(this.ID, this.name, this.description, this.characterID,
       this.type, this.isEvidence, this.week, this.day, this.hour,
       {this.relatedCaseID,
       this.assetID,
@@ -177,7 +177,7 @@ class ElementEngine {
 
   Map<String, dynamic> toMap() {
     return {
-      'elementID': elementID,
+      'ID': ID,
       'name': name,
       'description': description,
       'characterID': characterID,
@@ -198,7 +198,7 @@ class ElementEngine {
 
   static ElementEngine fromMap(Map<String, dynamic> map) {
     return ElementEngine(
-      map['elementID'],
+      map['ID'],
       map['name'],
       map['description'],
       map['characterID'],
@@ -219,18 +219,18 @@ class ElementEngine {
 }
 
 class CaseEngine {
-  String caseID;
+  String ID;
   String characterID;
   String name;
   String description;
   int week;
 
   CaseEngine(
-      this.caseID, this.characterID, this.name, this.description, this.week);
+      this.ID, this.characterID, this.name, this.description, this.week);
 
   Map<String, dynamic> toMap() {
     return {
-      'caseID': caseID,
+      'ID': ID,
       'characterID': characterID,
       'name': name,
       'description': description,
@@ -240,7 +240,7 @@ class CaseEngine {
 
   static CaseEngine fromMap(Map<String, dynamic> map) {
     return CaseEngine(
-      map['caseID'],
+      map['ID'],
       map['characterID'],
       map['name'],
       map['description'],
@@ -250,7 +250,7 @@ class CaseEngine {
 }
 
 class CinematicEngine {
-  String cinematicID;
+  String ID;
   String name;
   int week;
   int day;
@@ -258,12 +258,12 @@ class CinematicEngine {
   int nsfwLevel;
   List<CinematicSequenceEngine> sequences;
 
-  CinematicEngine(this.cinematicID, this.name, this.week, this.day, this.hour,
+  CinematicEngine(this.ID, this.name, this.week, this.day, this.hour,
       this.sequences, {this.nsfwLevel = 0});
 
   Map<String, dynamic> toMap() {
     return {
-      'cinematicID': cinematicID,
+      'ID': ID,
       'name': name,
       'week': week,
       'day': day,
@@ -275,7 +275,7 @@ class CinematicEngine {
 
   static CinematicEngine fromMap(Map<String, dynamic> map) {
     return CinematicEngine(
-      map['cinematicID'],
+      map['ID'],
       map['name'],
       map['week'],
       map['day'],
@@ -287,16 +287,14 @@ class CinematicEngine {
 }
 
 class CinematicSequenceEngine {
-  String cinematicSequenceID;
   String cinematicAsset;
   List<CinematicConversationEngine> cinematicConversations;
 
-  CinematicSequenceEngine(this.cinematicSequenceID, this.cinematicAsset,
+  CinematicSequenceEngine(this.cinematicAsset,
       this.cinematicConversations);
   
   Map<String, dynamic> toMap() {
     return {
-      'cinematicSequenceID': cinematicSequenceID,
       'cinematicAsset': cinematicAsset,
       'cinematicConversations': cinematicConversations.map((x) => x.toMap()).toList(),
     };
@@ -304,7 +302,6 @@ class CinematicSequenceEngine {
 
   static CinematicSequenceEngine fromMap(Map<String, dynamic> map) {
     return CinematicSequenceEngine(
-      map['cinematicSequenceID'],
       map['cinematicAsset'],
       List<CinematicConversationEngine>.from(map['cinematicConversations']?.map((x) => CinematicConversationEngine.fromMap(x))),
     );

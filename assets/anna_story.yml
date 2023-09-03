@@ -2,44 +2,44 @@ storyID: "sample_story"
 name: "Sample Story"
 description: "This is a sample story to test developments"
 characters:
-  - characterID: "ANNA"
+  - ID: "ANNA"
     name: "Anna"
     weekAvailability: 0
     avatar: "images/Anna_avatar.jpg"
     wallpaper: "images/Anna_wallpaper.jpg"
 places:
-    - placeID: "REPAIR_SHOP"
+    - ID: "REPAIR_SHOP"
       name: "Phone's repair"
       description: "The store where I work"
       address: "10, Mall Street"
       asset: "images/avatar.jpeg"
-    - placeID: "MAIN_STREET"
+    - ID: "MAIN_STREET"
       name: "Main street"
       description: "The main street of the city : shops, restaurants, bars, etc."
       address: "Mall Street"
       asset: "images/avatar.jpeg"
-    - placeID: "PARK"
+    - ID: "PARK"
       name: "Park"
       description: "The park is near the university, it's a nice place to relax."
       address: "143, Park Avenue"
       asset: "images/avatar.jpeg"
-    - placeID: "UNIVERSITY"
+    - ID: "UNIVERSITY"
       name: "University"
       description: "The university where I was studying many years before. A lot of memories."
       address: "743, Park Avenue"
       asset: "images/avatar.jpeg"
-    - placeID: "UNIVERSITY_DORMITORY"
+    - ID: "UNIVERSITY_DORMITORY"
       name: "University Dormitory"
       description: "The dormitory where I was living during my studies. A lot of students are living here."
       address: "621, Park Avenue"
       asset: "images/avatar.jpeg"
-    - placeID: "MALL"
+    - ID: "MALL"
       name: "The mall"
       description: "You can buy everything in this mall."
       address: "1, Mall Street"
       asset: "images/avatar.jpeg"
 elements:
-    - elementID: "WEEK-0_DAY-1_HOUR-7_ANNA_POSITION"
+    - ID: "WEEK-0_DAY-1_HOUR-7_ANNA_POSITION"
       name: "Phone's repair"
       description: "Anna's phone is in my hand, I think this damn spyware works."
       characterID: "ANNA"
@@ -50,7 +50,7 @@ elements:
       hour: 7
       relatedCaseID: null
       placeID: "REPAIR_SHOP"
-    - elementID: "WEEK-0_DAY-1_HOUR-7_ANNA_HEARTBEAT"
+    - ID: "WEEK-0_DAY-1_HOUR-7_ANNA_HEARTBEAT"
       name: "Phone's repair"
       description: "I think her watch is too far from the phone"
       characterID: "ANNA"
@@ -61,7 +61,7 @@ elements:
       hour: 7
       relatedCaseID: null
       numberValue: 0
-    - elementID: "WEEK-0_DAY-1_HOUR-7_ANNA_REARCAMERA"
+    - ID: "WEEK-0_DAY-1_HOUR-7_ANNA_REARCAMERA"
       name: "Phone's repair"
       description: "Oh my god, it works ! I can see my desk !"
       characterID: "ANNA"
@@ -72,7 +72,7 @@ elements:
       hour: 7
       relatedCaseID: null
       assetID: "week0_anna_day0_rear_camera_7.jpg"
-    - elementID: "WEEK-0_DAY-1_HOUR-10_ANNA_POSITION"
+    - ID: "WEEK-0_DAY-1_HOUR-10_ANNA_POSITION"
       name: "Main street"
       description: "Anna returns to her home or maybe to the university.."
       characterID: "ANNA"
@@ -83,7 +83,7 @@ elements:
       hour: 10
       relatedCaseID: null
       placeID: "MAIN_STREET"
-    - elementID: "WEEK-0_DAY-1_HOUR-10_ANNA_HEARTBEAT"
+    - ID: "WEEK-0_DAY-1_HOUR-10_ANNA_HEARTBEAT"
       name: "Main street"
       description: "Anna seems to walk fast, her heart is beating fast."
       characterID: "ANNA"
@@ -94,7 +94,7 @@ elements:
       hour: 10
       relatedCaseID: null
       numberValue: 110
-    - elementID: "WEEK-0_DAY-1_HOUR-10_ANNA_REARCAMERA"
+    - ID: "WEEK-0_DAY-1_HOUR-10_ANNA_REARCAMERA"
       name: "Phone's repair"
       description: "It looks like Main Street. So many shops in this street, I hate it."
       characterID: "ANNA"
@@ -105,7 +105,7 @@ elements:
       hour: 10
       relatedCaseID: null
       assetID: "WEEK-0_DAY-1_HOUR-10_ANNA_REARCAMERA.jpg"
-    - elementID: "WEEK-0_DAY-1_HOUR-13_ANNA_POSITION"
+    - ID: "WEEK-0_DAY-1_HOUR-13_ANNA_POSITION"
       name: "Park"
       description: "Anna is in the park, nice place to launch."
       characterID: "ANNA"
@@ -116,7 +116,7 @@ elements:
       hour: 13
       relatedCaseID: null
       placeID: "PARK"
-    - elementID: "WEEK-0_DAY-1_HOUR-13_ANNA_HEARTBEAT"
+    - ID: "WEEK-0_DAY-1_HOUR-13_ANNA_HEARTBEAT"
       name: "Main street"
       description: "Anna heart is beating slow : maybe she is enjoying her launch sitting on a table."
       characterID: "ANNA"
@@ -127,7 +127,7 @@ elements:
       hour: 13
       relatedCaseID: null
       numberValue: 70
-    - elementID: "WEEK-0_DAY-1_HOUR-13_ANNA_REARCAMERA"
+    - ID: "WEEK-0_DAY-1_HOUR-13_ANNA_REARCAMERA"
       name: "Park"
       description: "The sky... Maybe she's launching outside."
       characterID: "ANNA"
@@ -138,7 +138,7 @@ elements:
       hour: 13
       relatedCaseID: null
       assetID: "WEEK-0_DAY-1_HOUR-13_ANNA_REARCAMERA.jpg"
-    - elementID: "WEEK-0_DAY-1_HOUR-16_ANNA_POSITION"
+    - ID: "WEEK-0_DAY-1_HOUR-16_ANNA_POSITION"
       name: "University"
       description: "Anna is in the park, nice place to launch."
       characterID: "ANNA"
@@ -149,7 +149,7 @@ elements:
       hour: 16
       relatedCaseID: null
       placeID: "UNIVERSITY"
-    - elementID: "WEEK-0_DAY-1_HOUR-16_ANNA_HEARTBEAT"
+    - ID: "WEEK-0_DAY-1_HOUR-16_ANNA_HEARTBEAT"
       name: "Main street"
       description: "Anna looks to almost sleep."
       characterID: "ANNA"
@@ -160,7 +160,7 @@ elements:
       hour: 16
       relatedCaseID: null
       numberValue: 60
-    - elementID: "WEEK-0_DAY-1_HOUR-16_ANNA_REARCAMERA"
+    - ID: "WEEK-0_DAY-1_HOUR-16_ANNA_REARCAMERA"
       name: "Main street"
       description: "It looks like a classroom or a library."
       characterID: "ANNA"
@@ -171,7 +171,7 @@ elements:
       hour: 16
       relatedCaseID: null
       assetID: "WEEK-0_DAY-1_HOUR-16_ANNA_REARCAMERA.jpg"
-    - elementID: "WEEK-0_DAY-1_HOUR-19_ANNA_POSITION"
+    - ID: "WEEK-0_DAY-1_HOUR-19_ANNA_POSITION"
       name: "Main street"
       description: "Anna is on Main Street : is she going home ?"
       characterID: "ANNA"
@@ -182,7 +182,7 @@ elements:
       hour: 19
       relatedCaseID: null
       placeID: "UNIVERSITY_DORMITORY"
-    - elementID: "WEEK-0_DAY-1_HOUR-19_ANNA_HEARTBEAT"
+    - ID: "WEEK-0_DAY-1_HOUR-19_ANNA_HEARTBEAT"
       name: "Main street"
       description: "Woh, Anna's heart is beating fast !"
       characterID: "ANNA"
@@ -193,7 +193,7 @@ elements:
       hour: 19
       relatedCaseID: null
       numberValue: 160
-    - elementID: "WEEK-0_DAY-1_HOUR-19_ANNA_REARCAMERA"
+    - ID: "WEEK-0_DAY-1_HOUR-19_ANNA_REARCAMERA"
       name: "Main street"
       description: "Who is this guy ? Is she going to meet him ?"
       characterID: "ANNA"
@@ -204,7 +204,7 @@ elements:
       hour: 19
       relatedCaseID: null
       assetID: "WEEK-0_DAY-1_HOUR-19_ANNA_REARCAMERA.jpg"
-    - elementID: "WEEK-0_DAY-1_HOUR-22_ANNA_POSITION"
+    - ID: "WEEK-0_DAY-1_HOUR-22_ANNA_POSITION"
       name: "Main street"
       description: "Why is Anna still on Main Street at this hour ?"
       characterID: "ANNA"
@@ -215,7 +215,7 @@ elements:
       hour: 22
       relatedCaseID: null
       placeID: "MAIN_STREET"
-    - elementID: "WEEK-0_DAY-1_HOUR-22_ANNA_HEARTBEAT"
+    - ID: "WEEK-0_DAY-1_HOUR-22_ANNA_HEARTBEAT"
       name: "Main street"
       description: "Woh, Anna's heart is beating fast !"
       characterID: "ANNA"
@@ -226,7 +226,7 @@ elements:
       hour: 22
       relatedCaseID: null
       numberValue: 160
-    - elementID: "WEEK-0_DAY-1_HOUR-22_ANNA_REARCAMERA"
+    - ID: "WEEK-0_DAY-1_HOUR-22_ANNA_REARCAMERA"
       name: "Main street"
       description: "Is Anna spying on someone ?"
       characterID: "ANNA"
@@ -237,7 +237,7 @@ elements:
       hour: 22
       relatedCaseID: null
       assetID: "WEEK-0_DAY-1_HOUR-22_ANNA_REARCAMERA.jpg"
-    - elementID: "WEEK-0_DAY-2_HOUR-7_ANNA_POSITION"
+    - ID: "WEEK-0_DAY-2_HOUR-7_ANNA_POSITION"
       name: "Dormitory"
       description: "Oh Anna slept on the dormitory. She didn't spy all night."
       characterID: "ANNA"
@@ -248,7 +248,7 @@ elements:
       hour: 7
       relatedCaseID: null
       placeID: "UNIVERSITY_DORMITORY"
-    - elementID: "WEEK-0_DAY-2_HOUR-7_ANNA_HEARTBEAT"
+    - ID: "WEEK-0_DAY-2_HOUR-7_ANNA_HEARTBEAT"
       name: "Dormitory"
       description: "I think Anna is still sleeping."
       characterID: "ANNA"
@@ -259,7 +259,7 @@ elements:
       hour: 7
       relatedCaseID: null
       numberValue: 55
-    - elementID: "WEEK-0_DAY-2_HOUR-7_ANNA_REARCAMERA"
+    - ID: "WEEK-0_DAY-2_HOUR-7_ANNA_REARCAMERA"
       name: "Dormitory"
       description: "A black screen, Anna is sleeping or she put the phone in her pocket."
       characterID: "ANNA"
@@ -270,7 +270,7 @@ elements:
       hour: 7
       relatedCaseID: null
       assetID: "WEEK-0_DAY-1_HOUR-10_ANNA_REARCAMERA.jpg"
-    - elementID: "WEEK-0_DAY-2_HOUR-10_ANNA_POSITION"
+    - ID: "WEEK-0_DAY-2_HOUR-10_ANNA_POSITION"
       name: "University"
       description: "Anna seems to be in class."
       characterID: "ANNA"
@@ -281,7 +281,7 @@ elements:
       hour: 10
       relatedCaseID: null
       placeID: "UNIVERSITY"
-    - elementID: "WEEK-0_DAY-2_HOUR-10_ANNA_HEARTBEAT"
+    - ID: "WEEK-0_DAY-2_HOUR-10_ANNA_HEARTBEAT"
       name: "University"
       description: "It's a high heart rate, Anna is stressed? Or maybe she's in love?"
       characterID: "ANNA"
@@ -292,7 +292,7 @@ elements:
       hour: 10
       relatedCaseID: null
       numberValue: 120
-    - elementID: "WEEK-0_DAY-2_HOUR-10_ANNA_REARCAMERA"
+    - ID: "WEEK-0_DAY-2_HOUR-10_ANNA_REARCAMERA"
       name: "University"
       description: "Wait ! The professor looks like the man she's spying on yesterday !"
       characterID: "ANNA"
@@ -303,7 +303,7 @@ elements:
       hour: 10
       relatedCaseID: null
       assetID: "WEEK-0_DAY-2_HOUR-10_ANNA_REARCAMERA.jpg"
-    - elementID: "WEEK-0_DAY-2_HOUR-13_ANNA_POSITION"
+    - ID: "WEEK-0_DAY-2_HOUR-13_ANNA_POSITION"
       name: "University"
       description: "Anna is lunching at the university?"
       characterID: "ANNA"
@@ -314,7 +314,7 @@ elements:
       hour: 13
       relatedCaseID: null
       placeID: "UNIVERSITY"
-    - elementID: "WEEK-0_DAY-2_HOUR-13_ANNA_HEARTBEAT"
+    - ID: "WEEK-0_DAY-2_HOUR-13_ANNA_HEARTBEAT"
       name: "University"
       description: "A normal heart rate, Anna is relaxed."
       characterID: "ANNA"
@@ -325,7 +325,7 @@ elements:
       hour: 13
       relatedCaseID: null
       numberValue: 65
-    - elementID: "WEEK-0_DAY-2_HOUR-13_ANNA_REARCAMERA"
+    - ID: "WEEK-0_DAY-2_HOUR-13_ANNA_REARCAMERA"
       name: "University"
       description: "Hmmm... everything is black. Maybe she put the phone in her pocket or she put it on the table."
       characterID: "ANNA"
@@ -336,7 +336,7 @@ elements:
       hour: 13
       relatedCaseID: null
       assetID: "WEEK-0_DAY-1_HOUR-10_ANNA_REARCAMERA.jpg"
-    - elementID: "WEEK-0_DAY-2_HOUR-16_ANNA_POSITION"
+    - ID: "WEEK-0_DAY-2_HOUR-16_ANNA_POSITION"
       name: "University"
       description: "Anna is still in class."
       characterID: "ANNA"
@@ -347,7 +347,7 @@ elements:
       hour: 16
       relatedCaseID: null
       placeID: "UNIVERSITY"
-    - elementID: "WEEK-0_DAY-2_HOUR-16_ANNA_HEARTBEAT"
+    - ID: "WEEK-0_DAY-2_HOUR-16_ANNA_HEARTBEAT"
       name: "University"
       description: "A normal heart rate, Anna is relaxed."
       characterID: "ANNA"
@@ -358,7 +358,7 @@ elements:
       hour: 16
       relatedCaseID: null
       numberValue: 65
-    - elementID: "WEEK-0_DAY-2_HOUR-16_ANNA_REARCAMERA"
+    - ID: "WEEK-0_DAY-2_HOUR-16_ANNA_REARCAMERA"
       name: "University"
       description: "Looks like the toilets."
       characterID: "ANNA"
@@ -369,7 +369,7 @@ elements:
       hour: 16
       relatedCaseID: null
       assetID: "WEEK-0_DAY-2_HOUR-16_ANNA_REARCAMERA.jpg"
-    - elementID: "WEEK-0_DAY-2_HOUR-19_ANNA_POSITION"
+    - ID: "WEEK-0_DAY-2_HOUR-19_ANNA_POSITION"
       name: "University"
       description: "Anna is at home, maybe she's studying."
       characterID: "ANNA"
@@ -380,7 +380,7 @@ elements:
       hour: 19
       relatedCaseID: null
       placeID: "UNIVERSITY_DORMITORY"
-    - elementID: "WEEK-0_DAY-2_HOUR-19_ANNA_HEARTBEAT"
+    - ID: "WEEK-0_DAY-2_HOUR-19_ANNA_HEARTBEAT"
       name: "University"
       description: "A normal heart rate, Anna is relaxed."
       characterID: "ANNA"
@@ -391,7 +391,7 @@ elements:
       hour: 19
       relatedCaseID: null
       numberValue: 65
-    - elementID: "WEEK-0_DAY-2_HOUR-19_ANNA_REARCAMERA"
+    - ID: "WEEK-0_DAY-2_HOUR-19_ANNA_REARCAMERA"
       name: "University"
       description: "Oh Anna, little secret girl! You apparently like studying without clothes"
       characterID: "ANNA"
@@ -402,7 +402,7 @@ elements:
       hour: 19
       relatedCaseID: null
       assetID: "WEEK-0_DAY-2_HOUR-19_ANNA_REARCAMERA.jpg"
-    - elementID: "WEEK-0_DAY-2_HOUR-22_ANNA_POSITION"
+    - ID: "WEEK-0_DAY-2_HOUR-22_ANNA_POSITION"
       name: "University"
       description: "Anna is still at home, no more studying, go to party !"
       characterID: "ANNA"
@@ -413,7 +413,7 @@ elements:
       hour: 22
       relatedCaseID: null
       placeID: "UNIVERSITY_DORMITORY"
-    - elementID: "WEEK-0_DAY-2_HOUR-22_ANNA_HEARTBEAT"
+    - ID: "WEEK-0_DAY-2_HOUR-22_ANNA_HEARTBEAT"
       name: "University"
       description: "A normal heart rate, Anna is relaxed."
       characterID: "ANNA"
@@ -424,7 +424,7 @@ elements:
       hour: 22
       relatedCaseID: null
       numberValue: 67
-    - elementID: "WEEK-0_DAY-2_HOUR-22_ANNA_REARCAMERA"
+    - ID: "WEEK-0_DAY-2_HOUR-22_ANNA_REARCAMERA"
       name: "University"
       description: "Time to brush your teeth Anna !"
       characterID: "ANNA"
@@ -435,7 +435,7 @@ elements:
       hour: 22
       relatedCaseID: null
       assetID: "WEEK-0_DAY-2_HOUR-22_ANNA_REARCAMERA.jpg"
-    - elementID: "WEEK-0_DAY-3_HOUR-7_ANNA_POSITION"
+    - ID: "WEEK-0_DAY-3_HOUR-7_ANNA_POSITION"
       name: "University"
       description: "Anna is still at home, no more studying, go to party !"
       characterID: "ANNA"
@@ -446,7 +446,7 @@ elements:
       hour: 7
       relatedCaseID: null
       placeID: "UNIVERSITY_DORMITORY"
-    - elementID: "WEEK-0_DAY-3_HOUR-7_ANNA_HEARTBEAT"
+    - ID: "WEEK-0_DAY-3_HOUR-7_ANNA_HEARTBEAT"
       name: "University"
       description: "A normal heart rate, Anna is relaxed."
       characterID: "ANNA"
@@ -457,7 +457,7 @@ elements:
       hour: 7
       relatedCaseID: null
       numberValue: 67
-    - elementID: "WEEK-0_DAY-3_HOUR-7_ANNA_REARCAMERA"
+    - ID: "WEEK-0_DAY-3_HOUR-7_ANNA_REARCAMERA"
       name: "University"
       description: "Wake up Anna, you're looking tired !"
       characterID: "ANNA"
@@ -468,7 +468,7 @@ elements:
       hour: 7
       relatedCaseID: null
       assetID: "WEEK-0_DAY-3_HOUR-7_ANNA_REARCAMERA.jpg"
-    - elementID: "WEEK-0_DAY-3_HOUR-10_ANNA_POSITION"
+    - ID: "WEEK-0_DAY-3_HOUR-10_ANNA_POSITION"
       name: "University"
       description: "It's Wednesday, no class today !"
       characterID: "ANNA"
@@ -479,7 +479,7 @@ elements:
       hour: 10
       relatedCaseID: null
       placeID: "UNIVERSITY_DORMITORY"
-    - elementID: "WEEK-0_DAY-3_HOUR-10_ANNA_HEARTBEAT"
+    - ID: "WEEK-0_DAY-3_HOUR-10_ANNA_HEARTBEAT"
       name: "University"
       description: "A normal heart rate, Anna is relaxed."
       characterID: "ANNA"
@@ -490,7 +490,7 @@ elements:
       hour: 10
       relatedCaseID: null
       numberValue: 71
-    - elementID: "WEEK-0_DAY-3_HOUR-10_ANNA_REARCAMERA"
+    - ID: "WEEK-0_DAY-3_HOUR-10_ANNA_REARCAMERA"
       name: "University"
       description: "It's black, maybe she put the phone in her pocket."
       characterID: "ANNA"
@@ -501,7 +501,7 @@ elements:
       hour: 10
       relatedCaseID: null
       assetID: "WEEK-0_DAY-3_HOUR-10_ANNA_REARCAMERA.jpg"
-    - elementID: "WEEK-0_DAY-3_HOUR-13_ANNA_POSITION"
+    - ID: "WEEK-0_DAY-3_HOUR-13_ANNA_POSITION"
       name: "University"
       description: "A little desire for shopping Anna?"
       characterID: "ANNA"
@@ -512,7 +512,7 @@ elements:
       hour: 13
       relatedCaseID: null
       placeID: "MALL"
-    - elementID: "WEEK-0_DAY-3_HOUR-13_ANNA_HEARTBEAT"
+    - ID: "WEEK-0_DAY-3_HOUR-13_ANNA_HEARTBEAT"
       name: "University"
       description: "A normal heart rate, Anna is relaxed."
       characterID: "ANNA"
@@ -523,7 +523,7 @@ elements:
       hour: 13
       relatedCaseID: null
       numberValue: 67
-    - elementID: "WEEK-0_DAY-3_HOUR-13_ANNA_REARCAMERA"
+    - ID: "WEEK-0_DAY-3_HOUR-13_ANNA_REARCAMERA"
       name: "University"
       description: "Love this underwear Anna!"
       characterID: "ANNA"
@@ -534,7 +534,7 @@ elements:
       hour: 13
       relatedCaseID: null
       assetID: "WEEK-0_DAY-3_HOUR-13_ANNA_REARCAMERA.jpg"
-    - elementID: "WEEK-0_DAY-3_HOUR-16_ANNA_POSITION"
+    - ID: "WEEK-0_DAY-3_HOUR-16_ANNA_POSITION"
       name: "University"
       description: "A whole shopping day, enjoy it!"
       characterID: "ANNA"
@@ -545,7 +545,7 @@ elements:
       hour: 16
       relatedCaseID: null
       placeID: "MALL"
-    - elementID: "WEEK-0_DAY-3_HOUR-16_ANNA_HEARTBEAT"
+    - ID: "WEEK-0_DAY-3_HOUR-16_ANNA_HEARTBEAT"
       name: "University"
       description: "Anna seems to be excited."
       characterID: "ANNA"
@@ -556,7 +556,7 @@ elements:
       hour: 16
       relatedCaseID: null
       numberValue: 80
-    - elementID: "WEEK-0_DAY-3_HOUR-16_ANNA_REARCAMERA"
+    - ID: "WEEK-0_DAY-3_HOUR-16_ANNA_REARCAMERA"
       name: "University"
       description: "Cute dress, you need to take it!"
       characterID: "ANNA"
@@ -567,7 +567,7 @@ elements:
       hour: 16
       relatedCaseID: null
       assetID: "WEEK-0_DAY-3_HOUR-16_ANNA_REARCAMERA.jpg"
-    - elementID: "WEEK-0_DAY-3_HOUR-19_ANNA_POSITION"
+    - ID: "WEEK-0_DAY-3_HOUR-19_ANNA_POSITION"
       name: "University"
       description: "Main Street ? Maybe she's going to the restaurant after this shopping day."
       characterID: "ANNA"
@@ -578,7 +578,7 @@ elements:
       hour: 19
       relatedCaseID: null
       placeID: "MAIN_STREET"
-    - elementID: "WEEK-0_DAY-3_HOUR-19_ANNA_HEARTBEAT"
+    - ID: "WEEK-0_DAY-3_HOUR-19_ANNA_HEARTBEAT"
       name: "University"
       description: "Anna is relaxed"
       characterID: "ANNA"
@@ -589,7 +589,7 @@ elements:
       hour: 19
       relatedCaseID: null
       numberValue: 65
-    - elementID: "WEEK-0_DAY-3_HOUR-19_ANNA_REARCAMERA"
+    - ID: "WEEK-0_DAY-3_HOUR-19_ANNA_REARCAMERA"
       name: "University"
       description: "Anna is dinning with a friend, she seems to be happy."
       characterID: "ANNA"
@@ -600,7 +600,7 @@ elements:
       hour: 19
       relatedCaseID: null
       assetID: "WEEK-0_DAY-3_HOUR-19_ANNA_REARCAMERA.jpg"
-    - elementID: "WEEK-0_DAY-3_HOUR-22_ANNA_POSITION"
+    - ID: "WEEK-0_DAY-3_HOUR-22_ANNA_POSITION"
       name: "University"
       description: "Still eating dinner ! You'll be tired tomorrow Anna !"
       characterID: "ANNA"
@@ -611,7 +611,7 @@ elements:
       hour: 19
       relatedCaseID: null
       placeID: "MAIN_STREET"
-    - elementID: "WEEK-0_DAY-3_HOUR-22_ANNA_HEARTBEAT"
+    - ID: "WEEK-0_DAY-3_HOUR-22_ANNA_HEARTBEAT"
       name: "University"
       description: "Anna is relaxed, but a little higher than usual, maybe she's drunk?"
       characterID: "ANNA"
@@ -622,7 +622,7 @@ elements:
       hour: 22
       relatedCaseID: null
       numberValue: 78
-    - elementID: "WEEK-0_DAY-3_HOUR-22_ANNA_REARCAMERA"
+    - ID: "WEEK-0_DAY-3_HOUR-22_ANNA_REARCAMERA"
       name: "University"
       description: "Anna's friend is cute too"
       characterID: "ANNA"
@@ -635,15 +635,14 @@ elements:
       assetID: "WEEK-0_DAY-3_HOUR-19_ANNA_REARCAMERA.jpg"
 cases: []
 cinematics:
-  - cinematicID: "INTRO"
+  - ID: "INTRO"
     name: "Introduction"
     week: 0
     day: 1
     hour: 7
     nsfwLevel: 0
     sequences:
-      - cinematicSequenceID: "INTRO-1"
-        cinematicAsset: "week0_day1_cinematic_intro.jpg"
+      - cinematicAsset: "week0_day1_cinematic_intro.jpg"
         cinematicConversations:
           - character: "Me"
             text: "Another day in this dingy phone repair shop. I swear the walls are closing in."
@@ -657,8 +656,7 @@ cinematics:
             text: "Who knew that selling and repairing phones could be so... mind-numbingly boring?"
           - character: "Me"
             text: "There's got to be more to life than being trapped in this shop..."
-      - cinematicSequenceID: "INTRO-2"
-        cinematicAsset: "week0_day1_cinematic_intro1.jpg"
+      - cinematicAsset: "week0_day1_cinematic_intro1.jpg"
         cinematicConversations:
           - character: "Pretty girl"
             text: "Hi, I...umm...dropped my phone in the pool."
@@ -668,8 +666,7 @@ cinematics:
             text: "I'm really sorry, I know it's probably a pain to fix. But... it's weird, the screen still displays, I just can't interact with it."
           - character: "Me"
             text: "Hmm, interesting. Well, let's take a look and see what we can do."
-      - cinematicSequenceID: "INTRO-3"
-        cinematicAsset: "week0_day1_cinematic_intro2.jpg"
+      - cinematicAsset: "week0_day1_cinematic_intro2.jpg"
         cinematicConversations:
           - character: "Player"
             text: "Looks like the touch sensor is damaged, we'll need to replace the whole screen."
@@ -677,8 +674,7 @@ cinematics:
             text: "Oh no... That sounds expensive. I'm just a student, I don't have a lot of money..."
           - character: "Player"
             text: "I understand. Let's see what we can do to make it affordable for you."
-      - cinematicSequenceID: "INTRO-4"
-        cinematicAsset: "week0_day1_cinematic_intro3.jpg"
+      - cinematicAsset: "week0_day1_cinematic_intro3.jpg"
         cinematicConversations:
           - character: "Player"
             text: "Well, I think I have a used screen that's still in good shape. I can put that in to keep the cost down. It should be ready in two hours."
@@ -686,8 +682,7 @@ cinematics:
             text: "That would be amazing, thank you so much! Oh, I'm Anna by the way."
           - character: "Player"
             text: "Nice to meet you, Anna. I'll do my best to get this fixed for you."
-      - cinematicSequenceID: "INTRO-5"
-        cinematicAsset: "week0_day1_cinematic_intro4.jpg"
+      - cinematicAsset: "week0_day1_cinematic_intro4.jpg"
         cinematicConversations:
           - character: "Player"
             text: "This damage is worse than I thought. It's going to take some effort to fix this."
@@ -701,8 +696,7 @@ cinematics:
             text: "It's not the most ethical thing to do, but it does give me a chance to know more about her."
           - character: "Player"
             text: "The spyware is basic, it only gives access to phone logs and messages. But in my current state of boredom and curiosity, it's awfully tempting."
-      - cinematicSequenceID: "INTRO-6"
-        cinematicAsset: "week0_day1_cinematic_intro5.jpg"
+      - cinematicAsset: "week0_day1_cinematic_intro5.jpg"
         cinematicConversations:
           - character: "Player"
             text: "Alright, the repair is done. Now, for the spyware..."
@@ -710,26 +704,23 @@ cinematics:
             text: "Just a quick install...and it's done. The icon is hidden, she'll never suspect a thing."
           - character: "Player"
             text: "Now, let's just test this real quick. I need to confirm it's sending data correctly before she takes the phone."
-  - cinematicID: "TUTORIAL"
+  - ID: "TUTORIAL"
     name: "The tutorial is finish"
     week: 0
     day: 1
     hour: 10
     sequences:
-      - cinematicSequenceID: "TUTORIAL-1"
-        cinematicAsset: "intro-1.jpg"
+      - cinematicAsset: "intro-1.jpg"
         cinematicConversations:
           - character: "Player"
             text: "Perfect, it's all working as planned. The functionalities are indeed limited for now, but they're good enough for a little sneak peek into her life."
           - character: "Player"
             text: "Knowing those sneaky developers, they'll surely roll out some new features in the coming weeks. I'll simply have to be patient."
-      - cinematicSequenceID: "TUTORIAL-2"
-        cinematicAsset: "intro-1.jpg"
+      - cinematicAsset: "intro-1.jpg"
         cinematicConversations:
           - character: "Anna"
             text: "Hi again, I'm back! Is my phone ready?"
-      - cinematicSequenceID: "TUTORIAL-3"
-        cinematicAsset: "intro-1.jpg"
+      - cinematicAsset: "intro-1.jpg"
         cinematicConversations:
           - character: "Player"
             text: "Hi Anna, yes, your phone is all set. I managed to use a used screen for the repair, so there's no charge."

@@ -312,7 +312,7 @@ class MaestroMock extends Maestro {
         return CinematicConversation('Character $indexSeq-$indexConv',
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim.');
       });
-      return CinematicSequence(getCinematicID(), assetName, conversations);
+      return CinematicSequence(assetName, conversations);
     });
 
     return Cinematic(getCinematicID(), sequences);
@@ -339,6 +339,12 @@ class MaestroMock extends Maestro {
   @override
   Future<List<ContactEngine>> getContacts() {
     // TODO: implement getContacts
+    throw UnimplementedError();
+  }
+  
+  @override
+  Future<List<IntegrityError>> checkIntegrity(StoryEngine story) {
+    // TODO: implement checkIntegrity
     throw UnimplementedError();
   }
 }
