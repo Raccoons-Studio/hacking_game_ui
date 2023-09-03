@@ -335,4 +335,10 @@ class MaestroMock extends Maestro {
   Future<int> getNumberContent(Files file) async {
     return 90;
   }
+  
+  @override
+  Future<List<ContactEngine>> getContacts() {
+    // TODO: implement getContacts
+    throw UnimplementedError();
+  }
 }

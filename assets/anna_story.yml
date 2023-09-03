@@ -640,6 +640,7 @@ cinematics:
     week: 0
     day: 1
     hour: 7
+    nsfwLevel: 0
     sequences:
       - cinematicSequenceID: "INTRO-1"
         cinematicAsset: "week0_day1_cinematic_intro.jpg"

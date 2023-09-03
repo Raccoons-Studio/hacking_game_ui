@@ -1,6 +1,7 @@
 // Maestro manage everything in the app
 import 'dart:async';
 
+import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_characters_selector.dart';
 import 'package:hacking_game_ui/virtual_machine/models/cinematic.dart';
 import 'package:hacking_game_ui/virtual_machine/models/conversation_data.dart';
@@ -61,4 +62,6 @@ abstract class Maestro {
   Future<List<ScrollableData>> getScrollableData(Files file);
 
   Future<Map<String, List<ConversationData>>> getConversations();
+
+  Future<List<ContactEngine>> getContacts();
 }

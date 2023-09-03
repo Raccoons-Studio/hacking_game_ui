@@ -59,7 +59,10 @@ class MaestroStory extends Maestro {
     for (CharacterEngine c in s.characters) {
       if (c.weekAvailability >= p.currentWeek) {
         characters.add(Character(
-            characterID: c.characterID, name: c.name, avatar: c.avatar, wallpaper: c.wallpaper));
+            characterID: c.characterID,
+            name: c.name,
+            avatar: c.avatar,
+            wallpaper: c.wallpaper));
       }
     }
     return characters;
@@ -144,11 +147,60 @@ class MaestroStory extends Maestro {
           e.day == p.currentDay &&
           e.hour == p.currentHour &&
           e.characterID == characterID) {
-        evidences.add(
-            Files(e.elementID, e.name, e.type, description: e.description));
+        ElementEngine nsfwLevelElement = _getClosestNsfwElement(characterID,
+            e.type, e.week, e.day, e.hour, p.nsfwLevel, s.elements);
+        if (!evidences.any((element) => element.type == e.type)) {
+          evidences.add(Files(nsfwLevelElement.elementID, nsfwLevelElement.name,
+              nsfwLevelElement.type,
+              description: nsfwLevelElement.description));
+        }
       }
     }
     return evidences;
+  }
+
+  ElementEngine _getClosestNsfwElement(
+      String characterID,
+      EvidenceType type,
+      int week,
+      int day,
+      int hour,
+      int nsfwLevel,
+      List<ElementEngine> elements) {
+    List<ElementEngine> filteredElements = elements
+        .where((e) =>
+            e.type == type &&
+            e.week == week &&
+            e.day == day &&
+            e.hour == hour &&
+            e.characterID == characterID)
+        .toList();
+
+    filteredElements.sort((a, b) => (a.nsfwLevel - nsfwLevel)
+        .abs()
+        .compareTo((b.nsfwLevel - nsfwLevel).abs()));
+
+    return filteredElements.first;
+  }
+
+  CinematicEngine _getClosestNsfwCinematic(
+      int week,
+      int day,
+      int hour,
+      int nsfwLevel,
+      List<CinematicEngine> elements) {
+    List<CinematicEngine> filteredElements = elements
+        .where((e) =>
+            e.week == week &&
+            e.day == day &&
+            e.hour == hour)
+        .toList();
+
+    filteredElements.sort((a, b) => (a.nsfwLevel - nsfwLevel)
+        .abs()
+        .compareTo((b.nsfwLevel - nsfwLevel).abs()));
+
+    return filteredElements.first;
   }
 
   Future<List<Files>> getAllCurrentEvidence() async {
@@ -159,8 +211,14 @@ class MaestroStory extends Maestro {
       if (e.week == p.currentWeek &&
           e.day == p.currentDay &&
           e.hour == p.currentHour) {
-        evidences.add(
-            Files(e.elementID, e.name, e.type, description: e.description));
+        ElementEngine nsfwLevelElement = _getClosestNsfwElement(e.characterID,
+            e.type, e.week, e.day, e.hour, p.nsfwLevel, s.elements);
+        // If evidences doesn't already contains an evidence of this type
+        if (!evidences.any((element) => element.type == e.type)) {
+          evidences.add(Files(nsfwLevelElement.elementID, nsfwLevelElement.name,
+              nsfwLevelElement.type,
+              description: nsfwLevelElement.description));
+        }
       }
     }
     return evidences;
@@ -266,8 +324,10 @@ class MaestroStory extends Maestro {
       if (c.week == p.currentWeek &&
           c.day == p.currentDay &&
           c.hour == p.currentHour) {
-        state.cinematidID = c.cinematicID;
+        var cinematicNsfw = _getClosestNsfwCinematic(c.week, c.day, c.hour, p.nsfwLevel, s.cinematics);
+        state.cinematidID = cinematicNsfw.cinematicID;
         state.isCinematic = true;
+        break;
       }
     }
 
@@ -338,5 +398,11 @@ class MaestroStory extends Maestro {
     ElementEngine element = s.elements
         .firstWhere((element) => element.elementID == file.evidenceID);
     return element.numberValue != null ? element.numberValue! : 0;
+  }
+
+  @override
+  Future<List<ContactEngine>> getContacts() {
+    // TODO: implement getContacts
+    throw UnimplementedError();
   }
 }
