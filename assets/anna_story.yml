@@ -22,22 +22,22 @@ places:
     name: Park
     description: "The park is near the university, it's a nice place to relax."
     address: "143, Park Avenue"
-    asset: images/PLACE_UNIVERSITY_DORMITORY.jpg
+    asset: images/avatar.jpeg
   - ID: UNIVERSITY
     name: University
     description: The university where I was studying many years before. A lot of memories.
     address: "743, Park Avenue"
-    asset: images/PLACE_UNIVERSITY.jpg
+    asset: images/avatar.jpeg
   - ID: UNIVERSITY_DORMITORY
     name: University Dormitory
     description: The dormitory where I was living during my studies. A lot of students are living here.
     address: "621, Park Avenue"
-    asset: images/PLACE_UNIVERSITY_DORMITORY.jpg
+    asset: images/avatar.jpeg
   - ID: MALL
     name: The mall
     description: You can buy everything in this mall.
     address: "1, Mall Street"
-    asset: images/PLACE_MALL.jpg
+    asset: images/avatar.jpeg
 elements:
   - ID: WEEK-0_DAY-1_HOUR-7_ANNA_POSITION
     description: "Anna's phone is in my hand, I think this damn spyware works."
@@ -837,7 +837,7 @@ elements:
   - ID: WEEK-0-3-22-ANNA-rearCamera
     description: Anna's friend is cute too
     characterID: ANNA
-    assetID: WEEK-0_DAY-3_HOUR-19_ANNA_REARCAMERA.jpg
+    assetID: WEEK-0_DAY-3_HOUR-22_ANNA_REARCAMERA.jpg
     placeID:
     numberValue:
     textValue:
@@ -852,7 +852,7 @@ elements:
   - ID: WEEK-0-3-13-ANNA-rearCamera
     description: "Love this underwear Anna!"
     characterID: ANNA
-    assetID: WEEK-0_DAY-3_HOUR-13_ANNA_REARCAMERA_NSFW.jpg
+    assetID: WEEK-0_DAY-3_HOUR-16_ANNA_REARCAMERA_NSFW.jpg
     placeID:
     numberValue:
     textValue:
@@ -862,6 +862,306 @@ elements:
     week: 0
     day: 3
     hour: 13
+    relatedCaseID:
+    nsfwLevel: 1
+  - ID: WEEK-4-1-0-ANNA-position
+    description: "Hello Anna, it’s time to get out of bed!"
+    characterID: ANNA
+    assetID:
+    placeID: UNIVERSITY_DORMITORY
+    numberValue:
+    textValue:
+    type: EvidenceType.position
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 4
+    hour: 7
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-4-1-7-ANNA-heartbeat-0
+    description: "You don't seem awake at all yet!"
+    characterID: ANNA
+    assetID:
+    placeID:
+    numberValue: 60
+    textValue:
+    type: EvidenceType.heartbeat
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 4
+    hour: 7
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-4-1-7-ANNA-rearCamera-0
+    description: "That doesn't seem like a bad outfit for the day to me!"
+    characterID: ANNA
+    assetID: WEEK-0_DAY-4_HOUR-7_ANNA_REARCAMERA
+    placeID:
+    numberValue:
+    textValue:
+    type: EvidenceType.rearCamera
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 4
+    hour: 7
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-4-1-7-ANNA-rearCamera-1
+    description: "Nice underwear Anna !"
+    characterID: ANNA
+    assetID: WEEK-0_DAY-4_HOUR-7_ANNA_REARCAMERA_NSFW
+    placeID:
+    numberValue:
+    textValue:
+    type: EvidenceType.rearCamera
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 4
+    hour: 7
+    relatedCaseID:
+    nsfwLevel: 1
+  - ID: WEEK-4-1-10-ANNA-position-0
+    description: "Anna is in class, she is diligent!"
+    characterID: ANNA
+    assetID:
+    placeID: UNIVERSITY
+    numberValue:
+    textValue:
+    type: EvidenceType.position
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 4
+    hour: 10
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-4-1-10-ANNA-heartbeat-0
+    description: "Well Anna! Have you seen a ghost or something?"
+    characterID: ANNA
+    assetID:
+    placeID:
+    numberValue: 110
+    textValue:
+    type: EvidenceType.heartbeat
+    isEvidence: true
+    isOptionalEvidence: false
+    week: 0
+    day: 4
+    hour: 10
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-4-1-10-ANNA-rearCamera-0
+    description: "Still the same teacher, she seems to have a real crush on him!"
+    characterID: ANNA
+    assetID: WEEK-0_DAY-4_HOUR-10_ANNA_REARCAMERA
+    placeID:
+    numberValue:
+    textValue:
+    type: EvidenceType.rearCamera
+    isEvidence: true
+    isOptionalEvidence: false
+    week: 0
+    day: 4
+    hour: 10
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-4-1-13-ANNA-position-0
+    description: "Anna is working hard this afternoon, she's staying at university."
+    characterID: ANNA
+    assetID:
+    placeID: UNIVERSITY
+    numberValue:
+    textValue:
+    type: EvidenceType.position
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 4
+    hour: 13
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-4-1-13-ANNA-heartbeat-0
+    description: "The crush has passed, its beats become normal again."
+    characterID: ANNA
+    assetID:
+    placeID:
+    numberValue: 70
+    textValue:
+    type: EvidenceType.heartbeat
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 4
+    hour: 13
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-4-1-13-ANNA-rearCamera-0
+    description: "A black screen, Anna must have her phone in her pocket."
+    characterID: ANNA
+    assetID: BLACK_SCREEN.jpg
+    placeID:
+    numberValue:
+    textValue:
+    type: EvidenceType.rearCamera
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 4
+    hour: 13
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-4-1-16-ANNA-position-0
+    description: Anna works hard at university
+    characterID: ANNA
+    assetID:
+    placeID: UNIVERSITY
+    numberValue:
+    textValue:
+    type: EvidenceType.position
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 4
+    hour: 16
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-4-1-16-ANNA-heartbeat-0
+    description: "Anna's crush seems to be back!"
+    characterID: ANNA
+    assetID:
+    placeID:
+    numberValue: 112
+    textValue:
+    type: EvidenceType.heartbeat
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 4
+    hour: 16
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-4-1-16-ANNA-rearCamera-0
+    description: "Well Anna, are we spying on her teacher?"
+    characterID: ANNA
+    assetID: WEEK-0_DAY-4_HOUR-16_ANNA_REARCAMERA
+    placeID:
+    numberValue:
+    textValue:
+    type: EvidenceType.rearCamera
+    isEvidence: true
+    isOptionalEvidence: false
+    week: 0
+    day: 4
+    hour: 16
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-4-1-19-ANNA-position-0
+    description: "Welcome back home Anna! Don't stay out too late."
+    characterID: ANNA
+    assetID:
+    placeID: MAIN_STREET
+    numberValue:
+    textValue:
+    type: EvidenceType.position
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 4
+    hour: 19
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-4-1-19-ANNA-heartbeat-0
+    description: Anna is walking I think.
+    characterID: ANNA
+    assetID:
+    placeID:
+    numberValue: 86
+    textValue:
+    type: EvidenceType.heartbeat
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 4
+    hour: 19
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-4-1-19-ANNA-rearCamera-0
+    description: "Main Street, the street of the devil !"
+    characterID: ANNA
+    assetID: WEEK-0_DAY-4_HOUR-19_ANNA_REARCAMERA
+    placeID:
+    numberValue:
+    textValue:
+    type: EvidenceType.rearCamera
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 4
+    hour: 19
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-4-1-22-ANNA-position-0
+    description: "It's time to go to bed Anna, tomorrow will be another chance to spy on your favorite teacher."
+    characterID: ANNA
+    assetID:
+    placeID: UNIVERSITY_DORMITORY
+    numberValue:
+    textValue:
+    type: EvidenceType.position
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 4
+    hour: 22
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-4-1-22-ANNA-heartbeat-0
+    description: She's almost sleeping.
+    characterID: ANNA
+    assetID:
+    placeID:
+    numberValue: 60
+    textValue:
+    type: EvidenceType.heartbeat
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 4
+    hour: 22
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-4-1-22-ANNA-rearCamera-0
+    description: Anna is definitely sleeping.
+    characterID: ANNA
+    assetID: BLACK_SCREEN.jpg
+    placeID:
+    numberValue:
+    textValue:
+    type: EvidenceType.rearCamera
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 4
+    hour: 22
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-4-1-22-ANNA-rearCamera-0
+    description: "Look at those tits Anna! Round and perfect!"
+    characterID: ANNA
+    assetID: WEEK-0_DAY-4_HOUR-22_ANNA_REARCAMERA_NSFW
+    placeID:
+    numberValue:
+    textValue:
+    type: EvidenceType.rearCamera
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 4
+    hour: 22
     relatedCaseID:
     nsfwLevel: 1
 cases:

@@ -1,6 +1,7 @@
 // Maestro manage everything in the app
 import 'dart:async';
 
+import 'package:flutter/services.dart';
 import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_characters_selector.dart';
 import 'package:hacking_game_ui/virtual_machine/models/cinematic.dart';
@@ -89,7 +90,108 @@ abstract class Maestro {
 
   Future<List<ContactEngine>> getContacts();
 
-  Future<List<IntegrityError>> checkIntegrity(StoryEngine story);
+  @override
+  static Future<List<IntegrityError>> checkIntegrity(StoryEngine story) async {
+    var errors = <IntegrityError>[];
+
+    errors.addAll(_checkForDuplicateIDs(story.characters, 'Character'));
+    errors.addAll(_checkForDuplicateIDs(story.places, 'Place'));
+    errors.addAll(_checkForDuplicateIDs(story.elements, 'Element'));
+    errors.addAll(_checkForDuplicateIDs(story.cases, 'Case'));
+    errors.addAll(_checkForDuplicateIDs(story.cinematics, 'Cinematic'));
+
+    errors.addAll(
+        _checkPlaceIDExistence(story.elements, story.places, 'Element'));
+
+    errors.addAll(await _checkAssetFileExistence(story.elements, 'Element'));
+
+    errors.addAll(
+        await _checkCinematicAssetExistence(story.cinematics, 'Cinematic'));
+
+    errors.addAll(await _checkAssetFileExistence(story.elements, 'Element'));
+
+    // TODO : Cases
+
+    return errors;
+  }
+
+  static List<IntegrityError> _checkForDuplicateIDs(List list, String type) {
+    var errors = <IntegrityError>[];
+    var ids = <String>{};
+    for (var item in list) {
+      if (!ids.add(item.ID)) {
+        errors.add(IntegrityError(IntegrityErrorType.dupplicateID, item.ID,
+            '$type ID is duplicate', true));
+      }
+    }
+    return errors;
+  }
+
+  static List<IntegrityError> _checkPlaceIDExistence(
+      List items, List<PlaceEngine> places, String type) {
+    var errors = <IntegrityError>[];
+    var placeIDs = places.map((place) => place.ID).toSet();
+    for (var item in items) {
+      if (item.placeID != null && !placeIDs.contains(item.placeID)) {
+        errors.add(IntegrityError(IntegrityErrorType.unexistingPlace, item.ID,
+            '$type references nonexistent place : ${item.placeID}', true));
+      }
+    }
+    return errors;
+  }
+
+  static Future<List<IntegrityError>> _checkAssetFileExistence(
+      List items, String type) async {
+    var errors = <IntegrityError>[];
+    for (var item in items) {
+      if (item.assetID != null) {
+        var assetPath = 'assets/images/${item.assetID}';
+        try {
+          await rootBundle.load(assetPath);
+        } catch (e) {
+          errors.add(IntegrityError(IntegrityErrorType.unexistingAsset, item.ID,
+              "$type references nonexistent asset (${item.assetID})", true));
+        }
+      }
+    }
+    return errors;
+  }
+
+  static Future<List<IntegrityError>> _checkCinematicAssetExistence(
+      List<CinematicEngine> cinematics, String type) async {
+    var errors = <IntegrityError>[];
+    for (var cinematic in cinematics) {
+      for (var sequence in cinematic.sequences) {
+        if (sequence.cinematicAsset != null) {
+          var assetPath = 'assets/images/${sequence.cinematicAsset}';
+          try {
+            await rootBundle.load(assetPath);
+          } catch (e) {
+            errors.add(IntegrityError(
+                IntegrityErrorType.unexistingAsset,
+                cinematic.ID,
+                "$type references nonexistent asset (${sequence.cinematicAsset})",
+                true));
+          }
+        }
+      }
+    }
+    return errors;
+  }
+
+  static Future<List<IntegrityError>> _checkCharacterIDExistence(
+      List items, List<CharacterEngine> characters, String type) async {
+    var errors = <IntegrityError>[];
+    var characterIDs = characters.map((c) => c.ID).toSet();
+    for (var item in items) {
+      if (item.characterID != null &&
+          !characterIDs.contains(item.characterID)) {
+        errors.add(IntegrityError(IntegrityErrorType.unexistingCharacter,
+            item.ID, '$type references nonexistent character', true));
+      }
+    }
+    return errors;
+  }
 
   Future<StoryEngine> getStory();
 }

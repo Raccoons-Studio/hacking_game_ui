@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hacking_game_ui/engine/model_engine.dart';
+import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'dart:html' as html;
 import 'package:json2yaml/json2yaml.dart';
 
@@ -140,6 +141,14 @@ class _StoryEditorState extends State<StoryEditor> {
               onPressed: () {
                 saveStoryToYaml();
               }),
+          ElevatedButton(
+              child: Text('Check'),
+              onPressed: () async {
+                var integrity = await Maestro.checkIntegrity(widget.story);
+                for (var error in integrity) {
+                  print(error.elementID + " " + error.reason);
+                }
+              }),
         ],
       ),
     );
@@ -191,7 +200,7 @@ class _StoryEditorState extends State<StoryEditor> {
                   if (newValue != null) {
                     element.hour = newValue;
                     element.ID =
-                        "WEEK-${element.week}-${element.day}-${element.hour}-${element.characterID}-${element.type.name}";
+                        "WEEK-${element.week}-${element.day}-${element.hour}-${element.characterID}-${element.type.name}-${element.nsfwLevel}";
                   }
                 });
               },
@@ -203,7 +212,7 @@ class _StoryEditorState extends State<StoryEditor> {
                   if (newValue != null) {
                     element.type = newValue;
                     element.ID =
-                        "WEEK-${element.week}-${element.day}-${element.hour}-${element.characterID}-${element.type.name}";
+                        "WEEK-${element.week}-${element.day}-${element.hour}-${element.characterID}-${element.type.name}-${element.nsfwLevel}";
                   }
                 });
               },
@@ -225,7 +234,7 @@ class _StoryEditorState extends State<StoryEditor> {
                     setState(() {
                       element.isEvidence = value;
                       element.ID =
-                          "WEEK-${element.week}-${element.day}-${element.hour}-${element.characterID}-${element.type.name}";
+                          "WEEK-${element.week}-${element.day}-${element.hour}-${element.characterID}-${element.type.name}-${element.nsfwLevel}";
                     });
                   }
                 }),

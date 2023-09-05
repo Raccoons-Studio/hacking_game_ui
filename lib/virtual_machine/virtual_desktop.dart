@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
@@ -29,7 +30,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
   bool isDescriptionVisible = false;
   String descriptionContent = "";
 
-  final List<VirtualApplication> applications = [
+  List<VirtualApplication> applications = [
     VirtualApplication('Finder', Icons.file_copy, Colors.blue),
     VirtualApplication('Messages', Icons.message, Colors.green),
     //VirtualApplication('Cinematic', Icons.movie, Colors.purple),
@@ -37,14 +38,21 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
     VirtualApplication('Webcam', Icons.camera_alt, Colors.red),
     VirtualApplication('Settings', Icons.settings, Colors.grey),
     VirtualApplication('Next', Icons.skip_next, Colors.orangeAccent),
-    VirtualApplication('Next Dev', Icons.developer_board, Colors.deepOrange),
-    VirtualApplication('Editor', Icons.edit, Colors.deepOrange),
+
     // Add more applications here
   ];
 
   @override
   void initState() {
     super.initState();
+
+    if (kDebugMode) {
+      applications.add(VirtualApplication(
+          'Next Dev', Icons.developer_board, Colors.deepOrange));
+      applications
+          .add(VirtualApplication('Editor', Icons.edit, Colors.deepOrange));
+    }
+
     widget.maestro.maestroStream.listen((event) {
       _maestroState = event;
       if (event.isCinematic) {
@@ -154,14 +162,13 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
             });
       case 'Editor':
         return FutureBuilder<StoryEngine>(
-          future: widget.maestro.getStory(),
-          builder: (context, snapshot) {
-            if (!snapshot.hasData) {
-              return Container();
-            }
-            return StoryEditor(story: snapshot.data!);
-          }
-        );
+            future: widget.maestro.getStory(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return Container();
+              }
+              return StoryEditor(story: snapshot.data!);
+            });
       case 'Cinematic':
         setState(() {
           isCinematicPlaying = true;
@@ -209,7 +216,8 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                         displayComment(
                             "I think I need to collect more evidences before going to the next hour");
                       }
-                    } if (applications[index].name == 'Next Dev') {
+                    }
+                    if (applications[index].name == 'Next Dev') {
                       await widget.maestro.nextHour(true);
                     } else {
                       setState(() {
