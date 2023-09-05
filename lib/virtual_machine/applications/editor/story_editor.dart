@@ -296,9 +296,7 @@ class _StoryEditorState extends State<StoryEditor> {
                   controller: TextEditingController(text: element.assetID),
                   decoration: InputDecoration(hintText: "Asset ID"),
                   onChanged: (String newValue) {
-                    setState(() {
-                      element.assetID = newValue;
-                    });
+                    element.assetID = newValue;
                   },
                 ),
               ),
@@ -310,10 +308,8 @@ class _StoryEditorState extends State<StoryEditor> {
                       text: element.numberValue.toString()),
                   decoration: InputDecoration(hintText: "Heartbeat"),
                   onChanged: (String newValue) {
-                    setState(() {
-                      element.numberValue =
-                          newValue.isEmpty ? 0 : int.parse(newValue);
-                    });
+                    element.numberValue =
+                        newValue.isEmpty ? 0 : int.parse(newValue);
                   },
                 ),
               ),

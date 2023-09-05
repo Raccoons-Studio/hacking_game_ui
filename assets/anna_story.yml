@@ -12,32 +12,32 @@ places:
     name: Phone's repair
     description: The store where I work
     address: "10, Mall Street"
-    asset: images/avatar.jpeg
+    asset: images/PLACE_PHONE_REPAIR.jpg
   - ID: MAIN_STREET
     name: Main street
     description: "The main street of the city : shops, restaurants, bars, etc."
     address: Mall Street
-    asset: images/avatar.jpeg
+    asset: images/PLACE_MAIN_STREET.jpg
   - ID: PARK
     name: Park
     description: "The park is near the university, it's a nice place to relax."
     address: "143, Park Avenue"
-    asset: images/avatar.jpeg
+    asset: images/PLACE_UNIVERSITY_DORMITORY.jpg
   - ID: UNIVERSITY
     name: University
     description: The university where I was studying many years before. A lot of memories.
     address: "743, Park Avenue"
-    asset: images/avatar.jpeg
+    asset: images/PLACE_UNIVERSITY.jpg
   - ID: UNIVERSITY_DORMITORY
     name: University Dormitory
     description: The dormitory where I was living during my studies. A lot of students are living here.
     address: "621, Park Avenue"
-    asset: images/avatar.jpeg
+    asset: images/PLACE_UNIVERSITY_DORMITORY.jpg
   - ID: MALL
     name: The mall
     description: You can buy everything in this mall.
     address: "1, Mall Street"
-    asset: images/avatar.jpeg
+    asset: images/PLACE_MALL.jpg
 elements:
   - ID: WEEK-0_DAY-1_HOUR-7_ANNA_POSITION
     description: "Anna's phone is in my hand, I think this damn spyware works."
@@ -309,7 +309,7 @@ elements:
     hour: 22
     relatedCaseID:
     nsfwLevel: 0
-  - ID: WEEK-0_DAY-2_HOUR-7_ANNA_POSITION
+  - ID: WEEK-0-2-7-ANNA-position
     description: Oh Anna slept on the dormitory. She didn't spy all night.
     characterID: ANNA
     assetID:
@@ -317,14 +317,14 @@ elements:
     numberValue:
     textValue:
     type: EvidenceType.position
-    isEvidence: true
+    isEvidence: false
     isOptionalEvidence: false
     week: 0
     day: 2
     hour: 7
     relatedCaseID:
     nsfwLevel: 0
-  - ID: WEEK-0_DAY-2_HOUR-7_ANNA_HEARTBEAT
+  - ID: WEEK-0-2-7-ANNA-heartbeat
     description: I think Anna is still sleeping.
     characterID: ANNA
     assetID:
@@ -332,29 +332,29 @@ elements:
     numberValue: 55
     textValue:
     type: EvidenceType.heartbeat
-    isEvidence: true
+    isEvidence: false
     isOptionalEvidence: false
     week: 0
     day: 2
     hour: 7
     relatedCaseID:
     nsfwLevel: 0
-  - ID: WEEK-0_DAY-2_HOUR-7_ANNA_REARCAMERA
+  - ID: WEEK-0-2-7-ANNA-rearCamera
     description: "A black screen, Anna is sleeping or she put the phone in her pocket."
     characterID: ANNA
-    assetID: WEEK-0_DAY-1_HOUR-10_ANNA_REARCAMERA.jpg
+    assetID: BLACK_SCREEN.jpg
     placeID:
     numberValue:
     textValue:
     type: EvidenceType.rearCamera
-    isEvidence: true
+    isEvidence: false
     isOptionalEvidence: false
     week: 0
     day: 2
     hour: 7
     relatedCaseID:
     nsfwLevel: 0
-  - ID: WEEK-0_DAY-2_HOUR-10_ANNA_POSITION
+  - ID: WEEK-0-2-10-ANNA-position
     description: Anna seems to be in class.
     characterID: ANNA
     assetID:
@@ -414,7 +414,7 @@ elements:
     hour: 13
     relatedCaseID:
     nsfwLevel: 0
-  - ID: WEEK-0_DAY-2_HOUR-13_ANNA_HEARTBEAT
+  - ID: WEEK-0-2-13-ANNA-heartbeat
     description: "A normal heart rate, Anna is relaxed."
     characterID: ANNA
     assetID:
@@ -422,22 +422,22 @@ elements:
     numberValue: 65
     textValue:
     type: EvidenceType.heartbeat
-    isEvidence: true
+    isEvidence: false
     isOptionalEvidence: false
     week: 0
     day: 2
     hour: 13
     relatedCaseID:
     nsfwLevel: 0
-  - ID: WEEK-0_DAY-2_HOUR-13_ANNA_REARCAMERA
+  - ID: WEEK-0-2-13-ANNA-rearCamera
     description: Hmmm... everything is black. Maybe she put the phone in her pocket or she put it on the table.
     characterID: ANNA
-    assetID: WEEK-0_DAY-1_HOUR-10_ANNA_REARCAMERA.jpg
+    assetID: BLACK_SCREEN.jpg
     placeID:
     numberValue:
     textValue:
     type: EvidenceType.rearCamera
-    isEvidence: true
+    isEvidence: false
     isOptionalEvidence: false
     week: 0
     day: 2
@@ -445,7 +445,7 @@ elements:
     relatedCaseID:
     nsfwLevel: 0
   - ID: WEEK-0_DAY-2_HOUR-16_ANNA_POSITION
-    description: Anna is still in class.
+    description: Anna is still in university.
     characterID: ANNA
     assetID:
     placeID: UNIVERSITY
@@ -459,7 +459,7 @@ elements:
     hour: 16
     relatedCaseID:
     nsfwLevel: 0
-  - ID: WEEK-0_DAY-2_HOUR-16_ANNA_HEARTBEAT
+  - ID: WEEK-0-2-16-ANNA-heartbeat
     description: "A normal heart rate, Anna is relaxed."
     characterID: ANNA
     assetID:
@@ -467,14 +467,14 @@ elements:
     numberValue: 65
     textValue:
     type: EvidenceType.heartbeat
-    isEvidence: true
+    isEvidence: false
     isOptionalEvidence: false
     week: 0
     day: 2
     hour: 16
     relatedCaseID:
     nsfwLevel: 0
-  - ID: WEEK-0_DAY-2_HOUR-16_ANNA_REARCAMERA
+  - ID: WEEK-0-2-16-ANNA-rearCamera
     description: Looks like the toilets.
     characterID: ANNA
     assetID: WEEK-0_DAY-2_HOUR-16_ANNA_REARCAMERA.jpg
@@ -482,7 +482,7 @@ elements:
     numberValue:
     textValue:
     type: EvidenceType.rearCamera
-    isEvidence: true
+    isEvidence: false
     isOptionalEvidence: false
     week: 0
     day: 2
@@ -504,7 +504,7 @@ elements:
     hour: 19
     relatedCaseID:
     nsfwLevel: 0
-  - ID: WEEK-0_DAY-2_HOUR-19_ANNA_HEARTBEAT
+  - ID: WEEK-0-2-19-ANNA-heartbeat
     description: "A normal heart rate, Anna is relaxed."
     characterID: ANNA
     assetID:
@@ -512,14 +512,14 @@ elements:
     numberValue: 65
     textValue:
     type: EvidenceType.heartbeat
-    isEvidence: true
+    isEvidence: false
     isOptionalEvidence: false
     week: 0
     day: 2
     hour: 19
     relatedCaseID:
     nsfwLevel: 0
-  - ID: WEEK-0_DAY-2_HOUR-19_ANNA_REARCAMERA
+  - ID: WEEK-0-2-19-ANNA-rearCamera
     description: "Oh Anna, little secret girl! You apparently like studying without clothes"
     characterID: ANNA
     assetID: WEEK-0_DAY-2_HOUR-19_ANNA_REARCAMERA.jpg
@@ -527,7 +527,7 @@ elements:
     numberValue:
     textValue:
     type: EvidenceType.rearCamera
-    isEvidence: true
+    isEvidence: false
     isOptionalEvidence: false
     week: 0
     day: 2
@@ -549,7 +549,7 @@ elements:
     hour: 22
     relatedCaseID:
     nsfwLevel: 0
-  - ID: WEEK-0_DAY-2_HOUR-22_ANNA_HEARTBEAT
+  - ID: WEEK-0-2-22-ANNA-heartbeat
     description: "A normal heart rate, Anna is relaxed."
     characterID: ANNA
     assetID:
@@ -557,14 +557,14 @@ elements:
     numberValue: 67
     textValue:
     type: EvidenceType.heartbeat
-    isEvidence: true
+    isEvidence: false
     isOptionalEvidence: false
     week: 0
     day: 2
     hour: 22
     relatedCaseID:
     nsfwLevel: 0
-  - ID: WEEK-0_DAY-2_HOUR-22_ANNA_REARCAMERA
+  - ID: WEEK-0-2-22-ANNA-rearCamera
     description: "Time to brush your teeth Anna !"
     characterID: ANNA
     assetID: WEEK-0_DAY-2_HOUR-22_ANNA_REARCAMERA.jpg
@@ -572,7 +572,7 @@ elements:
     numberValue:
     textValue:
     type: EvidenceType.rearCamera
-    isEvidence: true
+    isEvidence: false
     isOptionalEvidence: false
     week: 0
     day: 2
@@ -580,7 +580,7 @@ elements:
     relatedCaseID:
     nsfwLevel: 0
   - ID: WEEK-0_DAY-3_HOUR-7_ANNA_POSITION
-    description: "Anna is still at home, no more studying, go to party !"
+    description: Anna is still at home.
     characterID: ANNA
     assetID:
     placeID: UNIVERSITY_DORMITORY
@@ -594,7 +594,7 @@ elements:
     hour: 7
     relatedCaseID:
     nsfwLevel: 0
-  - ID: WEEK-0_DAY-3_HOUR-7_ANNA_HEARTBEAT
+  - ID: WEEK-0-3-7-ANNA-heartbeat
     description: "A normal heart rate, Anna is relaxed."
     characterID: ANNA
     assetID:
@@ -602,14 +602,14 @@ elements:
     numberValue: 67
     textValue:
     type: EvidenceType.heartbeat
-    isEvidence: true
+    isEvidence: false
     isOptionalEvidence: false
     week: 0
     day: 3
     hour: 7
     relatedCaseID:
     nsfwLevel: 0
-  - ID: WEEK-0_DAY-3_HOUR-7_ANNA_REARCAMERA
+  - ID: WEEK-0-3-7-ANNA-rearCamera
     description: "Wake up Anna, you're looking tired !"
     characterID: ANNA
     assetID: WEEK-0_DAY-3_HOUR-7_ANNA_REARCAMERA.jpg
@@ -617,7 +617,7 @@ elements:
     numberValue:
     textValue:
     type: EvidenceType.rearCamera
-    isEvidence: true
+    isEvidence: false
     isOptionalEvidence: false
     week: 0
     day: 3
@@ -639,7 +639,7 @@ elements:
     hour: 10
     relatedCaseID:
     nsfwLevel: 0
-  - ID: WEEK-0_DAY-3_HOUR-10_ANNA_HEARTBEAT
+  - ID: WEEK-0-3-10-ANNA-heartbeat
     description: "A normal heart rate, Anna is relaxed."
     characterID: ANNA
     assetID:
@@ -647,22 +647,22 @@ elements:
     numberValue: 71
     textValue:
     type: EvidenceType.heartbeat
-    isEvidence: true
+    isEvidence: false
     isOptionalEvidence: false
     week: 0
     day: 3
     hour: 10
     relatedCaseID:
     nsfwLevel: 0
-  - ID: WEEK-0_DAY-3_HOUR-10_ANNA_REARCAMERA
+  - ID: WEEK-0-3-10-ANNA-rearCamera
     description: "It's black, maybe she put the phone in her pocket."
     characterID: ANNA
-    assetID: WEEK-0_DAY-3_HOUR-10_ANNA_REARCAMERA.jpg
+    assetID: BLACK_SCREEN.jpg
     placeID:
     numberValue:
     textValue:
     type: EvidenceType.rearCamera
-    isEvidence: true
+    isEvidence: false
     isOptionalEvidence: false
     week: 0
     day: 3
@@ -684,7 +684,7 @@ elements:
     hour: 13
     relatedCaseID:
     nsfwLevel: 0
-  - ID: WEEK-0_DAY-3_HOUR-13_ANNA_HEARTBEAT
+  - ID: WEEK-0-3-13-ANNA-heartbeat
     description: "A normal heart rate, Anna is relaxed."
     characterID: ANNA
     assetID:
@@ -692,22 +692,22 @@ elements:
     numberValue: 67
     textValue:
     type: EvidenceType.heartbeat
-    isEvidence: true
+    isEvidence: false
     isOptionalEvidence: false
     week: 0
     day: 3
     hour: 13
     relatedCaseID:
     nsfwLevel: 0
-  - ID: WEEK-0_DAY-3_HOUR-13_ANNA_REARCAMERA
-    description: "Love this underwear Anna!"
+  - ID: WEEK-0-3-13-ANNA-rearCamera
+    description: "You're looking for new clothes I guess !"
     characterID: ANNA
     assetID: WEEK-0_DAY-3_HOUR-13_ANNA_REARCAMERA.jpg
     placeID:
     numberValue:
     textValue:
     type: EvidenceType.rearCamera
-    isEvidence: true
+    isEvidence: false
     isOptionalEvidence: false
     week: 0
     day: 3
@@ -729,7 +729,7 @@ elements:
     hour: 16
     relatedCaseID:
     nsfwLevel: 0
-  - ID: WEEK-0_DAY-3_HOUR-16_ANNA_HEARTBEAT
+  - ID: WEEK-0-3-16-ANNA-heartbeat
     description: Anna seems to be excited.
     characterID: ANNA
     assetID:
@@ -737,14 +737,14 @@ elements:
     numberValue: 80
     textValue:
     type: EvidenceType.heartbeat
-    isEvidence: true
+    isEvidence: false
     isOptionalEvidence: false
     week: 0
     day: 3
     hour: 16
     relatedCaseID:
     nsfwLevel: 0
-  - ID: WEEK-0_DAY-3_HOUR-16_ANNA_REARCAMERA
+  - ID: WEEK-0-3-16-ANNA-rearCamera
     description: "Cute dress, you need to take it!"
     characterID: ANNA
     assetID: WEEK-0_DAY-3_HOUR-16_ANNA_REARCAMERA.jpg
@@ -752,7 +752,7 @@ elements:
     numberValue:
     textValue:
     type: EvidenceType.rearCamera
-    isEvidence: true
+    isEvidence: false
     isOptionalEvidence: false
     week: 0
     day: 3
@@ -774,7 +774,7 @@ elements:
     hour: 19
     relatedCaseID:
     nsfwLevel: 0
-  - ID: WEEK-0_DAY-3_HOUR-19_ANNA_HEARTBEAT
+  - ID: WEEK-0-3-19-ANNA-heartbeat
     description: Anna is relaxed
     characterID: ANNA
     assetID:
@@ -782,14 +782,14 @@ elements:
     numberValue: 65
     textValue:
     type: EvidenceType.heartbeat
-    isEvidence: true
+    isEvidence: false
     isOptionalEvidence: false
     week: 0
     day: 3
     hour: 19
     relatedCaseID:
     nsfwLevel: 0
-  - ID: WEEK-0_DAY-3_HOUR-19_ANNA_REARCAMERA
+  - ID: WEEK-0-3-19-ANNA-rearCamera
     description: "Anna is dinning with a friend, she seems to be happy."
     characterID: ANNA
     assetID: WEEK-0_DAY-3_HOUR-19_ANNA_REARCAMERA.jpg
@@ -797,7 +797,7 @@ elements:
     numberValue:
     textValue:
     type: EvidenceType.rearCamera
-    isEvidence: true
+    isEvidence: false
     isOptionalEvidence: false
     week: 0
     day: 3
@@ -819,7 +819,7 @@ elements:
     hour: 19
     relatedCaseID:
     nsfwLevel: 0
-  - ID: WEEK-0_DAY-3_HOUR-22_ANNA_HEARTBEAT
+  - ID: WEEK-0-3-22-ANNA-heartbeat
     description: "Anna is relaxed, but a little higher than usual, maybe she's drunk?"
     characterID: ANNA
     assetID:
@@ -827,14 +827,14 @@ elements:
     numberValue: 78
     textValue:
     type: EvidenceType.heartbeat
-    isEvidence: true
+    isEvidence: false
     isOptionalEvidence: false
     week: 0
     day: 3
     hour: 22
     relatedCaseID:
     nsfwLevel: 0
-  - ID: WEEK-0_DAY-3_HOUR-22_ANNA_REARCAMERA
+  - ID: WEEK-0-3-22-ANNA-rearCamera
     description: Anna's friend is cute too
     characterID: ANNA
     assetID: WEEK-0_DAY-3_HOUR-19_ANNA_REARCAMERA.jpg
@@ -842,13 +842,28 @@ elements:
     numberValue:
     textValue:
     type: EvidenceType.rearCamera
-    isEvidence: true
+    isEvidence: false
     isOptionalEvidence: false
     week: 0
     day: 3
     hour: 22
     relatedCaseID:
     nsfwLevel: 0
+  - ID: WEEK-0-3-13-ANNA-rearCamera
+    description: "Love this underwear Anna!"
+    characterID: ANNA
+    assetID: WEEK-0_DAY-3_HOUR-13_ANNA_REARCAMERA_NSFW.jpg
+    placeID:
+    numberValue:
+    textValue:
+    type: EvidenceType.rearCamera
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 3
+    hour: 13
+    relatedCaseID:
+    nsfwLevel: 1
 cases:
 cinematics:
   - ID: INTRO
