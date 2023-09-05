@@ -48,11 +48,11 @@ class StoryEngine {
       map['storyID'],
       map['name'],
       map['description'],
-      List<CharacterEngine>.from(map['characters']?.map((x) => CharacterEngine.fromMap(x))),
-      List<PlaceEngine>.from(map['places']?.map((x) => PlaceEngine.fromMap(x))),
-      List<ElementEngine>.from(map['elements']?.map((x) => ElementEngine.fromMap(x))),
-      List<CaseEngine>.from(map['cases']?.map((x) => CaseEngine.fromMap(x))),
-      List<CinematicEngine>.from(map['cinematics']?.map((x) => CinematicEngine.fromMap(x))),
+      map['characters'] != null ? List<CharacterEngine>.from(map['characters']?.map((x) => CharacterEngine.fromMap(x))) : [],
+      map['places'] != null ? List<PlaceEngine>.from(map['places']?.map((x) => PlaceEngine.fromMap(x))) : [],
+      map['elements'] != null ? List<ElementEngine>.from(map['elements']?.map((x) => ElementEngine.fromMap(x))) : [],
+      map['cases'] != null ? List<CaseEngine>.from(map['cases']?.map((x) => CaseEngine.fromMap(x))) : [],
+      map['cinematics'] != null ? List<CinematicEngine>.from(map['cinematics']?.map((x) => CinematicEngine.fromMap(x))) : [],
     );
   }
 }
@@ -148,7 +148,6 @@ class PlaceEngine {
 
 class ElementEngine {
   String ID;
-  String name;
   String description;
   String characterID;
   String? assetID;
@@ -165,7 +164,7 @@ class ElementEngine {
 
   String? relatedCaseID;
 
-  ElementEngine(this.ID, this.name, this.description, this.characterID,
+  ElementEngine(this.ID,this.description, this.characterID,
       this.type, this.isEvidence, this.week, this.day, this.hour,
       {this.relatedCaseID,
       this.assetID,
@@ -178,7 +177,6 @@ class ElementEngine {
   Map<String, dynamic> toMap() {
     return {
       'ID': ID,
-      'name': name,
       'description': description,
       'characterID': characterID,
       'assetID': assetID,
@@ -199,10 +197,9 @@ class ElementEngine {
   static ElementEngine fromMap(Map<String, dynamic> map) {
     return ElementEngine(
       map['ID'],
-      map['name'],
       map['description'],
       map['characterID'],
-      EvidenceType.values.firstWhere((e) => e.toString().split('.')[1] == map['type']),
+      EvidenceType.values.firstWhere((e) => e.name == map['type'].split('.')[1]),
       map['isEvidence'],
       map['week'],
       map['day'],

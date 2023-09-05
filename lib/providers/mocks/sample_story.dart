@@ -57,7 +57,6 @@ StoryEngine getSampleStory() {
   elements.add(ElementEngine(
       "WEEK-0_DAY-1_HOUR-7_POSITION",
       placeID: "REPAIR_SHOP",
-      "Phone's repair",
       "Anna's phone is in my hand, I think this damn spyware works.",
       "ANNA",
       EvidenceType.position,
@@ -68,7 +67,6 @@ StoryEngine getSampleStory() {
   elements.add(ElementEngine(
       "WEEK-0_DAY-1_HOUR-7_HEARTBEAT",
       numberValue: 0,
-      "Phone's repair",
       "I think her watch is too far from the phone",
       "ANNA",
       EvidenceType.heartbeat,
@@ -79,7 +77,6 @@ StoryEngine getSampleStory() {
   elements.add(ElementEngine(
       "WEEK-0_DAY-1_HOUR-7_REARCAMERA",
       assetID: "week0_anna_day0_rear_camera_7.jpg",
-      "Phone's repair",
       "Oh my god, it works ! I can see my desk !",
       "ANNA",
       EvidenceType.rearCamera,

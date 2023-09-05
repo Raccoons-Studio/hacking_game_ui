@@ -75,7 +75,7 @@ class _CharacterSelectionState extends State<CharacterSelection> {
                               files: snapshot.data!,
                               currentDay: widget.currentDay,
                               currentHour: widget.currentHour,
-                              backgroundImageUrl: "assets/iphone.jpg",
+                              backgroundImageUrl: _selectedCharacter!.wallpaper,
                               splashScreenImageUrl: _selectedCharacter!.wallpaper,
                               displayComment: widget.displayComment,
                             );

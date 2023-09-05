@@ -273,8 +273,8 @@ class MaestroMock extends Maestro {
   }
 
   @override
-  Future<int> getAllCharacters() async {
-    return 12;
+  Future<List<Character>> getAllCharacters() async {
+    return [];
   }
 
   @override
@@ -345,6 +345,12 @@ class MaestroMock extends Maestro {
   @override
   Future<List<IntegrityError>> checkIntegrity(StoryEngine story) {
     // TODO: implement checkIntegrity
+    throw UnimplementedError();
+  }
+  
+  @override
+  Future<StoryEngine> getStory() {
+    // TODO: implement getStory
     throw UnimplementedError();
   }
 }

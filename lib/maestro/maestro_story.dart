@@ -40,9 +40,15 @@ class MaestroStory extends Maestro {
   }
 
   @override
-  Future<int> getAllCharacters() async {
+  Future<List<Character>> getAllCharacters() async {
     StoryEngine p = await _dataBaseEngine!.getStory();
-    return p.characters.length;
+    return p.characters
+        .map((character) => Character(
+            characterID: character.ID,
+            name: character.name,
+            avatar: character.avatar,
+            wallpaper: character.wallpaper))
+        .toList();
   }
 
   @override
@@ -121,12 +127,12 @@ class MaestroStory extends Maestro {
                     }
                   }
                   if (!alreadyInDirectory) {
-                    weekDirectory.files.add(Files(e.ID, e.name, e.type,
+                    weekDirectory.files.add(Files(e.ID, e.type.name, e.type,
                         description: e.description));
                   }
                 } else {
                   weekDirectory.files.add(
-                      Files(e.ID, e.name, e.type, description: e.description));
+                      Files(e.ID, e.type.name, e.type, description: e.description));
                 }
               }
             }
@@ -153,7 +159,7 @@ class MaestroStory extends Maestro {
             e.type, e.week, e.day, e.hour, p.nsfwLevel, s.elements);
         if (!evidences.any((element) => element.type == e.type)) {
           evidences.add(Files(
-              nsfwLevelElement.ID, nsfwLevelElement.name, nsfwLevelElement.type,
+              nsfwLevelElement.ID, nsfwLevelElement.type.name, nsfwLevelElement.type,
               description: nsfwLevelElement.description));
         }
       }
@@ -211,7 +217,7 @@ class MaestroStory extends Maestro {
         // If evidences doesn't already contains an evidence of this type
         if (!evidences.any((element) => element.type == e.type)) {
           evidences.add(Files(
-              nsfwLevelElement.ID, nsfwLevelElement.name, nsfwLevelElement.type,
+              nsfwLevelElement.ID, nsfwLevelElement.type.name, nsfwLevelElement.type,
               description: nsfwLevelElement.description));
         }
       }
@@ -504,5 +510,10 @@ class MaestroStory extends Maestro {
       }
     }
     return errors;
+  }
+  
+  @override
+  Future<StoryEngine> getStory() async {
+    return await _dataBaseEngine!.getStory();
   }
 }

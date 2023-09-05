@@ -67,7 +67,7 @@ abstract class Maestro {
 
   Future<List<Character>> getAvailableCharacters();
 
-  Future<int> getAllCharacters();
+  Future<List<Character>> getAllCharacters();
 
   Future<Cinematic> getCinematicData(String cinematicID);
 
@@ -90,4 +90,6 @@ abstract class Maestro {
   Future<List<ContactEngine>> getContacts();
 
   Future<List<IntegrityError>> checkIntegrity(StoryEngine story);
+
+  Future<StoryEngine> getStory();
 }

@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/utils/game_date.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/cinematic/cinematic_display.dart';
+import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_characters_selector.dart';
 import 'package:hacking_game_ui/virtual_machine/models/application.dart';
@@ -36,6 +38,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
     VirtualApplication('Settings', Icons.settings, Colors.grey),
     VirtualApplication('Next', Icons.skip_next, Colors.orangeAccent),
     VirtualApplication('Next Dev', Icons.developer_board, Colors.deepOrange),
+    VirtualApplication('Editor', Icons.edit, Colors.deepOrange),
     // Add more applications here
   ];
 
@@ -116,7 +119,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
             future: widget.maestro.getPhoneEvidences('1'),
             builder: (context, evidences) {
               if (evidences.hasData) {
-                return FutureBuilder<int>(
+                return FutureBuilder<List<Character>>(
                     future: widget.maestro.getAllCharacters(),
                     builder: (context, nbCharacters) {
                       if (!nbCharacters.hasData) {
@@ -135,7 +138,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                                     return Container();
                                   }
                                   return CharacterSelection(
-                                    avatars: nbCharacters.data!,
+                                    avatars: nbCharacters.data!.length,
                                     characters: snapshot.data!,
                                     maestro: widget.maestro,
                                     currentDay: day.data!,
@@ -149,6 +152,16 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                 return Container(child: const Text('Loading...'));
               }
             });
+      case 'Editor':
+        return FutureBuilder<StoryEngine>(
+          future: widget.maestro.getStory(),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              return Container();
+            }
+            return StoryEditor(story: snapshot.data!);
+          }
+        );
       case 'Cinematic':
         setState(() {
           isCinematicPlaying = true;

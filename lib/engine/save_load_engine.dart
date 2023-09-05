@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:yaml/yaml.dart';
@@ -6,7 +7,7 @@ class SaveAndLoadEngine {
   static Map<String, dynamic> yamlToMap(YamlMap yamlMap) {
     final map = <String, dynamic>{};
 
-    for (var entry in yamlMap.entries) { 
+    for (var entry in yamlMap.entries) {
       if (entry.value is YamlMap) {
         map[entry.key] = yamlToMap(entry.value);
       } else if (entry.value is YamlList) {
@@ -37,7 +38,13 @@ class SaveAndLoadEngine {
 
   static Future<StoryEngine> loadStoryEngine(String path) async {
     final storyEngineYaml = await rootBundle.loadString("assets/" + path);
-    final storyEngineMap = yamlToMap(loadYaml(storyEngineYaml) as YamlMap);
-    return StoryEngine.fromMap(storyEngineMap);
+    try {
+      var yml = loadYaml(storyEngineYaml);
+      final storyEngineMap = yamlToMap(yml as YamlMap);
+      return StoryEngine.fromMap(storyEngineMap);
+    } catch (e) {
+      print(e);
+    }
+    return StoryEngine("", "", "", [], [], [], [], []);
   }
 }
