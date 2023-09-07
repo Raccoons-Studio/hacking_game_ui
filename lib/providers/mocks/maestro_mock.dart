@@ -353,4 +353,10 @@ class MaestroMock extends Maestro {
     // TODO: implement getStory
     throw UnimplementedError();
   }
+  
+  @override
+  Future<void> goTo(int week, int day, int hour) {
+    // TODO: implement goTo
+    throw UnimplementedError();
+  }
 }

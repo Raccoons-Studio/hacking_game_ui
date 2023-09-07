@@ -7,9 +7,12 @@ import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'dart:html' as html;
 import 'package:json2yaml/json2yaml.dart';
 
+enum EditorView { Elements, Cases, Characters, Cinematics }
+
 class StoryEditor extends StatefulWidget {
+  final Maestro maestro;
   final StoryEngine story;
-  StoryEditor({required this.story});
+  StoryEditor({required this.story, required this.maestro});
 
   @override
   _StoryEditorState createState() => _StoryEditorState();
@@ -24,6 +27,7 @@ class _StoryEditorState extends State<StoryEditor> {
   List<ElementEngine> filteredElements = [];
   List<int> weeks = List<int>.generate(10, (index) => index);
   List<int> days = List<int>.generate(7, (index) => index + 1);
+  EditorView selectedView = EditorView.Elements;
 
   Future<void> getAllCharacters() async {
     characters = await widget.story.characters;
@@ -54,7 +58,13 @@ class _StoryEditorState extends State<StoryEditor> {
         children: [
           buildFilters(),
           Expanded(
-            child: buildElementList(),
+            child: selectedView == EditorView.Elements
+                ? buildElementList()
+                : selectedView == EditorView.Cases
+                    ? buildCasesList()
+                    : selectedView == EditorView.Characters
+                        ? buildCharactersList()
+                        : buildCinematicsList(),
           ),
           ElevatedButton(
             child: Text('Add'),
@@ -86,6 +96,20 @@ class _StoryEditorState extends State<StoryEditor> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
+          DropdownButton<EditorView>(
+            value: selectedView,
+            items: EditorView.values.map((EditorView view) {
+              return DropdownMenuItem<EditorView>(
+                value: view,
+                child: Text(view.toString().split('.').last),
+              );
+            }).toList(),
+            onChanged: (value) {
+              setState(() {
+                selectedView = value ?? EditorView.Elements;
+              });
+            },
+          ),
           DropdownButton<int>(
             value: selectedWeek,
             items: weeks.map((week) {
@@ -325,6 +349,198 @@ class _StoryEditorState extends State<StoryEditor> {
           ],
         );
       },
+    );
+  }
+
+  Widget buildCasesList() {
+    // Add functionality to display cases
+    return Container();
+  }
+
+  Widget buildCharactersList() {
+    // Add functionality to display characters
+    return Container();
+  }
+
+  Widget buildCinematicsList() {
+    List<CinematicEngine> filteredCinematics =
+        widget.story.cinematics.where((cinematic) {
+      return cinematic.week == selectedWeek && cinematic.day == selectedDay;
+    }).toList();
+
+    return ListView(
+      children: <Widget>[
+        ...filteredCinematics
+            .map((cinematic) => buildCinematic(cinematic))
+            .toList(),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: ElevatedButton(
+            child: Text('Add Cinematic'),
+            onPressed: () {
+              setState(() {
+                widget.story.cinematics.add(CinematicEngine(
+                    '', '', selectedWeek, selectedDay, 7, [],
+                    nsfwLevel: 0));
+              });
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget buildCinematic(CinematicEngine cinematic) {
+    List<int> hours = [7, 10, 13, 16, 19, 22];
+    List<int> nsfwLevels = [0, 1, 2];
+
+    return ExpansionTile(
+      title: Text(cinematic.ID),
+      children: [
+        Row(
+          children: [
+            DropdownButton<int>(
+              value: cinematic.hour,
+              items: hours.map((int hour) {
+                return DropdownMenuItem<int>(
+                  value: hour,
+                  child: Text(hour.toString()),
+                );
+              }).toList(),
+              onChanged: (int? newValue) {
+                setState(() {
+                  if (newValue != null) {
+                    cinematic.hour = newValue;
+                  }
+                });
+              },
+            ),
+            DropdownButton<int>(
+              value: cinematic.nsfwLevel,
+              items: nsfwLevels.map((int level) {
+                return DropdownMenuItem<int>(
+                  value: level,
+                  child: Text(level.toString()),
+                );
+              }).toList(),
+              onChanged: (int? newValue) {
+                setState(() {
+                  if (newValue != null) {
+                    cinematic.nsfwLevel = newValue;
+                  }
+                });
+              },
+            ),
+            ElevatedButton(onPressed: () {
+              widget.maestro.goTo(cinematic.week, cinematic.day, cinematic.hour);
+            }, child: Text("Preview"))
+          ],
+        ),
+        ...cinematic.sequences
+            .map((sequence) => buildSequence(sequence))
+            .toList(),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: ElevatedButton(
+            child: Text('Add Sequence'),
+            onPressed: () {
+              setState(() {
+                cinematic.sequences.add(CinematicSequenceEngine('', []));
+              });
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget buildSequence(CinematicSequenceEngine sequence) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: TextField(
+                  controller:
+                      TextEditingController(text: sequence.cinematicAsset),
+                  decoration: InputDecoration(hintText: "Asset ID"),
+                  onChanged: (value) {
+                    sequence.cinematicAsset = value;
+                  },
+                ),
+              ),
+              IconButton(
+                icon: Icon(Icons.delete),
+                onPressed: () {
+                  setState(() {
+                    final cinematic = widget.story.cinematics
+                        .firstWhere((c) => c.sequences.contains(sequence));
+                    cinematic.sequences.remove(sequence);
+                  });
+                },
+              ),
+            ],
+          ),
+          ...sequence.cinematicConversations
+              .map((conversation) => buildConversation(conversation))
+              .toList(),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: ElevatedButton(
+              child: Text('Add Conversation'),
+              onPressed: () {
+                setState(() {
+                  sequence.cinematicConversations
+                      .add(CinematicConversationEngine('', ''));
+                });
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildConversation(CinematicConversationEngine conversation) {
+    return Row(
+      children: <Widget>[
+        Container(
+          width: 200,
+          child: TextField(
+            controller: TextEditingController(text: conversation.character),
+            decoration: InputDecoration(hintText: "Character"),
+            onChanged: (value) {
+              conversation.character = value;
+            },
+          ),
+        ),
+        Expanded(
+          child: TextField(
+            controller: TextEditingController(text: conversation.text),
+            decoration: InputDecoration(hintText: "Conversation Text"),
+            onChanged: (value) {
+              conversation.text = value;
+            },
+          ),
+        ),
+        IconButton(
+          icon: Icon(Icons.delete),
+          onPressed: () {
+            setState(() {
+              final cinematic = widget.story.cinematics.firstWhere((c) {
+                final sequence = c.sequences.firstWhere(
+                    (s) => s.cinematicConversations.contains(conversation));
+                return sequence != null;
+              });
+              final sequence = cinematic?.sequences.firstWhere(
+                  (s) => s.cinematicConversations.contains(conversation));
+              sequence?.cinematicConversations.remove(conversation);
+            });
+          },
+        ),
+      ],
     );
   }
 }

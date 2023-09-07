@@ -849,7 +849,7 @@ elements:
     hour: 22
     relatedCaseID:
     nsfwLevel: 0
-  - ID: WEEK-0-3-13-ANNA-rearCamera
+  - ID: WEEK-0-3-16-ANNA-rearCamera-1
     description: "Love this underwear Anna!"
     characterID: ANNA
     assetID: WEEK-0_DAY-3_HOUR-16_ANNA_REARCAMERA_NSFW.jpg
@@ -861,7 +861,7 @@ elements:
     isOptionalEvidence: false
     week: 0
     day: 3
-    hour: 13
+    hour: 16
     relatedCaseID:
     nsfwLevel: 1
   - ID: WEEK-4-1-0-ANNA-position
@@ -1164,6 +1164,291 @@ elements:
     hour: 22
     relatedCaseID:
     nsfwLevel: 1
+  - ID: WEEK-0-5-0-ANNA-position
+    description: "Anna is at home preparing for the last day of torture of the week!"
+    characterID: ANNA
+    assetID:
+    placeID: UNIVERSITY_DORMITORY
+    numberValue:
+    textValue:
+    type: EvidenceType.position
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 5
+    hour: 7
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-0-5-7-ANNA-heartbeat-0
+    description: "Oh Anna has a heart that beats fast!"
+    characterID: ANNA
+    assetID:
+    placeID:
+    numberValue: 96
+    textValue:
+    type: EvidenceType.heartbeat
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 5
+    hour: 7
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-0-5-7-ANNA-rearCamera-0
+    description: "What could Anna possibly write?"
+    characterID: ANNA
+    assetID: WEEK-0_DAY-5_HOUR-7_ANNA_REARCAMERA
+    placeID:
+    numberValue:
+    textValue:
+    type: EvidenceType.rearCamera
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 5
+    hour: 7
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-0-5-10-ANNA-position-0
+    description: "Anna is at university for the last day of the week!"
+    characterID: ANNA
+    assetID:
+    placeID: UNIVERSITY
+    numberValue:
+    textValue:
+    type: EvidenceType.position
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 5
+    hour: 10
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-0-5-10-ANNA-heartbeat-0
+    description: "Anna is relaxed, like every class where there isn't her favorite teacher!"
+    characterID: ANNA
+    assetID:
+    placeID:
+    numberValue: 68
+    textValue:
+    type: EvidenceType.heartbeat
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 5
+    hour: 10
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-0-5-10-ANNA-rearCamera-0
+    description: "Oh that's part of Anna's letter! Here is my proof, Anna is in love with her English teacher!"
+    characterID: ANNA
+    assetID: WEEK-0_DAY-5_HOUR-10_ANNA_REARCAMERA
+    placeID:
+    numberValue:
+    textValue:
+    type: EvidenceType.rearCamera
+    isEvidence: true
+    isOptionalEvidence: false
+    week: 0
+    day: 5
+    hour: 10
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-0-5-13-ANNA-position-0
+    description: "Anna is too serious, not even fast food for the last day of college before the weekend?"
+    characterID: ANNA
+    assetID:
+    placeID: UNIVERSITY
+    numberValue:
+    textValue:
+    type: EvidenceType.position
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 5
+    hour: 13
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-0-5-13-ANNA-heartbeat-0
+    description: Anna is calm as usual
+    characterID: ANNA
+    assetID:
+    placeID:
+    numberValue: 64
+    textValue:
+    type: EvidenceType.heartbeat
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 5
+    hour: 13
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-0-5-13-ANNA-rearCamera-0
+    description: Anna quietly eats her meal while surfing on her phone
+    characterID: ANNA
+    assetID: WEEK-0_DAY-5_HOUR-13_ANNA_REARCAMERA
+    placeID:
+    numberValue:
+    textValue:
+    type: EvidenceType.rearCamera
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 5
+    hour: 13
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-0-5-13-ANNA-rearCamera-0
+    description: "An urgent desire Anna? Nice butt anyway!"
+    characterID: ANNA
+    assetID: WEEK-0_DAY-5_HOUR-13_ANNA_REARCAMERA_NSFW
+    placeID:
+    numberValue:
+    textValue:
+    type: EvidenceType.rearCamera
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 5
+    hour: 13
+    relatedCaseID:
+    nsfwLevel: 1
+  - ID: WEEK-0-5-16-ANNA-position-0
+    description: "Still at university, final stretch before the weekend!"
+    characterID: ANNA
+    assetID:
+    placeID: UNIVERSITY
+    numberValue:
+    textValue:
+    type: EvidenceType.position
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 5
+    hour: 16
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-0-5-16-ANNA-heartbeat-0
+    description: "Anna is ready to fall asleep!"
+    characterID: ANNA
+    assetID:
+    placeID:
+    numberValue: 57
+    textValue:
+    type: EvidenceType.heartbeat
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 5
+    hour: 16
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-0-5-16-ANNA-rearCamera-0
+    description: "I can't see anything: or his phone is in his pocket, or on his desk"
+    characterID: ANNA
+    assetID: WEEK-0_DAY-5_HOUR-16_ANNA_REARCAMERA
+    placeID:
+    numberValue:
+    textValue:
+    type: EvidenceType.rearCamera
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 5
+    hour: 16
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-0-5-19-ANNA-position-0
+    description: "Anna is on Main Street, will she mail her letter or take it directly to her teacher?"
+    characterID: ANNA
+    assetID:
+    placeID: MAIN_STREET
+    numberValue:
+    textValue:
+    type: EvidenceType.position
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 5
+    hour: 19
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-0-5-19-ANNA-heartbeat-0
+    description: "Anna's heart is racing!"
+    characterID: ANNA
+    assetID:
+    placeID: MAIN_STREET
+    numberValue: 96
+    textValue:
+    type: EvidenceType.heartbeat
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 5
+    hour: 19
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-0-5-19-ANNA-rearCamera-0
+    description: Anna is walking on Main Street.
+    characterID: ANNA
+    assetID: WEEK-0_DAY-5_HOUR-19_ANNA_REARCAMERA
+    placeID:
+    numberValue:
+    textValue:
+    type: EvidenceType.rearCamera
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 5
+    hour: 19
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-0-5-22-ANNA-position-0
+    description: "Anna is on Main Street, where her teacher lives"
+    characterID: ANNA
+    assetID:
+    placeID:
+    numberValue:
+    textValue:
+    type: EvidenceType.position
+    isEvidence: true
+    isOptionalEvidence: false
+    week: 0
+    day: 5
+    hour: 22
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-0-5-22-ANNA-heartbeat-0
+    description: "Anna's heart is racing!"
+    characterID: ANNA
+    assetID:
+    placeID:
+    numberValue: 94
+    textValue:
+    type: EvidenceType.heartbeat
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 0
+    day: 5
+    hour: 22
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-0-5-22-ANNA-rearCamera-0
+    description: "Anna spies again on her teacher who reads the letter! I think it's an anonymous letter!"
+    characterID: ANNA
+    assetID: WEEK-0_DAY-5_HOUR-22_ANNA_REARCAMERA
+    placeID:
+    numberValue:
+    textValue:
+    type: EvidenceType.rearCamera
+    isEvidence: true
+    isOptionalEvidence: false
+    week: 0
+    day: 5
+    hour: 22
+    relatedCaseID:
+    nsfwLevel: 0
 cases:
 cinematics:
   - ID: INTRO
@@ -1257,4 +1542,168 @@ cinematics:
             text: "Hi Anna, yes, your phone is all set. I managed to use a used screen for the repair, so there's no charge."
           - character: Anna
             text: "Oh my god, thank you so much! That's incredibly kind of you. I can't thank you enough!"
+    nsfwLevel: 0
+  - ID: WEEK-0-2-7
+    name: WEEK-0-2-7
+    week: 0
+    day: 2
+    hour: 7
+    sequences:
+      - cinematicAsset: PLACE_PHONE_REPAIR_DESK.jpg
+        cinematicConversations:
+          - character: Me
+            text: I wonder why Anna was following this man down the street and spying on him at home.
+          - character: Me
+            text: "Is this an ex boyfriend?"
+          - character: Me
+            text: "I'm curious to see if she will try to follow him again today!"
+          - character: Me
+            text: "In any case, this spyware works perfectly! I can follow his every move!"
+          - character: Me
+            text: "I can't wait for them to add new features! I would like to know more about Anna."
+          - character: Me
+            text: "Come on, it’s time to get to work! Wake up Anna, we have a long day ahead of us."
+    nsfwLevel: 0
+  - ID: WEEK-0-2-13
+    name: WEEK-0-2-13
+    week: 0
+    day: 2
+    hour: 13
+    sequences:
+      - cinematicAsset: PLACE_PHONE_REPAIR_DESK.jpg
+        cinematicConversations:
+          - character: Me
+            text: "It's clearer now, Anna is following her teacher!"
+          - character: Me
+            text: "I don't know what he's a professor of, but either she has a crush on him or she's mad at him and wants to play a dirty trick on him."
+          - character: Me
+            text: "Either way, I can't wait to find out what Anna wants!"
+    nsfwLevel: 0
+  - ID: WEEK-0-3-7
+    name: WEEK-0-3-7
+    week: 0
+    day: 3
+    hour: 7
+    sequences:
+      - cinematicAsset: PLACE_PHONE_REPAIR_DESK.jpg
+        cinematicConversations:
+          - character: Me
+            text: "I'm completely addicted to this new spyware!"
+          - character: Me
+            text: "The license is very expensive but it's worth it! Can't wait for payday to be able to hack a new phone!"
+          - character: Me
+            text: Or maybe I could use what I know about Anna and her teacher to blackmail her...
+          - character: Me
+            text: "After all, either her teacher doesn't know and I could threaten to reveal everything"
+          - character: Me
+            text: Either he knows and they're sleeping together and I could threaten to report them to the university.
+          - character: Me
+            text: "In any case, I could extract money from the teacher or Anna to buy a new license."
+          - character: Me
+            text: "I will continue to monitor her, collect additional evidence, and at the end of the week I will contact her."
+    nsfwLevel: 0
+  - ID: WEEK-0-3-19
+    name: WEEK-0-3-19
+    week: 0
+    day: 3
+    hour: 19
+    sequences:
+      - cinematicAsset: PLACE_PHONE_REPAIR_DESK.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Anna is really cute! I almost feel guilty spying on him behind his back."
+          - character: Me
+            text: "Nah, to tell you the truth, I'm really excited at the idea of being able to interfere in his private life."
+          - character: Me
+            text: "I hope I have some juicy details to sink my teeth into. And above all, she returns to spy on her teacher."
+    nsfwLevel: 0
+  - ID: WEEK-0-4-7
+    name: WEEK-0-4-7
+    week: 0
+    day: 4
+    hour: 7
+    sequences:
+      - cinematicAsset: PLACE_PHONE_REPAIR_DESK.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Not much exciting happened in Anna's life yesterday... And she didn't even try to see her teacher again, maybe it was just an incident."
+          - character: Me
+            text: "In any case, his girlfriend was pretty too! If I find enough evidence, I might be able to convince her to send her friend to get her phone repaired and install the spyware on her too."
+          - character: Me
+            text: "But before that, it's time to go spy on your teacher Anna!"
+    nsfwLevel: 0
+  - ID: WEEK-0-4-13
+    name: WEEK-0-4-13
+    week: 0
+    day: 4
+    hour: 13
+    sequences:
+      - cinematicAsset: PLACE_PHONE_REPAIR_DESK
+        cinematicConversations:
+          - character: Me
+            text: "It is clear that every time Anna sees her teacher, her heart races: either he scares her, or she is in love with him."
+          - character: Me
+            text: "I hope it's the first option: I'm starting to have a crush on Anna too."
+          - character: Me
+            text: And I don't think I can compete with a handsome college professor.
+          - character: Me
+            text: "Come on Anna, help me solve this mystery!"
+    nsfwLevel: 0
+  - ID: WEEK-0-4-19
+    name: WEEK-0-4-19
+    week: 0
+    day: 4
+    hour: 19
+    sequences:
+      - cinematicAsset: PLACE_PHONE_REPAIR_DESK
+        cinematicConversations:
+          - character: Me
+            text: "The more time passes, the more I tell myself that Anna is in love with her teacher: she spends her time spying on him but he doesn't calculate her at all."
+          - character: Me
+            text: "If he scared her or if they had an affair, he would wink at her or, on the contrary, glare at her."
+          - character: Me
+            text: "Come on Anna, I need one more proof or two to blackmail you! It's too thin for now, I need more proof!"
+    nsfwLevel: 0
+  - ID: WEEK-0-5-7_NSFW
+    name: WEEK-0-5-7_NSFW
+    week: 0
+    day: 5
+    hour: 7
+    sequences:
+      - cinematicAsset: PLACE_PHONE_REPAIR_DESK.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Wah, I think I dreamed of Anna's tits all night!"
+          - character: Me
+            text: "They were so beautiful, so round! Real wonders! I could stare at the photo all day!"
+          - character: Me
+            text: "But I have to pull myself together, the weekend is coming, so is my salary, and I have to find additional evidence to blackmail Anna! Go to work !"
+    nsfwLevel: 1
+  - ID: WEEK-0-5-7
+    name: WEEK-0-5-7
+    week: 0
+    day: 5
+    hour: 7
+    sequences:
+      - cinematicAsset: PLACE_PHONE_REPAIR_DESK.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Another day spying on pretty Anna! The more I spy on her, the more I find her beautiful."
+          - character: Me
+            text: "But I have to pull myself together, the weekend is coming, so is my salary, and I have to find additional evidence to blackmail Anna! Go to work !"
+    nsfwLevel: 0
+  - ID: WEEK-0-5-13
+    name: WEEK-0-5-13
+    week: 0
+    day: 5
+    hour: 13
+    sequences:
+      - cinematicAsset: PLACE_PHONE_REPAIR_DESK.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Anna my dear, I have almost everything I need! All I have to do now is catch you in the act of sending him your letter and I'll know enough about you!"
+          - character: Me
+            text: "I can't wait to blackmail you!"
+          - character: Me
+            text: "Come on, my dear, go give your letter to your teacher!"
     nsfwLevel: 0

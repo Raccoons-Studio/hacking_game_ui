@@ -194,4 +194,6 @@ abstract class Maestro {
   }
 
   Future<StoryEngine> getStory();
+
+  Future<void> goTo(int week, int day, int hour);
 }

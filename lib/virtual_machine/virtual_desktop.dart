@@ -28,6 +28,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
   MaestroState? _maestroState;
   bool isCinematicPlaying = false;
   bool isDescriptionVisible = false;
+  bool isDateVisible = false;
   String descriptionContent = "";
 
   List<VirtualApplication> applications = [
@@ -54,18 +55,24 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
     }
 
     widget.maestro.maestroStream.listen((event) {
-      _maestroState = event;
-      if (event.isCinematic) {
+      if (_maestroState == null || _maestroState!.hour != event.hour) {
         setState(() {
-          isCinematicPlaying = true;
-          _currentApplication =
-              VirtualApplication("Cinematic", Icons.movie, Colors.purple);
+          isDateVisible = true;
         });
       } else {
-        setState(() {
-          isCinematicPlaying = false;
-        });
+        if (event.isCinematic) {
+          setState(() {
+            isCinematicPlaying = true;
+            _currentApplication =
+                VirtualApplication("Cinematic", Icons.movie, Colors.purple);
+          });
+        } else {
+          setState(() {
+            isCinematicPlaying = false;
+          });
+        }
       }
+      _maestroState = event;
     });
     widget.maestro.start();
   }
@@ -167,7 +174,8 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
               if (!snapshot.hasData) {
                 return Container();
               }
-              return StoryEditor(story: snapshot.data!);
+              return StoryEditor(
+                  story: snapshot.data!, maestro: widget.maestro);
             });
       case 'Cinematic':
         setState(() {
@@ -294,6 +302,49 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                   ),
                 ),
               ),
+            ),
+          ),
+        ),
+        Positioned(
+          top: 0,
+          right: 0,
+          left: 0,
+          bottom: 0,
+          child: Visibility(
+            visible: isDateVisible,
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  isDateVisible = false;
+                  if (_maestroState!.isCinematic) {
+                    setState(() {
+                      isCinematicPlaying = true;
+                      _currentApplication = VirtualApplication(
+                          "Cinematic", Icons.movie, Colors.purple);
+                    });
+                  } else {
+                    setState(() {
+                      isCinematicPlaying = false;
+                    });
+                  }
+                });
+              },
+              child: Container(
+                  color: Colors.black,
+                  child: Center(
+                      child: FutureBuilder<String>(
+                          future: getDayOfWeek(_maestroState!.day),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              return Text(
+                                'Week ${_maestroState!.week} - ${snapshot.data} ${_maestroState!.hour}:00',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 30),
+                              );
+                            } else {
+                              return CircularProgressIndicator();
+                            }
+                          }))),
             ),
           ),
         )

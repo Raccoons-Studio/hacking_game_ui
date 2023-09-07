@@ -413,4 +413,19 @@ class MaestroStory extends Maestro {
   Future<StoryEngine> getStory() async {
     return await _dataBaseEngine!.getStory();
   }
+  
+  @override
+  Future<void> goTo(int week, int day, int hour) async {
+    // Reset player evidences
+    Player p = await _dataBaseEngine!.getPlayer();
+    p.revealedElements = [];
+    p.currentDay = 1;
+    p.currentWeek = 0;
+    p.currentHour = 7;
+
+    while(p.currentWeek != week || p.currentDay != day || p.currentHour != hour) {
+      await nextHour(true);
+      p = await _dataBaseEngine!.getPlayer();
+    }
+  }
 }
