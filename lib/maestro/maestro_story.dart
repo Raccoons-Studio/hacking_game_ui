@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:hacking_game_ui/engine/database_engine.dart';
 import 'package:hacking_game_ui/engine/model_engine.dart';
@@ -259,6 +260,9 @@ class MaestroStory extends Maestro {
           case EvidenceType.heartbeat:
             timelineData.add(TimelineData(e.week, e.day, e.hour,
                 TimelineType.heartbeat, e.description, e.numberValue!));
+          case EvidenceType.rearCamera:
+            timelineData.add(TimelineData(e.week, e.day, e.hour,
+                TimelineType.image, e.description, e.assetID!));
           default:
             break;
         }
@@ -348,7 +352,11 @@ class MaestroStory extends Maestro {
   @override
   Future<void> start() async {
     await load("anna_story.yml");
-    await nextHour(false);
+    if (kDebugMode) {
+      await goTo(1, 1, 19);
+    } else {
+      await nextHour(false);
+    }
   }
 
   @override

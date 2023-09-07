@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_image.dart';
+import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_map.dart';
 import 'package:hacking_game_ui/virtual_machine/models/timeline_data.dart';
 
 import 'finder_health.dart';
 import 'finder_plan.dart';
 
 class FinderTimeline extends StatefulWidget {
+  final Function refreshTitle;
   final List<TimelineData> timelines;
 
-  const FinderTimeline({super.key, required this.timelines});
+  const FinderTimeline({super.key, required this.timelines, required this.refreshTitle});
 
   @override
   _FinderTimelineState createState() => _FinderTimelineState();
@@ -47,20 +50,6 @@ class _FinderTimelineState extends State<FinderTimeline> {
           //child: ImageWithMarkers(image: AssetImage('assets/images/map.png'), markers: [Offset(560, 650)],)
           child: buildContentWidget(widget.timelines[_currentPosition]),
         )),
-        Container(
-          height: 50,
-          color: Colors.grey[200],
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('Week ${widget.timelines[_currentPosition].week}'),
-              const SizedBox(width: 10),
-              Text('Day ${widget.timelines[_currentPosition].day}'),
-              const SizedBox(width: 10),
-              Text('Hour ${widget.timelines[_currentPosition].hour}'),
-            ],
-          ),
-        ),
         Slider(
           value: _currentPosition.toDouble(),
           min: 0,
@@ -76,15 +65,18 @@ class _FinderTimelineState extends State<FinderTimeline> {
   }
 
   Widget buildContentWidget(TimelineData data) {
+    widget.refreshTitle("${data.week}w ${data.day}d ${data.hour}h");
     if (data.type == TimelineType.position) {
-      return FinderPlan(
-          image: const AssetImage('assets/images/map.png'),
-          markers: [
-            Offset(
-                (data.value as PositionData).x, (data.value as PositionData).y)
-          ]);
+      return PhoneMap(
+          day: data.day.toString(),
+          hour: data.hour.toString(),
+          placeName: (data.value as PositionData).name,
+          placeAddress: (data.value as PositionData).address,
+          placeAsset: (data.value as PositionData).asset);
     } else if (data.type == TimelineType.heartbeat) {
       return FinderHealth(bpm: data.value as int, hour: data.hour.toString(), calories: 345, exerciseMinutes: 23, steps: 4532,);
+    } else if (data.type == TimelineType.image) {
+      return FinderImage(assetName: data.value as String);
     } else {
       return Container();
     }

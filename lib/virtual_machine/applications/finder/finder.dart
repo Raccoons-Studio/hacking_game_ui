@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
@@ -29,6 +30,7 @@ class FinderApplication extends StatefulWidget {
 class _FinderApplicationState extends State<FinderApplication> {
   Directory? _currentDirectory;
   Files? _currentFile;
+  String? _title;
 
   @override
   void initState() {
@@ -36,10 +38,20 @@ class _FinderApplicationState extends State<FinderApplication> {
     _currentDirectory = widget.rootDirectory;
   }
 
+  void setTitle(String title) {
+    scheduleMicrotask(() {
+      setState(() {
+        _title = title;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MacosScaffold(
       toolBar: ToolBar(
+        centerTitle: true,
+        title: _title != null ? Text(_title!) : Text(''),
         alignment: Alignment.centerLeft,
         actions: buildActions(),
       ),
@@ -92,7 +104,7 @@ class _FinderApplicationState extends State<FinderApplication> {
         tooltipMessage: 'Go back',
       ));
     }
-    if (_currentFile?.parent != null) {
+    if (_currentFile != null) {
       actions.add(ToolBarIconButton(
         icon: const MacosIcon(
           CupertinoIcons.check_mark,
@@ -106,6 +118,17 @@ class _FinderApplicationState extends State<FinderApplication> {
         showLabel: true,
         tooltipMessage: 'Close',
       ));
+      actions.add(ToolBarIconButton(
+        icon: const MacosIcon(
+          CupertinoIcons.question_diamond,
+        ),
+        onPressed: () {
+          
+        },
+        label: 'Evidence',
+        showLabel: true,
+        tooltipMessage: 'Mark as evidence',
+      ));
     }
     return actions;
   }
@@ -113,16 +136,6 @@ class _FinderApplicationState extends State<FinderApplication> {
   Widget buildDisplayFile() {
     if (_currentFile == null) {
       return Container();
-    }
-    if (_currentFile!.type == EvidenceType.image) {
-      return FutureBuilder<String>(
-          future: widget.maestro.getAssetContent(_currentFile!),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return FinderImage(assetName: snapshot.data!);
-            }
-            return const Center(child: CircularProgressIndicator());
-          });
     }
     if (_currentFile!.type == EvidenceType.text) {
       return FutureBuilder(
@@ -137,11 +150,13 @@ class _FinderApplicationState extends State<FinderApplication> {
           future: widget.maestro.getTextContent(_currentFile!));
     }
     if (_currentFile!.type == EvidenceType.position ||
+        _currentFile!.type == EvidenceType.rearCamera ||
+        _currentFile!.type == EvidenceType.frontCamera ||
         _currentFile!.type == EvidenceType.heartbeat) {
       return FutureBuilder<List<TimelineData>>(
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return FinderTimeline(timelines: snapshot.data!);
+              return FinderTimeline(timelines: snapshot.data!, refreshTitle: setTitle);
             }
             return const Center(child: CircularProgressIndicator());
           },

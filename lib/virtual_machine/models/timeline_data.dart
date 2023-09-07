@@ -1,4 +1,5 @@
 enum TimelineType {
+  image,
   position,
   heartbeat,
   note,

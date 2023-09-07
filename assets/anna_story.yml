@@ -6,7 +6,52 @@ characters:
     name: Anna
     avatar: images/Anna_avatar.jpg
     wallpaper: images/Anna_wallpaper.jpg
-    weekAvailability: 0
+    weekAvailability: 1
+  - ID: MAE
+    name: Mae
+    avatar: images/Anna_avatar.jpg
+    wallpaper: images/Anna_wallpaper.jpg
+    weekAvailability: 2
+  - ID: KELLOWAY
+    name: M. Kelloway
+    avatar: images/Anna_avatar.jpg
+    wallpaper: images/Anna_wallpaper.jpg
+    weekAvailability: 3
+  - ID: KELLOWAY
+    name: M. Kelloway
+    avatar: images/Anna_avatar.jpg
+    wallpaper: images/Anna_wallpaper.jpg
+    weekAvailability: 4
+  - ID: KELLOWAY
+    name: M. Kelloway
+    avatar: images/Anna_avatar.jpg
+    wallpaper: images/Anna_wallpaper.jpg
+    weekAvailability: 5
+  - ID: KELLOWAY
+    name: M. Kelloway
+    avatar: images/Anna_avatar.jpg
+    wallpaper: images/Anna_wallpaper.jpg
+    weekAvailability: 6
+  - ID: KELLOWAY
+    name: M. Kelloway
+    avatar: images/Anna_avatar.jpg
+    wallpaper: images/Anna_wallpaper.jpg
+    weekAvailability: 7
+  - ID: KELLOWAY
+    name: M. Kelloway
+    avatar: images/Anna_avatar.jpg
+    wallpaper: images/Anna_wallpaper.jpg
+    weekAvailability: 8
+  - ID: KELLOWAY
+    name: M. Kelloway
+    avatar: images/Anna_avatar.jpg
+    wallpaper: images/Anna_wallpaper.jpg
+    weekAvailability: 9
+  - ID: KELLOWAY
+    name: M. Kelloway
+    avatar: images/Anna_avatar.jpg
+    wallpaper: images/Anna_wallpaper.jpg
+    weekAvailability: 10
 places:
   - ID: REPAIR_SHOP
     name: Phone's repair
