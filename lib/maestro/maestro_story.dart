@@ -273,11 +273,11 @@ class MaestroStory extends Maestro {
   }
 
   @override
-  Future<void> load(String saveID) async {
-    StoryEngine story = await SaveAndLoadEngine.loadStoryEngine(saveID);
-    //var integrity = await this.checkIntegrity(story);
-    Player player = getSamplePlayer();
-    _dataBaseEngine = DataBaseEngine(story, player);
+  Future<void> load(int slot) async {
+    StoryEngine story = await SaveAndLoadEngine.loadStoryEngine("anna_story.yml");
+    Player? p = await SaveAndLoadEngine.loadPlayer(slot);
+    p ??= getSamplePlayer();
+    _dataBaseEngine = DataBaseEngine(story, p);
   }
 
   @override
@@ -344,14 +344,14 @@ class MaestroStory extends Maestro {
   }
 
   @override
-  Future<void> save() {
-    // TODO: implement save
-    throw UnimplementedError();
+  Future<void> save(int slot) async {
+    Player p = await _dataBaseEngine!.getPlayer();
+    SaveAndLoadEngine.savePlayer(p, slot);
   }
 
   @override
   Future<void> start() async {
-    await load("anna_story.yml");
+    await load(0);
     if (kDebugMode) {
       await goTo(1, 1, 19);
     } else {

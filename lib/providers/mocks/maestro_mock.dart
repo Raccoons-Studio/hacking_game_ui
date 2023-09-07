@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:hacking_game_ui/engine/model_engine.dart';
+import 'package:hacking_game_ui/engine/player_engine.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_characters_selector.dart';
 import 'package:hacking_game_ui/virtual_machine/models/cinematic.dart';
@@ -29,7 +30,7 @@ class MaestroMock extends Maestro {
   }
 
   @override
-  Future<void> load(String saveID) async {
+  Future<void> load(int slot) async {
     _state = _saved;
     super.streamController.add(_state);
   }
@@ -60,7 +61,7 @@ class MaestroMock extends Maestro {
   }
 
   @override
-  Future<void> save() async {
+  Future<void> save(int slot) async {
     _saved = _state;
   }
 

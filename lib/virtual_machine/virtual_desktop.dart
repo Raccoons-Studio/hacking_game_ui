@@ -8,6 +8,7 @@ import 'package:hacking_game_ui/utils/game_date.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/cinematic/cinematic_display.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder.dart';
+import 'package:hacking_game_ui/virtual_machine/applications/parameters/parameters.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_characters_selector.dart';
 import 'package:hacking_game_ui/virtual_machine/models/application.dart';
 import 'package:hacking_game_ui/virtual_machine/models/cinematic.dart';
@@ -176,6 +177,15 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
               }
               return StoryEditor(
                   story: snapshot.data!, maestro: widget.maestro);
+            });
+      case 'Settings':
+        return FutureBuilder<StoryEngine>(
+            future: widget.maestro.getStory(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return Container();
+              }
+              return Parameters(widget.maestro);
             });
       case 'Cinematic':
         setState(() {

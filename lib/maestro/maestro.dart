@@ -10,6 +10,8 @@ import 'package:hacking_game_ui/virtual_machine/models/directory_and_files.dart'
 import 'package:hacking_game_ui/virtual_machine/models/scrollable_data.dart';
 import 'package:hacking_game_ui/virtual_machine/models/timeline_data.dart';
 
+import '../engine/player_engine.dart';
+
 class MaestroState {
   int hour = 0;
   int day = 0;
@@ -62,9 +64,9 @@ abstract class Maestro {
 
   Future<void> submitEvidences(String characterID);
 
-  Future<void> load(String saveID);
+  Future<void> load(int load);
 
-  Future<void> save();
+  Future<void> save(int slot);
 
   Future<List<Character>> getAvailableCharacters();
 
