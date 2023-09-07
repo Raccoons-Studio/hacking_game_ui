@@ -65,7 +65,7 @@ class MaestroStory extends Maestro {
     Player p = await _dataBaseEngine!.getPlayer();
     StoryEngine s = await _dataBaseEngine!.getStory();
     for (CharacterEngine c in s.characters) {
-      if (c.weekAvailability >= p.currentWeek) {
+      if (p.currentWeek >=  c.weekAvailability) {
         characters.add(Character(
             characterID: c.ID,
             name: c.name,
@@ -111,34 +111,25 @@ class MaestroStory extends Maestro {
       var characterDirectory =
           Directory(characters[i].characterID, characters[i].name, [], []);
       // We add a directory for each weeks
-      for (int j = 0; j <= p.currentWeek; j++) {
-        var weekDirectory = Directory("Week $j", "Week $j", [], []);
-        // We add a file for each revealed evidence
-        for (ElementEngine e in s.elements) {
-          if (e.week == j && e.characterID == characters[i].characterID) {
-            for (String evidenceID in p.revealedElements) {
-              if (e.ID == evidenceID) {
-                // If evidence type is other than image, we check if an evidence is already in the weekDirectory
-                if (e.type != EvidenceType.image) {
-                  bool alreadyInDirectory = false;
-                  for (Files f in weekDirectory.files) {
-                    if (f.type == e.type) {
-                      alreadyInDirectory = true;
-                    }
-                  }
-                  if (!alreadyInDirectory) {
-                    weekDirectory.files.add(Files(e.ID, e.type.name, e.type,
-                        description: e.description));
-                  }
-                } else {
-                  weekDirectory.files.add(
-                      Files(e.ID, e.type.name, e.type, description: e.description));
+      // We add a file for each revealed evidence
+      for (ElementEngine e in s.elements) {
+        if (e.characterID == characters[i].characterID) {
+          for (String evidenceID in p.revealedElements) {
+            if (e.ID == evidenceID) {
+              // If evidence type is other than image, we check if an evidence is already in the weekDirectory
+              bool alreadyInDirectory = false;
+              for (Files f in characterDirectory.files) {
+                if (f.type == e.type && f.name == "Week ${e.week}") {
+                  alreadyInDirectory = true;
                 }
+              }
+              if (!alreadyInDirectory) {
+                characterDirectory.files.add(Files(e.ID, "Week ${e.week}", e.type,
+                    description: e.description));
               }
             }
           }
         }
-        characterDirectory.subdirectories.add(weekDirectory);
       }
       currentDirectory.subdirectories.add(characterDirectory);
     }
@@ -158,8 +149,8 @@ class MaestroStory extends Maestro {
         ElementEngine nsfwLevelElement = _getClosestNsfwElement(characterID,
             e.type, e.week, e.day, e.hour, p.nsfwLevel, s.elements);
         if (!evidences.any((element) => element.type == e.type)) {
-          evidences.add(Files(
-              nsfwLevelElement.ID, nsfwLevelElement.type.name, nsfwLevelElement.type,
+          evidences.add(Files(nsfwLevelElement.ID, nsfwLevelElement.type.name,
+              nsfwLevelElement.type,
               description: nsfwLevelElement.description));
         }
       }
@@ -216,8 +207,8 @@ class MaestroStory extends Maestro {
             e.type, e.week, e.day, e.hour, p.nsfwLevel, s.elements);
         // If evidences doesn't already contains an evidence of this type
         if (!evidences.any((element) => element.type == e.type)) {
-          evidences.add(Files(
-              nsfwLevelElement.ID, nsfwLevelElement.type.name, nsfwLevelElement.type,
+          evidences.add(Files(nsfwLevelElement.ID, nsfwLevelElement.type.name,
+              nsfwLevelElement.type,
               description: nsfwLevelElement.description));
         }
       }
@@ -408,22 +399,23 @@ class MaestroStory extends Maestro {
     // TODO: implement getContacts
     throw UnimplementedError();
   }
-  
+
   @override
   Future<StoryEngine> getStory() async {
     return await _dataBaseEngine!.getStory();
   }
-  
+
   @override
   Future<void> goTo(int week, int day, int hour) async {
     // Reset player evidences
     Player p = await _dataBaseEngine!.getPlayer();
     p.revealedElements = [];
     p.currentDay = 1;
-    p.currentWeek = 0;
+    p.currentWeek = 1;
     p.currentHour = 7;
 
-    while(p.currentWeek != week || p.currentDay != day || p.currentHour != hour) {
+    while (
+        p.currentWeek != week || p.currentDay != day || p.currentHour != hour) {
       await nextHour(true);
       p = await _dataBaseEngine!.getPlayer();
     }

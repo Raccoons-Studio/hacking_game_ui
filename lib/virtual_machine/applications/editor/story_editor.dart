@@ -21,11 +21,11 @@ class StoryEditor extends StatefulWidget {
 class _StoryEditorState extends State<StoryEditor> {
   EvidenceType dropdownValue = EvidenceType.position;
   CharacterEngine? selectedCharacter;
-  int selectedWeek = 0;
+  int selectedWeek = 1;
   int selectedDay = 1;
   List<CharacterEngine> characters = [];
   List<ElementEngine> filteredElements = [];
-  List<int> weeks = List<int>.generate(10, (index) => index);
+  List<int> weeks = List<int>.generate(10, (index) => index + 1);
   List<int> days = List<int>.generate(7, (index) => index + 1);
   EditorView selectedView = EditorView.Elements;
 
