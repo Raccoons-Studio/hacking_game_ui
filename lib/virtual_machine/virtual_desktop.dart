@@ -274,7 +274,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
       children: <Widget>[
         Image.asset(
           'assets/wallpaper.jpg',
-          fit: BoxFit.fill,
+          fit: BoxFit.cover,
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
         ),
