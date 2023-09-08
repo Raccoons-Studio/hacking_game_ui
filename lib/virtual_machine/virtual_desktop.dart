@@ -230,13 +230,13 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                 child: GestureDetector(
                   onTap: () async {
                     if (applications[index].name == 'Next') {
-                      if (!await widget.maestro.nextHour(false)) {
+                      if (!await widget.maestro.nextHour(false, true)) {
                         displayComment(
                             "I think I need to collect more evidences before going to the next hour");
                       }
                     }
                     if (applications[index].name == 'Next Dev') {
-                      await widget.maestro.nextHour(true);
+                      await widget.maestro.nextHour(true, true);
                     } else {
                       setState(() {
                         if (_currentApplication == applications[index]) {

@@ -36,7 +36,7 @@ class MaestroMock extends Maestro {
   }
 
   @override
-  Future<bool> nextHour(bool devMode) async {
+  Future<bool> nextHour(bool devMode, bool increment) async {
     // TODO : Check if every evidences are collected
     // TODO : Check at the end of the day if every evidences are marked
     // TODO : Check at the end of the week if every evidences are submitted

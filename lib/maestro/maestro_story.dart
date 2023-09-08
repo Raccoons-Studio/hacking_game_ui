@@ -66,7 +66,7 @@ class MaestroStory extends Maestro {
     Player p = await _dataBaseEngine!.getPlayer();
     StoryEngine s = await _dataBaseEngine!.getStory();
     for (CharacterEngine c in s.characters) {
-      if (p.currentWeek >=  c.weekAvailability) {
+      if (p.currentWeek >= c.weekAvailability) {
         characters.add(Character(
             characterID: c.ID,
             name: c.name,
@@ -125,7 +125,8 @@ class MaestroStory extends Maestro {
                 }
               }
               if (!alreadyInDirectory) {
-                characterDirectory.files.add(Files(e.ID, "Week ${e.week}", e.type,
+                characterDirectory.files.add(Files(
+                    e.ID, "Week ${e.week}", e.type,
                     description: e.description));
               }
             }
@@ -274,14 +275,15 @@ class MaestroStory extends Maestro {
 
   @override
   Future<void> load(int slot) async {
-    StoryEngine story = await SaveAndLoadEngine.loadStoryEngine("anna_story.yml");
+    StoryEngine story =
+        await SaveAndLoadEngine.loadStoryEngine("anna_story.yml");
     Player? p = await SaveAndLoadEngine.loadPlayer(slot);
     p ??= getSamplePlayer();
     _dataBaseEngine = DataBaseEngine(story, p);
   }
 
   @override
-  Future<bool> nextHour(bool devMode) async {
+  Future<bool> nextHour(bool devMode, bool increment) async {
     Player p = await _dataBaseEngine!.getPlayer();
 
     if (devMode) {
@@ -294,21 +296,22 @@ class MaestroStory extends Maestro {
     }
 
     // Check if every evidences are collected
-    for (var currentEvidence in await this.getAllCurrentEvidence()) {
-      if (!p.revealedElements.contains(currentEvidence.evidenceID)) {
-        return false;
+    if (increment) {
+      for (var currentEvidence in await this.getAllCurrentEvidence()) {
+        if (!p.revealedElements.contains(currentEvidence.evidenceID)) {
+          return false;
+        }
       }
-    }
-
-    if (p.currentHour >= 22) {
-      p.currentHour = 7;
-      p.currentDay++;
-      if (p.currentDay == 7) {
-        p.currentDay = 0;
-        p.currentWeek++;
+      if (p.currentHour >= 22) {
+        p.currentHour = 7;
+        p.currentDay++;
+        if (p.currentDay == 7) {
+          p.currentDay = 0;
+          p.currentWeek++;
+        }
+      } else {
+        p.currentHour += 3;
       }
-    } else {
-      p.currentHour += 3;
     }
 
     // Search if we need to play a cinematic
@@ -355,7 +358,7 @@ class MaestroStory extends Maestro {
     if (kDebugMode) {
       await goTo(1, 1, 19);
     } else {
-      await nextHour(false);
+      await nextHour(false, false);
     }
   }
 
@@ -424,7 +427,7 @@ class MaestroStory extends Maestro {
 
     while (
         p.currentWeek != week || p.currentDay != day || p.currentHour != hour) {
-      await nextHour(true);
+      await nextHour(true, true);
       p = await _dataBaseEngine!.getPlayer();
     }
   }
