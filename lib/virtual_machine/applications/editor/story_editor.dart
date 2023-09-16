@@ -1,10 +1,10 @@
 import 'dart:convert';
+import 'dart:html' as html;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
-import 'dart:html' as html;
 import 'package:json2yaml/json2yaml.dart';
 
 enum EditorView { Elements, Cases, Characters, Cinematics }
@@ -353,8 +353,106 @@ class _StoryEditorState extends State<StoryEditor> {
   }
 
   Widget buildCasesList() {
-    // Add functionality to display cases
-    return Container();
+    List<CaseEngine> cases = widget.story.cases
+        .where((c) => c.week == selectedWeek)
+        .toList();
+
+    return ListView(
+      children: <Widget>[
+        ...cases.map((c) => buildCaseTile(c)).toList(),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: ElevatedButton(
+            child: Text('Add Case'),
+            onPressed: () {
+              setState(() {
+                widget.story.cases.add(CaseEngine('', widget.story.characters[0].ID, "", '', 1));
+              });
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget buildCaseTile(CaseEngine caseEngine) {
+    return Column(
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            DropdownButton<CharacterEngine>(
+              value: characters.firstWhere(
+                (character) => character.ID == caseEngine.characterID,
+              ),
+              items: characters.map((CharacterEngine character) {
+                return DropdownMenuItem(
+                  value: character,
+                  child: Text(character.name),
+                );
+              }).toList(),
+              onChanged: (CharacterEngine? newValue) {
+                setState(() {
+                  if (newValue != null) {
+                    caseEngine.characterID = newValue.ID;
+                  }
+                });
+              },
+            ),
+            DropdownButton<int>(
+              value: caseEngine.week,
+              items: weeks.map((int week) {
+                return DropdownMenuItem(
+                  value: week,
+                  child: Text(week.toString()),
+                );
+              }).toList(),
+              onChanged: (int? newValue) {
+                setState(() {
+                  if (newValue != null) {
+                    caseEngine.week = newValue;
+                  }
+                });
+              },
+            ),
+            Expanded(
+              child: TextField(
+                controller: TextEditingController(text: caseEngine.name),
+                decoration: InputDecoration(hintText: "Case Name"),
+                onChanged: (String newValue) {
+                  caseEngine.name = newValue;
+                },
+              ),
+            ),
+            Expanded(
+              child: TextField(
+                controller: TextEditingController(text: caseEngine.description),
+                decoration: InputDecoration(hintText: "Case Description"),
+                onChanged: (String newValue) {
+                  caseEngine.description = newValue;
+                },
+              ),
+            ),
+          ],
+        ),
+        Container(
+          child: caseEngine.resolution != null
+              ? buildCinematic(caseEngine.resolution!)
+              : Container(),
+        ),
+        caseEngine.resolution != null
+            ? Container()
+            : ElevatedButton(
+                child: Text('Add Cinematic'),
+                onPressed: () {
+                  setState(() {
+                    caseEngine.resolution = CinematicEngine(
+                        '', '', caseEngine.week, 1, 7, [],
+                        nsfwLevel: 0);
+                  });
+                },
+              ),
+      ],
+    );
   }
 
   Widget buildCharactersList() {
@@ -431,9 +529,12 @@ class _StoryEditorState extends State<StoryEditor> {
                 });
               },
             ),
-            ElevatedButton(onPressed: () {
-              widget.maestro.goTo(cinematic.week, cinematic.day, cinematic.hour);
-            }, child: Text("Preview"))
+            ElevatedButton(
+                onPressed: () {
+                  widget.maestro
+                      .goTo(cinematic.week, cinematic.day, cinematic.hour);
+                },
+                child: Text("Preview"))
           ],
         ),
         ...cinematic.sequences

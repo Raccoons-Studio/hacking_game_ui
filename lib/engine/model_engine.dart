@@ -221,9 +221,10 @@ class CaseEngine {
   String name;
   String description;
   int week;
+  CinematicEngine? resolution;
 
   CaseEngine(
-      this.ID, this.characterID, this.name, this.description, this.week);
+      this.ID, this.characterID, this.name, this.description, this.week, {this.resolution});
 
   Map<String, dynamic> toMap() {
     return {
@@ -232,6 +233,7 @@ class CaseEngine {
       'name': name,
       'description': description,
       'week': week,
+      'resolution': resolution,
     };
   }
 
@@ -242,6 +244,7 @@ class CaseEngine {
       map['name'],
       map['description'],
       map['week'],
+      resolution: map['resolution']
     );
   }
 }
