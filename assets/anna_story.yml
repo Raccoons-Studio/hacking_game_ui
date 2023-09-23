@@ -1460,6 +1460,95 @@ elements:
     relatedCaseID:
     nsfwLevel: 0
 cases:
+  - ID: e00f79d8-2721-4761-bac9-b9fa55a6a2b5
+    characterID: ANNA
+    name: Anna stalks her teacher
+    description:
+    week: 1
+    resolution:
+      ID: bdc36cd1-6f87-4d8e-950b-dc3bc428faab
+      name: bdc36cd1-6f87-4d8e-950b-dc3bc428faab
+      week: 1
+      day: 1
+      hour: 7
+      sequences:
+        - cinematicAsset: ANNA_CASE1_RESOLUTION_01
+          cinematicConversations:
+            - character: Me
+              text: "But of course everything is clear now!"
+            - character: Me
+              text: "Anna follows her teacher in the evening, observes him during his lessons, writes him a letter."
+            - character: Me
+              text: "Anna must be in love with her teacher! She's an anonymous admirer!"
+            - character: Me
+              text: "Okay, it's not a very interesting secret and it doesn't violate any laws."
+            - character: Me
+              text: I might have preferred that Anna hid a corpse in her basement or that she was a stripper at night.
+            - character: Me
+              text: "But I think I can already use this to have a little fun!"
+      nsfwLevel: 0
+    blackmail:
+      conversationID: fd8dfb65-0a05-4a08-9234-24df03c8a9f4
+      contactID:
+      week: 1
+      day: 1
+      hour: 7
+      isNameRevealed: false
+      conversation:
+        - content: "Hello Anna ! I want to talk with you about your little secret"
+          isPlayer: true
+        - content: "Who are you ?!"
+          isPlayer: false
+        - content: "It doesn't matter who I am, what's important is your little secret with your teacher"
+          isPlayer: true
+        - content: "What ?! Who are you ? You follow me, right?"
+          isPlayer: false
+        - content: "Calm down Anna, I just want to chat!"
+          isPlayer: true
+        - content: "Fuck you, I don't argue with perverts!"
+          isPlayer: false
+        - content: "No problem, if you don't want to talk about your little secret, I'll go talk about it with your teacher. From that evening when you observed him at his window, from the anonymous letter you left him."
+          isPlayer: true
+        - content: "Who the fuck are you? How do you know that ? Are you spying on me motherfucker?"
+          isPlayer: false
+        - content: "Anna, calm down! I mean no harm!"
+          isPlayer: true
+        - content: "What do you want then?"
+          isPlayer: false
+        - content: "I suggest you keep your little secret for me if you complete two challenges!"
+          isPlayer: true
+        - content: "Ok I hear you !"
+          isPlayer: false
+        - content: The first will be to go see your teacher at the end of his lesson and accidentally drop his phone
+          isPlayer: true
+        - content: "But you're sick! He's going to kill me and be mad at me!"
+          isPlayer: false
+        - content: "I think it's better than him knowing that you're following him in secret!"
+          isPlayer: true
+        - content: "You bastard !"
+          isPlayer: false
+        - content: My second challenge is for you to go say hello to a friend for me.
+          isPlayer: true
+        - content: "What kind of friends do assholes like you have?"
+          isPlayer: false
+        - content: "In truth he's not really a friend, I know him very little in fact, but he has done me a favor several times. Do you know the guy from the phone store?"
+          isPlayer: true
+        - content: Yes he repaired my phone for free last week
+          isPlayer: false
+        - content: "Same for me! I had several problems and each time he did me a favor by repairing my equipment for free or at a low price!"
+          isPlayer: true
+        - content: "And ?"
+          isPlayer: false
+        - content: "I think you're his type of girl! Go to the store and do a little charming act to thank him for helping us so kindly!"
+          isPlayer: true
+        - content: "But are you sick or what? Ok he's not disgusting but don't mess around, I'm not a whore!"
+          isPlayer: false
+        - content: "I didn't ask you to sleep with him, stop! I just asked you to go visit him and be nice to him like he was nice to both of us."
+          isPlayer: true
+        - content: "Ok you sick person! But then forget about me!"
+          isPlayer: false
+        - content: "I'll forget your secret forever, I promise!"
+          isPlayer: true
 cinematics:
   - ID: INTRO
     name: Introduction

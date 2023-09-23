@@ -61,11 +61,13 @@ class CharacterEngine {
   String ID;
   String name;
   String avatar;
+  String unrevealedName;
   String wallpaper;
   int weekAvailability;
+  bool isPlayable;
 
   CharacterEngine(
-      this.ID, this.name, this.weekAvailability, this.avatar, this.wallpaper);
+      this.ID, this.name, this.weekAvailability, this.avatar, this.wallpaper, {this.isPlayable = false, this.unrevealedName = ""});
   
   Map<String, dynamic> toMap() {
     return {
@@ -74,6 +76,8 @@ class CharacterEngine {
       'avatar': avatar,
       'wallpaper': wallpaper,
       'weekAvailability': weekAvailability,
+      'unrevealedName': unrevealedName,
+      'isPlayable': isPlayable,
     };
   }
 
@@ -84,34 +88,8 @@ class CharacterEngine {
       map['weekAvailability'],
       map['avatar'],
       map['wallpaper'],
-    );
-  }
-}
-
-class ContactEngine {
-  String ID;
-  String name;
-  String avatar;
-  int weekAvailability;
-
-  ContactEngine(
-      this.ID, this.name, this.weekAvailability, this.avatar);
-  
-  Map<String, dynamic> toMap() {
-    return {
-      'ID': ID,
-      'name': name,
-      'avatar': avatar,
-      'weekAvailability': weekAvailability,
-    };
-  }
-
-  static ContactEngine fromMap(Map<String, dynamic> map) {
-    return ContactEngine(
-      map['ID'],
-      map['name'],
-      map['weekAvailability'],
-      map['avatar'],
+      unrevealedName: map['unrevealedName'] ?? "",
+      isPlayable: map['isPlayable'] ?? false,
     );
   }
 }
@@ -222,9 +200,10 @@ class CaseEngine {
   String description;
   int week;
   CinematicEngine? resolution;
+  ConversationEngine? blackmail;
 
   CaseEngine(
-      this.ID, this.characterID, this.name, this.description, this.week, {this.resolution});
+      this.ID, this.characterID, this.name, this.description, this.week, {this.resolution, this.blackmail});
 
   Map<String, dynamic> toMap() {
     return {
@@ -233,18 +212,20 @@ class CaseEngine {
       'name': name,
       'description': description,
       'week': week,
-      'resolution': resolution,
+      'resolution': resolution == null ? "" : resolution!.toMap(),
+      'blackmail': blackmail == null ? "" : blackmail!.toMap(),
     };
   }
 
   static CaseEngine fromMap(Map<String, dynamic> map) {
     return CaseEngine(
       map['ID'],
-      map['characterID'],
-      map['name'],
-      map['description'],
+      map['characterID'] ?? "",
+      map['name'] ?? "",
+      map['description'] ?? "",
       map['week'],
-      resolution: map['resolution']
+      resolution: map['resolution'] == null ? null : CinematicEngine.fromMap(map['resolution']),
+      blackmail: map['blackmail'] == null ? null : ConversationEngine.fromMap(map['blackmail']),
     );
   }
 }
@@ -268,7 +249,7 @@ class CinematicEngine {
       'week': week,
       'day': day,
       'hour': hour,
-      'sequences': sequences.map((x) => x.toMap()).toList(),
+      'sequences': sequences.isEmpty ? "" : sequences.map((x) => x.toMap()).toList(),
       'nsfwLevel': nsfwLevel,
     };
   }
@@ -276,7 +257,7 @@ class CinematicEngine {
   static CinematicEngine fromMap(Map<String, dynamic> map) {
     return CinematicEngine(
       map['ID'],
-      map['name'],
+      map['name'] ?? "",
       map['week'],
       map['day'],
       map['hour'],
@@ -302,7 +283,7 @@ class CinematicSequenceEngine {
 
   static CinematicSequenceEngine fromMap(Map<String, dynamic> map) {
     return CinematicSequenceEngine(
-      map['cinematicAsset'],
+      map['cinematicAsset'] ?? "",
       List<CinematicConversationEngine>.from(map['cinematicConversations']?.map((x) => CinematicConversationEngine.fromMap(x))),
     );
   }
@@ -323,8 +304,65 @@ class CinematicConversationEngine {
 
   static CinematicConversationEngine fromMap(Map<String, dynamic> map) {
     return CinematicConversationEngine(
-      map['character'],
-      map['text'],
+      map['character'] ?? "",
+      map['text'] ?? "",
+    );
+  }
+}
+
+class ConversationEngine {
+  String conversationID;
+  String contactID;
+  int week;
+  int day;
+  int hour;
+  bool isNameRevealed;
+  List<ConversationBubbleDataEngine> conversation;
+
+  ConversationEngine(this.conversationID, this.contactID, this.week, this.day, this.hour, this.conversation, {this.isNameRevealed = false});
+
+  Map<String, dynamic> toMap(){
+    return {
+      'conversationID': conversationID,
+      'contactID': contactID,
+      'week': week,
+      'day': day,
+      'hour': hour,
+      'isNameRevealed': isNameRevealed,
+      'conversation': conversation.map((bubble) => bubble.toMap()).toList(),
+    };
+  }
+  
+  static ConversationEngine fromMap(Map<String, dynamic> map){
+    return ConversationEngine(
+      map['conversationID'],
+      map['contactID'] ?? "",
+      map['week'],
+      map['day'],
+      map['hour'],
+      map['conversation'].map<ConversationBubbleDataEngine>((bubbleMap) => ConversationBubbleDataEngine.fromMap(bubbleMap)).toList(),
+      isNameRevealed: map['isNameRevealed'],
+    );
+  }
+}
+
+class ConversationBubbleDataEngine {
+  String content;
+  bool isPlayer;
+
+  ConversationBubbleDataEngine(this.isPlayer, this.content);  
+
+  Map<String, dynamic> toMap(){
+    return {
+      'content': content,
+      'isPlayer': isPlayer,
+    };
+  }
+
+  static ConversationBubbleDataEngine fromMap(Map<String, dynamic> map){
+    return ConversationBubbleDataEngine(
+      map['isPlayer'],
+      map['content'],
     );
   }
 }

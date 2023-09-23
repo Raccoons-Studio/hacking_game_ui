@@ -90,7 +90,7 @@ abstract class Maestro {
 
   Future<Map<String, List<ConversationData>>> getConversations();
 
-  Future<List<ContactEngine>> getContacts();
+  Future<List<CharacterEngine>> getContacts();
 
   @override
   static Future<List<IntegrityError>> checkIntegrity(StoryEngine story) async {

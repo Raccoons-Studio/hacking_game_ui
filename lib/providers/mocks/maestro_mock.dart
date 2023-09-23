@@ -338,7 +338,7 @@ class MaestroMock extends Maestro {
   }
   
   @override
-  Future<List<ContactEngine>> getContacts() {
+  Future<List<CharacterEngine>> getContacts() {
     // TODO: implement getContacts
     throw UnimplementedError();
   }
