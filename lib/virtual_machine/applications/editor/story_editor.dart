@@ -34,7 +34,7 @@ class _StoryEditorState extends State<StoryEditor> {
 
   Future<List<CharacterEngine>> getAllCharacters() async {
     characters = widget.story.characters;
-    if (characters.isNotEmpty && !selectedCharacter.isNull)
+    if (characters.isNotEmpty && selectedCharacter != null)
       selectedCharacter = characters[0];
     setState(() {});
     return characters;
