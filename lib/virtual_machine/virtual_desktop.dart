@@ -83,7 +83,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
     return AppBar(
       // If a MaestroState is available, show the current week, day and hour
       title: Text(
-          'Week ${_maestroState!.week} - ${getDayOfWeek(_maestroState!.day)} ${_maestroState!.hour}:00'),
+          'Week ${_maestroState?.week ?? ""} - ${getDayOfWeek(_maestroState?.day ?? 0)} ${_maestroState?.hour ?? ""}:00'),
       backgroundColor: Colors.grey.shade800.withAlpha(50),
     );
   }
@@ -327,7 +327,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                   color: Colors.black,
                   child: Center(
                     child: Text(
-                      'Week ${_maestroState!.week} - ${getDayOfWeek(_maestroState!.day)} ${_maestroState!.hour}:00',
+                      'Week ${_maestroState?.week ?? ""} - ${getDayOfWeek(_maestroState?.day ?? 0)} ${_maestroState?.hour ?? ""}:00',
                       style: TextStyle(color: Colors.white, fontSize: 30),
                     ),
                   )),
