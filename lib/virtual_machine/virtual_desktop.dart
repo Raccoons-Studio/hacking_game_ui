@@ -8,6 +8,7 @@ import 'package:hacking_game_ui/utils/game_date.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/cinematic/cinematic_display.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder.dart';
+import 'package:hacking_game_ui/virtual_machine/applications/messages/messages_viewer.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/parameters/parameters.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_characters_selector.dart';
 import 'package:hacking_game_ui/virtual_machine/models/application.dart';
@@ -110,15 +111,14 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
               }
             });
       case 'Messages':
-        return FutureBuilder<Directory>(
-            future: widget.maestro.getDirectory("/"),
+        return FutureBuilder<StoryEngine>(
+            future: widget.maestro.getStory(),
             builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return FinderApplication(
-                    rootDirectory: snapshot.data!, maestro: widget.maestro);
-              } else {
-                return Container(child: const Text('Loading...'));
+              if (!snapshot.hasData) {
+                return Container();
               }
+              return MessagesViewer(
+                  story: snapshot.data!, maestro: widget.maestro);
             });
       case 'Phones':
         return FutureBuilder<List<Files>>(

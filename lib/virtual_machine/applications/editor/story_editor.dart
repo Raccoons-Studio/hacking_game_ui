@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor_cases.dart';
+import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor_characters.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor_cinematic.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor_conversation.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor_elements.dart';
@@ -91,10 +92,11 @@ class _StoryEditorState extends State<StoryEditor> {
                 : selectedView == EditorView.Cases
                     ? StoryEditorCasesWidget(widget.story, widget.maestro)
                     : selectedView == EditorView.Characters
-                        ? buildCharactersList()
+                        ? StoryEditorCharactersWidget(widget.story, widget.maestro)
                         : selectedView == EditorView.Cinematics 
                           ? StoryEditorCinematicsWidget(widget.story, widget.maestro, widget.story.cinematics)
-                            : StoryEditorConversationWidget(widget.story, widget.maestro),
+                            : selectedView == EditorView.Conversation ? StoryEditorConversationWidget(widget.story, widget.maestro)
+                            : StoryEditorCharactersWidget(widget.story, widget.maestro),
           ),
           ElevatedButton(
             child: Text('Add'),

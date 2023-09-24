@@ -184,18 +184,3 @@ class _StoryEditorCinematicsWidgetState extends State<StoryEditorCinematicsWidge
     );
   }
 }
-
-class StoryEditorCharactersWidget extends StatefulWidget {
-
-  @override 
-  _StoryEditorCharactersWidgetState createState() => _StoryEditorCharactersWidgetState();
-  
-}
-
-class _StoryEditorCharactersWidgetState extends State<StoryEditorCharactersWidget>{
-
-  Widget build (BuildContext context) {
-    // define your character list widget here.
-    return Container();
-  }
-}

@@ -15,6 +15,7 @@ import 'package:hacking_game_ui/virtual_machine/models/conversation_data.dart';
 import 'package:hacking_game_ui/virtual_machine/models/directory_and_files.dart';
 import 'package:hacking_game_ui/virtual_machine/models/scrollable_data.dart';
 import 'package:hacking_game_ui/virtual_machine/models/timeline_data.dart';
+import 'package:intl/intl.dart';
 
 class MaestroStory extends Maestro {
   DataBaseEngine? _dataBaseEngine;
@@ -96,9 +97,63 @@ class MaestroStory extends Maestro {
   }
 
   @override
-  Future<Map<String, List<ConversationData>>> getConversations() {
-    // TODO: implement getConversations
-    throw UnimplementedError();
+  Future<Map<String, List<ConversationData>>> getConversations() async {
+    StoryEngine s = await _dataBaseEngine!.getStory();
+    Player p = await _dataBaseEngine!.getPlayer();
+
+    Map<String, List<ConversationData>> data = {};
+
+    for (var character in s.characters) {
+      var charsConv = s.conversations
+          .where((c) =>
+              c.characterID == character.ID &&
+              ((c.week < p.currentWeek) ||
+                  (c.week == p.currentWeek &&
+                      c.day <= p.currentDay &&
+                      c.hour <= p.currentHour)))
+          .toList();
+
+      charsConv.sort((a, b) => a.week.compareTo(b.week));
+
+      var dataList = charsConv
+          .map((conv) => ConversationData(
+              conv.characterID,
+              convertDialogues(s, conv.characterID, conv.conversation),
+              conv.week,
+              conv.day,
+              conv.hour))
+          .toList();
+
+      for (var solvedCase in p.solvedCases) {
+        var caseEngine = s.cases.firstWhere((ce) => ce.ID == solvedCase);
+        var caseConv = caseEngine.blackmail;
+
+        if (caseConv != null && caseConv.characterID == character.ID) {
+          dataList.add(ConversationData(
+              caseConv.characterID,
+              convertDialogues(s, caseConv.characterID, caseConv.conversation),
+              caseEngine.week,
+              7,
+              22));
+        }
+      }
+
+      if (dataList.isNotEmpty) {
+        data[character.name] = dataList;
+      }
+    }
+    return data;
+  }
+
+  List<ConversationBubbleData> convertDialogues(StoryEngine story,
+      String characterID, List<ConversationBubbleDataEngine> conversations) {
+    return conversations
+        .map((d) => ConversationBubbleData(
+            d.isPlayer
+                ? "Player"
+                : story.characters.firstWhere((c) => c.ID == characterID).name,
+            d.content))
+        .toList();
   }
 
   @override
@@ -356,7 +411,7 @@ class MaestroStory extends Maestro {
   Future<void> start() async {
     await load(0);
     if (kDebugMode) {
-      await goTo(1, 1, 19);
+      await goTo(1, 1, 22);
     } else {
       await nextHour(false, false);
     }
@@ -406,9 +461,29 @@ class MaestroStory extends Maestro {
   }
 
   @override
-  Future<List<CharacterEngine>> getContacts() {
-    // TODO: implement getContacts
-    throw UnimplementedError();
+  Future<List<CharacterEngine>> getContacts() async {
+    StoryEngine s = await _dataBaseEngine!.getStory();
+    Player p = await _dataBaseEngine!.getPlayer();
+
+    List<CharacterEngine> contacts = s.characters.where((character) {
+      bool hasValidConversations = s.conversations.any((conversation) {
+        if (conversation.characterID == character.ID) {
+          if (conversation.week < p.currentWeek ||
+              (conversation.week == p.currentWeek &&
+                  conversation.day < p.currentDay) ||
+              (conversation.week == p.currentWeek &&
+                  conversation.day == p.currentDay &&
+                  conversation.hour <= p.currentHour)) {
+            return true;
+          }
+        }
+        return false;
+      });
+      bool isInSolvedCases = p.solvedCases.contains(character.ID);
+      return hasValidConversations || isInSolvedCases;
+    }).toList();
+
+    return contacts;
   }
 
   @override

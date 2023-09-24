@@ -7,16 +7,43 @@ characters:
     avatar: images/Anna_avatar.jpg
     wallpaper: images/Anna_wallpaper.jpg
     weekAvailability: 1
+    unrevealedName:
+    isPlayable: true
   - ID: MAE
     name: Mae
     avatar: images/Anna_avatar.jpg
     wallpaper: images/Anna_wallpaper.jpg
     weekAvailability: 2
+    unrevealedName:
+    isPlayable: true
   - ID: KELLOWAY
     name: M. Kelloway
     avatar: images/Anna_avatar.jpg
     wallpaper: images/Anna_wallpaper.jpg
     weekAvailability: 3
+    unrevealedName:
+    isPlayable: true
+  - ID: af4fabe1-e651-46b2-8fe7-7d89864a7a1a
+    name: The Hacking Company
+    avatar: images/Hacking_Company_Avatar.jpg
+    wallpaper: images/Hacking_Company_Avatar.jpg
+    weekAvailability: 1
+    unrevealedName:
+    isPlayable: false
+  - ID: f596ad21-b84f-4309-8210-dae297158a99
+    name: Speedy Pizza
+    avatar: images/Speedy_Pizza_Avatar.jpg
+    wallpaper: images/Speedy_Pizza_Avatar.jpg
+    weekAvailability: 1
+    unrevealedName:
+    isPlayable: false
+  - ID: 460c5ffd-d872-4e35-ab6a-9f186bf26a3b
+    name: Phone Repair Shop
+    avatar: images/Phone_Repair_Avatar.jpg
+    wallpaper: images/Phone_Repair_Avatar.jpg
+    weekAvailability: 1
+    unrevealedName:
+    isPlayable: false
 places:
   - ID: REPAIR_SHOP
     name: Phone's repair
@@ -1489,7 +1516,7 @@ cases:
       nsfwLevel: 0
     blackmail:
       conversationID: fd8dfb65-0a05-4a08-9234-24df03c8a9f4
-      contactID:
+      characterID:
       week: 1
       day: 1
       hour: 7
@@ -1806,3 +1833,40 @@ cinematics:
           - character: Me
             text: "Come on, my dear, go give your letter to your teacher!"
     nsfwLevel: 0
+conversations:
+  - conversationID: 62c6d213-e6d5-4f10-9ef0-e9d08bed5473
+    characterID: af4fabe1-e651-46b2-8fe7-7d89864a7a1a
+    week: 1
+    day: 1
+    hour: 7
+    isNameRevealed: false
+    conversation:
+      - content: "Congratulations on purchasing our amazing Spyware! We wish you a good discovery and we will keep you informed with each update. Very exciting things are coming in the next releases! We would like to give you access to your victims' calendars starting next week!"
+        isPlayer: false
+  - conversationID: 2f12fecc-a88f-4b5d-b1b0-3caa2e7942bf
+    characterID: f596ad21-b84f-4309-8210-dae297158a99
+    week: 2
+    day: 1
+    hour: 19
+    isNameRevealed: false
+    conversation:
+      - content: "This evening exclusively, buy one pizza, get one pizza free! See you soon at Speedy Pizza!"
+        isPlayer: false
+  - conversationID: 82925f24-acf7-45e4-bb52-ae97a332f005
+    characterID: 460c5ffd-d872-4e35-ab6a-9f186bf26a3b
+    week: 1
+    day: 1
+    hour: 19
+    isNameRevealed: false
+    conversation:
+      - content: "Your schedule for tomorrow: at customer service from 7:00 a.m. to 5:00 p.m."
+        isPlayer: false
+  - conversationID: 95f74cd2-b7ec-4b54-be13-238e5cb67310
+    characterID: af4fabe1-e651-46b2-8fe7-7d89864a7a1a
+    week: 1
+    day: 1
+    hour: 22
+    isNameRevealed: false
+    conversation:
+      - content: "We hope your first day with our Spyware went well! Do not hesitate to contact support if necessary!"
+        isPlayer: false

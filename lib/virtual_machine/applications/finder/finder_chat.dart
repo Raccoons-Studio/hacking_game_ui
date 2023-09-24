@@ -113,9 +113,11 @@ class GenericConversation extends StatelessWidget {
     super.key,
     required this.conversation,
     required this.scrollController,
+    this.showMarkAsEvidence = true,
   });
 
   final List<ConversationData> conversation;
+  final bool showMarkAsEvidence;
 
   @override
   Widget build(BuildContext context) {
@@ -159,8 +161,8 @@ class GenericConversation extends StatelessWidget {
                 );
               },
             ),
-            EvidenceSwitch(conversation[index].evidenceID,
-                conversation[index].isMarkedAsEvidence),
+            showMarkAsEvidence ? EvidenceSwitch(conversation[index].evidenceID,
+                conversation[index].isMarkedAsEvidence) : Container(),
           ],
         );
       },
