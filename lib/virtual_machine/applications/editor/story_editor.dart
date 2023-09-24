@@ -5,11 +5,12 @@ import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor_cases.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor_cinematic.dart';
+import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor_conversation.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor_elements.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor_filters.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_utils.dart';
 
-enum EditorView { Elements, Cases, Characters, Cinematics }
+enum EditorView { Elements, Cases, Characters, Cinematics, Conversation }
 
 List<int> weeks = List<int>.generate(10, (index) => index + 1);
 List<int> days = List<int>.generate(7, (index) => index + 1);
@@ -91,7 +92,9 @@ class _StoryEditorState extends State<StoryEditor> {
                     ? StoryEditorCasesWidget(widget.story, widget.maestro)
                     : selectedView == EditorView.Characters
                         ? buildCharactersList()
-                        : StoryEditorCinematicsWidget(widget.story, widget.maestro, widget.story.cinematics),
+                        : selectedView == EditorView.Cinematics 
+                          ? StoryEditorCinematicsWidget(widget.story, widget.maestro, widget.story.cinematics)
+                            : StoryEditorConversationWidget(widget.story, widget.maestro),
           ),
           ElevatedButton(
             child: Text('Add'),

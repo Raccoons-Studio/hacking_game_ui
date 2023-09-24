@@ -81,18 +81,8 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
   AppBar buildAppBar() {
     return AppBar(
       // If a MaestroState is available, show the current week, day and hour
-      title: _maestroState != null
-          ? FutureBuilder<String>(
-              future: getDayOfWeek(_maestroState!.day),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return Text(
-                      'Week ${_maestroState!.week} - ${snapshot.data} ${_maestroState!.hour}:00');
-                } else {
-                  return Container();
-                }
-              })
-          : Container(),
+      title: Text(
+          'Week ${_maestroState!.week} - ${getDayOfWeek(_maestroState!.day)} ${_maestroState!.hour}:00'),
       backgroundColor: Colors.grey.shade800.withAlpha(50),
     );
   }
@@ -147,21 +137,15 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                             if (!snapshot.hasData) {
                               return Container();
                             }
-                            return FutureBuilder<String>(
-                                future: getDayOfWeek(_maestroState!.day),
-                                builder: (context, day) {
-                                  if (!day.hasData) {
-                                    return Container();
-                                  }
-                                  return CharacterSelection(
-                                    avatars: nbCharacters.data!.length,
-                                    characters: snapshot.data!,
-                                    maestro: widget.maestro,
-                                    currentDay: day.data!,
-                                    currentHour: "${_maestroState!.hour}:00",
-                                    displayComment: displayComment,
-                                  );
-                                });
+
+                            return CharacterSelection(
+                              avatars: nbCharacters.data!.length,
+                              characters: snapshot.data!,
+                              maestro: widget.maestro,
+                              currentDay: getDayOfWeek(_maestroState!.day),
+                              currentHour: "${_maestroState!.hour}:00",
+                              displayComment: displayComment,
+                            );
                           });
                     });
               } else {
@@ -342,19 +326,11 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
               child: Container(
                   color: Colors.black,
                   child: Center(
-                      child: FutureBuilder<String>(
-                          future: getDayOfWeek(_maestroState!.day),
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              return Text(
-                                'Week ${_maestroState!.week} - ${snapshot.data} ${_maestroState!.hour}:00',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 30),
-                              );
-                            } else {
-                              return CircularProgressIndicator();
-                            }
-                          }))),
+                    child: Text(
+                      'Week ${_maestroState!.week} - ${getDayOfWeek(_maestroState!.day)} ${_maestroState!.hour}:00',
+                      style: TextStyle(color: Colors.white, fontSize: 30),
+                    ),
+                  )),
             ),
           ),
         )

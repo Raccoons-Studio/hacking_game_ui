@@ -1,20 +1,20 @@
-Future<String> getDayOfWeek(int day) async {
+String getDayOfWeek(int day) {
   switch (day) {
     case 0:
-      return Future.value("Monday");
+      return "Monday";
     case 1:
-      return Future.value("Tuesday");
+      return "Tuesday";
     case 2:
-      return Future.value("Wednesday");
+      return "Wednesday";
     case 3:
-      return Future.value("Thursday");
+      return "Thursday";
     case 4:
-      return Future.value("Friday");
+      return "Friday";
     case 5:
-      return Future.value("Saturday");
+      return "Saturday";
     case 6:
-      return Future.value("Sunday");
+      return "Sunday";
     default:
-      return Future.value("Monday");
+      return "Monday";
   }
 }

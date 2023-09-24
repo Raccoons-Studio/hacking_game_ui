@@ -49,7 +49,7 @@ class SaveAndLoadEngine {
     } catch (e) {
       print(e);
     }
-    return StoryEngine("", "", "", [], [], [], [], []);
+    return StoryEngine("", "", "", [], [], [], [], [], []);
   }
 
   static Future<Player?> loadPlayer(int slot) async {

@@ -26,9 +26,10 @@ class StoryEngine {
   List<ElementEngine> elements;
   List<CaseEngine> cases;
   List<CinematicEngine> cinematics;
+  List<ConversationEngine> conversations;
 
   StoryEngine(this.storyID, this.name, this.description, this.characters,
-      this.places, this.elements, this.cases, this.cinematics);
+      this.places, this.elements, this.cases, this.cinematics, this.conversations);
   
   Map<String, dynamic> toMap() {
     return {
@@ -40,6 +41,7 @@ class StoryEngine {
       'elements': elements.map((x) => x.toMap()).toList(),
       'cases': cases.map((x) => x.toMap()).toList(),
       'cinematics': cinematics.map((x) => x.toMap()).toList(),
+      'conversations': conversations.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -53,6 +55,7 @@ class StoryEngine {
       map['elements'] != null ? List<ElementEngine>.from(map['elements']?.map((x) => ElementEngine.fromMap(x))) : [],
       map['cases'] != null ? List<CaseEngine>.from(map['cases']?.map((x) => CaseEngine.fromMap(x))) : [],
       map['cinematics'] != null ? List<CinematicEngine>.from(map['cinematics']?.map((x) => CinematicEngine.fromMap(x))) : [],
+      map['conversations'] != null ? List<ConversationEngine>.from(map['conversations']?.map((x) => ConversationEngine.fromMap(x))) : [],
     );
   }
 }
@@ -312,19 +315,19 @@ class CinematicConversationEngine {
 
 class ConversationEngine {
   String conversationID;
-  String contactID;
+  String characterID;
   int week;
   int day;
   int hour;
   bool isNameRevealed;
   List<ConversationBubbleDataEngine> conversation;
 
-  ConversationEngine(this.conversationID, this.contactID, this.week, this.day, this.hour, this.conversation, {this.isNameRevealed = false});
+  ConversationEngine(this.conversationID, this.characterID, this.week, this.day, this.hour, this.conversation, {this.isNameRevealed = false});
 
   Map<String, dynamic> toMap(){
     return {
       'conversationID': conversationID,
-      'contactID': contactID,
+      'characterID': characterID,
       'week': week,
       'day': day,
       'hour': hour,
@@ -336,7 +339,7 @@ class ConversationEngine {
   static ConversationEngine fromMap(Map<String, dynamic> map){
     return ConversationEngine(
       map['conversationID'],
-      map['contactID'] ?? "",
+      map['characterID'] ?? "",
       map['week'],
       map['day'],
       map['hour'],

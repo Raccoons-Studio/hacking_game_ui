@@ -113,7 +113,8 @@ StoryEngine getSampleStory() {
       places,
       elements,
       cases,
-      cinematics);
+      cinematics,
+      []);
 }
 
 Player getSamplePlayer() {
