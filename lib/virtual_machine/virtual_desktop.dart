@@ -34,13 +34,13 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
   String descriptionContent = "";
 
   List<VirtualApplication> applications = [
-    VirtualApplication('Finder', Icons.file_copy, Colors.blue),
-    VirtualApplication('Messages', Icons.message, Colors.green),
+    VirtualApplication('Finder', Icons.file_copy, Colors.blue, false),
+    VirtualApplication('Messages', Icons.message, Colors.green, false),
     //VirtualApplication('Cinematic', Icons.movie, Colors.purple),
-    VirtualApplication('Phones', Icons.phone, Colors.greenAccent),
-    VirtualApplication('Webcam', Icons.camera_alt, Colors.red),
-    VirtualApplication('Settings', Icons.settings, Colors.grey),
-    VirtualApplication('Next', Icons.skip_next, Colors.orangeAccent),
+    VirtualApplication('Phones', Icons.phone, Colors.greenAccent, true),
+    VirtualApplication('Webcam', Icons.camera_alt, Colors.red, false),
+    VirtualApplication('Settings', Icons.settings, Colors.grey, false),
+    VirtualApplication('Next', Icons.skip_next, Colors.orangeAccent, false),
 
     // Add more applications here
   ];
@@ -51,22 +51,45 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
 
     if (kDebugMode) {
       applications.add(VirtualApplication(
-          'Next Dev', Icons.developer_board, Colors.deepOrange));
-      applications
-          .add(VirtualApplication('Editor', Icons.edit, Colors.deepOrange));
+          'Next Dev', Icons.developer_board, Colors.deepOrange, false));
+      applications.add(
+          VirtualApplication('Editor', Icons.edit, Colors.deepOrange, false));
     }
+
+    widget.maestro.isMessagesNow().then((bool value) => {
+          scheduleMicrotask(() {
+            setState(
+              () {
+                applications
+                    .firstWhere((element) => element.name == 'Messages')
+                    .isNotification = value;
+              },
+            );
+          })
+        });
 
     widget.maestro.maestroStream.listen((event) {
       if (_maestroState == null || _maestroState!.hour != event.hour) {
         setState(() {
           isDateVisible = true;
+          widget.maestro.isMessagesNow().then((bool value) => {
+                scheduleMicrotask(() {
+                  setState(
+                    () {
+                      applications
+                          .firstWhere((element) => element.name == 'Messages')
+                          .isNotification = value;
+                    },
+                  );
+                })
+              });
         });
       } else {
         if (event.isCinematic) {
           setState(() {
             isCinematicPlaying = true;
-            _currentApplication =
-                VirtualApplication("Cinematic", Icons.movie, Colors.purple);
+            _currentApplication = VirtualApplication(
+                "Cinematic", Icons.movie, Colors.purple, false);
           });
         } else {
           setState(() {
@@ -236,6 +259,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                     backgroundColor: applications[index].color,
                     icon: applications[index].icon,
                     tooltip: applications[index].name,
+                    isNotification: applications[index].isNotification,
                   ),
                 ),
               );
@@ -314,7 +338,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                     setState(() {
                       isCinematicPlaying = true;
                       _currentApplication = VirtualApplication(
-                          "Cinematic", Icons.movie, Colors.purple);
+                          "Cinematic", Icons.movie, Colors.purple, false);
                     });
                   } else {
                     setState(() {

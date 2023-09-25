@@ -198,4 +198,9 @@ abstract class Maestro {
   Future<StoryEngine> getStory();
 
   Future<void> goTo(int week, int day, int hour);
+
+  Future<bool> isMessagesNow() async {
+    var conversations = await getConversations();
+    return conversations.values.any((conversation) => conversation.any((c) => c.isNow));
+  }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hacking_game_ui/utils/game_date.dart';
 import 'package:hacking_game_ui/virtual_machine/common/evidence_switch.dart';
 import 'package:hacking_game_ui/virtual_machine/models/conversation_data.dart';
 import 'package:macos_ui/macos_ui.dart';
@@ -143,7 +144,7 @@ class GenericConversation extends StatelessWidget {
               child: Container(
                 margin: const EdgeInsets.all(10),
                 child: Text(
-                  'Week: ${conversation[index].week}, Day: ${conversation[index].day}, Hour: ${conversation[index].hour}',
+                  '${getDayOfWeek(conversation[index].day)} ${conversation[index].hour}:00',
                   style: TextStyle(
                     color: Colors.grey[600],
                   ),

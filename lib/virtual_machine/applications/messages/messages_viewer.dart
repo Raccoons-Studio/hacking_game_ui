@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
+import 'package:hacking_game_ui/utils/game_date.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_chat.dart';
 import 'package:hacking_game_ui/virtual_machine/models/conversation_data.dart';
 
@@ -53,12 +54,12 @@ class _MessagesViewerState extends State<MessagesViewer> {
                                 title: Text(e.key,
                                     style: e.key == _selectedConversationKey
                                         ? TextStyle(color: CupertinoColors.darkBackgroundGray)
-                                        : TextStyle(color: Colors.black)),
+                                        : e.value.last.isNow ? TextStyle(color: Colors.black, fontWeight: FontWeight.bold) : TextStyle(color: Colors.black)),
                                 subtitle: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Text(
-                                        "${e.value.last.day} ${e.value.last.hour}:00"),
+                                        "${getDayOfWeek(e.value.last.day)} ${e.value.last.hour}:00"),
                                     Text(
                                       e.value.last.conversation.last.content,
                                       overflow: TextOverflow.ellipsis,
@@ -99,7 +100,7 @@ class _MessagesViewerState extends State<MessagesViewer> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                      "${e.value.last.day} ${e.value.last.hour}:00"),
+                                      "${getDayOfWeek(e.value.last.day)} ${e.value.last.hour}:00"),
                                   Text(
                                     e.value.last.conversation.last.content,
                                     overflow: TextOverflow.ellipsis,

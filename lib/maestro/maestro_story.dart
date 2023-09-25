@@ -1,8 +1,6 @@
-import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
 import 'package:hacking_game_ui/engine/database_engine.dart';
 import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/engine/player_engine.dart';
@@ -15,7 +13,6 @@ import 'package:hacking_game_ui/virtual_machine/models/conversation_data.dart';
 import 'package:hacking_game_ui/virtual_machine/models/directory_and_files.dart';
 import 'package:hacking_game_ui/virtual_machine/models/scrollable_data.dart';
 import 'package:hacking_game_ui/virtual_machine/models/timeline_data.dart';
-import 'package:intl/intl.dart';
 
 class MaestroStory extends Maestro {
   DataBaseEngine? _dataBaseEngine;
@@ -45,6 +42,7 @@ class MaestroStory extends Maestro {
   Future<List<Character>> getAllCharacters() async {
     StoryEngine p = await _dataBaseEngine!.getStory();
     return p.characters
+        .where((element) => element.isPlayable)
         .map((character) => Character(
             characterID: character.ID,
             name: character.name,
@@ -67,7 +65,7 @@ class MaestroStory extends Maestro {
     Player p = await _dataBaseEngine!.getPlayer();
     StoryEngine s = await _dataBaseEngine!.getStory();
     for (CharacterEngine c in s.characters) {
-      if (p.currentWeek >= c.weekAvailability) {
+      if (p.currentWeek >= c.weekAvailability && c.isPlayable) {
         characters.add(Character(
             characterID: c.ID,
             name: c.name,
@@ -98,6 +96,9 @@ class MaestroStory extends Maestro {
 
   @override
   Future<Map<String, List<ConversationData>>> getConversations() async {
+    if (_dataBaseEngine == null) {
+      return {};
+    }
     StoryEngine s = await _dataBaseEngine!.getStory();
     Player p = await _dataBaseEngine!.getPlayer();
 
@@ -109,7 +110,9 @@ class MaestroStory extends Maestro {
               c.characterID == character.ID &&
               ((c.week < p.currentWeek) ||
                   (c.week == p.currentWeek &&
-                      c.day <= p.currentDay &&
+                      c.day <= p.currentDay) ||
+                      (c.week == p.currentWeek &&
+                      c.day == p.currentDay &&
                       c.hour <= p.currentHour)))
           .toList();
 
@@ -121,7 +124,10 @@ class MaestroStory extends Maestro {
               convertDialogues(s, conv.characterID, conv.conversation),
               conv.week,
               conv.day,
-              conv.hour))
+              conv.hour,
+              isNow: conv.week == p.currentWeek &&
+                  conv.day == p.currentDay &&
+                  conv.hour == p.currentHour))
           .toList();
 
       for (var solvedCase in p.solvedCases) {

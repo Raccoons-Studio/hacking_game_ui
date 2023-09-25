@@ -5,6 +5,7 @@ class VirtualApplication {
   final String name;
   final IconData icon;
   final Color color;
+  bool isNotification;
 
-  VirtualApplication(this.name, this.icon, this.color);
+  VirtualApplication(this.name, this.icon, this.color, this.isNotification);
 }
