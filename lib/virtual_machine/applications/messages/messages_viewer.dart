@@ -9,8 +9,10 @@ import 'package:hacking_game_ui/virtual_machine/models/conversation_data.dart';
 class MessagesViewer extends StatefulWidget {
   final Maestro maestro;
   final StoryEngine story;
+  final bool isBlackMail;
+  final String caseID;
 
-  MessagesViewer({Key? key, required this.maestro, required this.story})
+  MessagesViewer({Key? key, required this.maestro, required this.story, required this.isBlackMail, required this.caseID})
       : super(key: key);
 
   @override

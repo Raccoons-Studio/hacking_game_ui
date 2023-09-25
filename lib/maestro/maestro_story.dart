@@ -387,7 +387,7 @@ class MaestroStory extends Maestro {
           c.hour == p.currentHour) {
         var cinematicNsfw = _getClosestNsfwCinematic(
             c.week, c.day, c.hour, p.nsfwLevel, s.cinematics);
-        state.cinematidID = cinematicNsfw.ID;
+        state.cinematicID = cinematicNsfw.ID;
         state.isCinematic = true;
         break;
       }

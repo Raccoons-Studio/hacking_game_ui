@@ -17,7 +17,9 @@ class MaestroState {
   int day = 0;
   int week = 0;
   bool isCinematic = false;
-  String cinematidID = '';
+  bool isBlackmail = false;
+  String caseID = '';
+  String cinematicID = '';
 }
 
 enum IntegrityErrorType {

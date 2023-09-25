@@ -29,6 +29,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
   VirtualApplication? _currentApplication;
   MaestroState? _maestroState;
   bool isCinematicPlaying = false;
+  bool isBlackmailPlaying = false;
   bool isDescriptionVisible = false;
   bool isDateVisible = false;
   String descriptionContent = "";
@@ -88,12 +89,24 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
         if (event.isCinematic) {
           setState(() {
             isCinematicPlaying = true;
-            _currentApplication = VirtualApplication(
-                "Cinematic", Icons.movie, Colors.purple, false);
+            _currentApplication = applications.firstWhere(
+                (element) => element.name == 'Cinematic');
           });
         } else {
           setState(() {
             isCinematicPlaying = false;
+          });
+        }
+
+        if (!event.isCinematic && event.isBlackmail) {
+          setState(() {
+            isBlackmailPlaying = true;
+            _currentApplication = applications.firstWhere(
+                (element) => element.name == 'Messages');
+          });
+        } else {
+          setState(() {
+            isBlackmailPlaying = false;
           });
         }
       }
@@ -141,7 +154,10 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                 return Container();
               }
               return MessagesViewer(
-                  story: snapshot.data!, maestro: widget.maestro);
+                  story: snapshot.data!, 
+                  maestro: widget.maestro,
+                  isBlackMail: _maestroState!.isBlackmail,
+                  caseID: _maestroState!.caseID);
             });
       case 'Phones':
         return FutureBuilder<List<Files>>(
@@ -199,7 +215,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
           isCinematicPlaying = true;
         });
         return FutureBuilder<Cinematic>(
-            future: widget.maestro.getCinematicData(_maestroState!.cinematidID),
+            future: widget.maestro.getCinematicData(_maestroState!.cinematicID),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
                 return Container();
@@ -210,6 +226,13 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                     setState(() {
                       _currentApplication = null;
                       isCinematicPlaying = false;
+                      if (_maestroState!.isBlackmail) {
+                        setState(() {
+                          isBlackmailPlaying = true;
+                          _currentApplication = applications.firstWhere(
+                              (element) => element.name == 'Messages');
+                        });
+                      }
                     });
                   });
             });
@@ -236,20 +259,20 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                 padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 child: GestureDetector(
                   onTap: () async {
-                    if (applications[index].name == 'Next') {
+                    if (applications[index].name == 'Next' && !isBlackmailPlaying) {
                       if (!await widget.maestro.nextHour(false, true)) {
                         displayComment(
                             "I think I need to collect more evidences before going to the next hour");
                       }
                     }
-                    if (applications[index].name == 'Next Dev') {
+                    if (applications[index].name == 'Next Dev' && !isBlackmailPlaying) {
                       await widget.maestro.nextHour(true, true);
                     } else {
                       setState(() {
-                        if (_currentApplication == applications[index]) {
+                        if (_currentApplication == applications[index] && !isBlackmailPlaying) {
                           _currentApplication = null;
                           return;
-                        } else {
+                        } else if (!isBlackmailPlaying){
                           _currentApplication = applications[index];
                         }
                       });

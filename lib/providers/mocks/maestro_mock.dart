@@ -19,7 +19,7 @@ class MaestroMock extends Maestro {
     _state.day = 0;
     _state.week = 0;
     _state.isCinematic = false;
-    _state.cinematidID = '';
+    _state.cinematicID = '';
     super.streamController.add(_state);
   }
 
