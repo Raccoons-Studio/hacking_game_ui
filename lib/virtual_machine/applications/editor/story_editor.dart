@@ -1,4 +1,3 @@
-import 'dart:js_interop';
 
 import 'package:flutter/material.dart';
 import 'package:hacking_game_ui/engine/model_engine.dart';
@@ -19,7 +18,7 @@ List<int> days = List<int>.generate(7, (index) => index + 1);
 class StoryEditor extends StatefulWidget {
   final Maestro maestro;
   final StoryEngine story;
-  StoryEditor({required this.story, required this.maestro});
+  const StoryEditor({super.key, required this.story, required this.maestro});
 
   @override
   _StoryEditorState createState() => _StoryEditorState();
@@ -36,8 +35,9 @@ class _StoryEditorState extends State<StoryEditor> {
 
   Future<List<CharacterEngine>> getAllCharacters() async {
     characters = widget.story.characters;
-    if (characters.isNotEmpty && selectedCharacter != null)
+    if (characters.isNotEmpty && selectedCharacter != null) {
       selectedCharacter = characters[0];
+    }
     setState(() {});
     return characters;
   }
@@ -53,7 +53,7 @@ class _StoryEditorState extends State<StoryEditor> {
     }
     setState(() {
       if (characterID != "") {
-        this.selectedCharacter =
+        selectedCharacter =
             characters.firstWhere((character) => character.ID == characterID);
       }
       this.selectedDay = selectedDay;
@@ -99,7 +99,7 @@ class _StoryEditorState extends State<StoryEditor> {
                             : StoryEditorCharactersWidget(widget.story, widget.maestro),
           ),
           ElevatedButton(
-            child: Text('Add'),
+            child: const Text('Add'),
             onPressed: () {
               setState(() {
                 final newElement = ElementEngine(

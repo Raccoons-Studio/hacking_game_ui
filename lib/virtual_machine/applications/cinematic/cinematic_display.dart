@@ -72,9 +72,8 @@ class _CinematicWidgetState extends State<CinematicWidget> {
         children: <Widget>[
           Positioned.fill(
             child: Image.asset(
-                "assets/images/" +
-                    widget.cinematic.cinematicSequences[sequencesIndex]
-                        .cinematicAsset,
+                "assets/images/${widget.cinematic.cinematicSequences[sequencesIndex]
+                        .cinematicAsset}",
                 fit: BoxFit.cover),
           ),
           Positioned(
@@ -84,7 +83,7 @@ class _CinematicWidgetState extends State<CinematicWidget> {
               onTap: () {
                 widget.onEndCinematic();
               },
-              child: Text(
+              child: const Text(
                 "Skip",
                 style: TextStyle(
                   color: Colors.white,

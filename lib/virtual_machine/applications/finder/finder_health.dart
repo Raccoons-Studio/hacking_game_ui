@@ -73,7 +73,7 @@ class _HeartBeatState extends State<FinderHealth> {
       elevation: 5,
       child: Container(
         height: 75,
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,

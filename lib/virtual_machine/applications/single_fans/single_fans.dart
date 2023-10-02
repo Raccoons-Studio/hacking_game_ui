@@ -8,7 +8,7 @@ class SingleFans extends StatefulWidget {
   final Maestro maestro;
   final StoryEngine story;
 
-  SingleFans({Key? key, required this.maestro, required this.story})
+  const SingleFans({Key? key, required this.maestro, required this.story})
       : super(key: key);
 
   @override
@@ -32,7 +32,7 @@ class _SingleFansState extends State<SingleFans> {
           future: _datas,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
             } else if (snapshot.hasData) {
               List<ScrollableData> dataList = snapshot.data!;
               return ListView.builder(
@@ -50,13 +50,13 @@ class _SingleFansState extends State<SingleFans> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(16.0),
-                          child: Image.asset("assets/images/" + dataList[index].asset),
+                          child: Image.asset("assets/images/${dataList[index].asset}"),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             dataList[index].subcontent,
-                            style: TextStyle(fontSize: 18.0),
+                            style: const TextStyle(fontSize: 18.0),
                           ),
                         ),
                         ButtonBar(
@@ -81,7 +81,7 @@ class _SingleFansState extends State<SingleFans> {
                 },
               );
             }
-            return SizedBox.shrink();
+            return const SizedBox.shrink();
           }),
     );
   }

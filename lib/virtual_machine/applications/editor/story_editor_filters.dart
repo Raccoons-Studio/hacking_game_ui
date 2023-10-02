@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hacking_game_ui/engine/model_engine.dart';
-import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor.dart';
 
 class StoryEditorFiltersWidget extends StatefulWidget {
-  List<CharacterEngine> characters;
-  Function(EditorView selectedView, String characterID, int selectedWeek, int selectedDay) filterElements;
-  Function() saveStoryToYaml;
-  Function() checkIntegrity;
+  final List<CharacterEngine> characters;
+  final Function(EditorView selectedView, String characterID, int selectedWeek, int selectedDay) filterElements;
+  final Function() saveStoryToYaml;
+  final Function() checkIntegrity;
 
-  StoryEditorFiltersWidget(this.characters, this.filterElements, this.saveStoryToYaml, this.checkIntegrity);
+  StoryEditorFiltersWidget(this.characters, this.filterElements, this.saveStoryToYaml, this.checkIntegrity, {super.key});
 
   @override
   State<StoryEditorFiltersWidget> createState() => _StoryEditorFiltersWidgetState();
@@ -88,12 +87,12 @@ class _StoryEditorFiltersWidgetState extends State<StoryEditorFiltersWidget> {
             }).toList(),
             onChanged: (value) {
               setState(() {
-                selectedCharacter = value ?? null;
+                selectedCharacter = value;
               });
             },
           ),
           ElevatedButton(
-            child: Text('Filter'),
+            child: const Text('Filter'),
             onPressed: () {
               setState(() {
                 widget.filterElements(selectedView, selectedCharacter?.ID ?? '', selectedWeek, selectedDay);
@@ -101,12 +100,12 @@ class _StoryEditorFiltersWidgetState extends State<StoryEditorFiltersWidget> {
             },
           ),
           ElevatedButton(
-              child: Text('Save'),
+              child: const Text('Save'),
               onPressed: () {
                 widget.saveStoryToYaml();
               }),
           ElevatedButton(
-              child: Text('Check'),
+              child: const Text('Check'),
               onPressed: () async {
                 var integrity = await widget.checkIntegrity();
                 for (var error in integrity) {

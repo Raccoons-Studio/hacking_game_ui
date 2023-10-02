@@ -23,7 +23,7 @@ class IPhoneFrame extends StatefulWidget {
   final List<Files> files;
   final String characterName;
   final Maestro maestro;
-  Function(String) displayComment;
+  final Function(String) displayComment;
 
   IPhoneFrame(
       {Key? key,
@@ -88,8 +88,8 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
               children: <Widget>[
                 Image.asset(
                   _splashScreenVisible
-                      ? "assets/" + widget.splashScreenImageUrl
-                      : "assets/" + widget.backgroundImageUrl,
+                      ? "assets/${widget.splashScreenImageUrl}"
+                      : "assets/${widget.backgroundImageUrl}",
                   fit: BoxFit.cover,
                 ),
                 if (_openedFile == null || _splashScreenVisible) ...[
@@ -134,7 +134,7 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
             child: Row(
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(left: 5.0),
+                  padding: const EdgeInsets.only(left: 5.0),
                   child: IconButton(
                     iconSize: 10,
                     icon: const Icon(
@@ -147,10 +147,10 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
                 Expanded(
                   child: Center(
                     child: Text(widget.currentHour,
-                        style: TextStyle(color: Colors.white)),
+                        style: const TextStyle(color: Colors.white)),
                   ),
                 ),
-                SizedBox(width: 50.0)
+                const SizedBox(width: 50.0)
               ],
             ),
           ),

@@ -258,6 +258,7 @@ class MaestroStory extends Maestro {
     return filteredElements.first;
   }
 
+  @override
   Future<List<Files>> getAllCurrentEvidence() async {
     StoryEngine s = await _dataBaseEngine!.getStory();
     Player p = await _dataBaseEngine!.getPlayer();
@@ -377,7 +378,7 @@ class MaestroStory extends Maestro {
 
     if (devMode) {
       // With dev mod we collect all evidences automatically
-      for (var currentEvidence in await this.getAllCurrentEvidence()) {
+      for (var currentEvidence in await getAllCurrentEvidence()) {
         if (!p.revealedElements.contains(currentEvidence.evidenceID)) {
           p.revealedElements.add(currentEvidence.evidenceID);
         }
@@ -386,7 +387,7 @@ class MaestroStory extends Maestro {
 
     // Check if every evidences are collected
     if (increment) {
-      for (var currentEvidence in await this.getAllCurrentEvidence()) {
+      for (var currentEvidence in await getAllCurrentEvidence()) {
         if (!p.revealedElements.contains(currentEvidence.evidenceID)) {
           return false;
         }

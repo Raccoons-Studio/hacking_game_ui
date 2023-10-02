@@ -4,7 +4,6 @@ import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_map.dar
 import 'package:hacking_game_ui/virtual_machine/models/timeline_data.dart';
 
 import 'finder_health.dart';
-import 'finder_plan.dart';
 
 class FinderTimeline extends StatefulWidget {
   final Function refreshTitle;

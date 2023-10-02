@@ -8,7 +8,7 @@ class StoryEditorConversationWidget extends StatefulWidget {
   final StoryEngine story;
   final Maestro maestro;
 
-  StoryEditorConversationWidget(this.story, this.maestro);
+  const StoryEditorConversationWidget(this.story, this.maestro, {super.key});
 
   @override
   _StoryEditorConversationWidgetState createState() =>
@@ -20,6 +20,7 @@ class _StoryEditorConversationWidgetState
   List<int> days = List<int>.generate(7, (int index) => index + 1);
   List<int> weeks = List<int>.generate(10, (int index) => index + 1);
   List<int> hours = [7, 10, 13, 16, 19, 22];
+  @override
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
@@ -29,11 +30,11 @@ class _StoryEditorConversationWidgetState
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: ElevatedButton(
-            child: Text('Add Conversation'),
+            child: const Text('Add Conversation'),
             onPressed: () {
               setState(() {
                 widget.story.conversations.add(ConversationEngine(
-                    Uuid().v4(), widget.story.characters[0].ID, 1, 1, 7, []));
+                    const Uuid().v4(), widget.story.characters[0].ID, 1, 1, 7, []));
               });
             },
           ),
@@ -119,7 +120,7 @@ class _StoryEditorConversationWidgetState
             ),
             Flexible(
               child: CheckboxListTile(
-                title: Text('Is Name Revealed'),
+                title: const Text('Is Name Revealed'),
                 value: conversation.isNameRevealed,
                 onChanged: (bool? value) {
                   setState(() {
@@ -136,7 +137,7 @@ class _StoryEditorConversationWidgetState
               .toList(),
         ),
         ElevatedButton(
-          child: Text('Add Bubble'),
+          child: const Text('Add Bubble'),
           onPressed: () {
             setState(() {
               conversation.conversation
@@ -152,11 +153,11 @@ class _StoryEditorConversationWidgetState
     return Row(
       children: <Widget>[
         Text(bubble.isPlayer ? 'Player' : 'Character'),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         Expanded(
           child: TextField(
             controller: TextEditingController(text: bubble.content),
-            decoration: InputDecoration(hintText: "Bubble Content"),
+            decoration: const InputDecoration(hintText: "Bubble Content"),
             onChanged: (String newValue) {
               bubble.content = newValue;
             },

@@ -10,7 +10,6 @@ import 'package:hacking_game_ui/virtual_machine/models/directory_and_files.dart'
 import 'package:hacking_game_ui/virtual_machine/models/scrollable_data.dart';
 import 'package:hacking_game_ui/virtual_machine/models/timeline_data.dart';
 
-import '../engine/player_engine.dart';
 
 class MaestroState {
   int hour = 0;
@@ -94,7 +93,6 @@ abstract class Maestro {
 
   Future<List<CharacterEngine>> getContacts();
 
-  @override
   static Future<List<IntegrityError>> checkIntegrity(StoryEngine story) async {
     var errors = <IntegrityError>[];
 
@@ -166,19 +164,17 @@ abstract class Maestro {
     var errors = <IntegrityError>[];
     for (var cinematic in cinematics) {
       for (var sequence in cinematic.sequences) {
-        if (sequence.cinematicAsset != null) {
-          var assetPath = 'assets/images/${sequence.cinematicAsset}';
-          try {
-            await rootBundle.load(assetPath);
-          } catch (e) {
-            errors.add(IntegrityError(
-                IntegrityErrorType.unexistingAsset,
-                cinematic.ID,
-                "$type references nonexistent asset (${sequence.cinematicAsset})",
-                true));
-          }
+        var assetPath = 'assets/images/${sequence.cinematicAsset}';
+        try {
+          await rootBundle.load(assetPath);
+        } catch (e) {
+          errors.add(IntegrityError(
+              IntegrityErrorType.unexistingAsset,
+              cinematic.ID,
+              "$type references nonexistent asset (${sequence.cinematicAsset})",
+              true));
         }
-      }
+            }
     }
     return errors;
   }
@@ -209,8 +205,8 @@ abstract class Maestro {
   Future<List<Files>> getAllCurrentEvidence();
 
   Future<bool> isElementsToDisplay() async {
-    var evidences = await this.getAllCurrentEvidence();
-    if (evidences.length > 0) {
+    var evidences = await getAllCurrentEvidence();
+    if (evidences.isNotEmpty) {
       return true;
     }
     return false;

@@ -36,14 +36,14 @@ class PhoneMap extends StatelessWidget {
               children: <Widget>[
                 Text(
                   placeName,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 24.0,
                     color: Colors.white,
                   ),
                 ),
                 Text(
                   placeAddress,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16.0,
                     color: Colors.white,
                   ),

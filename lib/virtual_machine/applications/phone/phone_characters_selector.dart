@@ -21,8 +21,7 @@ class CharacterSelection extends StatefulWidget {
   final Maestro maestro;
   final List<Character> characters;
   final int avatars;
-
-  Function(String) displayComment;
+  final Function(String) displayComment;
 
   CharacterSelection(
       {super.key,

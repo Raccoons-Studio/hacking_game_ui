@@ -9,7 +9,7 @@ class StoryEditorCinematicsWidget extends StatefulWidget {
   final Maestro maestro;
   final List<CinematicEngine> cinematics;
 
-  StoryEditorCinematicsWidget(this.story, this.maestro, this.cinematics);
+  const StoryEditorCinematicsWidget(this.story, this.maestro, this.cinematics, {super.key});
 
   @override
   _StoryEditorCinematicsWidgetState createState() =>
@@ -18,6 +18,7 @@ class StoryEditorCinematicsWidget extends StatefulWidget {
 
 class _StoryEditorCinematicsWidgetState
     extends State<StoryEditorCinematicsWidget> {
+  @override
   Widget build(BuildContext context) {
     return ListView(
       shrinkWrap: true,
@@ -28,10 +29,10 @@ class _StoryEditorCinematicsWidgetState
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: ElevatedButton(
-            child: Text('Add Cinematic'),
+            child: const Text('Add Cinematic'),
             onPressed: () {
               setState(() {
-                var uid = Uuid().v4();
+                var uid = const Uuid().v4();
                 widget.cinematics.add(CinematicEngine(uid, uid, 1, 1, 7, []));
               });
             },
@@ -119,7 +120,7 @@ class _StoryEditorCinematicsWidgetState
                   widget.maestro
                       .goTo(cinematic.week, cinematic.day, cinematic.hour);
                 },
-                child: Text("Preview"))
+                child: const Text("Preview"))
           ],
         ),
         ...cinematic.sequences
@@ -128,7 +129,7 @@ class _StoryEditorCinematicsWidgetState
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: ElevatedButton(
-            child: Text('Add Sequence'),
+            child: const Text('Add Sequence'),
             onPressed: () {
               setState(() {
                 cinematic.sequences.add(CinematicSequenceEngine('', []));
@@ -151,14 +152,14 @@ class _StoryEditorCinematicsWidgetState
                 child: TextField(
                   controller:
                       TextEditingController(text: sequence.cinematicAsset),
-                  decoration: InputDecoration(hintText: "Asset ID"),
+                  decoration: const InputDecoration(hintText: "Asset ID"),
                   onChanged: (value) {
                     sequence.cinematicAsset = value;
                   },
                 ),
               ),
               IconButton(
-                icon: Icon(Icons.delete),
+                icon: const Icon(Icons.delete),
                 onPressed: () {
                   setState(() {
                     final cinematic = widget.story.cinematics
@@ -175,7 +176,7 @@ class _StoryEditorCinematicsWidgetState
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: ElevatedButton(
-              child: Text('Add Conversation'),
+              child: const Text('Add Conversation'),
               onPressed: () {
                 setState(() {
                   sequence.cinematicConversations
@@ -192,11 +193,11 @@ class _StoryEditorCinematicsWidgetState
   Widget buildConversation(CinematicConversationEngine conversation) {
     return Row(
       children: <Widget>[
-        Container(
+        SizedBox(
           width: 200,
           child: TextField(
             controller: TextEditingController(text: conversation.character),
-            decoration: InputDecoration(hintText: "Character"),
+            decoration: const InputDecoration(hintText: "Character"),
             onChanged: (value) {
               conversation.character = value;
             },
@@ -205,14 +206,14 @@ class _StoryEditorCinematicsWidgetState
         Expanded(
           child: TextField(
             controller: TextEditingController(text: conversation.text),
-            decoration: InputDecoration(hintText: "Conversation Text"),
+            decoration: const InputDecoration(hintText: "Conversation Text"),
             onChanged: (value) {
               conversation.text = value;
             },
           ),
         ),
         IconButton(
-          icon: Icon(Icons.delete),
+          icon: const Icon(Icons.delete),
           onPressed: () {
             setState(() {
               final cinematic = widget.story.cinematics.firstWhere((c) {
@@ -220,9 +221,9 @@ class _StoryEditorCinematicsWidgetState
                     (s) => s.cinematicConversations.contains(conversation));
                 return sequence != null;
               });
-              final sequence = cinematic?.sequences.firstWhere(
+              final sequence = cinematic.sequences.firstWhere(
                   (s) => s.cinematicConversations.contains(conversation));
-              sequence?.cinematicConversations.remove(conversation);
+              sequence.cinematicConversations.remove(conversation);
             });
           },
         ),

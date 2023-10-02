@@ -369,8 +369,8 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                 color: Colors.black54,
                 child: Center(
                   child: Text(
-                    this.descriptionContent,
-                    style: TextStyle(color: Colors.white),
+                    descriptionContent,
+                    style: const TextStyle(color: Colors.white),
                   ),
                 ),
               ),
@@ -406,7 +406,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                   child: Center(
                     child: Text(
                       'Week ${_maestroState?.week ?? ""} - ${getDayOfWeek(_maestroState?.day ?? 0)} ${_maestroState?.hour ?? ""}:00',
-                      style: TextStyle(color: Colors.white, fontSize: 30),
+                      style: const TextStyle(color: Colors.white, fontSize: 30),
                     ),
                   )),
             ),

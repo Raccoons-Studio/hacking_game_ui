@@ -7,7 +7,6 @@ import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/utils/game_icons.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_chat.dart';
-import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_image.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_scrollable.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_text.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_timeline.dart';
@@ -51,7 +50,7 @@ class _FinderApplicationState extends State<FinderApplication> {
     return MacosScaffold(
       toolBar: ToolBar(
         centerTitle: true,
-        title: _title != null ? Text(_title!) : Text(''),
+        title: _title != null ? Text(_title!) : const Text(''),
         alignment: Alignment.centerLeft,
         actions: buildActions(),
       ),

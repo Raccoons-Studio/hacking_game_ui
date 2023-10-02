@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:hacking_game_ui/engine/model_engine.dart';
 
 class StoryEditorElementsWidget extends StatefulWidget {
-  List<ElementEngine> filteredElements = [];
-  StoryEngine story;
-  StoryEditorElementsWidget(this.story, this.filteredElements);
+  final List<ElementEngine> filteredElements;
+  final StoryEngine story;
+  StoryEditorElementsWidget(this.story, this.filteredElements, {super.key});
 
   @override
   State<StoryEditorElementsWidget> createState() => _StoryEditorElementsWidgetState();
@@ -99,11 +99,11 @@ class _StoryEditorElementsWidgetState extends State<StoryEditorElementsWidget> {
               },
             ),
             Expanded(
-              child: Container(
+              child: SizedBox(
                 width: 200,
                 child: TextField(
                   controller: TextEditingController(text: element.description),
-                  decoration: InputDecoration(hintText: "Description"),
+                  decoration: const InputDecoration(hintText: "Description"),
                   onChanged: (value) {
                     element.description = value;
                   },
@@ -111,7 +111,7 @@ class _StoryEditorElementsWidgetState extends State<StoryEditorElementsWidget> {
               ),
             ),
             if (element.type == EvidenceType.position)
-              Container(
+              SizedBox(
                 width: 200,
                 child: DropdownButton<PlaceEngine>(
                   value: element.placeID == null
@@ -134,23 +134,23 @@ class _StoryEditorElementsWidgetState extends State<StoryEditorElementsWidget> {
                 ),
               ),
             if (element.type == EvidenceType.rearCamera)
-              Container(
+              SizedBox(
                 width: 200,
                 child: TextField(
                   controller: TextEditingController(text: element.assetID),
-                  decoration: InputDecoration(hintText: "Asset ID"),
+                  decoration: const InputDecoration(hintText: "Asset ID"),
                   onChanged: (String newValue) {
                     element.assetID = newValue;
                   },
                 ),
               ),
             if (element.type == EvidenceType.heartbeat)
-              Container(
+              SizedBox(
                 width: 200,
                 child: TextField(
                   controller: TextEditingController(
                       text: element.numberValue.toString()),
-                  decoration: InputDecoration(hintText: "Heartbeat"),
+                  decoration: const InputDecoration(hintText: "Heartbeat"),
                   onChanged: (String newValue) {
                     element.numberValue =
                         newValue.isEmpty ? 0 : int.parse(newValue);
@@ -158,11 +158,11 @@ class _StoryEditorElementsWidgetState extends State<StoryEditorElementsWidget> {
                 ),
               ),
             if (element.type == EvidenceType.socialMedia)
-              Container(
+              SizedBox(
                 width: 200,
                 child: TextField(
                   controller: TextEditingController(text: element.assetID),
-                  decoration: InputDecoration(hintText: "Asset ID"),
+                  decoration: const InputDecoration(hintText: "Asset ID"),
                   onChanged: (String newValue) {
                     element.assetID = newValue;
                   },

@@ -10,7 +10,7 @@ void saveStoryToYaml(StoryEngine story) {
   try {
     final storyMap = story.toMap();
 
-    final storyInYaml;
+    final String storyInYaml;
     try {
       storyInYaml = jsonEncode(storyMap);
     } catch (e) {

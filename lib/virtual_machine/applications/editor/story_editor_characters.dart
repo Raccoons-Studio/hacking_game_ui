@@ -7,7 +7,7 @@ class StoryEditorCharactersWidget extends StatefulWidget {
   final StoryEngine story;
   final Maestro maestro;
 
-  StoryEditorCharactersWidget(this.story, this.maestro);
+  const StoryEditorCharactersWidget(this.story, this.maestro, {super.key});
 
   @override
   _StoryEditorCharactersWidgetState createState() =>
@@ -16,6 +16,7 @@ class StoryEditorCharactersWidget extends StatefulWidget {
 
 class _StoryEditorCharactersWidgetState
     extends State<StoryEditorCharactersWidget> {
+  @override
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
@@ -25,11 +26,11 @@ class _StoryEditorCharactersWidgetState
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: ElevatedButton(
-            child: Text('Add Character'),
+            child: const Text('Add Character'),
             onPressed: () {
               setState(() {
                 widget.story.characters.add(CharacterEngine(
-                    Uuid().v4(), 'New Character', 1, '', '',
+                    const Uuid().v4(), 'New Character', 1, '', '',
                     isPlayable: false, unrevealedName: ''));
               });
             },
@@ -41,40 +42,40 @@ class _StoryEditorCharactersWidgetState
 
   Widget buildCharacterTile(CharacterEngine character) {
     return Padding(
-      padding: EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(10.0),
       child: Card(
         child: Column(
           children: <Widget>[
             TextField(
               controller: TextEditingController(text: character.name),
-              decoration: InputDecoration(labelText: 'Name'),
+              decoration: const InputDecoration(labelText: 'Name'),
               onChanged: (newValue) {
                 character.name = newValue;
               },
             ),
             TextField(
               controller: TextEditingController(text: character.avatar),
-              decoration: InputDecoration(labelText: 'Avatar'),
+              decoration: const InputDecoration(labelText: 'Avatar'),
               onChanged: (newValue) {
                 character.avatar = newValue;
               },
             ),
             TextField(
               controller: TextEditingController(text: character.wallpaper),
-              decoration: InputDecoration(labelText: 'Wallpaper'),
+              decoration: const InputDecoration(labelText: 'Wallpaper'),
               onChanged: (newValue) {
                 character.wallpaper = newValue;
               },
             ),
             TextField(
               controller: TextEditingController(text: character.unrevealedName),
-              decoration: InputDecoration(labelText: 'Unrevealed Name'),
+              decoration: const InputDecoration(labelText: 'Unrevealed Name'),
               onChanged: (newValue) {
                 character.unrevealedName = newValue;
               },
             ),
             CheckboxListTile(
-              title: Text('Is Playable'),
+              title: const Text('Is Playable'),
               value: character.isPlayable,
               onChanged: (newValue) {
                 setState(() {

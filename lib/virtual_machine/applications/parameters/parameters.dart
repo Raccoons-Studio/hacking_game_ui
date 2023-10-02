@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hacking_game_ui/engine/save_load_engine.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
 
 class Parameters extends StatelessWidget {
   final Maestro _maestro;
 
-  Parameters(this._maestro);
+  const Parameters(this._maestro, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +39,7 @@ class Parameters extends StatelessWidget {
         onTap: onTap,
         child: Container(
           height: 200,
-          constraints: BoxConstraints(maxHeight: 200),
+          constraints: const BoxConstraints(maxHeight: 200),
           color: color,
           child: Center(
             child: Column(
@@ -48,7 +47,7 @@ class Parameters extends StatelessWidget {
               children: <Widget>[
                 Icon(iconData, color: Colors.white, size: 50),
                 Container(height: 10),
-                Text(text, style: TextStyle(color: Colors.white))
+                Text(text, style: const TextStyle(color: Colors.white))
               ],
             ),
           ),

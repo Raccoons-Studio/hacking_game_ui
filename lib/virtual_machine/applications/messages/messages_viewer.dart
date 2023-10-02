@@ -12,7 +12,7 @@ class MessagesViewer extends StatefulWidget {
   final bool isBlackMail;
   final String caseID;
 
-  MessagesViewer({Key? key, required this.maestro, required this.story, required this.isBlackMail, required this.caseID})
+  const MessagesViewer({Key? key, required this.maestro, required this.story, required this.isBlackMail, required this.caseID})
       : super(key: key);
 
   @override
@@ -38,13 +38,13 @@ class _MessagesViewerState extends State<MessagesViewer> {
           future: _conversations,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
             } else if (snapshot.connectionState == ConnectionState.done) {
               return LayoutBuilder(builder: (context, constraints) {
                 if (constraints.maxWidth > 600) {
                   return Row(
                     children: [
-                      Container(
+                      SizedBox(
                         width: 300,
                         child: ListView(
                           children: snapshot.data!.entries.map((e) {
@@ -55,8 +55,8 @@ class _MessagesViewerState extends State<MessagesViewer> {
                               child: ListTile(
                                 title: Text(e.key,
                                     style: e.key == _selectedConversationKey
-                                        ? TextStyle(color: CupertinoColors.darkBackgroundGray)
-                                        : e.value.last.isNow ? TextStyle(color: Colors.black, fontWeight: FontWeight.bold) : TextStyle(color: Colors.black)),
+                                        ? const TextStyle(color: CupertinoColors.darkBackgroundGray)
+                                        : e.value.last.isNow ? const TextStyle(color: Colors.black, fontWeight: FontWeight.bold) : const TextStyle(color: Colors.black)),
                                 subtitle: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
@@ -83,7 +83,7 @@ class _MessagesViewerState extends State<MessagesViewer> {
                       ),
                       Expanded(
                         child: _selectedConversation == null
-                            ? Center(child: Text('Select a conversation'))
+                            ? const Center(child: Text('Select a conversation'))
                             : GenericConversation(
                                 conversation: _selectedConversation!,
                                 scrollController: ScrollController(),
@@ -127,7 +127,7 @@ class _MessagesViewerState extends State<MessagesViewer> {
                                   _selectedConversation = null;
                                 });
                               },
-                              child: Text('Back to conversations'),
+                              child: const Text('Back to conversations'),
                             ),
                             Expanded(
                               child: GenericConversation(
@@ -140,7 +140,7 @@ class _MessagesViewerState extends State<MessagesViewer> {
                 }
               });
             }
-            return SizedBox.shrink();
+            return const SizedBox.shrink();
           }),
     );
   }

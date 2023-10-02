@@ -9,13 +9,14 @@ class StoryEditorCasesWidget extends StatefulWidget {
   final StoryEngine story;
   final Maestro maestro;
 
-  StoryEditorCasesWidget(this.story, this.maestro);
+  const StoryEditorCasesWidget(this.story, this.maestro, {super.key});
 
   @override
   _StoryEditorCasesWidgetState createState() => _StoryEditorCasesWidgetState();
 }
 
 class _StoryEditorCasesWidgetState extends State<StoryEditorCasesWidget> {
+  @override
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
@@ -23,14 +24,14 @@ class _StoryEditorCasesWidgetState extends State<StoryEditorCasesWidget> {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: ElevatedButton(
-            child: Text('Add Case'),
+            child: const Text('Add Case'),
             onPressed: () {
               setState(() {
-                var cinematicID = Uuid().v4();
+                var cinematicID = const Uuid().v4();
                 widget.story.cases.add(CaseEngine(
-                    Uuid().v4(), widget.story.characters[0].ID, "", '', 1,
+                    const Uuid().v4(), widget.story.characters[0].ID, "", '', 1,
                     resolution: CinematicEngine(cinematicID, cinematicID, 1, 1, 7, []),
-                    blackmail: ConversationEngine(Uuid().v4(), '', 1, 1, 7, [])));
+                    blackmail: ConversationEngine(const Uuid().v4(), '', 1, 1, 7, [])));
               });
             },
           ),
@@ -81,7 +82,7 @@ class _StoryEditorCasesWidgetState extends State<StoryEditorCasesWidget> {
             Expanded(
               child: TextField(
                 controller: TextEditingController(text: caseEngine.name),
-                decoration: InputDecoration(hintText: "Case Name"),
+                decoration: const InputDecoration(hintText: "Case Name"),
                 onChanged: (String newValue) {
                   caseEngine.name = newValue;
                 },
@@ -90,7 +91,7 @@ class _StoryEditorCasesWidgetState extends State<StoryEditorCasesWidget> {
             Expanded(
               child: TextField(
                 controller: TextEditingController(text: caseEngine.description),
-                decoration: InputDecoration(hintText: "Case Description"),
+                decoration: const InputDecoration(hintText: "Case Description"),
                 onChanged: (String newValue) {
                   caseEngine.description = newValue;
                 },
@@ -98,7 +99,7 @@ class _StoryEditorCasesWidgetState extends State<StoryEditorCasesWidget> {
             ),
           ],
         ),
-        Text("Cinematic at the resolution"),
+        const Text("Cinematic at the resolution"),
         Container(
           child: caseEngine.resolution != null
               ? StoryEditorCinematicsWidget(widget.story, widget.maestro,
@@ -108,7 +109,7 @@ class _StoryEditorCasesWidgetState extends State<StoryEditorCasesWidget> {
         caseEngine.resolution != null
             ? Container()
             : ElevatedButton(
-                child: Text('Add Cinematic'),
+                child: const Text('Add Cinematic'),
                 onPressed: () {
                   setState(() {
                     caseEngine.resolution = CinematicEngine(
@@ -118,7 +119,7 @@ class _StoryEditorCasesWidgetState extends State<StoryEditorCasesWidget> {
                 },
               ),
         ExpansionTile(
-          title: Text("Blackmail conversation"),
+          title: const Text("Blackmail conversation"),
           children: [caseEngine.blackmail != null
               ? Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,7 +135,7 @@ class _StoryEditorCasesWidgetState extends State<StoryEditorCasesWidget> {
         ),
         caseEngine.blackmail != null
             ? ElevatedButton(
-                child: Text('Add Conversation Bubble'),
+                child: const Text('Add Conversation Bubble'),
                 onPressed: () {
                   setState(() {
                     caseEngine.blackmail!.conversation
@@ -148,7 +149,7 @@ class _StoryEditorCasesWidgetState extends State<StoryEditorCasesWidget> {
   }
 
   Widget buildConversationHeader() {
-    return Row(
+    return const Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Text(
@@ -180,7 +181,7 @@ class _StoryEditorCasesWidgetState extends State<StoryEditorCasesWidget> {
         Expanded(
           child: TextField(
             controller: TextEditingController(text: bubble.content),
-            decoration: InputDecoration(hintText: "Bubble Content"),
+            decoration: const InputDecoration(hintText: "Bubble Content"),
             onChanged: (String newValue) {
               bubble.content = newValue;
             },

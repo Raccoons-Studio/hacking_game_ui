@@ -2,7 +2,7 @@ import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/engine/player_engine.dart';
 
 class DataBaseEngine {
-  StoryEngine _storyEngine;
+  final StoryEngine _storyEngine;
   Player _playerEngine;
 
   DataBaseEngine(this._storyEngine, this._playerEngine);
