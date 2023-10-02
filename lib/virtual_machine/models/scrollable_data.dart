@@ -12,7 +12,9 @@ class ScrollableData {
   ScrollableType type;
   String content;
   String subcontent;
+  String asset;
+  String avatar;
   bool isMarkedAsEvidence;
 
-  ScrollableData(this.week, this.day, this.hour, this.type, this.content, this.subcontent, {this.isMarkedAsEvidence = false});
+  ScrollableData(this.week, this.day, this.hour, this.type, this.content, this.subcontent, this.asset, this.avatar, {this.isMarkedAsEvidence = false});
 }

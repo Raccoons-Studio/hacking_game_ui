@@ -1,0 +1,83 @@
+storyID: penny_story
+name: Penny Story
+description: This is a sample story to test developments
+characters:
+  - ID: PENNY
+    name: Penny
+    avatar: images/Anna_avatar.jpg
+    wallpaper: images/Anna_wallpaper.jpg
+    weekAvailability: 1
+    unrevealedName:
+    isPlayable: true
+places:
+elements:
+  - ID: WEEK-1-1-19-PENNY-socialMedia-0
+    description: "Hey guys ! A little preview of what awaits you this week! Subscribe quickly!"
+    characterID: PENNY
+    assetID: WEEK-0_DAY-1_HOUR-10_ANNA_REARCAMERA.jpg
+    placeID:
+    numberValue:
+    textValue:
+    type: EvidenceType.socialMedia
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 1
+    day: 1
+    hour: 19
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-1-1-19-PENNY-socialMedia-0
+    description: Feeling naughty today...
+    characterID: PENNY
+    assetID: WEEK-0_DAY-1_HOUR-10_ANNA_REARCAMERA.jpg
+    placeID:
+    numberValue:
+    textValue:
+    type: EvidenceType.socialMedia
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 1
+    day: 1
+    hour: 19
+    relatedCaseID:
+    nsfwLevel: 0
+cases:
+cinematics:
+  - ID: WEEK-1-1-7-PENNY-cinematic-0
+    name: WEEK-1-1-7-PENNY-cinematic-0
+    week: 1
+    day: 1
+    hour: 7
+    sequences:
+      - cinematicAsset: Penny_01.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Penny est encore sur son téléphone, elle doit y passer pas loin de 10 heures par jours !"
+      - cinematicAsset: Penny_02.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Hey Penny ! Tu scaroles encore sur ton téléphone ?"
+          - character: Penny
+            text: "Bah ouais, tu veux que je fasse quoi d’autre ? C’est pas comme si il m’attendait des choses passionnantes à faire là tout de suite maintenant !"
+    nsfwLevel: 0
+  - ID: 28f8b735-7965-46c0-b88f-eadf2702c4fa
+    name: 28f8b735-7965-46c0-b88f-eadf2702c4fa
+    week: 1
+    day: 1
+    hour: 10
+    sequences:
+      - cinematicAsset: Penny_05.jpg
+        cinematicConversations:
+          - character: Penny
+            text: Hey… euh… Désolé pour tout à l’heure…
+          - character: Me
+            text: "T’inquiète, je vois bien que t’es pas en forme en ce moment."
+          - character: Penny
+            text: "Franchement je craque : je me sens moche, Joe s’éloigne de moi, la fac ça va sans plus…"
+    nsfwLevel: 0
+conversations:
+enabledApplications:
+  - SingleFans
+  - Messages
+  - Settings
+  - Next

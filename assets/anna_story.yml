@@ -1,6 +1,13 @@
 storyID: sample_story
 name: Sample Story
 description: This is a sample story to test developments
+enabledApplications:
+  - Finder
+  - Messages
+  - Phones
+  - Webcam
+  - Settings
+  - Next
 characters:
   - ID: ANNA
     name: Anna

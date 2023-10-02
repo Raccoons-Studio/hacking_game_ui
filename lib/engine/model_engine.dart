@@ -27,9 +27,10 @@ class StoryEngine {
   List<CaseEngine> cases;
   List<CinematicEngine> cinematics;
   List<ConversationEngine> conversations;
+  List<String> enabledApplications;
 
   StoryEngine(this.storyID, this.name, this.description, this.characters,
-      this.places, this.elements, this.cases, this.cinematics, this.conversations);
+      this.places, this.elements, this.cases, this.cinematics, this.conversations, this.enabledApplications);
   
   Map<String, dynamic> toMap() {
     return {
@@ -42,6 +43,7 @@ class StoryEngine {
       'cases': cases.map((x) => x.toMap()).toList(),
       'cinematics': cinematics.map((x) => x.toMap()).toList(),
       'conversations': conversations.map((x) => x.toMap()).toList(),
+      'enabledApplications': enabledApplications.toList(),
     };
   }
 
@@ -56,6 +58,7 @@ class StoryEngine {
       map['cases'] != null ? List<CaseEngine>.from(map['cases']?.map((x) => CaseEngine.fromMap(x))) : [],
       map['cinematics'] != null ? List<CinematicEngine>.from(map['cinematics']?.map((x) => CinematicEngine.fromMap(x))) : [],
       map['conversations'] != null ? List<ConversationEngine>.from(map['conversations']?.map((x) => ConversationEngine.fromMap(x))) : [],
+      map['enabledApplications'] != null ? List<String>.from(map['enabledApplications']) : [],
     );
   }
 }

@@ -160,7 +160,7 @@ class _FinderApplicationState extends State<FinderApplication> {
             }
             return const Center(child: CircularProgressIndicator());
           },
-          future: widget.maestro.getTimelineData(_currentFile!));
+          future: widget.maestro.getTimelineData(_currentFile!.type));
     }
     if (_currentFile!.type == EvidenceType.socialMedia ||
         _currentFile!.type == EvidenceType.calendar ||
@@ -172,7 +172,7 @@ class _FinderApplicationState extends State<FinderApplication> {
             }
             return const Center(child: CircularProgressIndicator());
           },
-          future: widget.maestro.getScrollableData(_currentFile!));
+          future: widget.maestro.getScrollableData(_currentFile!.type));
     }
     if (_currentFile!.type == EvidenceType.message ||
         _currentFile!.type == EvidenceType.call) {

@@ -53,7 +53,8 @@ class _StoryEditorElementsWidgetState extends State<StoryEditorElementsWidget> {
               items: <EvidenceType>[
                 EvidenceType.position,
                 EvidenceType.rearCamera,
-                EvidenceType.heartbeat
+                EvidenceType.heartbeat,
+                EvidenceType.socialMedia,
               ].map<DropdownMenuItem<EvidenceType>>((EvidenceType value) {
                 return DropdownMenuItem<EvidenceType>(
                   value: value,
@@ -153,6 +154,17 @@ class _StoryEditorElementsWidgetState extends State<StoryEditorElementsWidget> {
                   onChanged: (String newValue) {
                     element.numberValue =
                         newValue.isEmpty ? 0 : int.parse(newValue);
+                  },
+                ),
+              ),
+            if (element.type == EvidenceType.socialMedia)
+              Container(
+                width: 200,
+                child: TextField(
+                  controller: TextEditingController(text: element.assetID),
+                  decoration: InputDecoration(hintText: "Asset ID"),
+                  onChanged: (String newValue) {
+                    element.assetID = newValue;
                   },
                 ),
               ),

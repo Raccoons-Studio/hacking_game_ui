@@ -11,6 +11,7 @@ import 'package:hacking_game_ui/virtual_machine/applications/finder/finder.dart'
 import 'package:hacking_game_ui/virtual_machine/applications/messages/messages_viewer.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/parameters/parameters.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_characters_selector.dart';
+import 'package:hacking_game_ui/virtual_machine/applications/single_fans/single_fans.dart';
 import 'package:hacking_game_ui/virtual_machine/models/application.dart';
 import 'package:hacking_game_ui/virtual_machine/models/cinematic.dart';
 import 'package:hacking_game_ui/virtual_machine/models/directory_and_files.dart';
@@ -37,25 +38,18 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
   List<VirtualApplication> applications = [
     VirtualApplication('Finder', Icons.file_copy, Colors.blue, false),
     VirtualApplication('Messages', Icons.message, Colors.green, false),
+    VirtualApplication('SingleFans', Icons.star_outlined, Colors.black, false),
     //VirtualApplication('Cinematic', Icons.movie, Colors.purple),
     VirtualApplication('Phones', Icons.phone, Colors.greenAccent, true),
     VirtualApplication('Webcam', Icons.camera_alt, Colors.red, false),
     VirtualApplication('Settings', Icons.settings, Colors.grey, false),
     VirtualApplication('Next', Icons.skip_next, Colors.orangeAccent, false),
-
     // Add more applications here
   ];
 
   @override
   void initState() {
     super.initState();
-
-    if (kDebugMode) {
-      applications.add(VirtualApplication(
-          'Next Dev', Icons.developer_board, Colors.deepOrange, false));
-      applications.add(
-          VirtualApplication('Editor', Icons.edit, Colors.deepOrange, false));
-    }
 
     widget.maestro.isMessagesNow().then((bool value) => {
           scheduleMicrotask(() {
@@ -72,13 +66,16 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
     widget.maestro.maestroStream.listen((event) {
       if (_maestroState == null || _maestroState!.hour != event.hour) {
         setState(() {
+          _currentApplication = null;
           isDateVisible = true;
           widget.maestro.isMessagesNow().then((bool value) => {
                 scheduleMicrotask(() {
                   setState(
                     () {
                       applications
-                          .firstWhere((element) => element.name == 'Messages')
+                          .firstWhere((element) => element.name == 'Messages',
+                              orElse: () => VirtualApplication('Messages',
+                                  Icons.message, Colors.green, false))
                           .isNotification = value;
                     },
                   );
@@ -89,8 +86,8 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
         if (event.isCinematic) {
           setState(() {
             isCinematicPlaying = true;
-            _currentApplication = applications.firstWhere(
-                (element) => element.name == 'Cinematic');
+            _currentApplication = applications
+                .firstWhere((element) => element.name == 'Cinematic');
           });
         } else {
           setState(() {
@@ -101,8 +98,8 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
         if (!event.isCinematic && event.isBlackmail) {
           setState(() {
             isBlackmailPlaying = true;
-            _currentApplication = applications.firstWhere(
-                (element) => element.name == 'Messages');
+            _currentApplication = applications
+                .firstWhere((element) => element.name == 'Messages');
           });
         } else {
           setState(() {
@@ -112,7 +109,25 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
       }
       _maestroState = event;
     });
-    widget.maestro.start();
+    widget.maestro.start().then((value) {
+      widget.maestro.getStory().then((value) {
+        // Filter applications with enabledApplications
+        applications = applications
+            .where(
+                (element) => value.enabledApplications.contains(element.name))
+            .toList();
+
+        if (kDebugMode) {
+          applications.add(VirtualApplication(
+              'Next Dev', Icons.developer_board, Colors.deepOrange, false));
+          applications.add(VirtualApplication(
+              'Editor', Icons.edit, Colors.deepOrange, false));
+        }
+      }).onError((error, stackTrace) {
+        print(error);
+        print(stackTrace);
+      });
+    });
   }
 
   AppBar buildAppBar() {
@@ -154,7 +169,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                 return Container();
               }
               return MessagesViewer(
-                  story: snapshot.data!, 
+                  story: snapshot.data!,
                   maestro: widget.maestro,
                   isBlackMail: _maestroState!.isBlackmail,
                   caseID: _maestroState!.caseID);
@@ -201,6 +216,15 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
               return StoryEditor(
                   story: snapshot.data!, maestro: widget.maestro);
             });
+      case 'SingleFans':
+        return FutureBuilder<StoryEngine>(
+            future: widget.maestro.getStory(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return Container();
+              }
+              return SingleFans(story: snapshot.data!, maestro: widget.maestro);
+            });
       case 'Settings':
         return FutureBuilder<StoryEngine>(
             future: widget.maestro.getStory(),
@@ -222,18 +246,22 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
               }
               return CinematicWidget(
                   cinematic: snapshot.data!,
-                  onEndCinematic: () {
-                    setState(() {
-                      _currentApplication = null;
-                      isCinematicPlaying = false;
-                      if (_maestroState!.isBlackmail) {
-                        setState(() {
-                          isBlackmailPlaying = true;
-                          _currentApplication = applications.firstWhere(
-                              (element) => element.name == 'Messages');
-                        });
-                      }
-                    });
+                  onEndCinematic: () async {
+                    if (!await widget.maestro.isElementsToDisplay()) {
+                      widget.maestro.nextHour(false, true);
+                    } else {
+                      setState(() {
+                        _currentApplication = null;
+                        isCinematicPlaying = false;
+                        if (_maestroState!.isBlackmail) {
+                          setState(() {
+                            isBlackmailPlaying = true;
+                            _currentApplication = applications.firstWhere(
+                                (element) => element.name == 'Messages');
+                          });
+                        }
+                      });
+                    }
                   });
             });
       default:
@@ -259,20 +287,23 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                 padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 child: GestureDetector(
                   onTap: () async {
-                    if (applications[index].name == 'Next' && !isBlackmailPlaying) {
+                    if (applications[index].name == 'Next' &&
+                        !isBlackmailPlaying) {
                       if (!await widget.maestro.nextHour(false, true)) {
                         displayComment(
                             "I think I need to collect more evidences before going to the next hour");
                       }
                     }
-                    if (applications[index].name == 'Next Dev' && !isBlackmailPlaying) {
+                    if (applications[index].name == 'Next Dev' &&
+                        !isBlackmailPlaying) {
                       await widget.maestro.nextHour(true, true);
                     } else {
                       setState(() {
-                        if (_currentApplication == applications[index] && !isBlackmailPlaying) {
+                        if (_currentApplication == applications[index] &&
+                            !isBlackmailPlaying) {
                           _currentApplication = null;
                           return;
-                        } else if (!isBlackmailPlaying){
+                        } else if (!isBlackmailPlaying) {
                           _currentApplication = applications[index];
                         }
                       });

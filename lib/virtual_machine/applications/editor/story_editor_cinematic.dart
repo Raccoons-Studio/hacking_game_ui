@@ -1,28 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
+import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor.dart';
+import 'package:uuid/uuid.dart';
 
 class StoryEditorCinematicsWidget extends StatefulWidget {
   final StoryEngine story;
   final Maestro maestro;
   final List<CinematicEngine> cinematics;
-  
+
   StoryEditorCinematicsWidget(this.story, this.maestro, this.cinematics);
-  
-  @override 
-  _StoryEditorCinematicsWidgetState createState() => _StoryEditorCinematicsWidgetState();
-  
+
+  @override
+  _StoryEditorCinematicsWidgetState createState() =>
+      _StoryEditorCinematicsWidgetState();
 }
 
-class _StoryEditorCinematicsWidgetState extends State<StoryEditorCinematicsWidget>{
-  
-  Widget build (BuildContext context) {
+class _StoryEditorCinematicsWidgetState
+    extends State<StoryEditorCinematicsWidget> {
+  Widget build(BuildContext context) {
     return ListView(
       shrinkWrap: true,
       children: <Widget>[
         ...widget.cinematics
             .map((cinematic) => buildCinematic(cinematic))
             .toList(),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: ElevatedButton(
+            child: Text('Add Cinematic'),
+            onPressed: () {
+              setState(() {
+                var uid = Uuid().v4();
+                widget.cinematics.add(CinematicEngine(uid, uid, 1, 1, 7, []));
+              });
+            },
+          ),
+        ),
       ],
     );
   }
@@ -36,6 +50,38 @@ class _StoryEditorCinematicsWidgetState extends State<StoryEditorCinematicsWidge
       children: [
         Row(
           children: [
+            DropdownButton<int>(
+              value: cinematic.week,
+              items: weeks.map((int week) {
+                return DropdownMenuItem<int>(
+                  value: week,
+                  child: Text(week.toString()),
+                );
+              }).toList(),
+              onChanged: (int? newValue) {
+                setState(() {
+                  if (newValue != null) {
+                    cinematic.week = newValue;
+                  }
+                });
+              },
+            ),
+            DropdownButton<int>(
+              value: cinematic.day,
+              items: days.map((int day) {
+                return DropdownMenuItem<int>(
+                  value: day,
+                  child: Text(day.toString()),
+                );
+              }).toList(),
+              onChanged: (int? newValue) {
+                setState(() {
+                  if (newValue != null) {
+                    cinematic.day = newValue;
+                  }
+                });
+              },
+            ),
             DropdownButton<int>(
               value: cinematic.hour,
               items: hours.map((int hour) {

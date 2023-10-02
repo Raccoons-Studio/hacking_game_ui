@@ -84,11 +84,11 @@ abstract class Maestro {
 
   Future<int> getNumberContent(Files file);
 
-  Future<List<TimelineData>> getTimelineData(Files file);
+  Future<List<TimelineData>> getTimelineData(EvidenceType type);
 
   Future<TimelineData> getSingleTimelineData(Files file);
 
-  Future<List<ScrollableData>> getScrollableData(Files file);
+  Future<List<ScrollableData>> getScrollableData(EvidenceType type);
 
   Future<Map<String, List<ConversationData>>> getConversations();
 
@@ -204,5 +204,15 @@ abstract class Maestro {
   Future<bool> isMessagesNow() async {
     var conversations = await getConversations();
     return conversations.values.any((conversation) => conversation.any((c) => c.isNow));
+  }
+
+  Future<List<Files>> getAllCurrentEvidence();
+
+  Future<bool> isElementsToDisplay() async {
+    var evidences = await this.getAllCurrentEvidence();
+    if (evidences.length > 0) {
+      return true;
+    }
+    return false;
   }
 }

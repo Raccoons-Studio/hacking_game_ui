@@ -280,9 +280,36 @@ class MaestroStory extends Maestro {
   }
 
   @override
-  Future<List<ScrollableData>> getScrollableData(Files file) {
-    // TODO: implement getScrollableData
-    throw UnimplementedError();
+  Future<List<ScrollableData>> getScrollableData(EvidenceType type) async {
+    // Make a list with all revealed evidences of this type
+    List<ScrollableData> timelineData = [];
+
+    StoryEngine s = await _dataBaseEngine!.getStory();
+    Player p = await _dataBaseEngine!.getPlayer();
+
+    for (ElementEngine e in s.elements) {
+      if (p.revealedElements.contains(e.ID) && e.type == type) {
+        switch (e.type) {
+          case EvidenceType.socialMedia:
+            CharacterEngine character =
+                s.characters.firstWhere((character) => character.ID == e.characterID);
+            timelineData.add(ScrollableData(
+                e.week,
+                e.day,
+                e.hour,
+                ScrollableType.socialMedia,
+                character.name,
+                e.description,
+                e.assetID ?? "",
+                character.avatar
+                ));
+          default:
+            break;
+        }
+      }
+    }
+
+    return timelineData;
   }
 
   @override
@@ -294,7 +321,7 @@ class MaestroStory extends Maestro {
   }
 
   @override
-  Future<List<TimelineData>> getTimelineData(Files file) async {
+  Future<List<TimelineData>> getTimelineData(EvidenceType type) async {
     // Make a list with all revealed evidences of this type
     List<TimelineData> timelineData = [];
 
@@ -302,7 +329,7 @@ class MaestroStory extends Maestro {
     Player p = await _dataBaseEngine!.getPlayer();
 
     for (ElementEngine e in s.elements) {
-      if (p.revealedElements.contains(e.ID) && e.type == file.type) {
+      if (p.revealedElements.contains(e.ID) && e.type == type) {
         switch (e.type) {
           case EvidenceType.position:
             PlaceEngine place =
@@ -337,7 +364,8 @@ class MaestroStory extends Maestro {
   @override
   Future<void> load(int slot) async {
     StoryEngine story =
-        await SaveAndLoadEngine.loadStoryEngine("anna_story.yml");
+        //await SaveAndLoadEngine.loadStoryEngine("anna_story.yml");
+        await SaveAndLoadEngine.loadStoryEngine("penny_story.yml");
     Player? p = await SaveAndLoadEngine.loadPlayer(slot);
     p ??= getSamplePlayer();
     _dataBaseEngine = DataBaseEngine(story, p);
@@ -504,7 +532,7 @@ class MaestroStory extends Maestro {
     p.revealedElements = [];
     p.currentDay = 1;
     p.currentWeek = 1;
-    p.currentHour = 7;
+    p.currentHour = 4;
 
     while (
         p.currentWeek != week || p.currentDay != day || p.currentHour != hour) {

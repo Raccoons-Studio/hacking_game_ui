@@ -206,7 +206,7 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
             }
             return const Center(child: CircularProgressIndicator());
           },
-          future: widget.maestro.getScrollableData(file));
+          future: widget.maestro.getScrollableData(file.type));
     } else if (file.type == EvidenceType.text) {
       return FutureBuilder(
           builder: (context, snapshot) {

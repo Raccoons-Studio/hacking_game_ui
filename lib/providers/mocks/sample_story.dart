@@ -114,6 +114,7 @@ StoryEngine getSampleStory() {
       elements,
       cases,
       cinematics,
+      [], 
       []);
 }
 
