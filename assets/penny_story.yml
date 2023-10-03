@@ -23,7 +23,7 @@ elements:
     isOptionalEvidence: false
     week: 1
     day: 1
-    hour: 19
+    hour: 16
     relatedCaseID:
     nsfwLevel: 0
   - ID: Penny_18
@@ -38,7 +38,7 @@ elements:
     isOptionalEvidence: false
     week: 1
     day: 1
-    hour: 19
+    hour: 16
     relatedCaseID:
     nsfwLevel: 0
 cases:
@@ -476,7 +476,7 @@ cinematics:
             text: "Yes c'est top ! "
           - character: Me
             text: "Tourne toi pour voir ?"
-      - cinematicAsset: Penny_217
+      - cinematicAsset: Penny_217.jpg
         cinematicConversations:
           - character: Penny
             text: "Comme ça ?"
@@ -484,19 +484,19 @@ cinematics:
             text: "Ouais c'est super !"
           - character: Penny
             text: "Cool !"
-      - cinematicAsset: Penny_218
+      - cinematicAsset: Penny_218.jpg
         cinematicConversations:
           - character: Penny
             text: "Comme ça c'est bien aussi ?"
           - character: Me
             text: "Ouais j'aime bien ! Ca rend bien !"
-      - cinematicAsset: Penny_219
+      - cinematicAsset: Penny_219.jpg
         cinematicConversations:
           - character: Me
             text: "Allez une dernière !"
           - character: Me
             text: "Super ! On a tout ce qu'il nous faut !"
-      - cinematicAsset: Penny_220
+      - cinematicAsset: Penny_220.jpg
         cinematicConversations:
           - character: Penny
             text: "C'est troooooop cool ! Trop hâte de voir le résultat !"
@@ -510,7 +510,7 @@ cinematics:
             text: "C'est trop gentil merci pour tout ce que tu fais !"
           - character: Me
             text: "Derien ! A toi le succès !"
-      - cinematicAsset: Penny_221
+      - cinematicAsset: Penny_221.jpg
         cinematicConversations:
           - character: Me
             text: "Elle était vraiment sexy dans sa petite robe !"
