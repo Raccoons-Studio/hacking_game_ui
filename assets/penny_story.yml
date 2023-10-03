@@ -531,7 +531,20 @@ conversations:
     hour: 19
     isNameRevealed: false
     conversation:
-      - content: "Hey ! Merci de t'être abonné à mon SingleFans ! N'hésite pas si tu as des idées pour les prochains shootings ! Bisous bisous !"
+      - id: 45e077b4-14c8-420d-83e4-bda5ac9652ee
+        content: "Hey ! Merci de t'être abonné à mon SingleFans ! N'hésite pas si tu as des idées pour les prochains shootings ! Bisous bisous !"
+        isPlayer: false
+      - id: 72c28ef7-a2ee-45d9-af1b-c35c8d78adb1
+        content: "Coucou ! Je suis ravi de m'être abonné ! Tu es vraiment très jolie et j'espère que tu continueras à poster de belles photos !"
+        isPlayer: true
+      - id: 57dd49ac-8b9b-4752-a125-0712750c15b3
+        content: "Merci beaucoup ! N'hésite pas si tu as des suggestions !"
+        isPlayer: false
+      - id: a855f61c-e48e-486f-8d4b-873a3a8c1a34
+        content: "Je n'y manquerai pas ! Bonne soirée bisous"
+        isPlayer: true
+      - id: 4daf1c73-5a03-41cd-b6fd-ccf8383ac2af
+        content: Bisous bisous
         isPlayer: false
 enabledApplications:
   - SingleFans

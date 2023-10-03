@@ -139,7 +139,7 @@ class _StoryEditorCasesWidgetState extends State<StoryEditorCasesWidget> {
                 onPressed: () {
                   setState(() {
                     caseEngine.blackmail!.conversation
-                        .add(ConversationBubbleDataEngine(false, ''));
+                        .add(ConversationBubbleDataEngine(Uuid().v4(), false, ''));
                   });
                 },
               )

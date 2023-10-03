@@ -12,7 +12,12 @@ class MessagesViewer extends StatefulWidget {
   final bool isBlackMail;
   final String caseID;
 
-  const MessagesViewer({Key? key, required this.maestro, required this.story, required this.isBlackMail, required this.caseID})
+  const MessagesViewer(
+      {Key? key,
+      required this.maestro,
+      required this.story,
+      required this.isBlackMail,
+      required this.caseID})
       : super(key: key);
 
   @override
@@ -50,13 +55,20 @@ class _MessagesViewerState extends State<MessagesViewer> {
                           children: snapshot.data!.entries.map((e) {
                             return Container(
                               color: e.key == _selectedConversationKey
-                                        ? CupertinoColors.lightBackgroundGray
-                                        : Colors.transparent,
+                                  ? CupertinoColors.lightBackgroundGray
+                                  : Colors.transparent,
                               child: ListTile(
                                 title: Text(e.key,
                                     style: e.key == _selectedConversationKey
-                                        ? const TextStyle(color: CupertinoColors.darkBackgroundGray)
-                                        : e.value.last.isNow ? const TextStyle(color: Colors.black, fontWeight: FontWeight.bold) : const TextStyle(color: Colors.black)),
+                                        ? const TextStyle(
+                                            color: CupertinoColors
+                                                .darkBackgroundGray)
+                                        : e.value.last.isNow
+                                            ? const TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold)
+                                            : const TextStyle(
+                                                color: Colors.black)),
                                 subtitle: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
@@ -81,15 +93,7 @@ class _MessagesViewerState extends State<MessagesViewer> {
                           }).toList(),
                         ),
                       ),
-                      Expanded(
-                        child: _selectedConversation == null
-                            ? const Center(child: Text('Select a conversation'))
-                            : GenericConversation(
-                                conversation: _selectedConversation!,
-                                scrollController: ScrollController(),
-                                showMarkAsEvidence: false,
-                              ),
-                      ),
+                      buildConversation(),
                     ],
                   );
                 } else {
@@ -129,12 +133,7 @@ class _MessagesViewerState extends State<MessagesViewer> {
                               },
                               child: const Text('Back to conversations'),
                             ),
-                            Expanded(
-                              child: GenericConversation(
-                                conversation: _selectedConversation!,
-                                scrollController: ScrollController(),
-                              ),
-                            ),
+                            buildConversation(),
                           ],
                         );
                 }
@@ -142,6 +141,53 @@ class _MessagesViewerState extends State<MessagesViewer> {
             }
             return const SizedBox.shrink();
           }),
+    );
+  }
+
+  Expanded buildConversation() {
+    return Expanded(
+      child: _selectedConversation == null
+          ? const Center(child: Text('Select a conversation'))
+          : Column(
+              children: [
+                Expanded(
+                  child: GenericConversation(
+                    conversation: _selectedConversation!,
+                    scrollController: ScrollController(),
+                    showMarkAsEvidence: false,
+                  ),
+                ),
+                if (_selectedConversation!.last.conversation.last.name ==
+                        'Player' &&
+                    !_selectedConversation!.last.conversation.last.isRevealed)
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Row(
+                      children: <Widget>[
+                        Flexible(
+                          child: Container(
+                            padding: const EdgeInsets.all(8.0),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(8.0)),
+                            child: Text(_selectedConversation!
+                                .last.conversation.last.content),
+                          ),
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.send),
+                          onPressed: () async {
+                            await widget.maestro.collectConversation(_selectedConversation!.last.conversation.last.id);
+                            setState(() {
+                              
+                            });
+                          },
+                        )
+                      ],
+                    ),
+                  )
+              ],
+            ),
     );
   }
 }

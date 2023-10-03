@@ -119,5 +119,5 @@ StoryEngine getSampleStory() {
 }
 
 Player getSamplePlayer() {
-  return Player("sample_player", 1, 1, 7, [], [], [], [], [], nsfwLevel: 0);
+  return Player("sample_player", 1, 1, 7, [], [], [], [], [], [], nsfwLevel: 0);
 }

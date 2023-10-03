@@ -120,7 +120,7 @@ class MaestroStory extends Maestro {
       var dataList = charsConv
           .map((conv) => ConversationData(
               conv.characterID,
-              convertDialogues(s, conv.characterID, conv.conversation),
+              convertDialogues(s, p, conv.characterID, conv.conversation),
               conv.week,
               conv.day,
               conv.hour,
@@ -136,7 +136,8 @@ class MaestroStory extends Maestro {
         if (caseConv != null && caseConv.characterID == character.ID) {
           dataList.add(ConversationData(
               caseConv.characterID,
-              convertDialogues(s, caseConv.characterID, caseConv.conversation),
+              convertDialogues(
+                  s, p, caseConv.characterID, caseConv.conversation),
               caseEngine.week,
               7,
               22));
@@ -150,15 +151,33 @@ class MaestroStory extends Maestro {
     return data;
   }
 
-  List<ConversationBubbleData> convertDialogues(StoryEngine story,
-      String characterID, List<ConversationBubbleDataEngine> conversations) {
-    return conversations
-        .map((d) => ConversationBubbleData(
-            d.isPlayer
-                ? "Player"
-                : story.characters.firstWhere((c) => c.ID == characterID).name,
-            d.content))
-        .toList();
+  List<ConversationBubbleData> convertDialogues(
+      StoryEngine story,
+      Player player,
+      String characterID,
+      List<ConversationBubbleDataEngine> conversations) {
+    List<ConversationBubbleData> convertedDialogues = [];
+
+    for (var d in conversations) {
+      if (d.isPlayer) {
+        if (!player.revealedConversations.contains(d.ID)) {
+          convertedDialogues.add(ConversationBubbleData(
+              d.ID, "Player", d.content,
+              isRevealed: false));
+          break;
+        }
+      }
+
+      convertedDialogues.add(ConversationBubbleData(
+          d.ID,
+          d.isPlayer
+              ? "Player"
+              : story.characters.firstWhere((c) => c.ID == characterID).name,
+          d.content,
+          isRevealed: player.revealedConversations.contains(d.ID)));
+    }
+
+    return convertedDialogues;
   }
 
   @override
@@ -549,13 +568,18 @@ class MaestroStory extends Maestro {
       if (e.week == p.currentWeek &&
           e.day == p.currentDay &&
           e.hour == p.currentHour) {
-        evidences.add(Files(e.ID, e.type.name,
-            e.type,
-            description: e.description));
+        evidences
+            .add(Files(e.ID, e.type.name, e.type, description: e.description));
       }
     }
     for (Files file in evidences) {
       p.revealedElements.add(file.evidenceID);
     }
+  }
+
+  @override
+  Future<void> collectConversation(String conversationID) async {
+    Player p = await _dataBaseEngine!.getPlayer();
+    p.revealedConversations.add(conversationID);
   }
 }

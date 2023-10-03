@@ -8,7 +8,7 @@ import 'package:macos_ui/macos_ui.dart';
 class FinderChat extends StatefulWidget {
   final Map<String, List<ConversationData>> conversations;
 
-  const FinderChat({super.key, required this.conversations});
+  const FinderChat({Key? key, required this.conversations}) : super(key: key);
 
   @override
   State<FinderChat> createState() => _FinderChatState();
@@ -46,7 +46,7 @@ class _FinderChatState extends State<FinderChat> {
                   fit: FlexFit.loose,
                   child: Container(
                     child: _currentConversation != null
-                        ? GenericConversation(conversation: _currentConversation!, scrollController: ScrollController(),)
+                        ? GenericConversation(conversation: _currentConversation!, scrollController: ScrollController())
                         : Container(),
                   ),
                 ),
@@ -75,8 +75,7 @@ class _FinderChatState extends State<FinderChat> {
           style: TextStyle(color: isSelected ? Colors.white : Colors.black),
         ),
         subtitle: Text(
-            getLatestMessageDate(
-                conversations.values.toList()[i]), // replace with actual date
+            getLatestMessageDate(conversations.values.toList()[i]), 
             style: TextStyle(color: isSelected ? Colors.white : Colors.black)),
         tileColor: Colors.transparent,
         selectedColor: CupertinoColors.activeBlue,
@@ -111,11 +110,11 @@ class GenericConversation extends StatelessWidget {
   final ScrollController scrollController;
 
   const GenericConversation({
-    super.key,
+    Key? key,
     required this.conversation,
     required this.scrollController,
     this.showMarkAsEvidence = true,
-  });
+  }) : super(key: key);
 
   final List<ConversationData> conversation;
   final bool showMarkAsEvidence;
@@ -158,7 +157,7 @@ class GenericConversation extends StatelessWidget {
               itemBuilder: (context, i) {
                 return ConversationBubble(
                   data: conversation[index].conversation[i],
-                  isUser: conversation[index].conversation[i].name == 'User',
+                  isUser: conversation[index].conversation[i].name == 'Player',
                 );
               },
             ),
@@ -183,6 +182,9 @@ class ConversationBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (this.isUser && !this.data.isRevealed) {
+      return Container();
+    }
     return Align(
       alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
       child: LayoutBuilder(

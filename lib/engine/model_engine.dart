@@ -353,13 +353,15 @@ class ConversationEngine {
 }
 
 class ConversationBubbleDataEngine {
+  String ID;
   String content;
   bool isPlayer;
 
-  ConversationBubbleDataEngine(this.isPlayer, this.content);  
+  ConversationBubbleDataEngine(this.ID, this.isPlayer, this.content);  
 
   Map<String, dynamic> toMap(){
     return {
+      'id': ID,
       'content': content,
       'isPlayer': isPlayer,
     };
@@ -367,6 +369,7 @@ class ConversationBubbleDataEngine {
 
   static ConversationBubbleDataEngine fromMap(Map<String, dynamic> map){
     return ConversationBubbleDataEngine(
+      map['id'],
       map['isPlayer'],
       map['content'],
     );

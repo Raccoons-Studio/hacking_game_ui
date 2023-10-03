@@ -59,6 +59,8 @@ abstract class Maestro {
 
   Future<void> collectEvidence(String evidenceID);
 
+  Future<void> collectConversation(String conversationID);
+
   Future<void> collectEvidencesByType(EvidenceType type);
 
   Future<void> addToEvidence(String characterID, String evidenceID);
@@ -211,6 +213,6 @@ abstract class Maestro {
     if (evidences.isNotEmpty) {
       return true;
     }
-    return false;
+    return await isMessagesNow();
   }
 }

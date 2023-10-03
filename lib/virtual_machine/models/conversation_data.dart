@@ -11,8 +11,10 @@ class ConversationData {
 }
 
 class ConversationBubbleData {
+  String id;
   String name;
   String content;
+  bool isRevealed;
 
-  ConversationBubbleData(this.name, this.content);    
+  ConversationBubbleData(this.id, this.name, this.content, {this.isRevealed = false});    
 }

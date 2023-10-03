@@ -5,6 +5,7 @@ class Player {
   int currentHour;
   List<String> revealedElements;
   List<String> elementsMarkedAsEvidence;
+  List<String> revealedConversations;
   List<String> solvedCases;
   List<String> currentCases;
   List<String> unlockedApplications;
@@ -22,6 +23,7 @@ class Player {
       this.solvedCases,
       this.currentCases,
       this.unlockedApplications,
+      this.revealedConversations,
       {this.isDevModeEnable = false,
       this.nsfwLevel = 0,
       this.lang = 'en'});
@@ -36,6 +38,7 @@ class Player {
             List<String>.from(json["elementsMarkedAsEvidence"]),
         solvedCases = List<String>.from(json["solvedCases"]),
         currentCases = List<String>.from(json["currentCases"]),
+        revealedConversations = List<String>.from(json["revealedConversations"]),
         unlockedApplications = List<String>.from(json["unlockedApplications"]),
         lang = json['lang'],
         isDevModeEnable = json['isDevModeEnable'],

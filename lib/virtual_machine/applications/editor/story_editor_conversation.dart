@@ -34,7 +34,11 @@ class _StoryEditorConversationWidgetState
             onPressed: () {
               setState(() {
                 widget.story.conversations.add(ConversationEngine(
-                    const Uuid().v4(), widget.story.characters[0].ID, 1, 1, 7, []));
+                    const Uuid().v4(),
+                    widget.story.characters[0].ID,
+                    1,
+                    1,
+                    7, []));
               });
             },
           ),
@@ -46,8 +50,8 @@ class _StoryEditorConversationWidgetState
   Widget buildConversationTile(ConversationEngine conversation) {
     return ExpansionTile(
       title: Text("${widget.story.characters.firstWhere(
-                (character) => character.ID == conversation.characterID,
-              ).name} W${conversation.week} ${getDayOfWeek(conversation.day)} ${conversation.hour}:00"),
+            (character) => character.ID == conversation.characterID,
+          ).name} W${conversation.week} ${getDayOfWeek(conversation.day)} ${conversation.hour}:00"),
       children: <Widget>[
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -141,7 +145,7 @@ class _StoryEditorConversationWidgetState
           onPressed: () {
             setState(() {
               conversation.conversation
-                  .add(ConversationBubbleDataEngine(false, ''));
+                  .add(ConversationBubbleDataEngine(Uuid().v4(), false, ''));
             });
           },
         ),
@@ -152,7 +156,16 @@ class _StoryEditorConversationWidgetState
   Widget buildBubble(ConversationBubbleDataEngine bubble) {
     return Row(
       children: <Widget>[
-        Text(bubble.isPlayer ? 'Player' : 'Character'),
+        Checkbox(
+          value: bubble.isPlayer,
+          onChanged: (bool? newValue) {
+            setState(() {
+              if (newValue != null) {
+                bubble.isPlayer = newValue;
+              }
+            });
+          },
+        ),
         const SizedBox(width: 10),
         Expanded(
           child: TextField(
