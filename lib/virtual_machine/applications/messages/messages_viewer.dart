@@ -164,22 +164,33 @@ class _MessagesViewerState extends State<MessagesViewer> {
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Row(
                       children: <Widget>[
-                        Flexible(
+                        Expanded(
                           child: Container(
                             padding: const EdgeInsets.all(8.0),
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(8.0)),
                             child: Text(_selectedConversation!
-                                .last.conversation.last.content),
+                                    .last.conversation.last.content),
                           ),
                         ),
                         IconButton(
                           icon: const Icon(Icons.send),
                           onPressed: () async {
-                            await widget.maestro.collectConversation(_selectedConversation!.last.conversation.last.id);
+                            await widget.maestro.collectConversation(
+                                _selectedConversation!
+                                    .last.conversation.last.id);
                             setState(() {
-                              
+                              _selectedConversation!.last.conversation.last.isRevealed = true;
+                              _selectedConversation!
+                                  .last.conversation.add(ConversationBubbleData("ellispis", "", "..."));
+                            });
+                            await Future.delayed(Duration(seconds: 3));
+                            var newConversations =
+                                await widget.maestro.getConversations();
+                            setState(() {
+                              _selectedConversation =
+                                  newConversations[_selectedConversationKey];
                             });
                           },
                         )

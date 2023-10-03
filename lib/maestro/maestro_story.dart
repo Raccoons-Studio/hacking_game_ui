@@ -108,11 +108,10 @@ class MaestroStory extends Maestro {
       var charsConv = s.conversations
           .where((c) =>
               c.characterID == character.ID &&
-              ((c.week < p.currentWeek) ||
-                  (c.week == p.currentWeek && c.day <= p.currentDay) ||
-                  (c.week == p.currentWeek &&
-                      c.day == p.currentDay &&
-                      c.hour <= p.currentHour)))
+              (c.week < p.currentWeek ||
+               c.week == p.currentWeek &&
+               (c.day < p.currentDay ||
+               c.day == p.currentDay && c.hour <= p.currentHour)))
           .toList();
 
       charsConv.sort((a, b) => a.week.compareTo(b.week));
@@ -400,6 +399,17 @@ class MaestroStory extends Maestro {
           p.revealedElements.add(currentEvidence.evidenceID);
         }
       }
+
+      // With dev mod we collect all conversation automatically
+      for (var currentConversation in (await getConversations()).values) {
+        for (var conversation in currentConversation) {
+          for (var bubble in conversation.conversation) {
+            if (!bubble.isRevealed) {
+              p.revealedConversations.add(bubble.id);
+            }
+          }
+        }
+      }
     }
 
     // Check if every evidences are collected
@@ -407,6 +417,16 @@ class MaestroStory extends Maestro {
       for (var currentEvidence in await getAllCurrentEvidence()) {
         if (!p.revealedElements.contains(currentEvidence.evidenceID)) {
           return false;
+        }
+      }
+      // Check if every conversations are revealed
+      for (var currentConversation in (await getConversations()).values) {
+        for (var conversation in currentConversation) {
+          for (var bubble in conversation.conversation) {
+            if (bubble.name == "Player" && !bubble.isRevealed) {
+              return false;
+            }
+          }
         }
       }
       if (p.currentHour >= 22) {
@@ -463,7 +483,7 @@ class MaestroStory extends Maestro {
   Future<void> start() async {
     await load(0);
     if (kDebugMode) {
-      await goTo(1, 1, 22);
+      await goTo(1, 1, 16);
     } else {
       await nextHour(false, false);
     }
