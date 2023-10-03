@@ -206,6 +206,11 @@ abstract class Maestro {
     return conversations.values.any((conversation) => conversation.any((c) => c.isNow));
   }
 
+  Future<bool> isEvidenceNow(EvidenceType evidence) async {
+    var evidences = await getAllCurrentEvidence();
+    return evidences.any((e) => e.type == evidence);
+  }
+
   Future<List<Files>> getAllCurrentEvidence();
 
   Future<bool> isElementsToDisplay() async {

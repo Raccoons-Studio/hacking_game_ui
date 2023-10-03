@@ -51,36 +51,20 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
   void initState() {
     super.initState();
 
-    widget.maestro.isMessagesNow().then((bool value) => {
-          scheduleMicrotask(() {
-            setState(
-              () {
-                applications
-                    .firstWhere((element) => element.name == 'Messages')
-                    .isNotification = value;
-              },
-            );
-          })
-        });
+    widget.maestro.isMessagesNow().then((bool value) => {setNotification("Messages", value)});
+    widget.maestro.isEvidenceNow(EvidenceType.socialMedia).then((bool value) => {setNotification("SingleFans", value)});
 
     widget.maestro.maestroStream.listen((event) {
       if (_maestroState == null || _maestroState!.hour != event.hour) {
         setState(() {
           _currentApplication = null;
           isDateVisible = true;
-          widget.maestro.isMessagesNow().then((bool value) => {
-                scheduleMicrotask(() {
-                  setState(
-                    () {
-                      applications
-                          .firstWhere((element) => element.name == 'Messages',
-                              orElse: () => VirtualApplication('Messages',
-                                  Icons.message, Colors.green, false))
-                          .isNotification = value;
-                    },
-                  );
-                })
-              });
+          widget.maestro
+              .isMessagesNow()
+              .then((bool value) => {setNotification("Messages", value)});
+          widget.maestro
+              .isEvidenceNow(EvidenceType.socialMedia)
+              .then((bool value) => {setNotification("SingleFans", value)});
         });
       } else {
         if (event.isCinematic) {
@@ -127,6 +111,20 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
         print(error);
         print(stackTrace);
       });
+    });
+  }
+
+  void setNotification(String application, bool value) {
+    return scheduleMicrotask(() {
+      setState(
+        () {
+          applications
+              .firstWhere((element) => element.name == application,
+                  orElse: () => VirtualApplication(
+                      application, Icons.message, Colors.green, false))
+              .isNotification = value;
+        },
+      );
     });
   }
 

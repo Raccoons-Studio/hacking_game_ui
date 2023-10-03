@@ -277,6 +277,9 @@ class MaestroStory extends Maestro {
 
   @override
   Future<List<Files>> getAllCurrentEvidence() async {
+    if (_dataBaseEngine == null) {
+      return [];
+    }
     StoryEngine s = await _dataBaseEngine!.getStory();
     Player p = await _dataBaseEngine!.getPlayer();
     List<Files> evidences = [];
