@@ -463,6 +463,9 @@ class MaestroStory extends Maestro {
     }
 
     await _dataBaseEngine!.savePlayer(p);
+    if (!await isElementsToDisplay() && !state.isCinematic) {
+      return nextHour(devMode, increment);
+    }
     super.streamController.add(state);
     return true;
   }

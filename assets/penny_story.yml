@@ -9,6 +9,20 @@ characters:
     weekAvailability: 1
     unrevealedName:
     isPlayable: true
+  - ID: d6077965-ceae-48a5-9037-b6f26e15925c
+    name: GangOfGod
+    avatar: images/Anna_avatar.jpg
+    wallpaper: images/Anna_wallpaper.jpg
+    weekAvailability: 1
+    unrevealedName:
+    isPlayable: false
+  - ID: 12011679-42c8-4890-a84b-f045d6ca3e1e
+    name: LordOfFuck876
+    avatar: images/Anna_avatar.jpg
+    wallpaper: images/Anna_wallpaper.jpg
+    weekAvailability: 1
+    unrevealedName:
+    isPlayable: false
 places:
 elements:
   - ID: Penny_17
@@ -38,6 +52,66 @@ elements:
     isOptionalEvidence: false
     week: 1
     day: 1
+    hour: 16
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-1-2-16-PENNY-socialMedia-0
+    description: "Coucou à mes nouveaux fans ! Voici une nouvelle série de photos dans ma nouvelle robe sexy !"
+    characterID: PENNY
+    assetID: Penny_216.jpg
+    placeID:
+    numberValue:
+    textValue:
+    type: EvidenceType.socialMedia
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 1
+    day: 2
+    hour: 16
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-1-2-16-PENNY-socialMedia-0
+    description:
+    characterID: PENNY
+    assetID: Penny_217.jpg
+    placeID:
+    numberValue:
+    textValue:
+    type: EvidenceType.socialMedia
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 1
+    day: 2
+    hour: 16
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-1-2-16-PENNY-socialMedia-0
+    description:
+    characterID: PENNY
+    assetID: Penny_218.jpg
+    placeID:
+    numberValue:
+    textValue:
+    type: EvidenceType.socialMedia
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 1
+    day: 2
+    hour: 16
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-1-2-16-PENNY-socialMedia-0
+    description:
+    characterID: PENNY
+    assetID: Penny_219.jpg
+    placeID:
+    numberValue:
+    textValue:
+    type: EvidenceType.socialMedia
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 1
+    day: 2
     hour: 16
     relatedCaseID:
     nsfwLevel: 0
@@ -523,6 +597,61 @@ cinematics:
           - character: Me
             text: "Je la connais, il ne faut surtout pas qu'elle se lasse !"
     nsfwLevel: 0
+  - ID: ac9dad1c-dd39-47ee-8755-5c263481d90c
+    name: ac9dad1c-dd39-47ee-8755-5c263481d90c
+    week: 1
+    day: 2
+    hour: 19
+    sequences:
+      - cinematicAsset: Penny_222.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Son SingleFans commence à avoir quelques abonnés, c'est super !"
+          - character: Me
+            text: "Bon, je devrais continuer à l'encourager et lui renvoyer quelques messages, voir même lui filer un poureboire !"
+          - character: Me
+            text: Ou peut être même lui proposer de l'argent pour des photos plus osées...
+          - character: Me
+            text: "Le problème c'est que de l'argent, j'en ai pas..."
+          - character: Me
+            text: Je pourrais envoyer des messages à ses abonnés pour leur proposer des photos privées...
+          - character: Me
+            text: "Celles dans la cabine d'essayage que j'ai prise avec mon spartphone !"
+          - character: Me
+            text: "Je suis sur que ca se vend bien !"
+          - character: Me
+            text: "Dans tous les cas, ca se tente !"
+    nsfwLevel: 0
+  - ID: feaf5ceb-27eb-4094-b806-abb45b11ff5a
+    name: feaf5ceb-27eb-4094-b806-abb45b11ff5a
+    week: 1
+    day: 3
+    hour: 7
+    sequences:
+      - cinematicAsset: Penny_301.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Je crois que j'ai rêvé de Penny toute la nuit !"
+          - character: Me
+            text: "Je pense qu'elle a prévu un nouveau shooting aujourd'hui, j'espère que ça a être sympa !"
+          - character: Me
+            text: Je vais lui envoyer un message ce soir pour lui proposer de lui acheter des photos plus osées pour une belle somme.
+          - character: Me
+            text: "Mais en attendant, je vais essayer de contacter ses premiers fans pour savoir si ils ne veulent pas de photos exclusives !"
+    nsfwLevel: 0
+  - ID: ef270949-5c3c-41a4-9c9b-3c9d0fff04fd
+    name: ef270949-5c3c-41a4-9c9b-3c9d0fff04fd
+    week: 1
+    day: 3
+    hour: 10
+    sequences:
+      - cinematicAsset: Penny_301.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Pas de réponse pour le moment... Ca m'étonne pas trop, c'est un peu bizarre comme demande !"
+          - character: Me
+            text: "Je vais aller voir Penny, voir si elle veut organiser un shooting aujourd'hui !"
+    nsfwLevel: 0
 conversations:
   - conversationID: cbb28970-11d9-40e0-9bd6-4033ae241702
     characterID: PENNY
@@ -546,6 +675,45 @@ conversations:
       - id: 4daf1c73-5a03-41cd-b6fd-ccf8383ac2af
         content: Bisous bisous
         isPlayer: false
+  - conversationID: 1fc15968-1d35-4f6b-9b4d-4856e159d2f6
+    characterID: PENNY
+    week: 1
+    day: 2
+    hour: 22
+    isNameRevealed: false
+    conversation:
+      - id: 3bcdd705-57b7-4414-b3a3-0cc699c8a646
+        content: "Coucou Princess P ! Superbes tes nouvelles photos !"
+        isPlayer: true
+      - id: 9f919816-3abf-4de9-a897-eb37db51acd4
+        content: "Coucou ! Merci beaucoup, je vais essayer d'en faire d'autres demain !"
+        isPlayer: false
+      - id: 7bf21f47-cca3-4c05-bb54-b691ef71b97a
+        content: "J'ai hâte !"
+        isPlayer: true
+      - id: 643808e4-676c-4974-9bf4-a87b3a7037dc
+        content: "Bonne nuit, bisous !"
+        isPlayer: false
+  - conversationID: f05049a8-7940-44d4-81bb-3350aefb3010
+    characterID: d6077965-ceae-48a5-9037-b6f26e15925c
+    week: 1
+    day: 3
+    hour: 7
+    isNameRevealed: false
+    conversation:
+      - id: 86004e81-3d16-4f13-b2cf-16d7d4705774
+        content: "Hey ! J'ai vu que t'étais abonné à Princess P. Ca te dit des photos exclusives d'elle ?"
+        isPlayer: true
+  - conversationID: 2c8ae415-47e6-41c3-84df-a1a52f207492
+    characterID: 12011679-42c8-4890-a84b-f045d6ca3e1e
+    week: 1
+    day: 3
+    hour: 7
+    isNameRevealed: false
+    conversation:
+      - id: 3ace9f89-59b2-4721-97ae-fac8e08c3d44
+        content: "Hey ! J'ai vu que t'étais abonné à Princess P. Ca te dit des photos exclusives d'elle ?"
+        isPlayer: true
 enabledApplications:
   - SingleFans
   - Messages

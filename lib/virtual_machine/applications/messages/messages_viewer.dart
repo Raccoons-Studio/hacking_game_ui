@@ -98,31 +98,7 @@ class _MessagesViewerState extends State<MessagesViewer> {
                   );
                 } else {
                   return _selectedConversation == null
-                      ? ListView(
-                          children: snapshot.data!.entries.map((e) {
-                            return ListTile(
-                              title: Text(e.key),
-                              subtitle: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                      "${getDayOfWeek(e.value.last.day)} ${e.value.last.hour}:00"),
-                                  Text(
-                                    e.value.last.conversation.last.content,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ],
-                              ),
-                              isThreeLine: true,
-                              dense: false,
-                              onTap: () {
-                                setState(() {
-                                  _selectedConversation = e.value;
-                                });
-                              },
-                            );
-                          }).toList(),
-                        )
+                      ? buildMobileContactList(snapshot)
                       : Column(
                           children: [
                             ElevatedButton(
@@ -141,6 +117,35 @@ class _MessagesViewerState extends State<MessagesViewer> {
             }
             return const SizedBox.shrink();
           }),
+    );
+  }
+
+  ListView buildMobileContactList(
+      AsyncSnapshot<Map<String, List<ConversationData>>> snapshot) {
+    return ListView(
+      children: snapshot.data!.entries.map((e) {
+        return ListTile(
+          title: Text(e.key),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text("${getDayOfWeek(e.value.last.day)} ${e.value.last.hour}:00"),
+              Text(
+                e.value.last.conversation.last.content,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
+          isThreeLine: true,
+          dense: false,
+          onTap: () {
+            setState(() {
+              _selectedConversation = e.value;
+              _selectedConversationKey = e.key;
+            });
+          },
+        );
+      }).toList(),
     );
   }
 
@@ -171,7 +176,7 @@ class _MessagesViewerState extends State<MessagesViewer> {
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(8.0)),
                             child: Text(_selectedConversation!
-                                    .last.conversation.last.content),
+                                .last.conversation.last.content),
                           ),
                         ),
                         IconButton(
@@ -181,9 +186,11 @@ class _MessagesViewerState extends State<MessagesViewer> {
                                 _selectedConversation!
                                     .last.conversation.last.id);
                             setState(() {
-                              _selectedConversation!.last.conversation.last.isRevealed = true;
                               _selectedConversation!
-                                  .last.conversation.add(ConversationBubbleData("ellispis", "", "..."));
+                                  .last.conversation.last.isRevealed = true;
+                              _selectedConversation!.last.conversation.add(
+                                  ConversationBubbleData(
+                                      "ellispis", "", "..."));
                             });
                             await Future.delayed(Duration(seconds: 3));
                             var newConversations =

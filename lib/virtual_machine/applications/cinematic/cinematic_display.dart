@@ -87,6 +87,7 @@ class _CinematicWidgetState extends State<CinematicWidget>
       onTap: nextConversation,
       child: Stack(
         children: <Widget>[
+          Positioned.fill(child: Container(color: Colors.black,)),
           Positioned.fill(
             child: Image.asset(
                 "assets/images/${widget.cinematic.cinematicSequences[sequencesIndex > 0 
