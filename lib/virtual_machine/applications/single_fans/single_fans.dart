@@ -16,25 +16,28 @@ class SingleFans extends StatefulWidget {
 }
 
 class _SingleFansState extends State<SingleFans> {
-  Future<List<ScrollableData>>? _datas;
+  Future? _datas;
 
   @override
   void initState() {
     super.initState();
-    _datas = widget.maestro.getScrollableData(EvidenceType.socialMedia);
+    _datas = Future.wait([
+      widget.maestro.collectEvidencesByType(EvidenceType.socialMedia),
+      widget.maestro.getScrollableData(EvidenceType.socialMedia),
+    ]);
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: CupertinoColors.extraLightBackgroundGray,
-      child: FutureBuilder<List<ScrollableData>>(
+      child: FutureBuilder(
           future: _datas,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const CircularProgressIndicator();
             } else if (snapshot.hasData) {
-              List<ScrollableData> dataList = snapshot.data!;
+              List<ScrollableData> dataList = snapshot.data[1]!;
               return ListView.builder(
                 itemCount: dataList.length,
                 reverse: true,
@@ -50,7 +53,8 @@ class _SingleFansState extends State<SingleFans> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(16.0),
-                          child: Image.asset("assets/images/${dataList[index].asset}"),
+                          child: Image.asset(
+                              "assets/images/${dataList[index].asset}"),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),

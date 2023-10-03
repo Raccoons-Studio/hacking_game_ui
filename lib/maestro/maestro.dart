@@ -59,6 +59,8 @@ abstract class Maestro {
 
   Future<void> collectEvidence(String evidenceID);
 
+  Future<void> collectEvidencesByType(EvidenceType type);
+
   Future<void> addToEvidence(String characterID, String evidenceID);
 
   Future<void> removeFromEvidence(String characterID, String evidenceID);

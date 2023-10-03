@@ -109,9 +109,8 @@ class MaestroStory extends Maestro {
           .where((c) =>
               c.characterID == character.ID &&
               ((c.week < p.currentWeek) ||
+                  (c.week == p.currentWeek && c.day <= p.currentDay) ||
                   (c.week == p.currentWeek &&
-                      c.day <= p.currentDay) ||
-                      (c.week == p.currentWeek &&
                       c.day == p.currentDay &&
                       c.hour <= p.currentHour)))
           .toList();
@@ -292,8 +291,8 @@ class MaestroStory extends Maestro {
       if (p.revealedElements.contains(e.ID) && e.type == type) {
         switch (e.type) {
           case EvidenceType.socialMedia:
-            CharacterEngine character =
-                s.characters.firstWhere((character) => character.ID == e.characterID);
+            CharacterEngine character = s.characters
+                .firstWhere((character) => character.ID == e.characterID);
             timelineData.add(ScrollableData(
                 e.week,
                 e.day,
@@ -302,8 +301,7 @@ class MaestroStory extends Maestro {
                 character.name,
                 e.description,
                 e.assetID ?? "",
-                character.avatar
-                ));
+                character.avatar));
           default:
             break;
         }
@@ -539,6 +537,25 @@ class MaestroStory extends Maestro {
         p.currentWeek != week || p.currentDay != day || p.currentHour != hour) {
       await nextHour(true, true);
       p = await _dataBaseEngine!.getPlayer();
+    }
+  }
+
+  @override
+  Future<void> collectEvidencesByType(EvidenceType type) async {
+    StoryEngine s = await _dataBaseEngine!.getStory();
+    Player p = await _dataBaseEngine!.getPlayer();
+    List<Files> evidences = [];
+    for (ElementEngine e in s.elements) {
+      if (e.week == p.currentWeek &&
+          e.day == p.currentDay &&
+          e.hour == p.currentHour) {
+        evidences.add(Files(e.ID, e.type.name,
+            e.type,
+            description: e.description));
+      }
+    }
+    for (Files file in evidences) {
+      p.revealedElements.add(file.evidenceID);
     }
   }
 }

@@ -11,10 +11,10 @@ characters:
     isPlayable: true
 places:
 elements:
-  - ID: WEEK-1-1-19-PENNY-socialMedia-0
+  - ID: Penny_17
     description: "Hey guys ! A little preview of what awaits you this week! Subscribe quickly!"
     characterID: PENNY
-    assetID: WEEK-0_DAY-1_HOUR-10_ANNA_REARCAMERA.jpg
+    assetID: Penny_17.jpg
     placeID:
     numberValue:
     textValue:
@@ -26,10 +26,10 @@ elements:
     hour: 19
     relatedCaseID:
     nsfwLevel: 0
-  - ID: WEEK-1-1-19-PENNY-socialMedia-0
+  - ID: Penny_18
     description: Feeling naughty today...
     characterID: PENNY
-    assetID: WEEK-0_DAY-1_HOUR-10_ANNA_REARCAMERA.jpg
+    assetID: Penny_18.jpg
     placeID:
     numberValue:
     textValue:
@@ -190,7 +190,7 @@ cinematics:
       - cinematicAsset: Penny_16.jpg
         cinematicConversations:
           - character: Penny
-            text: "adaaaaaa !"
+            text: "Tadaaaaaa !"
           - character: Me
             text: "Tu es… superbe !"
           - character: Penny
@@ -221,8 +221,318 @@ cinematics:
             text: "C’est bon j’ai ce qu’il me faut merci beaucoup !"
           - character: Penny
             text: "A moi la conquête du mooooooooonde !"
+      - cinematicAsset: Penny_22.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Wah ! J'ai du mal à réaliser ce qui m'est arrivé !"
+          - character: Me
+            text: "Penny est une bombe, je fantasme sur elle depuis des années !"
+          - character: Me
+            text: "Devenir son photographe perso et la voir se balader en petite robe c'est mieux qu'un fantasme là !"
+          - character: Me
+            text: "J'espère que son SingleFans va avoir du succès et qu'on va continuer les shootings !"
+          - character: Me
+            text: "C'est le problème avec Penny, elle s'emballe vite mais elle se lasse vite !"
+          - character: Me
+            text: Bon bah... plus qu'à attendre qu'elle publie ses photos maintenant.
+          - character: Me
+            text: "De mon côté, je vais m'ouvrir un compte SingleFans et essayé de la trouver !"
+    nsfwLevel: 0
+  - ID: 6071160f-9b06-44e2-b804-d1020f40af6f
+    name: 6071160f-9b06-44e2-b804-d1020f40af6f
+    week: 1
+    day: 1
+    hour: 16
+    sequences:
+      - cinematicAsset: Penny_23.jpg
+        cinematicConversations:
+          - character: Penny
+            text: "Ca y esssssssst ! Mon compte SingleFans est créé, les photos publiées, plus qu'à attendre l'argent !"
+          - character: Me
+            text: "Trop cool je suis trop content pour toi !"
+          - character: Penny
+            text: "Merci encore ! C'était sympa à prendre les photos et ca m'a pris une bonne partie de l'après-midi ensuite !"
+          - character: Penny
+            text: "Objectif accompli pour m'occuper l'esprit ! Reste à attendre la thuuuuune !"
+          - character: Me
+            text: "T'as pas mis ton vrai nom du coup ?"
+      - cinematicAsset: Penny_24.jpg
+        cinematicConversations:
+          - character: Penny
+            text: "Tu me prends pour une débile ou quoi ?"
+          - character: Penny
+            text: "Bien sur que non ! J'ai mis 'Princess_P' comme ca ni vu ni connu !"
+          - character: Me
+            text: "T'es maligne !"
+          - character: Penny
+            text: "Je sais !"
+      - cinematicAsset: Penny_25.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Oh putain ! Elle est aussi belle qu'elle est bête !"
+          - character: Me
+            text: "Allez, 'Princess_P'..."
+          - character: Me
+            text: C'est pas simple leur appli...
+      - cinematicAsset: Penny_26.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Oh putain c'est elle !"
+          - character: Me
+            text: "J'y crois pas !!!"
+          - character: Me
+            text: "S'abonner ! 4.99 dollars par mois, elle est vraiment stupide... Il faudrait qu'elle est des milliers de fans pour se faire du pognon..."
+          - character: Me
+            text: "Allez je m'abonne !"
+    nsfwLevel: 0
+  - ID: ed6b860b-2105-4fb2-850b-a567252ecf82
+    name: ed6b860b-2105-4fb2-850b-a567252ecf82
+    week: 1
+    day: 1
+    hour: 19
+    sequences:
+      - cinematicAsset: Penny_27.jpg
+        cinematicConversations:
+          - character: Penny
+            text: "Tu vas pas me croire !!!"
+          - character: Penny
+            text: "J'ai déjà mon premier fan !"
+          - character: Penny
+            text: "Oh mon dieu c'est trop bien !"
+          - character: Penny
+            text: "Merci beaucoup de m'avoir poussé ! C'est la meilleure idée que j'ai eu de ma vie !"
+          - character: Me
+            text: "Pense à le remercier !"
+          - character: Penny
+            text: "Oh oui je vais lui envoyer un gentil message !"
+      - cinematicAsset: Penny_28.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Intéressant ! Je suis maintenant son premier fan ! Je pense qu'en discutant un peu avec elle, en la flattant, en lui filan des pourboires..."
+          - character: Me
+            text: "La suite pourrait se révéler très très très intéressante !"
+          - character: Me
+            text: "Mes journées viennent de prendre un tournant innatendu !"
+          - character: Me
+            text: "Depuis le temps que je fantasme sur Penny, je vais peut être pouvoir en tirer quelque chose !"
+    nsfwLevel: 0
+  - ID: cf33dbcd-f53b-4460-92ee-f3931434ecda
+    name: cf33dbcd-f53b-4460-92ee-f3931434ecda
+    week: 1
+    day: 2
+    hour: 10
+    sequences:
+      - cinematicAsset: Penny_201.jpg
+        cinematicConversations:
+          - character: Penny
+            text: "Hey ! Ca va ?"
+          - character: Me
+            text: "Super et toi ?"
+          - character: Penny
+            text: "J'ai pas dormi de la nuit tellement j'étais excitée !"
+          - character: Me
+            text: "Ahah c'est bon signe ca !"
+          - character: Penny
+            text: "Tu sais quoi, j'ai pris une grande décision !"
+          - character: Me
+            text: "Ah ?"
+          - character: Penny
+            text: "Oui ! Je vais aller au centre commercial m'acheter de jolis vêtements pour les prochains shootings !"
+          - character: Me
+            text: "C'est une bonne idée !"
+          - character: Penny
+            text: "T'as vu un peu ! Tu viens avec moi ?"
+          - character: Me
+            text: "Euh... Oui si tu veux !"
+          - character: Me
+            text: "Alors dépêche, habille toi, on y va !"
+      - cinematicAsset: Penny_202.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Je déteste les centres commerciaux !"
+          - character: Me
+            text: "Mais bon... voir Penny essayer plein de fringues sur son corps de rêve est une bonne consolation !"
+          - character: Me
+            text: "Allez ! Motive toi mon vieux ! Ta belle soeur au corps de rêve n'attend que tes yeux pour la mater !"
+    nsfwLevel: 0
+  - ID: e7c24c57-d3f5-4dba-9404-5c7fa7f52fa0
+    name: e7c24c57-d3f5-4dba-9404-5c7fa7f52fa0
+    week: 1
+    day: 2
+    hour: 13
+    sequences:
+      - cinematicAsset: Penny_203.jpg
+        cinematicConversations:
+          - character: Penny
+            text: "Je suis trop contente de pouvoir m'acheter de nouvelles fringues !"
+          - character: Penny
+            text: "Et c'est sympa de m'accompagner, d'habitude je suis toute seule !"
+          - character: Me
+            text: "Pas de soucis ! En plus d'être ton photographe personnel je vais maintenant être ton agent et ton styliste !"
+          - character: Penny
+            text: "Ah non, la mode c'est moi ah ah ah !"
+          - character: Me
+            text: "Oui tu as raison, j'ai des gouts de chiotte de toute façon !"
+      - cinematicAsset: Penny_204.jpg
+        cinematicConversations:
+          - character: Penny
+            text: "C'est pas mal ça ! Tu en penses quoi ?"
+          - character: Me
+            text: "Ca me parait cool oui ! Tu veux pas essayer ?"
+          - character: Penny
+            text: "Nan je connais ma taille ici t'inquiète !"
+          - character: Me
+            text: "Ok, comme tu veux !"
+          - character: Penny
+            text: "Fais moi confiance !"
+      - cinematicAsset: Penny_205.jpg
+        cinematicConversations:
+          - character: Penny
+            text: "C'est pas mal aussi çà !"
+          - character: Me
+            text: "(C'est ton cul qui est surtout vraiment pas mal dans ce jean moulant !)"
+      - cinematicAsset: Penny_206.jpg
+        cinematicConversations:
+          - character: Penny
+            text: Je vais quand même aller essayer un ou deux trucs si àa te dérange pas.
+          - character: Me
+            text: "Nan nan vas-y !"
+          - character: Penny
+            text: "Mets toi devant la cabine pour être sûr que personne me regarde pendant que je me change !"
+          - character: Me
+            text: "A votre service m'dame la super modèle !"
+          - character: Penny
+            text: "T'es con !"
+      - cinematicAsset: Penny_207.jpg
+        cinematicConversations:
+          - character: Penny
+            text: "J'ai trop hâte de savoir si ça me va !"
+          - character: Penny
+            text: "Allez oust ! Vérifie qu'il y a pas un vieux pervers pour me mater !"
+          - character: Me
+            text: "Et me voilà garde du corps !"
+          - character: Penny
+            text: "Ahahah je vais devoir finir par te payer en burger !"
+          - character: Me
+            text: "Ca me va comme paye !"
+      - cinematicAsset: Penny_208.jpg
+        cinematicConversations:
+          - character: Me
+            text: "(Rassure toi ma belle il n'y a pas de vieux pervers ici, enfin, à part moi...)"
+      - cinematicAsset: Penny_209.jpg
+        cinematicConversations:
+          - character: Me
+            text: "(Jolis sous vêtements !)"
+          - character: Me
+            text: (J'aimerai beaucoup voir tes jolis seins...)
+      - cinematicAsset: Penny_210.jpg
+        cinematicConversations:
+          - character: Me
+            text: "(Tu as un si joli corps ! Je me demande quelle forme ont tes seins : si ils tiennent si bien qu'avec un soutif ou pas...)"
+      - cinematicAsset: Penny_211.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Merde elle se tourne ! Il faut que je fasse gaffe quand même !"
+      - cinematicAsset: Penny_212.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Tout va bien là dedans ?"
+          - character: Penny
+            text: "Oui, oui, j'ai presque fini !"
+      - cinematicAsset: Penny_213.jpg
+        cinematicConversations:
+          - character: Penny
+            text: "Tadaaaaa ! T'en penses quoi pour notre prochain shooting ?"
+          - character: Me
+            text: "C'est super, j'adore !"
+          - character: Penny
+            text: "Et bah je prend alors ! On va payer et on rentre faire les photos !"
+    nsfwLevel: 0
+  - ID: 1af24f3d-334b-4242-b17c-89903118213a
+    name: 1af24f3d-334b-4242-b17c-89903118213a
+    week: 1
+    day: 2
+    hour: 16
+    sequences:
+      - cinematicAsset: Penny_214.jpg
+        cinematicConversations:
+          - character: Penny
+            text: "Cette fois on va prendre les photos dans ma chambre !"
+          - character: Penny
+            text: "Je suis trop contente de cette nouvelle robe ! Elle me met bien en valeur !"
+          - character: Penny
+            text: "Allez on s'y met !"
+      - cinematicAsset: Penny_215.jpg
+        cinematicConversations:
+          - character: Penny
+            text: "Comme ça je me sens sexy !"
+          - character: Penny
+            text: "Et je me sens biiiiiien !"
+      - cinematicAsset: Penny_216.jpg
+        cinematicConversations:
+          - character: Penny
+            text: "Et un peu plus provoc comme ça !"
+          - character: Me
+            text: "Yes c'est top ! "
+          - character: Me
+            text: "Tourne toi pour voir ?"
+      - cinematicAsset: Penny_217
+        cinematicConversations:
+          - character: Penny
+            text: "Comme ça ?"
+          - character: Me
+            text: "Ouais c'est super !"
+          - character: Penny
+            text: "Cool !"
+      - cinematicAsset: Penny_218
+        cinematicConversations:
+          - character: Penny
+            text: "Comme ça c'est bien aussi ?"
+          - character: Me
+            text: "Ouais j'aime bien ! Ca rend bien !"
+      - cinematicAsset: Penny_219
+        cinematicConversations:
+          - character: Me
+            text: "Allez une dernière !"
+          - character: Me
+            text: "Super ! On a tout ce qu'il nous faut !"
+      - cinematicAsset: Penny_220
+        cinematicConversations:
+          - character: Penny
+            text: "C'est troooooop cool ! Trop hâte de voir le résultat !"
+          - character: Penny
+            text: "A moi les milliers d'abonnés !"
+          - character: Me
+            text: "Bah si avec ça ils s'abonnent pas, je comprends pas !"
+          - character: Me
+            text: "On peut pas faire mieux franchement !"
+          - character: Penny
+            text: "C'est trop gentil merci pour tout ce que tu fais !"
+          - character: Me
+            text: "Derien ! A toi le succès !"
+      - cinematicAsset: Penny_221
+        cinematicConversations:
+          - character: Me
+            text: "Elle était vraiment sexy dans sa petite robe !"
+          - character: Me
+            text: "Elle n'en montre pas beaucoup pour le moment, mais je pense que c'est une question de temps !"
+          - character: Me
+            text: "Il faut que je sois malin si je veux l'amener à en montrer un peu plus !"
+          - character: Me
+            text: "Déjà, je vais lui envoyer un pourboire via l'application pour la récompenser et l'inciter à refaire des photos."
+          - character: Me
+            text: "Je la connais, il ne faut surtout pas qu'elle se lasse !"
     nsfwLevel: 0
 conversations:
+  - conversationID: cbb28970-11d9-40e0-9bd6-4033ae241702
+    characterID: PENNY
+    week: 1
+    day: 1
+    hour: 19
+    isNameRevealed: false
+    conversation:
+      - content: "Hey ! Merci de t'être abonné à mon SingleFans ! N'hésite pas si tu as des idées pour les prochains shootings ! Bisous bisous !"
+        isPlayer: false
 enabledApplications:
   - SingleFans
   - Messages

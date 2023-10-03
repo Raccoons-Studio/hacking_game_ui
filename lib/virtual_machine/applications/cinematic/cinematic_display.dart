@@ -16,13 +16,21 @@ class CinematicWidget extends StatefulWidget {
   _CinematicWidgetState createState() => _CinematicWidgetState();
 }
 
-class _CinematicWidgetState extends State<CinematicWidget> {
+class _CinematicWidgetState extends State<CinematicWidget>
+    with SingleTickerProviderStateMixin {
   int sequencesIndex = 0;
   int conversationsIndex = 0;
+  late final AnimationController _controller;
+  bool showConversation = true;
 
   @override
   void initState() {
     super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+      value: 1.0,
+    );
     SystemChannels.lifecycle.setMessageHandler((msg) {
       if (msg == AppLifecycleState.resumed.toString()) {
         nextSequence();
@@ -33,8 +41,7 @@ class _CinematicWidgetState extends State<CinematicWidget> {
 
   void nextSequence() {
     if (sequencesIndex < widget.cinematic.cinematicSequences.length - 1) {
-      sequencesIndex++;
-      conversationsIndex = 0;
+      showConversation = false;
       updateState();
     } else {
       widget.onEndCinematic();
@@ -42,14 +49,23 @@ class _CinematicWidgetState extends State<CinematicWidget> {
   }
 
   void nextConversation() {
-    if (conversationsIndex <
-        widget.cinematic.cinematicSequences[sequencesIndex]
-                .cinematicConversations.length -
-            1) {
-      conversationsIndex++;
-      updateState();
+    if (showConversation) {
+      if (conversationsIndex <
+          widget.cinematic.cinematicSequences[sequencesIndex]
+                  .cinematicConversations.length -
+              1) {
+        conversationsIndex++;
+        updateState();
+      } else {
+        nextSequence();
+      }
     } else {
-      nextSequence();
+      sequencesIndex++;
+      conversationsIndex = 0;
+      _controller.reset();
+      _controller.forward();
+      showConversation = true;
+      updateState();
     }
   }
 
@@ -62,6 +78,7 @@ class _CinematicWidgetState extends State<CinematicWidget> {
   @override
   void dispose() {
     super.dispose();
+    _controller.dispose();
   }
 
   @override
@@ -72,9 +89,19 @@ class _CinematicWidgetState extends State<CinematicWidget> {
         children: <Widget>[
           Positioned.fill(
             child: Image.asset(
-                "assets/images/${widget.cinematic.cinematicSequences[sequencesIndex]
+                "assets/images/${widget.cinematic.cinematicSequences[sequencesIndex > 0 
+                        ? sequencesIndex - 1 
+                        : 0]
                         .cinematicAsset}",
                 fit: BoxFit.cover),
+          ),
+          Positioned.fill(
+            child: FadeTransition(
+                opacity: _controller,
+                child: Image.asset(
+                    "assets/images/${widget.cinematic.cinematicSequences[sequencesIndex]
+                            .cinematicAsset}",
+                    fit: BoxFit.cover)),
           ),
           Positioned(
             top: 10.0,
@@ -92,37 +119,40 @@ class _CinematicWidgetState extends State<CinematicWidget> {
               ),
             ),
           ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: IntrinsicHeight(
-              child: Container(
-                padding: const EdgeInsets.all(8.0),
-                color: Colors.black54,
-                constraints: const BoxConstraints(minHeight: 100),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text(
-                      widget.cinematic.cinematicSequences[sequencesIndex]
-                          .cinematicConversations[conversationsIndex].character,
-                      style: const TextStyle(
-                          fontSize: 24,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      widget.cinematic.cinematicSequences[sequencesIndex]
-                          .cinematicConversations[conversationsIndex].text,
-                      style: const TextStyle(fontSize: 18, color: Colors.white),
-                    ),
-                  ],
+          if (showConversation)
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: IntrinsicHeight(
+                child: Container(
+                  padding: const EdgeInsets.all(8.0),
+                  color: Colors.black54,
+                  constraints: const BoxConstraints(minHeight: 100),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        widget.cinematic.cinematicSequences[sequencesIndex]
+                            .cinematicConversations[conversationsIndex]
+                            .character,
+                        style: const TextStyle(
+                            fontSize: 24,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        widget.cinematic.cinematicSequences[sequencesIndex]
+                            .cinematicConversations[conversationsIndex].text,
+                        style: const TextStyle(
+                            fontSize: 18, color: Colors.white),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
         ],
       ),
     );
