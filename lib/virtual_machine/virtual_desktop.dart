@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
+import 'package:hacking_game_ui/utils/analytics.dart';
 import 'package:hacking_game_ui/utils/game_date.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/cinematic/cinematic_display.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor.dart';
@@ -285,11 +286,14 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                 padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 child: GestureDetector(
                   onTap: () async {
+                    AnalyticsService().logOpenVirtualApp(applications[index].name);
                     if (applications[index].name == 'Next' &&
                         !isBlackmailPlaying) {
                       if (!await widget.maestro.nextHour(false, true)) {
                         displayComment(
                             "I think I need to collect more evidences before going to the next hour");
+                      } else {
+                        AnalyticsService().logNext("${_maestroState!.week} - ${_maestroState!.day} - ${_maestroState!.hour}");
                       }
                     }
                     if (applications[index].name == 'Next Dev' &&
@@ -387,6 +391,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                 setState(() {
                   isDateVisible = false;
                   if (_maestroState!.isCinematic) {
+                    AnalyticsService().logPlayCinematic(_maestroState!.cinematicID);
                     setState(() {
                       isCinematicPlaying = true;
                       _currentApplication = VirtualApplication(

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
+import 'package:hacking_game_ui/utils/analytics.dart';
 import 'package:hacking_game_ui/utils/game_date.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_chat.dart';
 import 'package:hacking_game_ui/virtual_machine/models/conversation_data.dart';
@@ -182,6 +183,8 @@ class _MessagesViewerState extends State<MessagesViewer> {
                         IconButton(
                           icon: const Icon(Icons.send),
                           onPressed: () async {
+                            AnalyticsService().logPlayConversation(
+                                _selectedConversationKey!);
                             await widget.maestro.collectConversation(
                                 _selectedConversation!
                                     .last.conversation.last.id);
