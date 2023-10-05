@@ -44,6 +44,7 @@ dependencies:
   animator: ^3.3.0
   firebase_analytics: ^10.5.1
   firebase_core: ^2.17.0
+  firebase_auth: ^4.10.1
 
 dev_dependencies:
   flutter_test:

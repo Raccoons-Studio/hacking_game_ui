@@ -59,5 +59,6 @@ class DefaultFirebaseOptions {
     projectId: 'cellphonehackgame',
     authDomain: 'cellphonehackgame.firebaseapp.com',
     storageBucket: 'cellphonehackgame.appspot.com',
+    measurementId: 'G-J1J57RTX7B',
   );
 }

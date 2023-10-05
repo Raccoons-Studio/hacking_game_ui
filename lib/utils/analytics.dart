@@ -28,6 +28,7 @@ class AnalyticsService {
   void logPlayCinematic(String name) async {
     try {
       await FirebaseAnalytics.instance.logEvent(name: 'play_cinematic', parameters: {name: name});
+      print("ok");
     } catch (e) {
       print(e);
     }
