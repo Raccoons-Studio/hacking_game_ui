@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:hacking_game_ui/game_menu.dart';
 import 'package:hacking_game_ui/maestro/maestro_story.dart';
 import 'package:hacking_game_ui/utils/analytics.dart';
 import 'package:hacking_game_ui/virtual_machine/virtual_desktop.dart';
@@ -39,7 +40,8 @@ class MyApp extends StatelessWidget {
       darkTheme: MacosThemeData.dark(),
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
-      home: MacOSDesktop(maestro: MaestroStory()),
+      home: GameMenu()
+      //MacOSDesktop(maestro: MaestroStory()),
     );
   }
 }

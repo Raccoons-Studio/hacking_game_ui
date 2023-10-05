@@ -6,6 +6,37 @@ import 'package:hacking_game_ui/engine/player_engine.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yaml/yaml.dart';
 
+class Savegame {
+  String id;
+  DateTime date;
+  String name;
+  int week;
+  int day;
+  int hour;
+  Player player;
+
+  Savegame(this.id, this.date, this.name, this.week, this.day, this.hour, this.player);
+
+  Savegame.fromJson(Map<String, dynamic> json)
+      : id = json['id'],
+        date = DateTime.parse(json['date']),
+        name = json['name'],
+        week = json['week'],
+        day = json['day'],
+        hour = json['hour'],
+        player = Player.fromJson(Map<String, dynamic>.from(json['player']));
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'date': date.toIso8601String(),
+        'name': name,
+        'week': week,
+        'day': day,
+        'hour': hour,
+        'player': player.toJson(),
+      };
+}
+
 class SaveAndLoadEngine {
   static Map<String, dynamic> yamlToMap(YamlMap yamlMap) {
     final map = <String, dynamic>{};

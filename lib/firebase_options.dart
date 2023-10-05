@@ -53,12 +53,12 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyB0TAq3x1DyEWWfIpWforoU0eWO8kzxazY',
-    appId: '1:685534884348:web:efd0c4cf2af6c09a840279',
-    messagingSenderId: '685534884348',
-    projectId: 'cellphonehackgame',
-    authDomain: 'cellphonehackgame.firebaseapp.com',
-    storageBucket: 'cellphonehackgame.appspot.com',
-    measurementId: 'G-J1J57RTX7B',
+    apiKey: 'AIzaSyDi0fiB2E90aAtNUMd7ZfWMJCDAoM2UYsk',
+    appId: '1:982768087315:web:3a2361aa10d837c6e22ae6',
+    messagingSenderId: '982768087315',
+    projectId: 'penny-singlefans',
+    authDomain: 'penny-singlefans.firebaseapp.com',
+    storageBucket: 'penny-singlefans.appspot.com',
+    measurementId: 'G-RVVXW1HJWV',
   );
 }

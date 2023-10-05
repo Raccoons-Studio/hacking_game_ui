@@ -7,6 +7,7 @@ import 'package:hacking_game_ui/engine/player_engine.dart';
 import 'package:hacking_game_ui/engine/save_load_engine.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/providers/mocks/sample_story.dart';
+import 'package:hacking_game_ui/providers/player_service.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_characters_selector.dart';
 import 'package:hacking_game_ui/virtual_machine/models/cinematic.dart';
 import 'package:hacking_game_ui/virtual_machine/models/conversation_data.dart';
@@ -483,6 +484,8 @@ class MaestroStory extends Maestro {
   Future<void> save(int slot) async {
     Player p = await _dataBaseEngine!.getPlayer();
     SaveAndLoadEngine.savePlayer(p, slot);
+    // if user connected
+    SavegameService().save(p);
   }
 
   @override
