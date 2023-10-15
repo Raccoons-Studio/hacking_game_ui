@@ -717,7 +717,7 @@ cinematics:
   - ID: bcd296cc-df59-42d2-93fc-2058c5b97268
     name: bcd296cc-df59-42d2-93fc-2058c5b97268
     week: 1
-    day: 1
+    day: 3
     hour: 13
     sequences:
       - cinematicAsset: Penny_307.jpg
@@ -748,6 +748,44 @@ cinematics:
         cinematicConversations:
           - character: Me
             text: "C'est pas mal en fait !"
+      - cinematicAsset: Penny_310.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Allez on essaye autre chose ! "
+          - character: Me
+            text: Mets toi sur le ventre
+          - character: Me
+            text: "Et souris un peu !"
+          - character: Me
+            text: "Allez, je passe de l'autre côté pour avoir une autre lumière !"
+      - cinematicAsset: Penny_311.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Putain, elle a vraiment un corps de fou !"
+      - cinematicAsset: Penny_312.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Allez regarde moi !"
+          - character: Me
+            text: "Un petit sourire !"
+          - character: Me
+            text: "Bombe un peu la poitrine !"
+      - cinematicAsset: Penny_313.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Allez pour la prochaine regarde ailleurs, pensive !"
+      - cinematicAsset: Penny_314.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Allez regarde moi !"
+          - character: Me
+            text: "Fais moi une jolie duck face !"
+      - cinematicAsset: Penny_315.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Allez une dernière !"
+          - character: Me
+            text: "Fais nous une grimace pour voir !"
     nsfwLevel: 0
 conversations:
   - conversationID: cbb28970-11d9-40e0-9bd6-4033ae241702
