@@ -714,6 +714,41 @@ cinematics:
           - character: Me
             text: "Elle qui aime bronzer et rien faire, ça devrait pas trop la déranger !"
     nsfwLevel: 0
+  - ID: bcd296cc-df59-42d2-93fc-2058c5b97268
+    name: bcd296cc-df59-42d2-93fc-2058c5b97268
+    week: 1
+    day: 1
+    hour: 13
+    sequences:
+      - cinematicAsset: Penny_307.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Ahhhh ! Le soleil, la plage, des thunes qui vont arriver en masse ! Que demander de mieux !"
+          - character: Penny
+            text: Mouais...
+          - character: Me
+            text: "Allez fait pas la gueule ! T'en connais des boulots avec des conditioons pareils ?"
+          - character: Penny
+            text: "Je connais des boulots qui rapportent plus et qui demandent moins de temps en tout cas !"
+          - character: Me
+            text: "C'est le début, dans quelques semaines tu gagneras des milliers de dollars pour venir faire 3 photos à la plage !"
+          - character: Penny
+            text: Si tu le dis...
+          - character: Me
+            text: "Allez on commence par quoi ?"
+      - cinematicAsset: Penny_308.jpg
+        cinematicConversations:
+          - character: Penny
+            text: "Prends moi en photo allongée en train de faire la sieste !"
+          - character: Me
+            text: "Ok.... Mais tu dors pas pour de vrai hein ?"
+          - character: Penny
+            text: "Mais noooooon, t'inquiète !"
+      - cinematicAsset: Penny_309.jpg
+        cinematicConversations:
+          - character: Me
+            text: "C'est pas mal en fait !"
+    nsfwLevel: 0
 conversations:
   - conversationID: cbb28970-11d9-40e0-9bd6-4033ae241702
     characterID: PENNY
