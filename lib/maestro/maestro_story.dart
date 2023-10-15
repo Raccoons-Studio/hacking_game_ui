@@ -485,7 +485,9 @@ class MaestroStory extends Maestro {
     Player p = await _dataBaseEngine!.getPlayer();
     SaveAndLoadEngine.savePlayer(p, slot);
     // if user connected
-    SavegameService().save(p);
+    if (SavegameService().isUserConnected()) {
+      SavegameService().save(p);
+    }
   }
 
   @override

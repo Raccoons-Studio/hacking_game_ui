@@ -50,6 +50,7 @@ class Player {
         'currentDay': currentDay,
         'currentHour': currentHour,
         'revealedElements': revealedElements,
+        'revealedConversations': revealedConversations,
         'elementsMarkedAsEvidence': elementsMarkedAsEvidence,
         'solvedCases': solvedCases,
         'currentCases': currentCases,

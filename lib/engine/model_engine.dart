@@ -181,7 +181,7 @@ class ElementEngine {
   static ElementEngine fromMap(Map<String, dynamic> map) {
     return ElementEngine(
       map['ID'],
-      map['description'],
+      map['description'] ?? "",
       map['characterID'],
       EvidenceType.values.firstWhere((e) => e.name == map['type'].split('.')[1]),
       map['isEvidence'],

@@ -71,7 +71,7 @@ elements:
     relatedCaseID:
     nsfwLevel: 0
   - ID: WEEK-1-2-16-PENNY-socialMedia-0
-    description: ""
+    description:
     characterID: PENNY
     assetID: Penny_217.jpg
     placeID:
@@ -86,7 +86,7 @@ elements:
     relatedCaseID:
     nsfwLevel: 0
   - ID: WEEK-1-2-16-PENNY-socialMedia-0
-    description: ""
+    description:
     characterID: PENNY
     assetID: Penny_218.jpg
     placeID:
@@ -101,7 +101,7 @@ elements:
     relatedCaseID:
     nsfwLevel: 0
   - ID: WEEK-1-2-16-PENNY-socialMedia-0
-    description: ""
+    description:
     characterID: PENNY
     assetID: Penny_219.jpg
     placeID:
@@ -651,6 +651,68 @@ cinematics:
             text: "Pas de réponse pour le moment... Ca m'étonne pas trop, c'est un peu bizarre comme demande !"
           - character: Me
             text: "Je vais aller voir Penny, voir si elle veut organiser un shooting aujourd'hui !"
+      - cinematicAsset: Penny_302.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Toc, toc !"
+          - character: Penny
+            text: "Bah rentre !"
+          - character: Me
+            text: "Je veux pas te surprendre en grande conversation avec tes fans !"
+      - cinematicAsset: Penny_303.jpg
+        cinematicConversations:
+          - character: Penny
+            text: "Ca risque pas, j'en ai trois pour le moment ! "
+          - character: Me
+            text: "Hey, c'est un bon début !"
+          - character: Penny
+            text: "Ouais... c'est pas avec ça que je vais être riche !"
+          - character: Me
+            text: "Tu peux pas devenir riche et célèbre en un jour hein !"
+      - cinematicAsset: Penny_304.jpg
+        cinematicConversations:
+          - character: Penny
+            text: Oui c'est sûr...
+          - character: Me
+            text: "Allez déprime pas ! Il faut que tu persistes un peu !"
+          - character: Penny
+            text: "Pfff... Je vais encore faire un shooting qui va me prendre l'après-midi pour gagner 4 balles ?"
+          - character: Me
+            text: "Rooooooh mais non ! Allez, motive toi un peu !"
+          - character: Penny
+            text: "Pffff... je suis pas motivée !"
+          - character: Me
+            text: "Tu veux que je te donne une idée ?"
+          - character: Penny
+            text: Dis toujours...
+      - cinematicAsset: Penny_305.jpg
+        cinematicConversations:
+          - character: Me
+            text: "On va aller à la plage, faire des photos de toi en maillot de bain !"
+          - character: Me
+            text: "Si ça, ça te ramène pas des fans, je suis plus ton photographe !"
+          - character: Penny
+            text: "Hum... Pourquoi pas... Au pire on aura bronzé un peu !"
+          - character: Me
+            text: "Allez motive toi ! Ca va être super !"
+          - character: Penny
+            text: "Oui, oui, c'est bon on y va !"
+          - character: Penny
+            text: "Je peux prendre un une pièce ?"
+          - character: Me
+            text: "Ca c'est toi la styliste !"
+          - character: Penny
+            text: Ok... on fait comme ça...
+      - cinematicAsset: Penny_306.jpg
+        cinematicConversations:
+          - character: Me
+            text: Aie... Penny est pas motivée du tout...
+          - character: Me
+            text: "Il va falloir que j'agisse si je veux pas qu'elle se lasse !"
+          - character: Me
+            text: "Bon... chaque chose en son temps, on a déjà aller faire un tour à la plage ça va peut être la motiver un peu !"
+          - character: Me
+            text: "Elle qui aime bronzer et rien faire, ça devrait pas trop la déranger !"
     nsfwLevel: 0
 conversations:
   - conversationID: cbb28970-11d9-40e0-9bd6-4033ae241702
