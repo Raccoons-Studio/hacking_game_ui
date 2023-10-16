@@ -714,11 +714,48 @@ cinematics:
           - character: Me
             text: "Elle qui aime bronzer et rien faire, ça devrait pas trop la déranger !"
     nsfwLevel: 0
+  - ID: bcd296cc-df59-42d2-93fc-2058c5b97267
+    name: bcd296cc-df59-42d2-93fc-2058c5b97267
+    week: 1
+    day: 3
+    hour: 13
+    sequences:
+      - cinematicAsset: Penny_3061.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Alors t'as commencé à discuter avec tes fans ?"
+          - character: Penny
+            text: "Ouais j'ai envoyé des messages mais bon... j'ai 3 fans pour l'instant tu sais !"
+          - character: Me
+            text: "Tu aimerais qu'ils te parlent plus ?"
+      - cinematicAsset: Penny_3602.jpg
+        cinematicConversations:
+          - character: Penny
+            text: Nan pas spécialement...
+          - character: Penny
+            text: "Enfin je veux dire... j'ai pas envie de taper la discute avec eux !"
+          - character: Penny
+            text: "Je veux bien être sympa avec eux hein ! Mais genre... pas être leur pote quoi !"
+      - cinematicAsset: Penny_3603.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Ok je vois ! Et t'aimerais qu'ils te proposent plus d'argent pour des photos privées ?"
+          - character: Penny
+            text: "Quel genre ?"
+          - character: Me
+            text: "Euh... Je sais pas trop, mais si c'est un fan te propose 100 balles pour une photo par exemple ?"
+          - character: Penny
+            text: "Ca dépend ce qu'il va demander mais oui clairement, 100 balles pour une photo c'est toujours mieux que 4 balles pour me voir en maillot de bain !"
+      - cinematicAsset: Penny_3604.jpg
+        cinematicConversations:
+          - character: Penny
+            text: "Allez je mets de la musique ! Ca va nous mettre de bonne humeur !"
+    nsfwLevel: 0
   - ID: bcd296cc-df59-42d2-93fc-2058c5b97268
     name: bcd296cc-df59-42d2-93fc-2058c5b97268
     week: 1
     day: 3
-    hour: 13
+    hour: 16
     sequences:
       - cinematicAsset: Penny_307.jpg
         cinematicConversations:
@@ -786,6 +823,51 @@ cinematics:
             text: "Allez une dernière !"
           - character: Me
             text: "Fais nous une grimace pour voir !"
+          - character: Me
+            text: "Super c'est dans la boite on peut rentrer !"
+          - character: Penny
+            text: "Hey pas tout de suite ! On avait dit qu'on bronzerait un peu !"
+    nsfwLevel: 0
+  - ID: d8bcb50e-aba3-446c-892f-784351344a2e
+    name: d8bcb50e-aba3-446c-892f-784351344a2e
+    week: 1
+    day: 3
+    hour: 19
+    sequences:
+      - cinematicAsset: Penny_316.jpg
+        cinematicConversations:
+          - character: Me
+            text: "On a passé un bon moment non ?"
+          - character: Penny
+            text: "Oui ça va ! On a pris l'air, le soleil, c'est pas mal ! J'ai même un peu bronzé !"
+      - cinematicAsset: Penny_317.jpg
+        cinematicConversations:
+          - character: Penny
+            text: "Je vais peut être pouvoir vendre mes marques de bronzage pour les prochaines photos !"
+          - character: Me
+            text: "Ahah ! Je suis sur que ca te ferait de nouveaux fans !"
+          - character: Me
+            text: "Je suis content que tu penses à faire de nouvealles photos, je te trouve de bien meilleure humeur depuis que tu as commencé !"
+      - cinematicAsset: Penny_318.jpg
+        cinematicConversations:
+          - character: Penny
+            text: "C'est vrai que je suis déçu de ne pas avoir beaucoup de fans pour l'instant mais c'est vrai que je suis plutôt heureuse de faire ça avec toi !"
+          - character: Penny
+            text: "On s'est toujours bien entendu, mais on ne fait pas vraiment d'activités ensemble ou on a pas trop de sujets de conversations juste à nous."
+          - character: Penny
+            text: "Mais depuis quelques jours, je suis très contente qu'on se rapproche comme ça !"
+      - cinematicAsset: Penny_319.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Pareil, j'aurais jamais pensé que passer la journée avec une petite peste comme toi serait aussi sympa !"
+          - character: Penny
+            text: "T'abuses !"
+          - character: Me
+            text: "Mais je rigole !"
+      - cinematicAsset: Penny_320.jpg
+        cinematicConversations:
+          - character: Penny
+            text: "En attendant la petite peste est crevée ! Je vais poster mes photos et aller me prendre un bon bain !"
     nsfwLevel: 0
 conversations:
   - conversationID: cbb28970-11d9-40e0-9bd6-4033ae241702

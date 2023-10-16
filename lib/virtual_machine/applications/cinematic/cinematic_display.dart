@@ -37,6 +37,12 @@ class _CinematicWidgetState extends State<CinematicWidget>
       }
       return Future.value("");
     });
+    scheduleMicrotask(() {
+      for (var img in widget.cinematic.cinematicSequences) {
+        precacheImage(
+            AssetImage("assets/images/${img.cinematicAsset}"), context);
+      }
+    });
   }
 
   void nextSequence() {
@@ -87,21 +93,20 @@ class _CinematicWidgetState extends State<CinematicWidget>
       onTap: nextConversation,
       child: Stack(
         children: <Widget>[
-          Positioned.fill(child: Container(color: Colors.black,)),
+          Positioned.fill(
+              child: Container(
+            color: Colors.black,
+          )),
           Positioned.fill(
             child: Image.asset(
-                "assets/images/${widget.cinematic.cinematicSequences[sequencesIndex > 0 
-                        ? sequencesIndex - 1 
-                        : 0]
-                        .cinematicAsset}",
+                "assets/images/${widget.cinematic.cinematicSequences[sequencesIndex > 0 ? sequencesIndex - 1 : 0].cinematicAsset}",
                 fit: BoxFit.cover),
           ),
           Positioned.fill(
             child: FadeTransition(
                 opacity: _controller,
                 child: Image.asset(
-                    "assets/images/${widget.cinematic.cinematicSequences[sequencesIndex]
-                            .cinematicAsset}",
+                    "assets/images/${widget.cinematic.cinematicSequences[sequencesIndex].cinematicAsset}",
                     fit: BoxFit.cover)),
           ),
           Positioned(
@@ -134,7 +139,9 @@ class _CinematicWidgetState extends State<CinematicWidget>
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        widget.cinematic.cinematicSequences[sequencesIndex]
+                        widget
+                            .cinematic
+                            .cinematicSequences[sequencesIndex]
                             .cinematicConversations[conversationsIndex]
                             .character,
                         style: const TextStyle(
@@ -146,8 +153,8 @@ class _CinematicWidgetState extends State<CinematicWidget>
                       Text(
                         widget.cinematic.cinematicSequences[sequencesIndex]
                             .cinematicConversations[conversationsIndex].text,
-                        style: const TextStyle(
-                            fontSize: 18, color: Colors.white),
+                        style:
+                            const TextStyle(fontSize: 18, color: Colors.white),
                       ),
                     ],
                   ),
