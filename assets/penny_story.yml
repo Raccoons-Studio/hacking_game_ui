@@ -26,7 +26,7 @@ characters:
 places:
 elements:
   - ID: Penny_17
-    description: "Hey guys ! A little preview of what awaits you this week! Subscribe quickly!"
+    description: "Coucou tout le monde ! Voici un petit aperçu de ce que vous trouverez en vous abonnant !"
     characterID: PENNY
     assetID: Penny_17.jpg
     placeID:
@@ -41,7 +41,7 @@ elements:
     relatedCaseID:
     nsfwLevel: 0
   - ID: Penny_18
-    description: Feeling naughty today...
+    description: "A bientôt sur mon Single Fans !"
     characterID: PENNY
     assetID: Penny_18.jpg
     placeID:
@@ -113,6 +113,51 @@ elements:
     week: 1
     day: 2
     hour: 16
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-1-3-22-PENNY-socialMedia-0
+    description: "Nouvelle série à la plage !"
+    characterID: PENNY
+    assetID: Penny_309.jpg
+    placeID:
+    numberValue:
+    textValue:
+    type: EvidenceType.socialMedia
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 1
+    day: 3
+    hour: 22
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-1-3-22-PENNY-socialMedia-0
+    description: "Rien de mieux qu'une belle journée ensoleillée pour bronzer !"
+    characterID: PENNY
+    assetID: Penny_312.jpg
+    placeID:
+    numberValue:
+    textValue:
+    type: EvidenceType.socialMedia
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 1
+    day: 3
+    hour: 22
+    relatedCaseID:
+    nsfwLevel: 0
+  - ID: WEEK-1-3-22-PENNY-socialMedia-0
+    description: "Que pensez-vous de ce nouveau maillot de bain ?"
+    characterID: PENNY
+    assetID: Penny_313.jpg
+    placeID:
+    numberValue:
+    textValue:
+    type: EvidenceType.socialMedia
+    isEvidence: false
+    isOptionalEvidence: false
+    week: 1
+    day: 3
+    hour: 22
     relatedCaseID:
     nsfwLevel: 0
 cases:
@@ -1052,6 +1097,77 @@ cinematics:
           - character: Me
             text: "C'est bon c'est dans la boite ! Tu pourras choisir la plus belle à envoyer à ton fan !"
     nsfwLevel: 0
+  - ID: 12c75b2b-bc60-4723-a716-2052f1072fb2
+    name: 12c75b2b-bc60-4723-a716-2052f1072fb2
+    week: 1
+    day: 4
+    hour: 13
+    sequences:
+      - cinematicAsset: Penny_416.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Pfiou ! J'arrive pas à me remettre de cette séance ! Penny était tellement..."
+          - character: Me
+            text: "Elle a un corps de fou ! Ses seins ont l'air d'avoir une forme de rêve !"
+          - character: Me
+            text: "Je pensais pas qu'ils pouvaient être aussi gros et aussi fermes !"
+          - character: Me
+            text: "Allez, je devrais m'assurer qu'elle est dans le bon mood et que ce n'est qu'un début."
+      - cinematicAsset: Penny_417.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Penny t'es où ?"
+          - character: Penny
+            text: Dans la salle de bain.
+          - character: Me
+            text: "Ah pardon !"
+          - character: Penny
+            text: Tu peux rentrer j'ai fini.
+          - character: Me
+            text: "Ok !"
+      - cinematicAsset: Penny_418.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Tout va bien ?"
+          - character: Penny
+            text: "Ouais et toi ?"
+          - character: Me
+            text: "Nickel !"
+          - character: Me
+            text: "T'as envoyé ta photo ?"
+          - character: Penny
+            text: "Ouais c'est bon !"
+          - character: Me
+            text: "Cool alors !"
+      - cinematicAsset: Penny_419.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Tu veux qu'on fasse un truc aujourd'hui ?"
+          - character: Penny
+            text: "Nan c'est bon j'abuse pas de toi aujourd'hui ! "
+          - character: Me
+            text: "Ca me derange pas tu sais, n'hésite pas si tu as besoin de moi pour ton Single Fans ou pour autre chose."
+          - character: Penny
+            text: "Yes ! T'inquiète ! Merci !"
+      - cinematicAsset: Penny_420.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Bon bah... A plus tard !"
+          - character: Penny
+            text: "A plus tard !"
+      - cinematicAsset: Penny_421.jpg
+        cinematicConversations:
+          - character: Me
+            text: "Aie, aie, aie ! Elle a pas l'air emballé du tout pour continuer les shootings..."
+          - character: Me
+            text: "Il faut vraiment que je prenne les devants !"
+          - character: Me
+            text: Il faut que je trouve un moyen de gagner du fric pour lui proposer d'autres photos privées.
+          - character: Me
+            text: "C'est le seul levier avec elle : le fric !"
+          - character: Me
+            text: "Et bien je vais devoir faire le max pour lui en donner !"
+    nsfwLevel: 0
 conversations:
   - conversationID: cbb28970-11d9-40e0-9bd6-4033ae241702
     characterID: PENNY
@@ -1209,6 +1325,37 @@ conversations:
         type: ConversationBubbleDataEngineType.text
       - id: b70a6289-7cc8-4aff-992d-61b59d168ef3
         content: "Je vais réfléchir, je te tiens au courant. Bonne nuit."
+        isPlayer: false
+        type: ConversationBubbleDataEngineType.text
+  - conversationID: 1441c642-2c13-435c-9ec0-99cbf0c15a0e
+    characterID: PENNY
+    week: 1
+    day: 4
+    hour: 10
+    isNameRevealed: false
+    conversation:
+      - id: ae67ac01-7555-42bf-9aae-f169c1536cdc
+        content: "Coucou ! Voici ta photo, j'espère qu'elle te plaira !"
+        isPlayer: false
+        type: ConversationBubbleDataEngineType.text
+      - id: e8a20025-b710-4433-a469-91b646e4e409
+        content: Penny_414.jpg
+        isPlayer: false
+        type: ConversationBubbleDataEngineType.image
+      - id: c2810634-73f8-4310-8f2c-7c8db45d23e0
+        content: "Bisous !"
+        isPlayer: false
+        type: ConversationBubbleDataEngineType.text
+      - id: 1f071f1e-8d07-4a43-b9e9-84ed4bf3aa33
+        content: "Waaaaaaah ! Tu es tellement belle ! Un grand merci ! Bisous"
+        isPlayer: true
+        type: ConversationBubbleDataEngineType.text
+      - id: 440d4cbe-dca8-41ee-a8bd-9b716c32e3ad
+        content: "Je ferai appel à toi pour de nouvelles photos privées bientôt !"
+        isPlayer: true
+        type: ConversationBubbleDataEngineType.text
+      - id: d270a706-e312-4941-9db1-439b0ff3358b
+        content: "Ca marche ! Tiens moi au courant :)"
         isPlayer: false
         type: ConversationBubbleDataEngineType.text
 enabledApplications:
