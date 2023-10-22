@@ -140,14 +140,36 @@ class _StoryEditorConversationWidgetState
               .map<Widget>((bubble) => buildBubble(bubble))
               .toList(),
         ),
-        ElevatedButton(
-          child: const Text('Add Bubble'),
-          onPressed: () {
-            setState(() {
-              conversation.conversation
-                  .add(ConversationBubbleDataEngine(Uuid().v4(), false, ''));
-            });
-          },
+        Row(
+          children: [
+            ElevatedButton(
+              child: const Text('Add Bubble'),
+              onPressed: () {
+                setState(() {
+                  conversation.conversation.add(
+                      ConversationBubbleDataEngine(Uuid().v4(), false, ''));
+                });
+              },
+            ),
+            ElevatedButton(
+              child: const Text('Add File'),
+              onPressed: () {
+                setState(() {
+                  conversation.conversation.add(
+                      ConversationBubbleDataEngine(Uuid().v4(), false, '', type: ConversationBubbleDataEngineType.image));
+                });
+              },
+            ),
+            ElevatedButton(
+              child: const Text('Add Payment'),
+              onPressed: () {
+                setState(() {
+                  conversation.conversation.add(
+                      ConversationBubbleDataEngine(Uuid().v4(), false, '', type: ConversationBubbleDataEngineType.bank));
+                });
+              },
+            ),
+          ],
         ),
       ],
     );
@@ -166,6 +188,8 @@ class _StoryEditorConversationWidgetState
             });
           },
         ),
+        const SizedBox(width: 10),
+        Text(bubble.type.name),
         const SizedBox(width: 10),
         Expanded(
           child: TextField(

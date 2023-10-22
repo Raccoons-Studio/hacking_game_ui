@@ -1,3 +1,5 @@
+import 'package:hacking_game_ui/engine/model_engine.dart';
+
 class ConversationData {
   String evidenceID;
   int week;
@@ -15,6 +17,7 @@ class ConversationBubbleData {
   String name;
   String content;
   bool isRevealed;
+  ConversationBubbleDataEngineType type;
 
-  ConversationBubbleData(this.id, this.name, this.content, {this.isRevealed = false});    
+  ConversationBubbleData(this.id, this.name, this.content, this.type, {this.isRevealed = false});    
 }

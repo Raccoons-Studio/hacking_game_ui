@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/utils/game_date.dart';
 import 'package:hacking_game_ui/virtual_machine/common/evidence_switch.dart';
 import 'package:hacking_game_ui/virtual_machine/models/conversation_data.dart';
@@ -46,7 +47,9 @@ class _FinderChatState extends State<FinderChat> {
                   fit: FlexFit.loose,
                   child: Container(
                     child: _currentConversation != null
-                        ? GenericConversation(conversation: _currentConversation!, scrollController: ScrollController())
+                        ? GenericConversation(
+                            conversation: _currentConversation!,
+                            scrollController: ScrollController())
                         : Container(),
                   ),
                 ),
@@ -74,8 +77,7 @@ class _FinderChatState extends State<FinderChat> {
           conversations.keys.toList()[i],
           style: TextStyle(color: isSelected ? Colors.white : Colors.black),
         ),
-        subtitle: Text(
-            getLatestMessageDate(conversations.values.toList()[i]), 
+        subtitle: Text(getLatestMessageDate(conversations.values.toList()[i]),
             style: TextStyle(color: isSelected ? Colors.white : Colors.black)),
         tileColor: Colors.transparent,
         selectedColor: CupertinoColors.activeBlue,
@@ -106,7 +108,6 @@ class _FinderChatState extends State<FinderChat> {
 }
 
 class GenericConversation extends StatelessWidget {
-
   final ScrollController scrollController;
 
   const GenericConversation({
@@ -152,17 +153,21 @@ class GenericConversation extends StatelessWidget {
             ),
             ListView.builder(
               shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
+              physics: NeverScrollableScrollPhysics(),
               itemCount: conversation[index].conversation.length,
               itemBuilder: (context, i) {
+                final data = conversation[index].conversation[i];
+                final isUser = data.name == 'Player';
                 return ConversationBubble(
-                  data: conversation[index].conversation[i],
-                  isUser: conversation[index].conversation[i].name == 'Player',
+                  data: data,
+                  isUser: isUser,
                 );
               },
             ),
-            showMarkAsEvidence ? EvidenceSwitch(conversation[index].evidenceID,
-                conversation[index].isMarkedAsEvidence) : Container(),
+            showMarkAsEvidence
+                ? EvidenceSwitch(conversation[index].evidenceID,
+                    conversation[index].isMarkedAsEvidence)
+                : Container(),
           ],
         );
       },
@@ -188,28 +193,60 @@ class ConversationBubble extends StatelessWidget {
     return Align(
       alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
       child: LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) {
-        return ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: constraints.maxWidth * 2 / 3),
-          child: Container(
-            decoration: BoxDecoration(
-              color: isUser
-                  ? CupertinoColors.activeGreen
-                  : CupertinoColors.lightBackgroundGray,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-            child: Text(
-              data.content,
-              style: TextStyle(
-                fontSize: 14,
-                color: isUser ? Colors.white : Colors.black,
+        builder: (BuildContext context, BoxConstraints constraints) {
+          return ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: constraints.maxWidth * 2 / 3),
+            child: Container(
+              decoration: BoxDecoration(
+                color: isUser
+                    ? CupertinoColors.activeGreen
+                    : CupertinoColors.lightBackgroundGray,
+                borderRadius: BorderRadius.circular(20),
               ),
+              margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+              child: _getContentBasedOnType(),
             ),
-          ),
-        );
-      }),
+          );
+        },
+      ),
     );
+  }
+
+// This function creates different types of content based on data type
+  Widget _getContentBasedOnType() {
+    if (data.type == ConversationBubbleDataEngineType.text) {
+      return Text(
+        data.content,
+        style: TextStyle(
+          fontSize: 14,
+          color: isUser ? Colors.white : Colors.black,
+        ),
+      );
+    }
+
+    if (data.type == ConversationBubbleDataEngineType.bank) {
+      return Column(
+        children: [
+          Text("Vous venez de recevoir un paiement"),
+          Text(
+            data.content,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+          ),
+          Text("Cette somme est désormais disponible sur votre compte"),
+        ],
+      );
+    }
+
+    if (data.type == ConversationBubbleDataEngineType.image) {
+      return ConstrainedBox(
+        constraints: BoxConstraints(
+          maxHeight: 100,
+        ),
+        child: Image.asset('assets/images/' + data.content),
+      );
+    }
+
+    return const SizedBox.shrink();
   }
 }

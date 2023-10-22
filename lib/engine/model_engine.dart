@@ -29,9 +29,18 @@ class StoryEngine {
   List<ConversationEngine> conversations;
   List<String> enabledApplications;
 
-  StoryEngine(this.storyID, this.name, this.description, this.characters,
-      this.places, this.elements, this.cases, this.cinematics, this.conversations, this.enabledApplications);
-  
+  StoryEngine(
+      this.storyID,
+      this.name,
+      this.description,
+      this.characters,
+      this.places,
+      this.elements,
+      this.cases,
+      this.cinematics,
+      this.conversations,
+      this.enabledApplications);
+
   Map<String, dynamic> toMap() {
     return {
       'storyID': storyID,
@@ -52,13 +61,33 @@ class StoryEngine {
       map['storyID'],
       map['name'],
       map['description'],
-      map['characters'] != null ? List<CharacterEngine>.from(map['characters']?.map((x) => CharacterEngine.fromMap(x))) : [],
-      map['places'] != null ? List<PlaceEngine>.from(map['places']?.map((x) => PlaceEngine.fromMap(x))) : [],
-      map['elements'] != null ? List<ElementEngine>.from(map['elements']?.map((x) => ElementEngine.fromMap(x))) : [],
-      map['cases'] != null ? List<CaseEngine>.from(map['cases']?.map((x) => CaseEngine.fromMap(x))) : [],
-      map['cinematics'] != null ? List<CinematicEngine>.from(map['cinematics']?.map((x) => CinematicEngine.fromMap(x))) : [],
-      map['conversations'] != null ? List<ConversationEngine>.from(map['conversations']?.map((x) => ConversationEngine.fromMap(x))) : [],
-      map['enabledApplications'] != null ? List<String>.from(map['enabledApplications']) : [],
+      map['characters'] != null
+          ? List<CharacterEngine>.from(
+              map['characters']?.map((x) => CharacterEngine.fromMap(x)))
+          : [],
+      map['places'] != null
+          ? List<PlaceEngine>.from(
+              map['places']?.map((x) => PlaceEngine.fromMap(x)))
+          : [],
+      map['elements'] != null
+          ? List<ElementEngine>.from(
+              map['elements']?.map((x) => ElementEngine.fromMap(x)))
+          : [],
+      map['cases'] != null
+          ? List<CaseEngine>.from(
+              map['cases']?.map((x) => CaseEngine.fromMap(x)))
+          : [],
+      map['cinematics'] != null
+          ? List<CinematicEngine>.from(
+              map['cinematics']?.map((x) => CinematicEngine.fromMap(x)))
+          : [],
+      map['conversations'] != null
+          ? List<ConversationEngine>.from(
+              map['conversations']?.map((x) => ConversationEngine.fromMap(x)))
+          : [],
+      map['enabledApplications'] != null
+          ? List<String>.from(map['enabledApplications'])
+          : [],
     );
   }
 }
@@ -73,8 +102,9 @@ class CharacterEngine {
   bool isPlayable;
 
   CharacterEngine(
-      this.ID, this.name, this.weekAvailability, this.avatar, this.wallpaper, {this.isPlayable = false, this.unrevealedName = ""});
-  
+      this.ID, this.name, this.weekAvailability, this.avatar, this.wallpaper,
+      {this.isPlayable = false, this.unrevealedName = ""});
+
   Map<String, dynamic> toMap() {
     return {
       'ID': ID,
@@ -107,7 +137,8 @@ class PlaceEngine {
   String address;
   String asset;
 
-  PlaceEngine(this.ID, this.name, this.description, this.asset, {this.address = ""});
+  PlaceEngine(this.ID, this.name, this.description, this.asset,
+      {this.address = ""});
 
   Map<String, dynamic> toMap() {
     return {
@@ -148,8 +179,8 @@ class ElementEngine {
 
   String? relatedCaseID;
 
-  ElementEngine(this.ID,this.description, this.characterID,
-      this.type, this.isEvidence, this.week, this.day, this.hour,
+  ElementEngine(this.ID, this.description, this.characterID, this.type,
+      this.isEvidence, this.week, this.day, this.hour,
       {this.relatedCaseID,
       this.assetID,
       this.placeID,
@@ -183,7 +214,8 @@ class ElementEngine {
       map['ID'],
       map['description'] ?? "",
       map['characterID'],
-      EvidenceType.values.firstWhere((e) => e.name == map['type'].split('.')[1]),
+      EvidenceType.values
+          .firstWhere((e) => e.name == map['type'].split('.')[1]),
       map['isEvidence'],
       map['week'],
       map['day'],
@@ -208,8 +240,8 @@ class CaseEngine {
   CinematicEngine? resolution;
   ConversationEngine? blackmail;
 
-  CaseEngine(
-      this.ID, this.characterID, this.name, this.description, this.week, {this.resolution, this.blackmail});
+  CaseEngine(this.ID, this.characterID, this.name, this.description, this.week,
+      {this.resolution, this.blackmail});
 
   Map<String, dynamic> toMap() {
     return {
@@ -230,8 +262,12 @@ class CaseEngine {
       map['name'] ?? "",
       map['description'] ?? "",
       map['week'],
-      resolution: map['resolution'] == null ? null : CinematicEngine.fromMap(map['resolution']),
-      blackmail: map['blackmail'] == null ? null : ConversationEngine.fromMap(map['blackmail']),
+      resolution: map['resolution'] == null
+          ? null
+          : CinematicEngine.fromMap(map['resolution']),
+      blackmail: map['blackmail'] == null
+          ? null
+          : ConversationEngine.fromMap(map['blackmail']),
     );
   }
 }
@@ -245,8 +281,9 @@ class CinematicEngine {
   int nsfwLevel;
   List<CinematicSequenceEngine> sequences;
 
-  CinematicEngine(this.ID, this.name, this.week, this.day, this.hour,
-      this.sequences, {this.nsfwLevel = 0});
+  CinematicEngine(
+      this.ID, this.name, this.week, this.day, this.hour, this.sequences,
+      {this.nsfwLevel = 0});
 
   Map<String, dynamic> toMap() {
     return {
@@ -255,21 +292,22 @@ class CinematicEngine {
       'week': week,
       'day': day,
       'hour': hour,
-      'sequences': sequences.isEmpty ? "" : sequences.map((x) => x.toMap()).toList(),
+      'sequences':
+          sequences.isEmpty ? "" : sequences.map((x) => x.toMap()).toList(),
       'nsfwLevel': nsfwLevel,
     };
   }
 
   static CinematicEngine fromMap(Map<String, dynamic> map) {
     return CinematicEngine(
-      map['ID'],
-      map['name'] ?? "",
-      map['week'],
-      map['day'],
-      map['hour'],
-      List<CinematicSequenceEngine>.from(map['sequences']?.map((x) => CinematicSequenceEngine.fromMap(x))),
-      nsfwLevel : map['nsfwLevel'] ?? 0
-    );
+        map['ID'],
+        map['name'] ?? "",
+        map['week'],
+        map['day'],
+        map['hour'],
+        List<CinematicSequenceEngine>.from(
+            map['sequences']?.map((x) => CinematicSequenceEngine.fromMap(x))),
+        nsfwLevel: map['nsfwLevel'] ?? 0);
   }
 }
 
@@ -277,20 +315,21 @@ class CinematicSequenceEngine {
   String cinematicAsset;
   List<CinematicConversationEngine> cinematicConversations;
 
-  CinematicSequenceEngine(this.cinematicAsset,
-      this.cinematicConversations);
-  
+  CinematicSequenceEngine(this.cinematicAsset, this.cinematicConversations);
+
   Map<String, dynamic> toMap() {
     return {
       'cinematicAsset': cinematicAsset,
-      'cinematicConversations': cinematicConversations.map((x) => x.toMap()).toList(),
+      'cinematicConversations':
+          cinematicConversations.map((x) => x.toMap()).toList(),
     };
   }
 
   static CinematicSequenceEngine fromMap(Map<String, dynamic> map) {
     return CinematicSequenceEngine(
       map['cinematicAsset'] ?? "",
-      List<CinematicConversationEngine>.from(map['cinematicConversations']?.map((x) => CinematicConversationEngine.fromMap(x))),
+      List<CinematicConversationEngine>.from(map['cinematicConversations']
+          ?.map((x) => CinematicConversationEngine.fromMap(x))),
     );
   }
 }
@@ -300,7 +339,7 @@ class CinematicConversationEngine {
   String text;
 
   CinematicConversationEngine(this.character, this.text);
-  
+
   Map<String, dynamic> toMap() {
     return {
       'character': character,
@@ -325,9 +364,11 @@ class ConversationEngine {
   bool isNameRevealed;
   List<ConversationBubbleDataEngine> conversation;
 
-  ConversationEngine(this.conversationID, this.characterID, this.week, this.day, this.hour, this.conversation, {this.isNameRevealed = false});
+  ConversationEngine(this.conversationID, this.characterID, this.week, this.day,
+      this.hour, this.conversation,
+      {this.isNameRevealed = false});
 
-  Map<String, dynamic> toMap(){
+  Map<String, dynamic> toMap() {
     return {
       'conversationID': conversationID,
       'characterID': characterID,
@@ -338,40 +379,50 @@ class ConversationEngine {
       'conversation': conversation.map((bubble) => bubble.toMap()).toList(),
     };
   }
-  
-  static ConversationEngine fromMap(Map<String, dynamic> map){
+
+  static ConversationEngine fromMap(Map<String, dynamic> map) {
     return ConversationEngine(
       map['conversationID'],
       map['characterID'] ?? "",
       map['week'],
       map['day'],
       map['hour'],
-      map['conversation'].map<ConversationBubbleDataEngine>((bubbleMap) => ConversationBubbleDataEngine.fromMap(bubbleMap)).toList(),
+      map['conversation'] != null ?map['conversation']
+          .map<ConversationBubbleDataEngine>(
+              (bubbleMap) => ConversationBubbleDataEngine.fromMap(bubbleMap))
+          .toList(): [],
       isNameRevealed: map['isNameRevealed'],
     );
   }
 }
 
+enum ConversationBubbleDataEngineType { text, image, bank }
+
 class ConversationBubbleDataEngine {
   String ID;
   String content;
   bool isPlayer;
+  ConversationBubbleDataEngineType type;
 
-  ConversationBubbleDataEngine(this.ID, this.isPlayer, this.content);  
+  ConversationBubbleDataEngine(this.ID, this.isPlayer, this.content,
+      {this.type = ConversationBubbleDataEngineType.text});
 
-  Map<String, dynamic> toMap(){
+  Map<String, dynamic> toMap() {
     return {
       'id': ID,
       'content': content,
       'isPlayer': isPlayer,
+      'type': type.toString(),
     };
   }
 
-  static ConversationBubbleDataEngine fromMap(Map<String, dynamic> map){
+  static ConversationBubbleDataEngine fromMap(Map<String, dynamic> map) {
     return ConversationBubbleDataEngine(
       map['id'],
       map['isPlayer'],
       map['content'],
+      type: map['type'] != null ? ConversationBubbleDataEngineType.values
+          .firstWhere((e) => e.name == map['type'].split('.')[1]) : ConversationBubbleDataEngineType.text,
     );
   }
 }

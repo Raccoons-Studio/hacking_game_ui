@@ -162,8 +162,8 @@ class MaestroStory extends Maestro {
       if (d.isPlayer) {
         if (!player.revealedConversations.contains(d.ID)) {
           convertedDialogues.add(ConversationBubbleData(
-              d.ID, "Player", d.content,
-              isRevealed: false));
+              d.ID, "Player", d.content, d.type,
+              isRevealed: false,));
           break;
         }
       }
@@ -173,7 +173,7 @@ class MaestroStory extends Maestro {
           d.isPlayer
               ? "Player"
               : story.characters.firstWhere((c) => c.ID == characterID).name,
-          d.content,
+          d.content, d.type,
           isRevealed: player.revealedConversations.contains(d.ID)));
     }
 

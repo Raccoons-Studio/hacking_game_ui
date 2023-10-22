@@ -183,8 +183,8 @@ class _MessagesViewerState extends State<MessagesViewer> {
                         IconButton(
                           icon: const Icon(Icons.send),
                           onPressed: () async {
-                            AnalyticsService().logPlayConversation(
-                                _selectedConversationKey!);
+                            AnalyticsService()
+                                .logPlayConversation(_selectedConversationKey!);
                             await widget.maestro.collectConversation(
                                 _selectedConversation!
                                     .last.conversation.last.id);
@@ -192,8 +192,8 @@ class _MessagesViewerState extends State<MessagesViewer> {
                               _selectedConversation!
                                   .last.conversation.last.isRevealed = true;
                               _selectedConversation!.last.conversation.add(
-                                  ConversationBubbleData(
-                                      "ellispis", "", "..."));
+                                  ConversationBubbleData("ellispis", "", "...",
+                                      ConversationBubbleDataEngineType.text));
                             });
                             await Future.delayed(Duration(seconds: 3));
                             var newConversations =
