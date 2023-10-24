@@ -148,6 +148,22 @@ class MaestroStory extends Maestro {
         data[character.name] = dataList;
       }
     }
+
+    // Sort the data by week, day and hour
+    data.forEach((key, value) {
+      value.sort((a, b) {
+        if (a.week == b.week) {
+          if (a.day == b.day) {
+            return a.hour.compareTo(b.hour);
+          } else {
+            return a.day.compareTo(b.day);
+          }
+        } else {
+          return a.week.compareTo(b.week);
+        }
+      });
+    });
+
     return data;
   }
 

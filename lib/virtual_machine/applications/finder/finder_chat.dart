@@ -205,7 +205,7 @@ class ConversationBubble extends StatelessWidget {
               ),
               margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-              child: _getContentBasedOnType(),
+              child: _getContentBasedOnType(context),
             ),
           );
         },
@@ -214,7 +214,7 @@ class ConversationBubble extends StatelessWidget {
   }
 
 // This function creates different types of content based on data type
-  Widget _getContentBasedOnType() {
+  Widget _getContentBasedOnType(BuildContext context) {
     if (data.type == ConversationBubbleDataEngineType.text) {
       return Text(
         data.content,
@@ -239,11 +239,23 @@ class ConversationBubble extends StatelessWidget {
     }
 
     if (data.type == ConversationBubbleDataEngineType.image) {
-      return ConstrainedBox(
-        constraints: BoxConstraints(
-          maxHeight: 100,
+      return GestureDetector(
+        onTap: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return Dialog(
+                child: Image.asset('assets/images/' + data.content),
+              );
+            },
+          );
+        },
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxHeight: 100,
+          ),
+          child: Image.asset('assets/images/' + data.content),
         ),
-        child: Image.asset('assets/images/' + data.content),
       );
     }
 

@@ -52,13 +52,19 @@ class _MessagesViewerState extends State<MessagesViewer> {
                     children: [
                       SizedBox(
                         width: 300,
-                        child: ListView(
-                          children: snapshot.data!.entries.map((e) {
+                        child: ListView.separated(
+                          itemCount: snapshot.data!.entries.length,
+                          separatorBuilder: (BuildContext context, int index) {
+                            return Divider();
+                          },
+                          itemBuilder: (BuildContext context, int index) {
+                            var e = snapshot.data!.entries.toList()[index];
                             return Container(
                               color: e.key == _selectedConversationKey
                                   ? CupertinoColors.lightBackgroundGray
                                   : Colors.transparent,
                               child: ListTile(
+                                trailing: Icon(Icons.chevron_right),
                                 title: Text(e.key,
                                     style: e.key == _selectedConversationKey
                                         ? const TextStyle(
@@ -75,13 +81,13 @@ class _MessagesViewerState extends State<MessagesViewer> {
                                   children: <Widget>[
                                     Text(
                                         "${getDayOfWeek(e.value.last.day)} ${e.value.last.hour}:00"),
-                                    Text(
-                                      e.value.last.conversation.last.content,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
+                                    /*Text(
+              e.value.last.conversation.last.content,
+              overflow: TextOverflow.ellipsis,
+            ),*/
                                   ],
                                 ),
-                                isThreeLine: true,
+                                isThreeLine: false,
                                 dense: false,
                                 onTap: () {
                                   setState(() {
@@ -91,7 +97,7 @@ class _MessagesViewerState extends State<MessagesViewer> {
                                 },
                               ),
                             );
-                          }).toList(),
+                          },
                         ),
                       ),
                       buildConversation(),
@@ -123,21 +129,27 @@ class _MessagesViewerState extends State<MessagesViewer> {
 
   ListView buildMobileContactList(
       AsyncSnapshot<Map<String, List<ConversationData>>> snapshot) {
-    return ListView(
-      children: snapshot.data!.entries.map((e) {
+    return ListView.separated(
+      itemCount: snapshot.data!.entries.length,
+      separatorBuilder: (BuildContext context, int index) {
+        return Divider();
+      },
+      itemBuilder: (BuildContext context, int index) {
+        var e = snapshot.data!.entries.toList()[index];
         return ListTile(
+          trailing: Icon(Icons.chevron_right),
           title: Text(e.key),
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text("${getDayOfWeek(e.value.last.day)} ${e.value.last.hour}:00"),
-              Text(
+              /*Text(
                 e.value.last.conversation.last.content,
                 overflow: TextOverflow.ellipsis,
-              ),
+              ),*/
             ],
           ),
-          isThreeLine: true,
+          isThreeLine: false,
           dense: false,
           onTap: () {
             setState(() {
@@ -146,7 +158,7 @@ class _MessagesViewerState extends State<MessagesViewer> {
             });
           },
         );
-      }).toList(),
+      },
     );
   }
 
