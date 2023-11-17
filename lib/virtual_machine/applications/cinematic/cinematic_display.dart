@@ -99,15 +99,97 @@ class _CinematicWidgetState extends State<CinematicWidget>
           )),
           Positioned.fill(
             child: Image.asset(
-                "assets/images/${widget.cinematic.cinematicSequences[sequencesIndex > 0 ? sequencesIndex - 1 : 0].cinematicAsset}",
-                fit: BoxFit.cover),
+              "assets/images/${widget.cinematic.cinematicSequences[sequencesIndex > 0 ? sequencesIndex - 1 : 0].cinematicAsset}",
+              fit: BoxFit.cover,
+              errorBuilder: (BuildContext context, Object exception,
+                  StackTrace? stackTrace) {
+                // Vérifiez si cinematic.cinematicDescription n'est pas nulle
+                if (widget.cinematic.cinematicSequences[sequencesIndex]
+                            .cinematicDescription !=
+                        null &&
+                    widget.cinematic.cinematicSequences[sequencesIndex]
+                        .cinematicDescription!.isNotEmpty) {
+                  // Affichez la cinematicDescription au milieu de l'écran sur fond noir
+                  return Center(
+                    child: Container(
+                      color: Colors.black,
+                      child: Text(
+                        widget.cinematic.cinematicSequences[sequencesIndex]
+                            .cinematicDescription!,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  );
+                } else {
+                  // Si aucune description n'est disponible, affichez un texte par défaut
+                  return Center(
+                    child: Container(
+                      color: Colors.black,
+                      child: Text(
+                        'Error loading image.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  );
+                }
+              },
+            ),
           ),
           Positioned.fill(
             child: FadeTransition(
                 opacity: _controller,
                 child: Image.asset(
-                    "assets/images/${widget.cinematic.cinematicSequences[sequencesIndex].cinematicAsset}",
-                    fit: BoxFit.cover)),
+                  "assets/images/${widget.cinematic.cinematicSequences[sequencesIndex].cinematicAsset}",
+                  fit: BoxFit.cover,
+                  errorBuilder: (BuildContext context, Object exception,
+                      StackTrace? stackTrace) {
+                    // Vérifiez si cinematic.cinematicDescription n'est pas nulle
+                    if (widget.cinematic.cinematicSequences[sequencesIndex]
+                                .cinematicDescription !=
+                            null &&
+                        widget.cinematic.cinematicSequences[sequencesIndex]
+                            .cinematicDescription!.isNotEmpty) {
+                      // Affichez la cinematicDescription au milieu de l'écran sur fond noir
+                      return Center(
+                        child: Container(
+                          color: Colors.black,
+                          child: Text(
+                            widget.cinematic.cinematicSequences[sequencesIndex]
+                                .cinematicDescription!,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      );
+                    } else {
+                      // Si aucune description n'est disponible, affichez un texte par défaut
+                      return Center(
+                        child: Container(
+                          color: Colors.black,
+                          child: Text(
+                            'Error loading image.',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                )),
           ),
           Positioned(
             top: 10.0,

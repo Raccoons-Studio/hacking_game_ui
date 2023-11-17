@@ -7,9 +7,10 @@ class Cinematic {
 
 class CinematicSequence {
   String cinematicAsset;
+  String? cinematicDescription;
   List<CinematicConversation> cinematicConversations;
 
-  CinematicSequence(this.cinematicAsset, this.cinematicConversations);
+  CinematicSequence(this.cinematicAsset, this.cinematicConversations, {this.cinematicDescription});
 }
 
 class CinematicConversation {

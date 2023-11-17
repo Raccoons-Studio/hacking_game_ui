@@ -90,7 +90,7 @@ class MaestroStory extends Maestro {
             CinematicConversation(conversation.character, conversation.text));
       }
       cinematicSequences.add(
-          CinematicSequence(sequence.cinematicAsset, cinematicConversations));
+          CinematicSequence(sequence.cinematicAsset, cinematicConversations, cinematicDescription: sequence.cinematicDescription));
     }
     return Cinematic(cinematicID, cinematicSequences);
   }

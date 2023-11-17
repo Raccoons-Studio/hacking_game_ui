@@ -313,13 +313,15 @@ class CinematicEngine {
 
 class CinematicSequenceEngine {
   String cinematicAsset;
+  String? cinematicDescription;
   List<CinematicConversationEngine> cinematicConversations;
 
-  CinematicSequenceEngine(this.cinematicAsset, this.cinematicConversations);
+  CinematicSequenceEngine(this.cinematicAsset, this.cinematicConversations, {this.cinematicDescription});
 
   Map<String, dynamic> toMap() {
     return {
       'cinematicAsset': cinematicAsset,
+      'cinematicDescription': cinematicDescription,
       'cinematicConversations':
           cinematicConversations.map((x) => x.toMap()).toList(),
     };
@@ -330,6 +332,7 @@ class CinematicSequenceEngine {
       map['cinematicAsset'] ?? "",
       List<CinematicConversationEngine>.from(map['cinematicConversations']
           ?.map((x) => CinematicConversationEngine.fromMap(x))),
+      cinematicDescription: map['cinematicDescription'],
     );
   }
 }
