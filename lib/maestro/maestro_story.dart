@@ -89,10 +89,12 @@ class MaestroStory extends Maestro {
         cinematicConversations.add(
             CinematicConversation(conversation.character, conversation.text));
       }
-      cinematicSequences.add(
-          CinematicSequence(sequence.cinematicAsset, cinematicConversations, cinematicDescription: sequence.cinematicDescription));
+      cinematicSequences.add(CinematicSequence(
+          sequence.cinematicAsset, cinematicConversations,
+          cinematicDescription: sequence.cinematicDescription));
     }
-    return Cinematic(cinematicID, cinematicSequences, cinematicDescription: cinematic.description);
+    return Cinematic(cinematicID, cinematicSequences,
+        cinematicDescription: cinematic.description);
   }
 
   @override
@@ -110,9 +112,9 @@ class MaestroStory extends Maestro {
           .where((c) =>
               c.characterID == character.ID &&
               (c.week < p.currentWeek ||
-               c.week == p.currentWeek &&
-               (c.day < p.currentDay ||
-               c.day == p.currentDay && c.hour <= p.currentHour)))
+                  c.week == p.currentWeek &&
+                      (c.day < p.currentDay ||
+                          c.day == p.currentDay && c.hour <= p.currentHour)))
           .toList();
 
       charsConv.sort((a, b) => a.week.compareTo(b.week));
@@ -178,8 +180,12 @@ class MaestroStory extends Maestro {
       if (d.isPlayer) {
         if (!player.revealedConversations.contains(d.ID)) {
           convertedDialogues.add(ConversationBubbleData(
-              d.ID, "Player", d.content, d.type,
-              isRevealed: false,));
+            d.ID,
+            "Player",
+            d.content,
+            d.type,
+            isRevealed: false,
+          ));
           break;
         }
       }
@@ -189,7 +195,8 @@ class MaestroStory extends Maestro {
           d.isPlayer
               ? "Player"
               : story.characters.firstWhere((c) => c.ID == characterID).name,
-          d.content, d.type,
+          d.content,
+          d.type,
           isRevealed: player.revealedConversations.contains(d.ID)));
     }
 
@@ -409,7 +416,7 @@ class MaestroStory extends Maestro {
   }
 
   @override
-  Future<bool> nextHour(bool devMode, bool increment) async {
+  Future<NextHourExceptionType> nextHour(bool devMode, bool increment) async {
     Player p = await _dataBaseEngine!.getPlayer();
 
     if (devMode) {
@@ -436,7 +443,7 @@ class MaestroStory extends Maestro {
     if (increment) {
       for (var currentEvidence in await getAllCurrentEvidence()) {
         if (!p.revealedElements.contains(currentEvidence.evidenceID)) {
-          return false;
+          return NextHourExceptionType.needToCollectEvidence;
         }
       }
       // Check if every conversations are revealed
@@ -444,7 +451,7 @@ class MaestroStory extends Maestro {
         for (var conversation in currentConversation) {
           for (var bubble in conversation.conversation) {
             if (bubble.name == "Player" && !bubble.isRevealed) {
-              return false;
+              return NextHourExceptionType.needToCollectConversation;
             }
           }
         }
@@ -480,11 +487,66 @@ class MaestroStory extends Maestro {
     }
 
     await _dataBaseEngine!.savePlayer(p);
+    if (!await isNextHourExists()) {
+      return NextHourExceptionType.endOfStory;
+    }
+
     if (!await isElementsToDisplay() && !state.isCinematic) {
       return nextHour(devMode, increment);
     }
     super.streamController.add(state);
-    return true;
+    return NextHourExceptionType.GoOn;
+  }
+
+  Future<bool> isNextHourExists() async {
+    StoryEngine s = await _dataBaseEngine!.getStory();
+    Player p = await _dataBaseEngine!.getPlayer();
+
+    bool nextHourExists = false;
+
+    s.cinematics.forEach((cinematic) {
+      if (cinematic.week > p.currentWeek) {
+        nextHourExists = true;
+      } else if (cinematic.week == p.currentWeek) {
+        if (cinematic.day > p.currentDay) {
+          nextHourExists = true;
+        } else if (cinematic.day == p.currentDay) {
+          if (cinematic.hour > p.currentHour) {
+            nextHourExists = true;
+          }
+        }
+      }
+    });
+
+    s.conversations.forEach((conversation) {
+      if (!nextHourExists && conversation.week > p.currentWeek) {
+        nextHourExists = true;
+      } else if (!nextHourExists && conversation.week == p.currentWeek) {
+        if (conversation.day > p.currentDay) {
+          nextHourExists = true;
+        } else if (conversation.day == p.currentDay) {
+          if (conversation.hour > p.currentHour) {
+            nextHourExists = true;
+          }
+        }
+      }
+    });
+
+    s.elements.forEach((element) {
+      if (!nextHourExists && element.week > p.currentWeek) {
+        nextHourExists = true;
+      } else if (!nextHourExists && element.week == p.currentWeek) {
+        if (element.day > p.currentDay) {
+          nextHourExists = true;
+        } else if (element.day == p.currentDay) {
+          if (element.hour > p.currentHour) {
+            nextHourExists = true;
+          }
+        }
+      }
+    });
+
+    return nextHourExists;
   }
 
   @override

@@ -30,6 +30,13 @@ enum IntegrityErrorType {
   unexistingCharacter
 }
 
+enum NextHourExceptionType {
+  GoOn,
+  endOfStory,
+  needToCollectEvidence,
+  needToCollectConversation,
+}
+
 class IntegrityError {
   IntegrityErrorType type;
   String elementID;
@@ -54,7 +61,7 @@ abstract class Maestro {
 
   Future<void> start();
 
-  Future<bool> nextHour(bool devMode, bool increment);
+  Future<NextHourExceptionType> nextHour(bool devMode, bool increment);
 
   Future<List<Files>> getPhoneEvidences(String characterID);
 

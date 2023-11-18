@@ -371,12 +371,25 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                         .logOpenVirtualApp(applications[index].name);
                     if (applications[index].name == 'Next' &&
                         !isBlackmailPlaying) {
-                      if (!await widget.maestro.nextHour(false, true)) {
-                        displayComment(
-                            "I think I need to collect more evidences before going to the next hour");
-                      } else {
-                        AnalyticsService().logNext(
+                      var nextHourExceptionType =
+                          await widget.maestro.nextHour(false, true);
+                      switch (nextHourExceptionType) {
+                        case NextHourExceptionType.endOfStory:
+                          displayComment(
+                              "Unfortunately, it's the end of the story. Thank you for playing!");
+                          break;
+                        case NextHourExceptionType.needToCollectConversation:
+                          displayComment(
+                              "I think I need to collect more conversations before going to the next hour");
+                          break;
+                        case NextHourExceptionType.needToCollectEvidence:
+                          displayComment(
+                              "I think I need to collect more evidences before going to the next hour");
+                          break;
+                        default:
+                          AnalyticsService().logNext(
                             "${_maestroState!.week} - ${_maestroState!.day} - ${_maestroState!.hour}");
+                          break;
                       }
                     }
                     if (applications[index].name == 'Next Dev' &&
