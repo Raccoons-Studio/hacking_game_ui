@@ -23,6 +23,20 @@ characters:
     weekAvailability: 1
     unrevealedName:
     isPlayable: false
+  - ID: 54580fc5-5e21-4132-966d-3399acb4272d
+    name: Aneth
+    avatar: images/Anna_avatar.jpg
+    wallpaper: images/Anna_avatar.jpg
+    weekAvailability: 1
+    unrevealedName:
+    isPlayable: false
+  - ID: eddd6740-1595-4aaa-9e65-ccb486143b99
+    name: Lea
+    avatar: images/Anna_avatar.jpg
+    wallpaper: images/Anna_avatar.jpg
+    weekAvailability: 1
+    unrevealedName:
+    isPlayable: false
 places:
 elements:
   - ID: Penny_17
@@ -1789,7 +1803,7 @@ cinematics:
           - character: Me
             text: "Des chips au ketchup, des pizzas congelées..."
           - character: Me
-            text: "C'est pas comme ça qu'elle va garder sa ligne"
+            text: C'est pas comme ça qu'elle va garder sa ligne
       - cinematicAsset: Penny_528.jpg
         cinematicDescription: Cherry entre dans le magasin
         cinematicConversations:
@@ -1802,7 +1816,7 @@ cinematics:
           - character: Cherry
             text: "Pauvre de toi, je te plains."
           - character: Me
-            text: "Merci pour ton soutien."
+            text: Merci pour ton soutien.
       - cinematicAsset: Penny_529.jpg
         cinematicDescription: Cherry est près du joueur
         cinematicConversations:
@@ -1820,7 +1834,7 @@ cinematics:
         cinematicDescription: Cherry fixe le joueur
         cinematicConversations:
           - character: Cherry
-            text: "Je ne vois pas quel intérêt tu peux avoir à passer autant de temps à la photographier et à l'aider si ce n'est pas pour la mater."
+            text: Je ne vois pas quel intérêt tu peux avoir à passer autant de temps à la photographier et à l'aider si ce n'est pas pour la mater.
           - character: Me
             text: "Je suis son photographe, c'est normal que je passe du temps avec elle pour les shootings. Et c'est ma belle-soeur, si je peux l'aider, je le fais."
           - character: Cherry
@@ -1856,7 +1870,7 @@ cinematics:
         cinematicDescription: Le joueur et Cherry sont toujours dans l'allée du magasin
         cinematicConversations:
           - character: Me
-            text: "Je ne comprends pas pourquoi tu es si méchante avec moi."
+            text: Je ne comprends pas pourquoi tu es si méchante avec moi.
           - character: Cherry
             text: "Je ne suis pas méchante, je veux juste le meilleur pour mon amie."
           - character: Cherry
@@ -1872,18 +1886,18 @@ cinematics:
         cinematicDescription: Le joueur seul dans l'allée du magasin
         cinematicConversations:
           - character: Me
-            text: "Je déteste qu'elle m'ait parlé comme ça..."
+            text: Je déteste qu'elle m'ait parlé comme ça...
           - character: Me
-            text: "Mais elle a raison sur toute la ligne..."
+            text: Mais elle a raison sur toute la ligne...
           - character: Me
-            text: "Je dois me méfier de Cherry et essayer de l'amadouer."
+            text: Je dois me méfier de Cherry et essayer de l'amadouer.
       - cinematicAsset: Me_119.jpg
         cinematicDescription: Le joueur se prépare à partir du magasin
         cinematicConversations:
           - character: Me
             text: "Au moins, j'ai de quoi cuisiner un bon repas à Penny ce soir."
           - character: Me
-            text: "Je crois que je vais rentrer... Cherry m'a complètement coupé l'envie de traîner ici."
+            text: Je crois que je vais rentrer... Cherry m'a complètement coupé l'envie de traîner ici.
     nsfwLevel: 0
     description: Le joueur va faire une course et tombe sur Cherry.
   - ID: 1a8803dd-d1a9-4400-9f7a-f6b26d119520
@@ -1893,31 +1907,31 @@ cinematics:
     hour: 13
     sequences:
       - cinematicAsset: player_desk_01.jpg
-        cinematicDescription: Le joueur est à son bureau, cherchant sur SingleFans des modèles potentielles
+        cinematicDescription: "Le joueur est à son bureau, cherchant sur SingleFans des modèles potentielles"
         cinematicConversations:
           - character: Me
             text: "Amateur, vraiment ?! Elle m'aura fait mal là où ça fait plus mal, Cherry."
           - character: Me
-            text: Pas question de rester là à me morfondre sur les commentaires de Cherry. Je peux faire mieux !
+            text: "Pas question de rester là à me morfondre sur les commentaires de Cherry. Je peux faire mieux !"
           - character: Me
-            text: Je vais chercher d'autres modèles sur SingleFans, histoire de me perfectionner.
+            text: "Je vais chercher d'autres modèles sur SingleFans, histoire de me perfectionner."
           - character: Me
             text: En trouvant d'autres modèles je vais pouvoir m'améliorer et montrer à Cherry que je ne fais pas ça uniquement pour matter Penny.
           - character: Me
-            text: Et avec un peu de bol, je trouverais d'autres jolies filles avec qui partager des séances intimes ! Ca va être gagnant-gagnant tout ça !
+            text: "Et avec un peu de bol, je trouverais d'autres jolies filles avec qui partager des séances intimes ! Ca va être gagnant-gagnant tout ça !"
       - cinematicAsset: player_desk_03.jpg
-        cinematicDescription: Ironiquement, Le joueur parcourt SingleFans et trouve deux profils qui l'intéressent. Léa, une jolie brune timide et Anaïs, une blonde aux faux seins siliconés.
+        cinematicDescription: "Ironiquement, Le joueur parcourt SingleFans et trouve deux profils qui l'intéressent. Léa, une jolie brune timide et Anaïs, une blonde aux faux seins siliconés."
         cinematicConversations:
           - character: Me
             text: "Hmm... voilà deux profils qui pourraient être intéressants. Léa, elle a ce quelque chose dans le regard, un peu timide peut-être."
           - character: Me
             text: "Et Aneth...Bon, il est impossible de ne pas remarquer ses atouts, même si elles sont siliconées."
           - character: Me
-            text: Évidement, les deux sont différentes, mais je préfère miser sur des profils différents pour espérer une réponse !
+            text: "Évidement, les deux sont différentes, mais je préfère miser sur des profils différents pour espérer une réponse !"
           - character: Me
             text: "Je vais leur envoyer un message et voir ce que ca va donner !"
           - character: Me
-            text: Bon déjà, elles habitent toutes les deux à moins de 10 kms d'ici, ça devrait faciliter les choses !
+            text: "Bon déjà, elles habitent toutes les deux à moins de 10 kms d'ici, ça devrait faciliter les choses !"
     nsfwLevel: 0
     description: Le joueur se met à la recherche d'autres modèles à photographier. Il envoie des messages à plusieurs modèles.
   - ID: 8d1d3257-df49-4cbe-8536-51562d2d8453
@@ -1967,7 +1981,7 @@ cinematics:
     hour: 13
     sequences:
     nsfwLevel: 0
-    description: Le joueur se rend dans un café pour rencontrer la deuxième modèle qui lui a répondu. Elle s'appelle Léa et est très jolie, jeune, naive.
+    description: "Le joueur se rend dans un café pour rencontrer la deuxième modèle qui lui a répondu. Elle s'appelle Léa et est très jolie, jeune, naive."
   - ID: 60f73098-d89d-4574-978f-504cd2c79c4f
     name: 60f73098-d89d-4574-978f-504cd2c79c4f
     week: 1
@@ -1975,7 +1989,7 @@ cinematics:
     hour: 16
     sequences:
     nsfwLevel: 0
-    description: Le courant passe bien avec Léa, elle est étudiante à besoin d'argent et c'est lancé sur Single Fans avec des selfies. Elle veut bien faire un essai avec le joueur.
+    description: "Le courant passe bien avec Léa, elle est étudiante à besoin d'argent et c'est lancé sur Single Fans avec des selfies. Elle veut bien faire un essai avec le joueur."
   - ID: d0d0f7d2-51a6-471d-b17a-59ae33b350e1
     name: d0d0f7d2-51a6-471d-b17a-59ae33b350e1
     week: 1
@@ -1999,7 +2013,7 @@ cinematics:
     hour: 7
     sequences:
     nsfwLevel: 0
-    description: Le joueur se prépare pour son premier shooting avec Léa, il stresse et espère que tout va bien aller.
+    description: "Le joueur se prépare pour son premier shooting avec Léa, il stresse et espère que tout va bien aller."
   - ID: b5da9dcd-92ae-4818-933d-6aee57c2ecef
     name: b5da9dcd-92ae-4818-933d-6aee57c2ecef
     week: 1
@@ -2031,7 +2045,7 @@ cinematics:
     hour: 19
     sequences:
     nsfwLevel: 0
-    description: Penny demande au joueur de faire de nouvelles photos privées, d'autres fans lui ont demandé des photos en nu caché.
+    description: "Penny demande au joueur de faire de nouvelles photos privées, d'autres fans lui ont demandé des photos en nu caché."
   - ID: 98464105-19e7-4eaf-8661-2298a1604bd0
     name: 98464105-19e7-4eaf-8661-2298a1604bd0
     week: 1
@@ -2039,7 +2053,7 @@ cinematics:
     hour: 22
     sequences:
     nsfwLevel: 0
-    description: Le joueur fait le bilan de la semaine, il a vu Penny presque nue, a rencontré Cherry qui est une peste excitante et Léa qui est timide avec du potentiel.
+    description: "Le joueur fait le bilan de la semaine, il a vu Penny presque nue, a rencontré Cherry qui est une peste excitante et Léa qui est timide avec du potentiel."
 conversations:
   - conversationID: cbb28970-11d9-40e0-9bd6-4033ae241702
     characterID: PENNY
@@ -2377,6 +2391,28 @@ conversations:
         content: 200$
         isPlayer: true
         type: ConversationBubbleDataEngineType.bank
+  - conversationID: 08729df8-248c-4e07-8cfb-04bca2c5030d
+    characterID: 54580fc5-5e21-4132-966d-3399acb4272d
+    week: 1
+    day: 5
+    hour: 13
+    isNameRevealed: false
+    conversation:
+      - id: c2f617bc-e1a5-44a4-aa59-2f15935e18c3
+        content: "Bonjour Aneth ! Je me suis abonné à votre profil Single Fans et j'ai beaucoup aimé vos photos. Je suis le photographe personnel de Princess_P et je cherche à élargir mon carnet de modèle. Est-ce que vous seriez intéressé pour poser pour moi ?"
+        isPlayer: false
+        type: ConversationBubbleDataEngineType.text
+  - conversationID: 0ece3a8a-24a6-4a70-b0d8-313f6489ef48
+    characterID: eddd6740-1595-4aaa-9e65-ccb486143b99
+    week: 1
+    day: 5
+    hour: 13
+    isNameRevealed: false
+    conversation:
+      - id: 6dacb7bc-b9ad-425c-9963-d722979c3b38
+        content: "Bonjour Lea ! Je me suis abonné à votre profil Single Fans et j'ai beaucoup aimé vos photos. Je suis le photographe personnel de Princess_P et je cherche à élargir mon carnet de modèle. Est-ce que vous seriez intéressé pour poser pour moi ?"
+        isPlayer: false
+        type: ConversationBubbleDataEngineType.text
 enabledApplications:
   - SingleFans
   - Messages
