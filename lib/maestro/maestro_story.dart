@@ -92,7 +92,7 @@ class MaestroStory extends Maestro {
       cinematicSequences.add(
           CinematicSequence(sequence.cinematicAsset, cinematicConversations, cinematicDescription: sequence.cinematicDescription));
     }
-    return Cinematic(cinematicID, cinematicSequences);
+    return Cinematic(cinematicID, cinematicSequences, cinematicDescription: cinematic.description);
   }
 
   @override

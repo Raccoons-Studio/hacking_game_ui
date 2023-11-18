@@ -1,8 +1,9 @@
 class Cinematic {
   String cinematicID;
+  String? cinematicDescription;
   List<CinematicSequence> cinematicSequences;
 
-  Cinematic(this.cinematicID, this.cinematicSequences);
+  Cinematic(this.cinematicID, this.cinematicSequences, {this.cinematicDescription});
 }
 
 class CinematicSequence {

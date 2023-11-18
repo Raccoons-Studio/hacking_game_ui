@@ -1737,6 +1737,7 @@ cinematics:
     week: 1
     day: 5
     hour: 10
+    description: Le joueur va faire une course et tombe sur Cherry.
     sequences:
     nsfwLevel: 0
   - ID: 1a8803dd-d1a9-4400-9f7a-f6b26d119520
@@ -1744,6 +1745,7 @@ cinematics:
     week: 1
     day: 5
     hour: 13
+    description: Le joueur se met à la recherche d'autres modèles à photographier.
     sequences:
     nsfwLevel: 0
   - ID: 8d1d3257-df49-4cbe-8536-51562d2d8453
@@ -1751,6 +1753,7 @@ cinematics:
     week: 1
     day: 5
     hour: 16
+    description: Le joueur envoie un SMS à Cherry pour lui demander si elle accepterait de poser pour lui si le joueur la paie pour qu'il puisse s'entrainer.
     sequences:
     nsfwLevel: 0
 conversations:

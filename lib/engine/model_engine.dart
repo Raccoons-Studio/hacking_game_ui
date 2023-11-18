@@ -279,11 +279,12 @@ class CinematicEngine {
   int day;
   int hour;
   int nsfwLevel;
+  String? description;
   List<CinematicSequenceEngine> sequences;
 
   CinematicEngine(
       this.ID, this.name, this.week, this.day, this.hour, this.sequences,
-      {this.nsfwLevel = 0});
+      {this.nsfwLevel = 0, this.description});
 
   Map<String, dynamic> toMap() {
     return {
@@ -295,6 +296,7 @@ class CinematicEngine {
       'sequences':
           sequences.isEmpty ? "" : sequences.map((x) => x.toMap()).toList(),
       'nsfwLevel': nsfwLevel,
+      'description': description,
     };
   }
 
@@ -306,8 +308,9 @@ class CinematicEngine {
         map['day'],
         map['hour'],
         List<CinematicSequenceEngine>.from(
-            map['sequences']?.map((x) => CinematicSequenceEngine.fromMap(x))),
-        nsfwLevel: map['nsfwLevel'] ?? 0);
+            map['sequences']?.map((x) => CinematicSequenceEngine.fromMap(x)) ?? []),
+        nsfwLevel: map['nsfwLevel'] ?? 0,
+        description: map['description']);
   }
 }
 
