@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
+import 'package:hacking_game_ui/providers/bugreport_service.dart';
 import 'package:hacking_game_ui/utils/analytics.dart';
 import 'package:hacking_game_ui/utils/game_date.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/cinematic/cinematic_display.dart';
@@ -52,8 +53,12 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
   void initState() {
     super.initState();
 
-    widget.maestro.isMessagesNow().then((bool value) => {setNotification("Messages", value)});
-    widget.maestro.isEvidenceNow(EvidenceType.socialMedia).then((bool value) => {setNotification("SingleFans", value)});
+    widget.maestro
+        .isMessagesNow()
+        .then((bool value) => {setNotification("Messages", value)});
+    widget.maestro
+        .isEvidenceNow(EvidenceType.socialMedia)
+        .then((bool value) => {setNotification("SingleFans", value)});
 
     widget.maestro.maestroStream.listen((event) {
       if (_maestroState == null || _maestroState!.hour != event.hour) {
@@ -135,6 +140,82 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
       title: Text(
           'Week ${_maestroState?.week ?? ""} - ${getDayOfWeek(_maestroState?.day ?? 0)} ${_maestroState?.hour ?? ""}:00'),
       backgroundColor: Colors.grey.shade800.withAlpha(50),
+      actions: [
+        IconButton(
+          icon: Icon(Icons.bug_report),
+          onPressed: openBugReportDialog,
+        ),
+      ],
+    );
+  }
+
+  void openBugReportDialog() async {
+    BugReportType? reportType;
+    String comment = "";
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+            return AlertDialog(
+              title: Text('Bug Report'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  DropdownButton<BugReportType>(
+                    hint: Text('Select report type'),
+                    value: reportType,
+                    onChanged: (BugReportType? newValue) {
+                      setState(() {
+                        reportType = newValue;
+                      });
+                    },
+                    items: BugReportType.values.map((BugReportType type) {
+                      return DropdownMenuItem<BugReportType>(
+                        value: type,
+                        child: Text(type.toString().split('.').last),
+                      );
+                    }).toList(),
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      labelText: 'Comment (required)',
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        comment = value;
+                      });
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter a comment';
+                      }
+                      return null;
+                    },
+                  ),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: reportType != null && comment.isNotEmpty
+                      ? () async {
+                          BugReportService().save(await widget.maestro.getPlayer(), reportType!, comment);
+                          Navigator.of(context).pop();
+                        }
+                      : null,
+                  child: Text('Send'),
+                ),
+              ],
+            );
+          },
+        );
+      },
     );
   }
 
@@ -286,14 +367,16 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                 padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 child: GestureDetector(
                   onTap: () async {
-                    AnalyticsService().logOpenVirtualApp(applications[index].name);
+                    AnalyticsService()
+                        .logOpenVirtualApp(applications[index].name);
                     if (applications[index].name == 'Next' &&
                         !isBlackmailPlaying) {
                       if (!await widget.maestro.nextHour(false, true)) {
                         displayComment(
                             "I think I need to collect more evidences before going to the next hour");
                       } else {
-                        AnalyticsService().logNext("${_maestroState!.week} - ${_maestroState!.day} - ${_maestroState!.hour}");
+                        AnalyticsService().logNext(
+                            "${_maestroState!.week} - ${_maestroState!.day} - ${_maestroState!.hour}");
                       }
                     }
                     if (applications[index].name == 'Next Dev' &&
@@ -391,7 +474,8 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                 setState(() {
                   isDateVisible = false;
                   if (_maestroState!.isCinematic) {
-                    AnalyticsService().logPlayCinematic(_maestroState!.cinematicID);
+                    AnalyticsService()
+                        .logPlayCinematic(_maestroState!.cinematicID);
                     setState(() {
                       isCinematicPlaying = true;
                       _currentApplication = VirtualApplication(

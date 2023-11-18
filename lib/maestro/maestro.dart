@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:hacking_game_ui/engine/model_engine.dart';
+import 'package:hacking_game_ui/engine/player_engine.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_characters_selector.dart';
 import 'package:hacking_game_ui/virtual_machine/models/cinematic.dart';
 import 'package:hacking_game_ui/virtual_machine/models/conversation_data.dart';
@@ -198,6 +199,8 @@ abstract class Maestro {
   }
 
   Future<StoryEngine> getStory();
+
+  Future<Player> getPlayer();
 
   Future<void> goTo(int week, int day, int hour);
 

@@ -20,5 +20,3 @@ TODO :
 - Firebase Analytics
 - Compte utilisateur (sauvegarde des données, etc...)
 - A la fin de la partie, s'inscrire à la newsletter
-- Bouton pour report les bugs et suggestions
-- Inscription à la newsletter
