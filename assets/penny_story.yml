@@ -197,6 +197,7 @@ cinematics:
           - character: Me
             text: "Oh la la quelle humeur ! Je te laisse !"
     nsfwLevel: 0
+    description:
   - ID: 28f8b735-7965-46c0-b88f-eadf2702c4fa
     name: 28f8b735-7965-46c0-b88f-eadf2702c4fa
     week: 1
@@ -243,6 +244,7 @@ cinematics:
           - character: Me
             text: "Ca marche !"
     nsfwLevel: 0
+    description:
   - ID: 0683d3d3-83e5-4023-98a1-591f82c9d9c1
     name: 0683d3d3-83e5-4023-98a1-591f82c9d9c1
     week: 1
@@ -379,6 +381,7 @@ cinematics:
           - character: Me
             text: "De mon côté, je vais m'ouvrir un compte SingleFans et essayé de la trouver !"
     nsfwLevel: 0
+    description:
   - ID: 6071160f-9b06-44e2-b804-d1020f40af6f
     name: 6071160f-9b06-44e2-b804-d1020f40af6f
     week: 1
@@ -430,6 +433,7 @@ cinematics:
           - character: Me
             text: "Allez je m'abonne !"
     nsfwLevel: 0
+    description:
   - ID: ed6b860b-2105-4fb2-850b-a567252ecf82
     name: ed6b860b-2105-4fb2-850b-a567252ecf82
     week: 1
@@ -463,6 +467,7 @@ cinematics:
           - character: Me
             text: "Depuis le temps que je fantasme sur Penny, je vais peut être pouvoir en tirer quelque chose !"
     nsfwLevel: 0
+    description:
   - ID: cf33dbcd-f53b-4460-92ee-f3931434ecda
     name: cf33dbcd-f53b-4460-92ee-f3931434ecda
     week: 1
@@ -504,6 +509,7 @@ cinematics:
           - character: Me
             text: "Allez ! Motive toi mon vieux ! Ta belle soeur au corps de rêve n'attend que tes yeux pour la mater !"
     nsfwLevel: 0
+    description:
   - ID: e7c24c57-d3f5-4dba-9404-5c7fa7f52fa0
     name: e7c24c57-d3f5-4dba-9404-5c7fa7f52fa0
     week: 1
@@ -608,6 +614,7 @@ cinematics:
           - character: Penny
             text: "Et bah je prend alors ! On va payer et on rentre faire les photos !"
     nsfwLevel: 0
+    description:
   - ID: 1af24f3d-334b-4242-b17c-89903118213a
     name: 1af24f3d-334b-4242-b17c-89903118213a
     week: 1
@@ -691,6 +698,7 @@ cinematics:
           - character: Me
             text: "Je la connais, il ne faut surtout pas qu'elle se lasse !"
     nsfwLevel: 0
+    description:
   - ID: ac9dad1c-dd39-47ee-8755-5c263481d90c
     name: ac9dad1c-dd39-47ee-8755-5c263481d90c
     week: 1
@@ -717,6 +725,7 @@ cinematics:
           - character: Me
             text: "Dans tous les cas, ca se tente !"
     nsfwLevel: 0
+    description:
   - ID: feaf5ceb-27eb-4094-b806-abb45b11ff5a
     name: feaf5ceb-27eb-4094-b806-abb45b11ff5a
     week: 1
@@ -735,6 +744,7 @@ cinematics:
           - character: Me
             text: "Mais en attendant, je vais essayer de contacter ses premiers fans pour savoir si ils ne veulent pas de photos exclusives !"
     nsfwLevel: 0
+    description:
   - ID: ef270949-5c3c-41a4-9c9b-3c9d0fff04fd
     name: ef270949-5c3c-41a4-9c9b-3c9d0fff04fd
     week: 1
@@ -816,6 +826,7 @@ cinematics:
           - character: Me
             text: "Elle qui aime bronzer et rien faire, ça devrait pas trop la déranger !"
     nsfwLevel: 0
+    description:
   - ID: bcd296cc-df59-42d2-93fc-2058c5b97267
     name: bcd296cc-df59-42d2-93fc-2058c5b97267
     week: 1
@@ -857,6 +868,7 @@ cinematics:
           - character: Penny
             text: "Allez je mets de la musique ! Ca va nous mettre de bonne humeur !"
     nsfwLevel: 0
+    description:
   - ID: bcd296cc-df59-42d2-93fc-2058c5b97268
     name: bcd296cc-df59-42d2-93fc-2058c5b97268
     week: 1
@@ -943,6 +955,7 @@ cinematics:
           - character: Penny
             text: "Hey pas tout de suite ! On avait dit qu'on bronzerait un peu !"
     nsfwLevel: 0
+    description:
   - ID: d8bcb50e-aba3-446c-892f-784351344a2e
     name: d8bcb50e-aba3-446c-892f-784351344a2e
     week: 1
@@ -993,6 +1006,7 @@ cinematics:
           - character: Me
             text: "(Première étape, me faire du fric ! Voyons voir si ils ont mordu à l'hameçon !)"
     nsfwLevel: 0
+    description:
   - ID: f202f211-57e3-414e-aa9c-eaa707a03e05
     name: f202f211-57e3-414e-aa9c-eaa707a03e05
     week: 1
@@ -1011,6 +1025,7 @@ cinematics:
           - character: Me
             text: "Je vais essayer de la convaicre demain de passer à l'action, j'espère qu'elle ne sera pas difficile à convaincre."
     nsfwLevel: 0
+    description:
   - ID: 37c5c90d-7008-42be-a71a-443dfa26e07a
     name: 37c5c90d-7008-42be-a71a-443dfa26e07a
     week: 1
@@ -1085,6 +1100,7 @@ cinematics:
           - character: Me
             text: "(Depuis le temps que je fantasme sur le Penny, je touche du doigt le faire de voir comment est foutu son joli corps !)"
     nsfwLevel: 0
+    description:
   - ID: 4e68afe4-748c-4ece-8b89-573dcf7734e5
     name: 4e68afe4-748c-4ece-8b89-573dcf7734e5
     week: 1
@@ -1188,6 +1204,7 @@ cinematics:
           - character: Me
             text: "C'est bon c'est dans la boite ! Tu pourras choisir la plus belle à envoyer à ton fan !"
     nsfwLevel: 0
+    description:
   - ID: 12c75b2b-bc60-4723-a716-2052f1072fb2
     name: 12c75b2b-bc60-4723-a716-2052f1072fb2
     week: 1
@@ -1265,6 +1282,7 @@ cinematics:
           - character: Me
             text: "Et bien je vais devoir faire le max pour lui en donner !"
     nsfwLevel: 0
+    description:
   - ID: d2b27ccb-d861-453b-a83a-103f00782b55
     name: d2b27ccb-d861-453b-a83a-103f00782b55
     week: 1
@@ -1364,6 +1382,7 @@ cinematics:
           - character: Me
             text: "TODO : Conversation où deux abonnés achètent les photos de Penny"
     nsfwLevel: 0
+    description:
   - ID: 396bde44-cf61-445f-ab4e-393caf6ac58f
     name: 396bde44-cf61-445f-ab4e-393caf6ac58f
     week: 1
@@ -1448,6 +1467,7 @@ cinematics:
           - character: Cherry
             text: "A votre service, MONSIEUR !"
     nsfwLevel: 0
+    description:
   - ID: 7ff8655b-9a06-4375-bc58-e8de156bd797
     name: 7ff8655b-9a06-4375-bc58-e8de156bd797
     week: 1
@@ -1536,6 +1556,7 @@ cinematics:
           - character: Me
             text: "Je pense que c'est le moment de sauter sur l'occasion !"
     nsfwLevel: 0
+    description:
   - ID: a36419df-19c6-4ac1-8dfa-7e544e06f0d2
     name: a36419df-19c6-4ac1-8dfa-7e544e06f0d2
     week: 1
@@ -1559,14 +1580,14 @@ cinematics:
           - character: Penny
             text: "T'es con ! Allez rentre !"
       - cinematicAsset: Penny_503.jpg
-        cinematicDescription: Penny est allongée sur son lit, de dos
+        cinematicDescription: "Penny est allongée sur son lit, de dos"
         cinematicConversations:
           - character: Me
             text: "Prête à rayonner sous l'appareil photo ?"
           - character: Penny
             text: "Yes ! On a deux mission pour aujourd'hui !"
       - cinematicAsset: Penny_504.jpg
-        cinematicDescription: Penny est allongée sur son lit, face au joueur
+        cinematicDescription: "Penny est allongée sur son lit, face au joueur"
         cinematicConversations:
           - character: Me
             text: "Ah ? Une mission supplémentaire dans notre journée ?"
@@ -1581,9 +1602,9 @@ cinematics:
           - character: Me
             text: "Ils apprenent à te connaitre à travers tes photos ! T'es comme la fille du dortoir d'a côté pour eux"
           - character: Penny
-            text: "Ouais pas con !"    
+            text: "Ouais pas con !"
       - cinematicAsset: Penny_505.jpg
-        cinematicDescription: Penny est allongée sur son lit, face au joueur, souriante
+        cinematicDescription: "Penny est allongée sur son lit, face au joueur, souriante"
         cinematicConversations:
           - character: Me
             text: "Comment on s'y prend ?"
@@ -1598,7 +1619,7 @@ cinematics:
           - character: Me
             text: "Tu optimises le truc quoi !"
       - cinematicAsset: Penny_506.jpg
-        cinematicDescription: Penny est allongée sur son lit, face au joueur, excitée
+        cinematicDescription: "Penny est allongée sur son lit, face au joueur, excitée"
         cinematicConversations:
           - character: Penny
             text: "T'as vu un peu ! Je deviens une pro !"
@@ -1616,12 +1637,12 @@ cinematics:
           - character: Penny
             text: "Tu vas pas jouer le puceau pervers comme notre riche donateur quand même !"
           - character: Penny
-            text: "Allez on se tourne pendant que le modèle se change !" 
+            text: "Allez on se tourne pendant que le modèle se change !"
       - cinematicAsset: Penny_508.jpg
         cinematicDescription: Le joueur est face à la porte
         cinematicConversations:
           - character: Penny
-            text: "Je sais pas encore ce que je vais faire de ces 200 dollars !" 
+            text: "Je sais pas encore ce que je vais faire de ces 200 dollars !"
           - character: Penny
             text: "Peut-être acheter un cadeau à Joe ! Après tout c'est un peu grâce à lui aussi si j'ai envie de montrer mon corps à quelqu'un d'autre !"
           - character: Penny
@@ -1636,7 +1657,7 @@ cinematics:
           - character: Penny
             text: "Allez c'est parti fais 5 ou 6 photos !"
           - character: Me
-            text: "Je prends ton visage ?" 
+            text: "Je prends ton visage ?"
           - character: Penny
             text: "Nan je préfère pas !"
           - character: Me
@@ -1660,7 +1681,7 @@ cinematics:
         cinematicDescription: Le joueur cadre le cul de Penny en s'agenouillant
         cinematicConversations:
           - character: Me
-            text: "Celle là aussi"
+            text: Celle là aussi
       - cinematicAsset: Penny_514.jpg
         cinematicDescription: Le joueur cadre les seins de Penny en s'agenouillant
         cinematicConversations:
@@ -1672,7 +1693,7 @@ cinematics:
           - character: Me
             text: "Et c'est la prise finale !"
       - cinematicAsset: Penny_516.jpg
-        cinematicDescription: Penny sourit, satisfaite
+        cinematicDescription: "Penny sourit, satisfaite"
         cinematicConversations:
           - character: Penny
             text: "Allez on se retourne ! C'est l'heure du string !"
@@ -1685,24 +1706,24 @@ cinematics:
         cinematicDescription: Le joueur fait un gros plan sur le cul de Penny
         cinematicConversations:
           - character: Me
-            text: "J'en fais combien ?"      
+            text: "J'en fais combien ?"
           - character: Penny
             text: "Deux ou trois pour être sur d'avoir la bonne !"
       - cinematicAsset: Penny_519.jpg
         cinematicDescription: Le joueur fait un gros plan sur le cul de Penny
         cinematicConversations:
           - character: Me
-            text: "Et une de plus !" 
+            text: "Et une de plus !"
       - cinematicAsset: Penny_520.jpg
         cinematicDescription: Le joueur fait un gros plan sur le cul de Penny
         cinematicConversations:
           - character: Me
-            text: "Allez fais sauter le string !" 
+            text: "Allez fais sauter le string !"
       - cinematicAsset: Penny_521.jpg
         cinematicDescription: Penny baisse son string
         cinematicConversations:
           - character: Penny
-            text: "Ce qu'il faut pas faire pour gagner 200 dollars..." 
+            text: Ce qu'il faut pas faire pour gagner 200 dollars...
       - cinematicAsset: Penny_522.jpg
         cinematicDescription: Le joueur prend en photo le cul nu de Penny
         cinematicConversations:
@@ -1712,12 +1733,12 @@ cinematics:
         cinematicDescription: Le joueur tourne autour du cul de Penny
         cinematicConversations:
           - character: Me
-            text: "Allez une dernière !"  
+            text: "Allez une dernière !"
       - cinematicAsset: Penny_524.jpg
         cinematicDescription: Le joueur tourne autour du cul de Penny
         cinematicConversations:
           - character: Me
-            text: "On est bon ! C'est dans la boite !"  
+            text: "On est bon ! C'est dans la boite !"
       - cinematicAsset: Penny_525.jpg
         cinematicDescription: Le joueur se tourne de nouveau
         cinematicConversations:
@@ -1732,30 +1753,143 @@ cinematics:
           - character: Penny
             text: "Super merci beaucoup ! Tu assures !"
     nsfwLevel: 0
+    description:
   - ID: cc89235b-1dfb-402c-9e2e-7a5c74ad40f3
     name: cc89235b-1dfb-402c-9e2e-7a5c74ad40f3
     week: 1
     day: 5
     hour: 10
-    description: Le joueur va faire une course et tombe sur Cherry.
     sequences:
     nsfwLevel: 0
+    description: Le joueur va faire une course et tombe sur Cherry.
   - ID: 1a8803dd-d1a9-4400-9f7a-f6b26d119520
     name: 1a8803dd-d1a9-4400-9f7a-f6b26d119520
     week: 1
     day: 5
     hour: 13
-    description: Le joueur se met à la recherche d'autres modèles à photographier.
     sequences:
     nsfwLevel: 0
+    description: Le joueur se met à la recherche d'autres modèles à photographier. Il envoie des messages à plusieurs modèles.
   - ID: 8d1d3257-df49-4cbe-8536-51562d2d8453
     name: 8d1d3257-df49-4cbe-8536-51562d2d8453
     week: 1
     day: 5
     hour: 16
-    description: Le joueur envoie un SMS à Cherry pour lui demander si elle accepterait de poser pour lui si le joueur la paie pour qu'il puisse s'entrainer.
     sequences:
     nsfwLevel: 0
+    description: Le joueur envoie un SMS à Cherry pour lui demander si elle accepterait de poser pour lui si le joueur la paie pour qu'il puisse s'entrainer. Cherry propose au joueur de l'inviter à diner pour en discuter.
+  - ID: 2b7c60bd-211b-42b4-8d06-7b9f932949b0
+    name: 2b7c60bd-211b-42b4-8d06-7b9f932949b0
+    week: 1
+    day: 5
+    hour: 19
+    sequences:
+    nsfwLevel: 0
+    description: Cherry et le joueur se retrouvent au resto. Cherry veut bien poser pour le joueur mais demande 500 euros par séance pour du nu.
+  - ID: bf4d6953-1698-4794-a5f0-31afd0b6ef55
+    name: bf4d6953-1698-4794-a5f0-31afd0b6ef55
+    week: 1
+    day: 5
+    hour: 22
+    sequences:
+    nsfwLevel: 0
+    description: Le diner se termine et le joueur dit aurevoir à Cherry et la recontactera quand il aura l'argent.
+  - ID: 8e8e7d74-bf2f-4bd3-a60c-4783a5a58bab
+    name: 8e8e7d74-bf2f-4bd3-a60c-4783a5a58bab
+    week: 1
+    day: 6
+    hour: 7
+    sequences:
+    nsfwLevel: 0
+    description: Deux modèles ont répondus au joueur. La première est très vénale et demande à être payée pour poser. La deuxième dit qu'un photographe pourrait booster ses ventes sur Single Fans qui ne sont pas terribles.
+  - ID: 4e80ae46-f1fc-4c74-b61c-9deb8074bfee
+    name: 4e80ae46-f1fc-4c74-b61c-9deb8074bfee
+    week: 1
+    day: 6
+    hour: 10
+    sequences:
+    nsfwLevel: 0
+    description: Penny dit au joueur qu'elle s'absente pour la journée car elle va dépenser l'argent gagné sur Single Fans avec Cherry.
+  - ID: 4606f11d-b8be-45ad-9a4f-1ae611228e87
+    name: 4606f11d-b8be-45ad-9a4f-1ae611228e87
+    week: 1
+    day: 6
+    hour: 13
+    sequences:
+    nsfwLevel: 0
+    description: Le joueur se rend dans un café pour rencontrer la deuxième modèle qui lui a répondu. Elle s'appelle Léa et est très jolie, jeune, naive.
+  - ID: 60f73098-d89d-4574-978f-504cd2c79c4f
+    name: 60f73098-d89d-4574-978f-504cd2c79c4f
+    week: 1
+    day: 6
+    hour: 16
+    sequences:
+    nsfwLevel: 0
+    description: Le courant passe bien avec Léa, elle est étudiante à besoin d'argent et c'est lancé sur Single Fans avec des selfies. Elle veut bien faire un essai avec le joueur.
+  - ID: d0d0f7d2-51a6-471d-b17a-59ae33b350e1
+    name: d0d0f7d2-51a6-471d-b17a-59ae33b350e1
+    week: 1
+    day: 6
+    hour: 19
+    sequences:
+    nsfwLevel: 0
+    description: Penny et Cherry rentrent de leur journée shopping. Penny est très contente de ses achats. Elle invite Cherry à rester manger avec eux.
+  - ID: de4f166f-8ff8-4a65-92e6-8ee3e04bebb8
+    name: de4f166f-8ff8-4a65-92e6-8ee3e04bebb8
+    week: 1
+    day: 6
+    hour: 22
+    sequences:
+    nsfwLevel: 0
+    description: Cherry taquine le joueur sur le fait qu'il a besoin de prendre des cours de photo. Penny trouve que c'est un très bon photographe. Cherry insiste en disant qu'il devrait trouver d'autres modèles pour s'exercer ou prendre des cours. Penny est un peu jalouse.
+  - ID: 72f96017-7c67-476f-85d5-e9781801ee91
+    name: 72f96017-7c67-476f-85d5-e9781801ee91
+    week: 1
+    day: 7
+    hour: 7
+    sequences:
+    nsfwLevel: 0
+    description: Le joueur se prépare pour son premier shooting avec Léa, il stresse et espère que tout va bien aller.
+  - ID: b5da9dcd-92ae-4818-933d-6aee57c2ecef
+    name: b5da9dcd-92ae-4818-933d-6aee57c2ecef
+    week: 1
+    day: 7
+    hour: 10
+    sequences:
+    nsfwLevel: 0
+    description: Le joueur arrive chez Léa. Léa l'attend dans une tenue de soirée. Elle est timide mais de très bonne volonté.
+  - ID: c4921ff9-3883-4792-b69d-3465a1a9a64c
+    name: c4921ff9-3883-4792-b69d-3465a1a9a64c
+    week: 1
+    day: 7
+    hour: 13
+    sequences:
+    nsfwLevel: 0
+    description: Le shooting se termine et le joueur envoie les photos à Léa. Léa est très contente du résultat et poste sur son Single Fans.
+  - ID: 73124e98-a855-4790-b712-ae019f09329d
+    name: 73124e98-a855-4790-b712-ae019f09329d
+    week: 1
+    day: 7
+    hour: 16
+    sequences:
+    nsfwLevel: 0
+    description: Le joueur rentre chez lui et commence à marchander des photos de Léa à ses fans.
+  - ID: a2fef784-bb13-4adc-9891-f81f83980547
+    name: a2fef784-bb13-4adc-9891-f81f83980547
+    week: 1
+    day: 7
+    hour: 19
+    sequences:
+    nsfwLevel: 0
+    description: Penny demande au joueur de faire de nouvelles photos privées, d'autres fans lui ont demandé des photos en nu caché.
+  - ID: 98464105-19e7-4eaf-8661-2298a1604bd0
+    name: 98464105-19e7-4eaf-8661-2298a1604bd0
+    week: 1
+    day: 7
+    hour: 22
+    sequences:
+    nsfwLevel: 0
+    description: Le joueur fait le bilan de la semaine, il a vu Penny presque nue, a rencontré Cherry qui est une peste excitante et Léa qui est timide avec du potentiel.
 conversations:
   - conversationID: cbb28970-11d9-40e0-9bd6-4033ae241702
     characterID: PENNY
