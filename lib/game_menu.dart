@@ -2,10 +2,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hacking_game_ui/load_savegame.dart';
 import 'package:hacking_game_ui/login_or_register.dart';
+import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/maestro/maestro_story.dart';
 import 'package:hacking_game_ui/virtual_machine/virtual_desktop.dart';
 
 class GameMenu extends StatefulWidget {
+  Maestro? maestro;
+
+  GameMenu({this.maestro});
+
   @override
   _GameMenuState createState() => _GameMenuState();
 }
@@ -96,6 +101,81 @@ class _GameMenuState extends State<GameMenu> {
                 ],
               ),
             ),
+            widget.maestro != null
+                ? TextButton(
+                    onPressed: () async {
+                      try {
+                        bool isCloud = await widget.maestro!.save(0);
+                        // Si la sauvegarde est dans le cloud, on affiche une popup qui indique que le jeu a été sauvegardé dans le cloud.
+                        // Si la sauvegarde n'est pas dans le cloud, on affiche une popup qui indique que le jeu a été sauvegardé localement.
+                        if (isCloud) {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text('Game saved'),
+                                content: SingleChildScrollView(
+                                  child: ListBody(
+                                    children: <Widget>[
+                                      Text(
+                                          'Your game has been saved in the cloud.'),
+                                    ],
+                                  ),
+                                ),
+                                actions: <Widget>[
+                                  TextButton(
+                                    child: Text('OK'),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        } else {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text('Game saved'),
+                                content: SingleChildScrollView(
+                                  child: ListBody(
+                                    children: <Widget>[
+                                      Text(
+                                          'Your game has been saved locally.'),
+                                    ],
+                                  ),
+                                ),
+                                actions: <Widget>[
+                                  TextButton(
+                                    child: Text('OK'),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
+                      } catch (error) {
+                        print(error);
+                      }
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.file_upload_rounded,
+                          color: Colors.white,
+                        ),
+                        Text(' Save Game',
+                            style: TextStyle(color: Colors.white))
+                      ],
+                    ),
+                  )
+                : Container(),
             isUserConnected
                 ? SizedBox.shrink()
                 : TextButton(

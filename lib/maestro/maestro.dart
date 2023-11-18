@@ -72,7 +72,7 @@ abstract class Maestro {
 
   Future<void> load(int load);
 
-  Future<void> save(int slot);
+  Future<bool> save(int slot);
 
   Future<List<Character>> getAvailableCharacters();
 

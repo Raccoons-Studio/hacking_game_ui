@@ -497,13 +497,15 @@ class MaestroStory extends Maestro {
   }
 
   @override
-  Future<void> save(int slot) async {
+  Future<bool> save(int slot) async {
     Player p = await _dataBaseEngine!.getPlayer();
     SaveAndLoadEngine.savePlayer(p, slot);
     // if user connected
     if (SavegameService().isUserConnected()) {
       SavegameService().save(p);
+      return true;
     }
+    return false;
   }
 
   @override

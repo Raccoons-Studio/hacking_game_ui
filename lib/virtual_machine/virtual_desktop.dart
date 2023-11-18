@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hacking_game_ui/engine/model_engine.dart';
+import 'package:hacking_game_ui/game_menu.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/providers/bugreport_service.dart';
 import 'package:hacking_game_ui/utils/analytics.dart';
@@ -11,7 +12,6 @@ import 'package:hacking_game_ui/virtual_machine/applications/cinematic/cinematic
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/messages/messages_viewer.dart';
-import 'package:hacking_game_ui/virtual_machine/applications/parameters/parameters.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_characters_selector.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/single_fans/single_fans.dart';
 import 'package:hacking_game_ui/virtual_machine/models/application.dart';
@@ -312,7 +312,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
               if (!snapshot.hasData) {
                 return Container();
               }
-              return Parameters(widget.maestro);
+              return GameMenu(maestro: widget.maestro);
             });
       case 'Cinematic':
         setState(() {
