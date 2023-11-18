@@ -1752,6 +1752,27 @@ cinematics:
             text: "Je file, je t'envoie les photos sur le partage comme d'hab'"
           - character: Penny
             text: "Super merci beaucoup ! Tu assures !"
+      - cinematicAsset: Penny_526.jpg
+        cinematicDescription: Le joueur est à son bureau
+        cinematicConversations:
+          - character: Me
+            text: "Pfiou j'en reviens toujours pas !"
+          - character: Me
+            text: "Elle a un de ces culs !"
+          - character: Me
+            text: "J'étais si prêt que j'aurais pu le toucher !"
+          - character: Me
+            text: "Je vais garder ces photos précieusement en tout cas !"
+          - character: Me
+            text: "Bon allez, faut pas que j'en oublie de vivre, j'étais tellement concentré sur le Single Fans de Penny que j'en ai oublié de faire des courses ou de faire le plein de la voiture !"
+          - character: Me
+            text: "Je vais aller faire un tour au centre commercial !"
+          - character: Me
+            text: "Ca va me changer les idées et ca va me permettre de préparer un bon repas à Penny !"
+          - character: Me
+            text: "Rien de tel qu'une bonne bouffe pour l'amadouer et la mettre dans de bonnes conditions pour la suite !"
+          - character: Me
+            text: "Allez c'est parti !"
     nsfwLevel: 0
     description:
   - ID: cc89235b-1dfb-402c-9e2e-7a5c74ad40f3
@@ -1760,6 +1781,109 @@ cinematics:
     day: 5
     hour: 10
     sequences:
+      - cinematicAsset: Penny_527.jpg
+        cinematicDescription: Le joueur est dans une boutique
+        cinematicConversations:
+          - character: Me
+            text: "C'est quoi cette liste de courses que Penny m'a donné?"
+          - character: Me
+            text: "Des chips au ketchup, des pizzas congelées..."
+          - character: Me
+            text: "C'est pas comme ça qu'elle va garder sa ligne"
+      - cinematicAsset: Penny_528.jpg
+        cinematicDescription: Cherry entre dans le magasin
+        cinematicConversations:
+          - character: Me
+            text: "Oh non, pas elle..."
+          - character: Cherry
+            text: "Tiens, mais que fais-tu ici?"
+          - character: Me
+            text: "Je procède à une noble mission, celle de nourrir Penny."
+          - character: Cherry
+            text: "Pauvre de toi, je te plains."
+          - character: Me
+            text: "Merci pour ton soutien."
+      - cinematicAsset: Penny_529.jpg
+        cinematicDescription: Cherry est près du joueur
+        cinematicConversations:
+          - character: Cherry
+            text: "Alors, t'as pris de nouvelles photos de Penny?"
+          - character: Me
+            text: "Oui, en effet, il y a pas plus tard qu'une heure !"
+          - character: Cherry
+            text: "Je parie que tu profites de l'occasion pour la mater, vieux pervers !"
+          - character: Me
+            text: "Ce n'est pas professionnel de ma part, je suis là pour faire des photos rien de plus."
+          - character: Cherry
+            text: "Oui, oui, je te crois...peut-être."
+      - cinematicAsset: Penny_530.jpg
+        cinematicDescription: Cherry fixe le joueur
+        cinematicConversations:
+          - character: Cherry
+            text: "Je ne vois pas quel intérêt tu peux avoir à passer autant de temps à la photographier et à l'aider si ce n'est pas pour la mater."
+          - character: Me
+            text: "Je suis son photographe, c'est normal que je passe du temps avec elle pour les shootings. Et c'est ma belle-soeur, si je peux l'aider, je le fais."
+          - character: Cherry
+            text: "Hmm, je reste sceptique."
+      - cinematicAsset: Penny_531.jpg
+        cinematicDescription: Le joueur se justifie face à Cherry
+        cinematicConversations:
+          - character: Me
+            text: "Ecoute Cherry, la vérité c'est que j'aime Penny. Non pas de la manière dont tu sembles le penser."
+          - character: Me
+            text: "Je l'aime de la manière dont on aime une personne de sa famille. C'est ma belle soeur et ce que je veux avant tout, c'est son bonheur."
+          - character: Me
+            text: "Si je l'aide avec ses photos, c'est parce que ça lui permet de gagner de l'argent et de se sentir indépendante."
+          - character: Me
+            text: "Et si je peux contribuer à ça, alors oui, je passe du temps avec elle, oui je prends plaisir à la photographier, mais pas dans le sens où tu le sous-entends."
+      - cinematicAsset: Penny_532.jpg
+        cinematicDescription: Cherry sourit d'un air moqueur face aux paroles du joueur
+        cinematicConversations:
+          - character: Cherry
+            text: "C'est mignon ta petite déclaration, mais pour moi tu n'es qu'un mec qui fantasme sur sa belle-soeur et qui a trouvé le parfait prétexte pour passer du temps avec elle et la mater sans que ça paraisse suspect."
+          - character: Me
+            text: "Tu as le droit de penser ce que tu veux, Cherry."
+      - cinematicAsset: Penny_533.jpg
+        cinematicDescription: Cherry et le joueur marchent dans l'allée du magasin
+        cinematicConversations:
+          - character: Cherry
+            text: "Si tu veux vraiment être un super photographe pour Penny, il va falloir que tu prennes des cours, parce que là, les photos ont l'air d'oeuvres d'un amateur"
+          - character: Me
+            text: "Si tu veux poser pour moi, je pourrais obtenir de la pratique et m'améliorer, qu'est ce que t'en dis ?"
+          - character: Cherry
+            text: "Ah non, je ne suis ni mannequin, ni prof de photo, et encore moins adepte des vieux pervers!"
+      - cinematicAsset: Penny_534.jpg
+        cinematicDescription: Le joueur et Cherry sont toujours dans l'allée du magasin
+        cinematicConversations:
+          - character: Me
+            text: "Je ne comprends pas pourquoi tu es si méchante avec moi."
+          - character: Cherry
+            text: "Je ne suis pas méchante, je veux juste le meilleur pour mon amie."
+          - character: Cherry
+            text: "Et honnêtement, j'ai juste du mal à te cerner."
+      - cinematicAsset: Cherry_117.jpg
+        cinematicDescription: Cherry s'apprête à partir
+        cinematicConversations:
+          - character: Me
+            text: "Peut-être que tu te trompes sur moi, tu devrais apprendre à me connaître."
+          - character: Cherry
+            text: "Peut-être que c'est une bonne idée, mais pour l'instant, mes glaces vont fondre, je dois y aller."
+      - cinematicAsset: Me_118.jpg
+        cinematicDescription: Le joueur seul dans l'allée du magasin
+        cinematicConversations:
+          - character: Me
+            text: "Je déteste qu'elle m'ait parlé comme ça..."
+          - character: Me
+            text: "Mais elle a raison sur toute la ligne..."
+          - character: Me
+            text: "Je dois me méfier de Cherry et essayer de l'amadouer."
+      - cinematicAsset: Me_119.jpg
+        cinematicDescription: Le joueur se prépare à partir du magasin
+        cinematicConversations:
+          - character: Me
+            text: "Au moins, j'ai de quoi cuisiner un bon repas à Penny ce soir."
+          - character: Me
+            text: "Je crois que je vais rentrer... Cherry m'a complètement coupé l'envie de traîner ici."
     nsfwLevel: 0
     description: Le joueur va faire une course et tombe sur Cherry.
   - ID: 1a8803dd-d1a9-4400-9f7a-f6b26d119520
@@ -1768,6 +1892,32 @@ cinematics:
     day: 5
     hour: 13
     sequences:
+      - cinematicAsset: player_desk_01.jpg
+        cinematicDescription: Le joueur est à son bureau, cherchant sur SingleFans des modèles potentielles
+        cinematicConversations:
+          - character: Me
+            text: "Amateur, vraiment ?! Elle m'aura fait mal là où ça fait plus mal, Cherry."
+          - character: Me
+            text: Pas question de rester là à me morfondre sur les commentaires de Cherry. Je peux faire mieux !
+          - character: Me
+            text: Je vais chercher d'autres modèles sur SingleFans, histoire de me perfectionner.
+          - character: Me
+            text: En trouvant d'autres modèles je vais pouvoir m'améliorer et montrer à Cherry que je ne fais pas ça uniquement pour matter Penny.
+          - character: Me
+            text: Et avec un peu de bol, je trouverais d'autres jolies filles avec qui partager des séances intimes ! Ca va être gagnant-gagnant tout ça !
+      - cinematicAsset: player_desk_03.jpg
+        cinematicDescription: Ironiquement, Le joueur parcourt SingleFans et trouve deux profils qui l'intéressent. Léa, une jolie brune timide et Anaïs, une blonde aux faux seins siliconés.
+        cinematicConversations:
+          - character: Me
+            text: "Hmm... voilà deux profils qui pourraient être intéressants. Léa, elle a ce quelque chose dans le regard, un peu timide peut-être."
+          - character: Me
+            text: "Et Aneth...Bon, il est impossible de ne pas remarquer ses atouts, même si elles sont siliconées."
+          - character: Me
+            text: Évidement, les deux sont différentes, mais je préfère miser sur des profils différents pour espérer une réponse !
+          - character: Me
+            text: "Je vais leur envoyer un message et voir ce que ca va donner !"
+          - character: Me
+            text: Bon déjà, elles habitent toutes les deux à moins de 10 kms d'ici, ça devrait faciliter les choses !
     nsfwLevel: 0
     description: Le joueur se met à la recherche d'autres modèles à photographier. Il envoie des messages à plusieurs modèles.
   - ID: 8d1d3257-df49-4cbe-8536-51562d2d8453
