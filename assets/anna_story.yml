@@ -1,13 +1,6 @@
 storyID: sample_story
 name: Sample Story
 description: This is a sample story to test developments
-enabledApplications:
-  - Finder
-  - Messages
-  - Phones
-  - Webcam
-  - Settings
-  - Next
 characters:
   - ID: ANNA
     name: Anna
@@ -1507,6 +1500,7 @@ cases:
       hour: 7
       sequences:
         - cinematicAsset: ANNA_CASE1_RESOLUTION_01
+          cinematicDescription:
           cinematicConversations:
             - character: Me
               text: "But of course everything is clear now!"
@@ -1521,6 +1515,7 @@ cases:
             - character: Me
               text: "But I think I can already use this to have a little fun!"
       nsfwLevel: 0
+      description:
     blackmail:
       conversationID: fd8dfb65-0a05-4a08-9234-24df03c8a9f4
       characterID:
@@ -1529,60 +1524,114 @@ cases:
       hour: 7
       isNameRevealed: false
       conversation:
-        - content: "Hello Anna ! I want to talk with you about your little secret"
+        - id: ad6ff4b4-dc86-452e-a7a0-bfd6a7223d1e
+          content: "Hello Anna ! I want to talk with you about your little secret"
           isPlayer: true
-        - content: "Who are you ?!"
+          type: ConversationBubbleDataEngineType.text
+        - id: 61c0e9a3-71c1-45a2-8fd3-be5a67266597
+          content: "Who are you ?!"
           isPlayer: false
-        - content: "It doesn't matter who I am, what's important is your little secret with your teacher"
+          type: ConversationBubbleDataEngineType.text
+        - id: 4e5b43d9-45ea-4448-b3d8-65475c680df6
+          content: "It doesn't matter who I am, what's important is your little secret with your teacher"
           isPlayer: true
-        - content: "What ?! Who are you ? You follow me, right?"
+          type: ConversationBubbleDataEngineType.text
+        - id: e4652d61-00c3-432c-8b47-5c0eb2a7ffb7
+          content: "What ?! Who are you ? You follow me, right?"
           isPlayer: false
-        - content: "Calm down Anna, I just want to chat!"
+          type: ConversationBubbleDataEngineType.text
+        - id: cfe8359e-9aef-4e07-98dc-94216d9bad8a
+          content: "Calm down Anna, I just want to chat!"
           isPlayer: true
-        - content: "Fuck you, I don't argue with perverts!"
+          type: ConversationBubbleDataEngineType.text
+        - id: f7e653bf-bf7f-483b-95f3-f077eb6a4220
+          content: "Fuck you, I don't argue with perverts!"
           isPlayer: false
-        - content: "No problem, if you don't want to talk about your little secret, I'll go talk about it with your teacher. From that evening when you observed him at his window, from the anonymous letter you left him."
+          type: ConversationBubbleDataEngineType.text
+        - id: f8e797d7-82b5-4144-b568-746d262d6eec
+          content: "No problem, if you don't want to talk about your little secret, I'll go talk about it with your teacher. From that evening when you observed him at his window, from the anonymous letter you left him."
           isPlayer: true
-        - content: "Who the fuck are you? How do you know that ? Are you spying on me motherfucker?"
+          type: ConversationBubbleDataEngineType.text
+        - id: f4122a82-fd83-4adb-bf9c-1458a379d59e
+          content: "Who the fuck are you? How do you know that ? Are you spying on me motherfucker?"
           isPlayer: false
-        - content: "Anna, calm down! I mean no harm!"
+          type: ConversationBubbleDataEngineType.text
+        - id: 395892aa-9c10-47cc-a788-9dc771b219af
+          content: "Anna, calm down! I mean no harm!"
           isPlayer: true
-        - content: "What do you want then?"
+          type: ConversationBubbleDataEngineType.text
+        - id: bb108c0a-0bf1-40da-a7f0-35368d693a78
+          content: "What do you want then?"
           isPlayer: false
-        - content: "I suggest you keep your little secret for me if you complete two challenges!"
+          type: ConversationBubbleDataEngineType.text
+        - id: 08675153-8677-4318-9bd0-ed634a5266d7
+          content: "I suggest you keep your little secret for me if you complete two challenges!"
           isPlayer: true
-        - content: "Ok I hear you !"
+          type: ConversationBubbleDataEngineType.text
+        - id: ac89e2c9-d148-46cf-99f6-155925a4ec3b
+          content: "Ok I hear you !"
           isPlayer: false
-        - content: The first will be to go see your teacher at the end of his lesson and accidentally drop his phone
+          type: ConversationBubbleDataEngineType.text
+        - id: 583d2c3f-7a88-4124-943a-4e36fe19b78a
+          content: The first will be to go see your teacher at the end of his lesson and accidentally drop his phone
           isPlayer: true
-        - content: "But you're sick! He's going to kill me and be mad at me!"
+          type: ConversationBubbleDataEngineType.text
+        - id: edccce47-2f2a-4ba8-aa95-09b54003414d
+          content: "But you're sick! He's going to kill me and be mad at me!"
           isPlayer: false
-        - content: "I think it's better than him knowing that you're following him in secret!"
+          type: ConversationBubbleDataEngineType.text
+        - id: 200d596e-3b5d-4882-b67d-1526fb4f45be
+          content: "I think it's better than him knowing that you're following him in secret!"
           isPlayer: true
-        - content: "You bastard !"
+          type: ConversationBubbleDataEngineType.text
+        - id: aeaa563b-016c-4faa-ad98-7f7333034619
+          content: "You bastard !"
           isPlayer: false
-        - content: My second challenge is for you to go say hello to a friend for me.
+          type: ConversationBubbleDataEngineType.text
+        - id: cbfa5a14-17ea-463c-a4e2-ed17af74862e
+          content: My second challenge is for you to go say hello to a friend for me.
           isPlayer: true
-        - content: "What kind of friends do assholes like you have?"
+          type: ConversationBubbleDataEngineType.text
+        - id: 50efa72e-0caf-48d3-b028-47d2e1fd82e1
+          content: "What kind of friends do assholes like you have?"
           isPlayer: false
-        - content: "In truth he's not really a friend, I know him very little in fact, but he has done me a favor several times. Do you know the guy from the phone store?"
+          type: ConversationBubbleDataEngineType.text
+        - id: c11ed828-0ad5-44c7-b3db-8a9d5bf20c5b
+          content: "In truth he's not really a friend, I know him very little in fact, but he has done me a favor several times. Do you know the guy from the phone store?"
           isPlayer: true
-        - content: Yes he repaired my phone for free last week
+          type: ConversationBubbleDataEngineType.text
+        - id: 9742b10a-effc-4588-9f84-f2a88d742b00
+          content: Yes he repaired my phone for free last week
           isPlayer: false
-        - content: "Same for me! I had several problems and each time he did me a favor by repairing my equipment for free or at a low price!"
+          type: ConversationBubbleDataEngineType.text
+        - id: aa84ac61-cdf0-4a63-ae09-e4e651f07b86
+          content: "Same for me! I had several problems and each time he did me a favor by repairing my equipment for free or at a low price!"
           isPlayer: true
-        - content: "And ?"
+          type: ConversationBubbleDataEngineType.text
+        - id: f66a1849-0763-4615-8be4-2158ed3ed23e
+          content: "And ?"
           isPlayer: false
-        - content: "I think you're his type of girl! Go to the store and do a little charming act to thank him for helping us so kindly!"
+          type: ConversationBubbleDataEngineType.text
+        - id: f936127c-d01a-48c9-883d-f55d68518b74
+          content: "I think you're his type of girl! Go to the store and do a little charming act to thank him for helping us so kindly!"
           isPlayer: true
-        - content: "But are you sick or what? Ok he's not disgusting but don't mess around, I'm not a whore!"
+          type: ConversationBubbleDataEngineType.text
+        - id: e476e2bb-5aea-4f1c-9cfb-75d8b34a59bc
+          content: "But are you sick or what? Ok he's not disgusting but don't mess around, I'm not a whore!"
           isPlayer: false
-        - content: "I didn't ask you to sleep with him, stop! I just asked you to go visit him and be nice to him like he was nice to both of us."
+          type: ConversationBubbleDataEngineType.text
+        - id: 3a0d4af6-ce4b-4dc7-beab-316c185d91cd
+          content: "I didn't ask you to sleep with him, stop! I just asked you to go visit him and be nice to him like he was nice to both of us."
           isPlayer: true
-        - content: "Ok you sick person! But then forget about me!"
+          type: ConversationBubbleDataEngineType.text
+        - id: e92657d6-66d0-4b8b-8774-d424bd933462
+          content: "Ok you sick person! But then forget about me!"
           isPlayer: false
-        - content: "I'll forget your secret forever, I promise!"
+          type: ConversationBubbleDataEngineType.text
+        - id: a7b6e59d-db6d-4a85-aae6-e423d6a0a337
+          content: "I'll forget your secret forever, I promise!"
           isPlayer: true
+          type: ConversationBubbleDataEngineType.text
 cinematics:
   - ID: INTRO
     name: Introduction
@@ -1591,6 +1640,7 @@ cinematics:
     hour: 7
     sequences:
       - cinematicAsset: week0_day1_cinematic_intro.jpg
+        cinematicDescription:
         cinematicConversations:
           - character: Me
             text: Another day in this dingy phone repair shop. I swear the walls are closing in.
@@ -1605,6 +1655,7 @@ cinematics:
           - character: Me
             text: There's got to be more to life than being trapped in this shop...
       - cinematicAsset: week0_day1_cinematic_intro1.jpg
+        cinematicDescription:
         cinematicConversations:
           - character: Pretty girl
             text: "Hi, I...umm...dropped my phone in the pool."
@@ -1615,6 +1666,7 @@ cinematics:
           - character: Me
             text: "Hmm, interesting. Well, let's take a look and see what we can do."
       - cinematicAsset: week0_day1_cinematic_intro2.jpg
+        cinematicDescription:
         cinematicConversations:
           - character: Player
             text: "Looks like the touch sensor is damaged, we'll need to replace the whole screen."
@@ -1623,6 +1675,7 @@ cinematics:
           - character: Player
             text: I understand. Let's see what we can do to make it affordable for you.
       - cinematicAsset: week0_day1_cinematic_intro3.jpg
+        cinematicDescription:
         cinematicConversations:
           - character: Player
             text: "Well, I think I have a used screen that's still in good shape. I can put that in to keep the cost down. It should be ready in two hours."
@@ -1631,6 +1684,7 @@ cinematics:
           - character: Player
             text: "Nice to meet you, Anna. I'll do my best to get this fixed for you."
       - cinematicAsset: week0_day1_cinematic_intro4.jpg
+        cinematicDescription:
         cinematicConversations:
           - character: Player
             text: This damage is worse than I thought. It's going to take some effort to fix this.
@@ -1645,6 +1699,7 @@ cinematics:
           - character: Player
             text: "The spyware is basic, it only gives access to phone logs and messages. But in my current state of boredom and curiosity, it's awfully tempting."
       - cinematicAsset: week0_day1_cinematic_intro5.jpg
+        cinematicDescription:
         cinematicConversations:
           - character: Player
             text: "Alright, the repair is done. Now, for the spyware..."
@@ -1653,6 +1708,7 @@ cinematics:
           - character: Player
             text: "Now, let's just test this real quick. I need to confirm it's sending data correctly before she takes the phone."
     nsfwLevel: 0
+    description:
   - ID: TUTORIAL
     name: The tutorial is finish
     week: 1
@@ -1660,22 +1716,26 @@ cinematics:
     hour: 10
     sequences:
       - cinematicAsset: intro-1.jpg
+        cinematicDescription:
         cinematicConversations:
           - character: Player
             text: "Perfect, it's all working as planned. The functionalities are indeed limited for now, but they're good enough for a little sneak peek into her life."
           - character: Player
             text: "Knowing those sneaky developers, they'll surely roll out some new features in the coming weeks. I'll simply have to be patient."
       - cinematicAsset: intro-1.jpg
+        cinematicDescription:
         cinematicConversations:
           - character: Anna
             text: "Hi again, I'm back! Is my phone ready?"
       - cinematicAsset: intro-1.jpg
+        cinematicDescription:
         cinematicConversations:
           - character: Player
             text: "Hi Anna, yes, your phone is all set. I managed to use a used screen for the repair, so there's no charge."
           - character: Anna
             text: "Oh my god, thank you so much! That's incredibly kind of you. I can't thank you enough!"
     nsfwLevel: 0
+    description:
   - ID: WEEK-0-2-7
     name: WEEK-0-2-7
     week: 1
@@ -1683,6 +1743,7 @@ cinematics:
     hour: 7
     sequences:
       - cinematicAsset: PLACE_PHONE_REPAIR_DESK.jpg
+        cinematicDescription:
         cinematicConversations:
           - character: Me
             text: I wonder why Anna was following this man down the street and spying on him at home.
@@ -1697,6 +1758,7 @@ cinematics:
           - character: Me
             text: "Come on, it’s time to get to work! Wake up Anna, we have a long day ahead of us."
     nsfwLevel: 0
+    description:
   - ID: WEEK-0-2-13
     name: WEEK-0-2-13
     week: 1
@@ -1704,6 +1766,7 @@ cinematics:
     hour: 13
     sequences:
       - cinematicAsset: PLACE_PHONE_REPAIR_DESK.jpg
+        cinematicDescription:
         cinematicConversations:
           - character: Me
             text: "It's clearer now, Anna is following her teacher!"
@@ -1712,6 +1775,7 @@ cinematics:
           - character: Me
             text: "Either way, I can't wait to find out what Anna wants!"
     nsfwLevel: 0
+    description:
   - ID: WEEK-0-3-7
     name: WEEK-0-3-7
     week: 1
@@ -1719,6 +1783,7 @@ cinematics:
     hour: 7
     sequences:
       - cinematicAsset: PLACE_PHONE_REPAIR_DESK.jpg
+        cinematicDescription:
         cinematicConversations:
           - character: Me
             text: "I'm completely addicted to this new spyware!"
@@ -1735,6 +1800,7 @@ cinematics:
           - character: Me
             text: "I will continue to monitor her, collect additional evidence, and at the end of the week I will contact her."
     nsfwLevel: 0
+    description:
   - ID: WEEK-0-3-19
     name: WEEK-0-3-19
     week: 1
@@ -1742,6 +1808,7 @@ cinematics:
     hour: 19
     sequences:
       - cinematicAsset: PLACE_PHONE_REPAIR_DESK.jpg
+        cinematicDescription:
         cinematicConversations:
           - character: Me
             text: "Anna is really cute! I almost feel guilty spying on him behind his back."
@@ -1750,6 +1817,7 @@ cinematics:
           - character: Me
             text: "I hope I have some juicy details to sink my teeth into. And above all, she returns to spy on her teacher."
     nsfwLevel: 0
+    description:
   - ID: WEEK-0-4-7
     name: WEEK-0-4-7
     week: 1
@@ -1757,6 +1825,7 @@ cinematics:
     hour: 7
     sequences:
       - cinematicAsset: PLACE_PHONE_REPAIR_DESK.jpg
+        cinematicDescription:
         cinematicConversations:
           - character: Me
             text: "Not much exciting happened in Anna's life yesterday... And she didn't even try to see her teacher again, maybe it was just an incident."
@@ -1765,6 +1834,7 @@ cinematics:
           - character: Me
             text: "But before that, it's time to go spy on your teacher Anna!"
     nsfwLevel: 0
+    description:
   - ID: WEEK-0-4-13
     name: WEEK-0-4-13
     week: 1
@@ -1772,6 +1842,7 @@ cinematics:
     hour: 13
     sequences:
       - cinematicAsset: PLACE_PHONE_REPAIR_DESK
+        cinematicDescription:
         cinematicConversations:
           - character: Me
             text: "It is clear that every time Anna sees her teacher, her heart races: either he scares her, or she is in love with him."
@@ -1782,6 +1853,7 @@ cinematics:
           - character: Me
             text: "Come on Anna, help me solve this mystery!"
     nsfwLevel: 0
+    description:
   - ID: WEEK-0-4-19
     name: WEEK-0-4-19
     week: 1
@@ -1789,6 +1861,7 @@ cinematics:
     hour: 19
     sequences:
       - cinematicAsset: PLACE_PHONE_REPAIR_DESK
+        cinematicDescription:
         cinematicConversations:
           - character: Me
             text: "The more time passes, the more I tell myself that Anna is in love with her teacher: she spends her time spying on him but he doesn't calculate her at all."
@@ -1797,6 +1870,7 @@ cinematics:
           - character: Me
             text: "Come on Anna, I need one more proof or two to blackmail you! It's too thin for now, I need more proof!"
     nsfwLevel: 0
+    description:
   - ID: WEEK-0-5-7_NSFW
     name: WEEK-0-5-7_NSFW
     week: 1
@@ -1804,6 +1878,7 @@ cinematics:
     hour: 7
     sequences:
       - cinematicAsset: PLACE_PHONE_REPAIR_DESK.jpg
+        cinematicDescription:
         cinematicConversations:
           - character: Me
             text: "Wah, I think I dreamed of Anna's tits all night!"
@@ -1812,6 +1887,7 @@ cinematics:
           - character: Me
             text: "But I have to pull myself together, the weekend is coming, so is my salary, and I have to find additional evidence to blackmail Anna! Go to work !"
     nsfwLevel: 1
+    description:
   - ID: WEEK-0-5-7
     name: WEEK-0-5-7
     week: 1
@@ -1819,12 +1895,14 @@ cinematics:
     hour: 7
     sequences:
       - cinematicAsset: PLACE_PHONE_REPAIR_DESK.jpg
+        cinematicDescription:
         cinematicConversations:
           - character: Me
             text: "Another day spying on pretty Anna! The more I spy on her, the more I find her beautiful."
           - character: Me
             text: "But I have to pull myself together, the weekend is coming, so is my salary, and I have to find additional evidence to blackmail Anna! Go to work !"
     nsfwLevel: 0
+    description:
   - ID: WEEK-0-5-13
     name: WEEK-0-5-13
     week: 1
@@ -1832,6 +1910,7 @@ cinematics:
     hour: 13
     sequences:
       - cinematicAsset: PLACE_PHONE_REPAIR_DESK.jpg
+        cinematicDescription:
         cinematicConversations:
           - character: Me
             text: "Anna my dear, I have almost everything I need! All I have to do now is catch you in the act of sending him your letter and I'll know enough about you!"
@@ -1840,6 +1919,7 @@ cinematics:
           - character: Me
             text: "Come on, my dear, go give your letter to your teacher!"
     nsfwLevel: 0
+    description:
 conversations:
   - conversationID: 62c6d213-e6d5-4f10-9ef0-e9d08bed5473
     characterID: af4fabe1-e651-46b2-8fe7-7d89864a7a1a
@@ -1885,3 +1965,10 @@ conversations:
         content: "We hope your first day with our Spyware went well! Do not hesitate to contact support if necessary!"
         isPlayer: false
         type: ConversationBubbleDataEngineType.text
+enabledApplications:
+  - Finder
+  - Messages
+  - Phones
+  - Webcam
+  - Settings
+  - Next

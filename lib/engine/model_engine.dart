@@ -1,3 +1,5 @@
+import 'package:uuid/uuid.dart';
+
 enum EvidenceType {
   microphone,
   bank,
@@ -424,7 +426,7 @@ class ConversationBubbleDataEngine {
 
   static ConversationBubbleDataEngine fromMap(Map<String, dynamic> map) {
     return ConversationBubbleDataEngine(
-      map['id'],
+      map['id'] ?? const Uuid().v4(),
       map['isPlayer'],
       map['content'],
       type: map['type'] != null ? ConversationBubbleDataEngineType.values
