@@ -159,7 +159,7 @@ abstract class Maestro {
     var errors = <IntegrityError>[];
     for (var item in items) {
       if (item.assetID != null) {
-        var assetPath = 'assets/images/${item.assetID}';
+        var assetPath = 'images/${item.assetID}';
         try {
           await rootBundle.load(assetPath);
         } catch (e) {
@@ -176,7 +176,7 @@ abstract class Maestro {
     var errors = <IntegrityError>[];
     for (var cinematic in cinematics) {
       for (var sequence in cinematic.sequences) {
-        var assetPath = 'assets/images/${sequence.cinematicAsset}';
+        var assetPath = 'images/${sequence.cinematicAsset}';
         try {
           await rootBundle.load(assetPath);
         } catch (e) {

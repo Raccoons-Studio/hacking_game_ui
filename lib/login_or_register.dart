@@ -32,7 +32,7 @@ class _LoginOrRegisterState extends State<LoginOrRegister> {
               child: Padding(
                 padding: EdgeInsets.all(16.0),
                 child: Image.asset(
-                  'assets/images/penny_single_fans_logo.png',
+                  'images/logo.png',
                   fit: BoxFit.fitWidth,
                 ),
               ),

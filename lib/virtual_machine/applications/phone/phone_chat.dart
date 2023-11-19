@@ -45,7 +45,7 @@ class _MobileFinderChatState extends State<MobileFinderChat> {
         return ListTile(
           leading: const CircleAvatar(
             radius: 30.0,
-            backgroundImage: AssetImage('assets/images/avatar.jpeg'),
+            backgroundImage: AssetImage('images/avatar.jpeg'),
           ),
           title: Text(conversations.keys.toList()[index]),
           selected: index == selectedContactIndex,

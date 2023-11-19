@@ -71,7 +71,7 @@ class SaveAndLoadEngine {
   }
 
   static Future<StoryEngine> loadStoryEngine(String path) async {
-    final storyEngineYaml = await rootBundle.loadString("assets/$path");
+    final storyEngineYaml = await rootBundle.loadString("$path");
     try {
       var yml = loadYaml(storyEngineYaml);
       final storyEngineMap = yamlToMap(yml as YamlMap);

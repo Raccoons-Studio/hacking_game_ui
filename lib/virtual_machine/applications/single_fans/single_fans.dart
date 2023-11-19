@@ -126,7 +126,7 @@ class _SingleFansState extends State<SingleFans> {
               ),
               Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Image.asset("assets/images/${dataList[index].asset}"),
+                child: Image.asset("images/${dataList[index].asset}"),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -207,7 +207,7 @@ class _SingleFansState extends State<SingleFans> {
           SizedBox(height: 20),
           CircleAvatar(
             backgroundImage: AssetImage(
-                'assets/images/avatar.png'), // Replace this with actual avatar
+                'images/avatar.png'), // Replace this with actual avatar
             radius: 50,
           ),
           SizedBox(height: 20),

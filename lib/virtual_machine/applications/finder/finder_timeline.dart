@@ -46,7 +46,7 @@ class _FinderTimelineState extends State<FinderTimeline> {
       children: <Widget>[
         Expanded(
             child: Center(
-          //child: ImageWithMarkers(image: AssetImage('assets/images/map.png'), markers: [Offset(560, 650)],)
+          //child: ImageWithMarkers(image: AssetImage('images/map.png'), markers: [Offset(560, 650)],)
           child: buildContentWidget(widget.timelines[_currentPosition]),
         )),
         Slider(

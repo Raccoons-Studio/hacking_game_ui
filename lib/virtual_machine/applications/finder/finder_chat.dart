@@ -70,7 +70,7 @@ class _FinderChatState extends State<FinderChat> {
       items.add(ListTile(
         leading: const CircleAvatar(
           radius: 30.0,
-          backgroundImage: AssetImage('assets/images/avatar.jpeg'),
+          backgroundImage: AssetImage('images/avatar.jpeg'),
           backgroundColor: Colors.transparent,
         ),
         title: Text(
@@ -245,7 +245,7 @@ class ConversationBubble extends StatelessWidget {
             context: context,
             builder: (BuildContext context) {
               return Dialog(
-                child: Image.asset('assets/images/' + data.content),
+                child: Image.asset('images/' + data.content),
               );
             },
           );
@@ -254,7 +254,7 @@ class ConversationBubble extends StatelessWidget {
           constraints: BoxConstraints(
             maxHeight: 100,
           ),
-          child: Image.asset('assets/images/' + data.content),
+          child: Image.asset('images/' + data.content),
         ),
       );
     }

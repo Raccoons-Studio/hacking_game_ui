@@ -95,7 +95,7 @@ class _CharacterSelectionState extends State<CharacterSelection> {
                                       CircleAvatar(
                                         radius: 50.0,
                                         backgroundImage: AssetImage(
-                                            "assets/${character.avatar}"),
+                                            "${character.avatar}"),
                                       ),
                                       Padding(
                                         padding:

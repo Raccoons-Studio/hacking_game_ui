@@ -23,7 +23,7 @@ class PhoneMap extends StatelessWidget {
         children: <Widget>[
           Center(
             child: Image.asset(
-              "assets/$placeAsset",
+              "$placeAsset",
               fit: BoxFit.cover,
               height: double.infinity,
               width: double.infinity,

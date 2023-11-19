@@ -40,7 +40,7 @@ class _CinematicWidgetState extends State<CinematicWidget>
     scheduleMicrotask(() {
       for (var img in widget.cinematic.cinematicSequences) {
         precacheImage(
-            AssetImage("assets/images/${img.cinematicAsset}"), context);
+            AssetImage("images/${img.cinematicAsset}"), context);
       }
     });
   }
@@ -99,7 +99,7 @@ class _CinematicWidgetState extends State<CinematicWidget>
           )),
           Positioned.fill(
             child: Image.asset(
-              "assets/images/${widget.cinematic.cinematicSequences[sequencesIndex > 0 ? sequencesIndex - 1 : 0].cinematicAsset}",
+              "images/${widget.cinematic.cinematicSequences[sequencesIndex > 0 ? sequencesIndex - 1 : 0].cinematicAsset}",
               fit: BoxFit.cover,
               errorBuilder: (BuildContext context, Object exception,
                   StackTrace? stackTrace) {
@@ -147,7 +147,7 @@ class _CinematicWidgetState extends State<CinematicWidget>
             child: FadeTransition(
                 opacity: _controller,
                 child: Image.asset(
-                  "assets/images/${widget.cinematic.cinematicSequences[sequencesIndex].cinematicAsset}",
+                  "images/${widget.cinematic.cinematicSequences[sequencesIndex].cinematicAsset}",
                   fit: BoxFit.cover,
                   errorBuilder: (BuildContext context, Object exception,
                       StackTrace? stackTrace) {

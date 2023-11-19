@@ -12,7 +12,7 @@ class FinderImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Image.asset(
-        'assets/images/$assetName',
+        'images/$assetName',
         fit: BoxFit.fitHeight,
       ),
     );
