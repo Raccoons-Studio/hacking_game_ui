@@ -21,6 +21,6 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PENNY_SINGLEFANS }}'
           channelId: live
-          projectId: cellphonehackgame
+          projectId: penny-singlefans
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks
