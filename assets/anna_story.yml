@@ -1848,8 +1848,10 @@ conversations:
     hour: 7
     isNameRevealed: false
     conversation:
-      - content: "Congratulations on purchasing our amazing Spyware! We wish you a good discovery and we will keep you informed with each update. Very exciting things are coming in the next releases! We would like to give you access to your victims' calendars starting next week!"
+      - id: 3ad4e573-b2a5-45b2-8cbb-e9f67f353f05
+        content: "Congratulations on purchasing our amazing Spyware! We wish you a good discovery and we will keep you informed with each update. Very exciting things are coming in the next releases! We would like to give you access to your victims' calendars starting next week!"
         isPlayer: false
+        type: ConversationBubbleDataEngineType.text
   - conversationID: 2f12fecc-a88f-4b5d-b1b0-3caa2e7942bf
     characterID: f596ad21-b84f-4309-8210-dae297158a99
     week: 2
@@ -1857,8 +1859,10 @@ conversations:
     hour: 19
     isNameRevealed: false
     conversation:
-      - content: "This evening exclusively, buy one pizza, get one pizza free! See you soon at Speedy Pizza!"
+      - id: 61845a93-4269-4ac1-8bf6-4abe25e4c185
+        content: "This evening exclusively, buy one pizza, get one pizza free! See you soon at Speedy Pizza!"
         isPlayer: false
+        type: ConversationBubbleDataEngineType.text
   - conversationID: 82925f24-acf7-45e4-bb52-ae97a332f005
     characterID: 460c5ffd-d872-4e35-ab6a-9f186bf26a3b
     week: 1
@@ -1866,8 +1870,10 @@ conversations:
     hour: 19
     isNameRevealed: false
     conversation:
-      - content: "Your schedule for tomorrow: at customer service from 7:00 a.m. to 5:00 p.m."
+      - id: 6e2a7eec-299e-4ff5-9865-a8e990f1f3b3
+        content: "Your schedule for tomorrow: at customer service from 7:00 a.m. to 5:00 p.m."
         isPlayer: false
+        type: ConversationBubbleDataEngineType.text
   - conversationID: 95f74cd2-b7ec-4b54-be13-238e5cb67310
     characterID: af4fabe1-e651-46b2-8fe7-7d89864a7a1a
     week: 1
@@ -1875,5 +1881,7 @@ conversations:
     hour: 22
     isNameRevealed: false
     conversation:
-      - content: "We hope your first day with our Spyware went well! Do not hesitate to contact support if necessary!"
+      - id: db07d59d-aa5b-4a88-838c-82ab476cb171
+        content: "We hope your first day with our Spyware went well! Do not hesitate to contact support if necessary!"
         isPlayer: false
+        type: ConversationBubbleDataEngineType.text
