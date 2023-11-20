@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
+import 'package:uuid/uuid.dart';
 
 class StoryEditorTimelineWidget extends StatefulWidget {
   final StoryEngine story;
@@ -26,6 +27,12 @@ class _StoryEditorTimelineWidgetState extends State<StoryEditorTimelineWidget> {
       _weekExpandedList[timeline.week - 1] =
           true; // Assume all weeks should be expanded
     }
+  }
+
+  @override
+  void didUpdateWidget(StoryEditorTimelineWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _timeLines = widget.maestro.createTimeLines(widget.story);
   }
 
   @override
@@ -58,11 +65,55 @@ class _StoryEditorTimelineWidgetState extends State<StoryEditorTimelineWidget> {
       return ListTile(
         title: Text('Jour $day'),
         contentPadding: EdgeInsets.only(left: 32.0),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () {
+
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.movie_creation_outlined),
+              onPressed: () {
+                addCinematic(week, day);
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.chat_bubble_outline),
+              onPressed: () {
+                // logic to add new conversation
+              },
+            ),
+          ],
+        ),
       );
     }
 
     return ExpansionTile(
       title: Text('Jour $day'),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(Icons.movie_creation_outlined),
+            onPressed: () {
+              addCinematic(week, day);
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.chat_bubble_outline),
+            onPressed: () {
+              // logic to add new conversation
+            },
+          ),
+        ],
+      ),
       children: dayTimeLines.map((timeLine) {
         return ListTile(
           title: Text('${timeLine.hour}:00'),
@@ -71,6 +122,14 @@ class _StoryEditorTimelineWidgetState extends State<StoryEditorTimelineWidget> {
         );
       }).toList(),
     );
+  }
+
+  void addCinematic(int week, int day) {
+    setState(() {
+      var uid = const Uuid().v4();
+      widget.story.cinematics.add(CinematicEngine(uid, uid, week, day, 7, []));
+      _timeLines = widget.maestro.createTimeLines(widget.story);
+    });
   }
 
   Widget _buildHourContent(TimeLine timeLine) {
