@@ -11,7 +11,6 @@ import 'package:hacking_game_ui/virtual_machine/models/directory_and_files.dart'
 import 'package:hacking_game_ui/virtual_machine/models/scrollable_data.dart';
 import 'package:hacking_game_ui/virtual_machine/models/timeline_data.dart';
 
-
 class MaestroState {
   int hour = 0;
   int day = 0;
@@ -186,7 +185,7 @@ abstract class Maestro {
               "$type references nonexistent asset (${sequence.cinematicAsset})",
               true));
         }
-            }
+      }
     }
     return errors;
   }
@@ -213,7 +212,8 @@ abstract class Maestro {
 
   Future<bool> isMessagesNow() async {
     var conversations = await getConversations();
-    return conversations.values.any((conversation) => conversation.any((c) => c.isNow));
+    return conversations.values
+        .any((conversation) => conversation.any((c) => c.isNow));
   }
 
   Future<bool> isEvidenceNow(EvidenceType evidence) async {
@@ -229,5 +229,77 @@ abstract class Maestro {
       return true;
     }
     return await isMessagesNow();
+  }
+
+  List<TimeLine> createTimeLines(StoryEngine story) {
+    Map<String, TimeLine> timeLinesMap = {};
+
+    // Helper function to generate a map key for each timeline.
+    String generateTimeLineKey(int week, int day, int hour) =>
+        'week_$week-day_$day-hour_$hour';
+
+    for (var element in story.elements) {
+      var key = generateTimeLineKey(element.week, element.day, element.hour);
+      timeLinesMap.putIfAbsent(
+          key,
+          () => TimeLine(
+                element.week,
+                element.day,
+                element.hour,
+                [],
+                [],
+                [],
+              ));
+      timeLinesMap[key]!.elements.add(element);
+    }
+
+    for (var cinematic in story.cinematics) {
+      var key =
+          generateTimeLineKey(cinematic.week, cinematic.day, cinematic.hour);
+      timeLinesMap.putIfAbsent(
+          key,
+          () => TimeLine(
+                cinematic.week,
+                cinematic.day,
+                cinematic.hour,
+                [],
+                [],
+                [],
+              ));
+      timeLinesMap[key]!.cinematics.add(cinematic);
+    }
+
+    // Note: Without the definition of ConversationEngine, the following loop
+    // assumes that it has week, day, and hour attributes like CinematicEngine.
+    // Otherwise, adjust it accordingly.
+    for (var conversation in story.conversations) {
+      var key = generateTimeLineKey(
+          conversation.week, conversation.day, conversation.hour);
+      timeLinesMap.putIfAbsent(
+          key,
+          () => TimeLine(
+                conversation.week,
+                conversation.day,
+                conversation.hour,
+                [],
+                [],
+                [],
+              ));
+      timeLinesMap[key]!.conversations.add(conversation);
+    }
+
+    // Convert the map to a list of timelines and sort it.
+    List<TimeLine> timeLines = timeLinesMap.values.toList();
+
+    // Sort based on week, day, and then hour.
+    timeLines.sort((a, b) {
+      int weekComparison = a.week.compareTo(b.week);
+      if (weekComparison != 0) return weekComparison;
+      int dayComparison = a.day.compareTo(b.day);
+      if (dayComparison != 0) return dayComparison;
+      return a.hour.compareTo(b.hour);
+    });
+
+    return timeLines;
   }
 }

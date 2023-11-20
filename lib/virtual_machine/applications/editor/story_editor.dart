@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
@@ -8,9 +7,17 @@ import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor_conversation.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor_elements.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor_filters.dart';
+import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor_timeline.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_utils.dart';
 
-enum EditorView { Elements, Cases, Characters, Cinematics, Conversation }
+enum EditorView {
+  Timeline,
+  Elements,
+  Cases,
+  Characters,
+  Cinematics,
+  Conversation
+}
 
 List<int> weeks = List<int>.generate(10, (index) => index + 1);
 List<int> days = List<int>.generate(7, (index) => index + 1);
@@ -87,16 +94,30 @@ class _StoryEditorState extends State<StoryEditor> {
                     snapshot.data!, filterElements, saveStory, check);
               }),
           Expanded(
-            child: selectedView == EditorView.Elements
-                ? StoryEditorElementsWidget(widget.story, filteredElements)
-                : selectedView == EditorView.Cases
-                    ? StoryEditorCasesWidget(widget.story, widget.maestro)
-                    : selectedView == EditorView.Characters
-                        ? StoryEditorCharactersWidget(widget.story, widget.maestro)
-                        : selectedView == EditorView.Cinematics 
-                          ? StoryEditorCinematicsWidget(widget.story, widget.maestro, widget.story.cinematics)
-                            : selectedView == EditorView.Conversation ? StoryEditorConversationWidget(widget.story, widget.maestro)
-                            : StoryEditorCharactersWidget(widget.story, widget.maestro),
+            child: () {
+              switch (selectedView) {
+                case EditorView.Elements:
+                  return StoryEditorElementsWidget(
+                      widget.story, filteredElements);
+                case EditorView.Cases:
+                  return StoryEditorCasesWidget(widget.story, widget.maestro);
+                case EditorView.Characters:
+                  return StoryEditorCharactersWidget(
+                      widget.story, widget.maestro);
+                case EditorView.Cinematics:
+                  return StoryEditorCinematicsWidget(
+                      widget.story, widget.maestro, widget.story.cinematics);
+                case EditorView.Conversation:
+                  return StoryEditorConversationWidget(
+                      widget.story, widget.maestro);
+                case EditorView.Timeline:
+                  return StoryEditorTimelineWidget(
+                      widget.story, widget.maestro);
+                default:
+                  return StoryEditorCharactersWidget(
+                      widget.story, widget.maestro);
+              }
+            }(),
           ),
           ElevatedButton(
             child: const Text('Add'),
@@ -138,10 +159,4 @@ class _StoryEditorState extends State<StoryEditor> {
     // Add functionality to display characters
     return Container();
   }
-
-  
-
-  
-
-  
 }

@@ -19,6 +19,18 @@ enum EvidenceType {
   directory
 }
 
+class TimeLine {
+  int week;
+  int day;
+  int hour;
+  List<ElementEngine> elements;
+  List<CinematicEngine> cinematics;
+  List<ConversationEngine> conversations;
+
+  TimeLine(this.week, this.day, this.hour, this.elements, this.cinematics,
+      this.conversations);
+}
+
 class StoryEngine {
   String storyID;
   String name;
