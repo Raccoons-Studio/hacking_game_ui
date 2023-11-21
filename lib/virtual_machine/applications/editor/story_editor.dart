@@ -3,7 +3,6 @@ import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor_cases.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor_characters.dart';
-import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor_cinematic.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor_conversation.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor_elements.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor_filters.dart';
@@ -15,7 +14,6 @@ enum EditorView {
   Elements,
   Cases,
   Characters,
-  Cinematics,
   Conversation
 }
 
@@ -104,9 +102,6 @@ class _StoryEditorState extends State<StoryEditor> {
                 case EditorView.Characters:
                   return StoryEditorCharactersWidget(
                       widget.story, widget.maestro);
-                case EditorView.Cinematics:
-                  return StoryEditorCinematicsWidget(
-                      widget.story, widget.maestro, widget.story.cinematics);
                 case EditorView.Conversation:
                   return StoryEditorConversationWidget(
                       widget.story, widget.maestro);
