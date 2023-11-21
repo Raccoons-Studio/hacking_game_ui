@@ -70,14 +70,13 @@ class _StoryEditorTimelineWidgetState extends State<StoryEditorTimelineWidget> {
           children: [
             IconButton(
               icon: Icon(Icons.add),
-              onPressed: () {
-
-              },
+              onPressed: () {},
             ),
             IconButton(
               icon: Icon(Icons.movie_creation_outlined),
               onPressed: () {
-                addCinematic(week, day);
+                var cinematic = addCinematic(week, day);
+                _editCinematic(context, cinematic);
               },
             ),
             IconButton(
@@ -124,12 +123,14 @@ class _StoryEditorTimelineWidgetState extends State<StoryEditorTimelineWidget> {
     );
   }
 
-  void addCinematic(int week, int day) {
+  CinematicEngine addCinematic(int week, int day) {
+    var uid = const Uuid().v4();
+    var cinematic = CinematicEngine(uid, uid, week, day, 7, []);
+    widget.story.cinematics.add(cinematic);
     setState(() {
-      var uid = const Uuid().v4();
-      widget.story.cinematics.add(CinematicEngine(uid, uid, week, day, 7, []));
       _timeLines = widget.maestro.createTimeLines(widget.story);
     });
+    return cinematic;
   }
 
   Widget _buildHourContent(TimeLine timeLine) {
@@ -170,7 +171,8 @@ class _StoryEditorTimelineWidgetState extends State<StoryEditorTimelineWidget> {
       return buildCard(
         title: element.description,
         leading: Icon(Icons.description),
-        subtitle: 'Element',
+        subtitle:
+            "${widget.story.characters.firstWhere((character) => character.ID == element.characterID).name} - ${element.type.toString().split('.').last}",
         onEdit: () {
           _editElement(context, element);
         },
@@ -190,11 +192,11 @@ class _StoryEditorTimelineWidgetState extends State<StoryEditorTimelineWidget> {
     // Add a card for each cinematic
     contentCards.addAll(timeLine.cinematics.map((cinematic) {
       return buildCard(
-        title: cinematic.name,
+        title: "${cinematic.name} - ${cinematic.description}",
         leading: Icon(Icons.movie),
         subtitle: 'Cinematique',
         onEdit: () {
-          // Insert logic to edit the cinematic
+          _editCinematic(context, cinematic);
         },
         onDelete: () async {
           bool? wantDelete = await _showConfirmationDialog(
@@ -214,8 +216,9 @@ class _StoryEditorTimelineWidgetState extends State<StoryEditorTimelineWidget> {
       return buildCard(
         title: 'Conversation',
         leading: Icon(Icons.chat),
-        subtitle:
-            'ID: ${conversation.conversationID}', // Assuming a property ID in ConversationEngine
+        subtitle: widget.story.characters
+            .firstWhere((character) => character.ID == conversation.characterID)
+            .name, // Assuming a property ID in ConversationEngine
         onEdit: () {
           // Insert logic to edit the conversation
         },
@@ -363,5 +366,266 @@ class _StoryEditorTimelineWidgetState extends State<StoryEditorTimelineWidget> {
     _weekController.dispose();
     _dayController.dispose();
     _hourController.dispose();
+  }
+
+  Future<void> _editCinematic(
+      BuildContext context, CinematicEngine cinematic) async {
+    await showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Dialog(
+          insetPadding: EdgeInsets.all(0),
+          child: _buildCinematicEditDialog(context, cinematic),
+        );
+      },
+    );
+  }
+
+  Widget _buildCinematicEditDialog(
+      BuildContext context, CinematicEngine cinematic) {
+    TextEditingController _descriptionController =
+        TextEditingController(text: cinematic.description);
+    TextEditingController _weekController =
+        TextEditingController(text: cinematic.week.toString());
+    TextEditingController _dayController =
+        TextEditingController(text: cinematic.day.toString());
+
+    return StatefulBuilder(
+      builder: (context, setState) {
+        return Scaffold(
+          appBar: _buildAppBar(context, cinematic, _weekController,
+              _dayController, _descriptionController),
+          body: _buildDialogContent(
+              context, setState, cinematic, _descriptionController),
+        );
+      },
+    );
+  }
+
+  AppBar _buildAppBar(
+      BuildContext context,
+      CinematicEngine cinematic,
+      TextEditingController weekController,
+      TextEditingController dayController,
+      TextEditingController descriptionController) {
+    return AppBar(
+      title: Text('Modifier la cinématique'),
+      actions: [
+        TextButton(
+          onPressed: () => _saveCinematic(context, cinematic, weekController,
+              dayController, descriptionController),
+          child: Text('Enregistrer', style: TextStyle(color: Colors.white)),
+        ),
+      ],
+    );
+  }
+
+  void _saveCinematic(
+      BuildContext context,
+      CinematicEngine cinematic,
+      TextEditingController weekController,
+      TextEditingController dayController,
+      TextEditingController descriptionController) {
+    cinematic.week = int.parse(weekController.text);
+    cinematic.day = int.parse(dayController.text);
+    cinematic.description = descriptionController.text;
+    // Additional save logic as needed
+    Navigator.of(context).pop();
+  }
+
+  SingleChildScrollView _buildDialogContent(
+    BuildContext context,
+    void Function(void Function()) setState,
+    CinematicEngine cinematic,
+    TextEditingController descriptionController,
+  ) {
+    List<int> hours = [7, 10, 13, 16, 19, 22];
+    List<int> nsfwLevels = [0, 1, 2];
+
+    return SingleChildScrollView(
+      padding: EdgeInsets.all(16),
+      child: Column(
+        children: [
+          _buildNumberTextField('Semaine', cinematic.week.toString(),
+              (newValue) {
+            cinematic.week = int.parse(newValue);
+          }),
+          _buildNumberTextField('Jour', cinematic.day.toString(), (newValue) {
+            cinematic.day = int.parse(newValue);
+          }),
+          _buildDropdownField('Heure', hours, cinematic.hour, (newValue) {
+            cinematic.hour = newValue;
+          }),
+          _buildDropdownField('Niveau NSFW', nsfwLevels, cinematic.nsfwLevel,
+              (newValue) {
+            cinematic.nsfwLevel = newValue;
+          }),
+          _buildTextField(descriptionController, 'Description', (newValue) {
+            cinematic.description = newValue;
+          }),
+          ...cinematic.sequences
+              .map((sequence) =>
+                  _buildSequenceEditor(context, setState, cinematic, sequence))
+              .toList(),
+          _buildAddSequenceButton(setState, cinematic),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildNumberTextField(
+      String label, String value, Function(String) onChanged) {
+    TextEditingController controller = TextEditingController(text: value);
+    return TextField(
+      controller: controller,
+      decoration: InputDecoration(labelText: label),
+      keyboardType: TextInputType.number,
+      onChanged: onChanged,
+    );
+  }
+
+  Widget _buildTextField(TextEditingController controller, String label,
+      Function(String) onChanged) {
+    return TextField(
+      controller: controller,
+      decoration: InputDecoration(labelText: label),
+      onChanged: onChanged,
+    );
+  }
+
+  Widget _buildDropdownField<T>(
+    String label,
+    List<T> items,
+    T selectedValue,
+    Function(T) onChanged,
+  ) {
+    return DropdownButtonFormField<T>(
+      decoration: InputDecoration(labelText: label),
+      value: selectedValue,
+      items: items.map((T value) {
+        return DropdownMenuItem<T>(
+          value: value,
+          child: Text(value.toString()),
+        );
+      }).toList(),
+      onChanged: (T? newValue) {
+        if (newValue != null) onChanged(newValue);
+      },
+    );
+  }
+
+  Widget _buildSequenceEditor(
+    BuildContext context,
+    void Function(void Function()) setState,
+    CinematicEngine cinematic,
+    CinematicSequenceEngine sequence,
+  ) {
+    TextEditingController sequenceAssetController =
+        TextEditingController(text: sequence.cinematicAsset);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: Text(sequence.cinematicAsset,
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+            ),
+            IconButton(
+              icon: Icon(Icons.delete),
+              onPressed: () {
+                setState(() {
+                  cinematic.sequences.remove(sequence);
+                });
+              },
+            ),
+          ],
+        ),
+        Padding(
+          padding: EdgeInsets.only(left: 16.0),
+          child: TextField(
+            controller: sequenceAssetController,
+            decoration: InputDecoration(hintText: 'Asset ID'),
+            onChanged: (value) => sequence.cinematicAsset = value,
+          ),
+        ),
+        ...sequence.cinematicConversations
+            .map((conversation) => _buildConversationEditor(
+                context, setState, cinematic, sequence, conversation))
+            .toList(),
+        Padding(
+          padding: EdgeInsets.only(left: 16.0),
+          child: _buildAddConversationButton(setState, sequence),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildConversationEditor(
+    BuildContext context,
+    void Function(void Function()) setState,
+    CinematicEngine cinematic,
+    CinematicSequenceEngine sequence,
+    CinematicConversationEngine conversation,
+  ) {
+    TextEditingController characterController =
+        TextEditingController(text: conversation.character);
+    TextEditingController textController =
+        TextEditingController(text: conversation.text);
+    return ListTile(
+      title: Row(
+        children: [
+          Expanded(
+            child: TextField(
+              controller: characterController,
+              decoration: InputDecoration(hintText: 'Character'),
+              onChanged: (value) => conversation.character = value,
+            ),
+          ),
+          Expanded(
+            child: TextField(
+              controller: textController,
+              decoration: InputDecoration(hintText: 'Text'),
+              onChanged: (value) => conversation.text = value,
+            ),
+          ),
+          IconButton(
+            icon: Icon(Icons.delete),
+            onPressed: () {
+              setState(() {
+                sequence.cinematicConversations.remove(conversation);
+              });
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildAddSequenceButton(
+      void Function(void Function()) setState, CinematicEngine cinematic) {
+    return ElevatedButton(
+      child: Text('Add Sequence'),
+      onPressed: () {
+        setState(() {
+          cinematic.sequences.add(CinematicSequenceEngine('', []));
+        });
+      },
+    );
+  }
+
+  Widget _buildAddConversationButton(void Function(void Function()) setState,
+      CinematicSequenceEngine sequence) {
+    return ElevatedButton(
+      child: Text('Add Conversation'),
+      onPressed: () {
+        setState(() {
+          sequence.cinematicConversations
+              .add(CinematicConversationEngine('', ''));
+        });
+      },
+    );
   }
 }
