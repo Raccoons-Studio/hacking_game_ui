@@ -459,8 +459,8 @@ class MaestroStory extends Maestro {
       if (p.currentHour >= 22) {
         p.currentHour = 7;
         p.currentDay++;
-        if (p.currentDay == 7) {
-          p.currentDay = 0;
+        if (p.currentDay > 7) {
+          p.currentDay = 1;
           p.currentWeek++;
         }
       } else {
