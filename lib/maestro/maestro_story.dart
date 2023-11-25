@@ -511,7 +511,7 @@ class MaestroStory extends Maestro {
         if (cinematic.day > p.currentDay) {
           nextHourExists = true;
         } else if (cinematic.day == p.currentDay) {
-          if (cinematic.hour > p.currentHour) {
+          if (cinematic.hour >= p.currentHour) {
             nextHourExists = true;
           }
         }
@@ -525,7 +525,7 @@ class MaestroStory extends Maestro {
         if (conversation.day > p.currentDay) {
           nextHourExists = true;
         } else if (conversation.day == p.currentDay) {
-          if (conversation.hour > p.currentHour) {
+          if (conversation.hour >= p.currentHour) {
             nextHourExists = true;
           }
         }
@@ -539,7 +539,7 @@ class MaestroStory extends Maestro {
         if (element.day > p.currentDay) {
           nextHourExists = true;
         } else if (element.day == p.currentDay) {
-          if (element.hour > p.currentHour) {
+          if (element.hour >= p.currentHour) {
             nextHourExists = true;
           }
         }

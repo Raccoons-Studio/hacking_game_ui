@@ -10,6 +10,7 @@ import 'package:hacking_game_ui/utils/analytics.dart';
 import 'package:hacking_game_ui/utils/game_date.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/cinematic/cinematic_display.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor.dart';
+import 'package:hacking_game_ui/virtual_machine/applications/end/end.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/messages/messages_viewer.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_characters_selector.dart';
@@ -205,7 +206,10 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                 TextButton(
                   onPressed: reportType != null && comment.isNotEmpty
                       ? () async {
-                          BugReportService().save(await widget.maestro.getPlayer(), reportType!, comment);
+                          BugReportService().save(
+                              await widget.maestro.getPlayer(),
+                              reportType!,
+                              comment);
                           Navigator.of(context).pop();
                         }
                       : null,
@@ -328,7 +332,19 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                   cinematic: snapshot.data!,
                   onEndCinematic: () async {
                     if (!await widget.maestro.isElementsToDisplay()) {
-                      widget.maestro.nextHour(false, true);
+                      var res = await widget.maestro.nextHour(false, true);
+                      if (res == NextHourExceptionType.endOfStory) {
+                        setState(() {
+                          isBlackmailPlaying = false;
+                          isCinematicPlaying = false;
+                          _currentApplication = TheEndWidget(() {
+                            setState(() {
+                              _currentApplication = VirtualApplication('Settings', Icons.settings, Colors.grey, false);
+                            });
+                          });
+                          return;
+                        });
+                      }
                     } else {
                       setState(() {
                         _currentApplication = null;
@@ -344,6 +360,8 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                     }
                   });
             });
+      case "The_End":
+        return _currentApplication as TheEndWidget;
       default:
         return Container();
     }
@@ -375,9 +393,16 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                           await widget.maestro.nextHour(false, true);
                       switch (nextHourExceptionType) {
                         case NextHourExceptionType.endOfStory:
-                          displayComment(
-                              "Unfortunately, it's the end of the story. Thank you for playing!");
-                          break;
+                          setState(() {
+                            isBlackmailPlaying = false;
+                            isCinematicPlaying = false;
+                            _currentApplication = TheEndWidget(() {
+                              setState(() {
+                                _currentApplication = VirtualApplication('Settings', Icons.settings, Colors.grey, false);
+                              });
+                            });
+                          });
+                          return;
                         case NextHourExceptionType.needToCollectConversation:
                           displayComment(
                               "I think I need to collect more conversations before going to the next hour");
@@ -388,7 +413,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                           break;
                         default:
                           AnalyticsService().logNext(
-                            "${_maestroState!.week} - ${_maestroState!.day} - ${_maestroState!.hour}");
+                              "${_maestroState!.week} - ${_maestroState!.day} - ${_maestroState!.hour}");
                           break;
                       }
                     }

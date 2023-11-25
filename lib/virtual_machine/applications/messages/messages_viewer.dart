@@ -230,8 +230,17 @@ class _MessagesViewerState extends State<MessagesViewer> {
         .collectConversation(_selectedConversation!.last.conversation.last.id);
     revealResponse();
     var newConversations = await widget.maestro.getConversations();
-    if (newConversations[_selectedConversationKey] != null && newConversations[_selectedConversationKey]!.last.conversation.last.name != 'Player') {
-      await Future.delayed(Duration(seconds: 3));
+    if (newConversations[_selectedConversationKey] != null) {
+      var isNextIsPlayer = true;
+      for (var conversion in newConversations[_selectedConversationKey]!.last.conversation) {
+        if (!conversion.isRevealed && conversion.name != 'Player') {
+          isNextIsPlayer = false;
+          break;
+        }
+      }
+      if (!isNextIsPlayer) {
+        await Future.delayed(Duration(seconds: 3));
+      }
     }
     setState(() {
       _selectedConversation = newConversations[_selectedConversationKey];

@@ -154,6 +154,12 @@ class _StoryEditorTimelineWidgetState extends State<StoryEditorTimelineWidget> {
             mainAxisSize: MainAxisSize.min,
             children: [
               IconButton(
+                icon: Icon(Icons.play_arrow),
+                onPressed: () {
+                  widget.maestro.goTo(timeLine.week, timeLine.day, timeLine.hour);
+                },
+              ),
+              IconButton(
                 icon: Icon(Icons.edit),
                 onPressed: onEdit,
               ),
