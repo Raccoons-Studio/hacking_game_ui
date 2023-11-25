@@ -13,7 +13,12 @@ class MessagesViewer extends StatefulWidget {
   final bool isBlackMail;
   final String caseID;
 
-  const MessagesViewer({Key? key, required this.maestro, required this.story, required this.isBlackMail, required this.caseID})
+  const MessagesViewer(
+      {Key? key,
+      required this.maestro,
+      required this.story,
+      required this.isBlackMail,
+      required this.caseID})
       : super(key: key);
 
   @override
@@ -25,10 +30,37 @@ class _MessagesViewerState extends State<MessagesViewer> {
   List<ConversationData>? _selectedConversation;
   String? _selectedConversationKey;
 
+  late ScrollController _scrollController;
+
   @override
   void initState() {
     super.initState();
-    _conversations = widget.maestro.getConversations();
+    _scrollController = ScrollController();
+    _conversations = widget.maestro.getConversations().then((conversationMap) {
+      if (conversationMap.isNotEmpty) {
+        _selectedConversationKey = conversationMap.entries.first.key;
+        _selectedConversation = conversationMap.entries.first.value;
+      }
+      // Auto-scroll to the end of the initial conversation.
+      WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToEnd());
+      return conversationMap;
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _scrollToEnd() {
+    if (_scrollController.hasClients) {
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
+    }
   }
 
   @override
@@ -38,19 +70,24 @@ class _MessagesViewerState extends State<MessagesViewer> {
       child: FutureBuilder<Map<String, List<ConversationData>>>(
         future: _conversations,
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) return const CircularProgressIndicator();
-          else if (snapshot.connectionState == ConnectionState.done) return layoutBuilder(snapshot);
+          if (snapshot.connectionState == ConnectionState.waiting)
+            return const CircularProgressIndicator();
+          else if (snapshot.connectionState == ConnectionState.done)
+            return layoutBuilder(snapshot);
           return const SizedBox.shrink();
         },
       ),
     );
   }
 
-  LayoutBuilder layoutBuilder(AsyncSnapshot<Map<String, List<ConversationData>>> snapshot) {
+  LayoutBuilder layoutBuilder(
+      AsyncSnapshot<Map<String, List<ConversationData>>> snapshot) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        if(constraints.maxWidth > 600) return rowDirector(snapshot);
-        else return columnDirector(snapshot);
+        if (constraints.maxWidth > 600)
+          return rowDirector(snapshot);
+        else
+          return columnDirector(snapshot);
       },
     );
   }
@@ -63,22 +100,24 @@ class _MessagesViewerState extends State<MessagesViewer> {
       ],
     );
   }
-  
-  Widget columnDirector(AsyncSnapshot<Map<String, List<ConversationData>>> snapshot) {
+
+  Widget columnDirector(
+      AsyncSnapshot<Map<String, List<ConversationData>>> snapshot) {
     return _selectedConversation == null
         ? buildMobileContactList(snapshot)
         : Column(
-          children: [
-            ElevatedButton(
-              onPressed: () => setState(() => _selectedConversation = null),
-              child: const Text('Back to conversations'),
-            ),
-            buildConversation(),
-          ],
-        );
+            children: [
+              ElevatedButton(
+                onPressed: () => setState(() => _selectedConversation = null),
+                child: const Text('Back to conversations'),
+              ),
+              buildConversation(),
+            ],
+          );
   }
 
-  ListView listBuilder(AsyncSnapshot<Map<String, List<ConversationData>>> snapshot) {
+  ListView listBuilder(
+      AsyncSnapshot<Map<String, List<ConversationData>>> snapshot) {
     return ListView.separated(
       itemCount: snapshot.data!.entries.length,
       separatorBuilder: (BuildContext context, int index) => Divider(),
@@ -86,7 +125,8 @@ class _MessagesViewerState extends State<MessagesViewer> {
     );
   }
 
-  Widget? Function(BuildContext, int) buildListItem(AsyncSnapshot<Map<String, List<ConversationData>>> snapshot) {
+  Widget? Function(BuildContext, int) buildListItem(
+      AsyncSnapshot<Map<String, List<ConversationData>>> snapshot) {
     return (BuildContext context, int index) {
       var e = snapshot.data!.entries.toList()[index];
       return listItem(e);
@@ -95,7 +135,9 @@ class _MessagesViewerState extends State<MessagesViewer> {
 
   Container listItem(MapEntry<String, List<ConversationData>> e) {
     return Container(
-      color: e.key == _selectedConversationKey ? CupertinoColors.lightBackgroundGray : Colors.transparent,
+      color: e.key == _selectedConversationKey
+          ? CupertinoColors.lightBackgroundGray
+          : Colors.transparent,
       child: ListTile(
         trailing: Icon(Icons.chevron_right),
         title: Text(e.key, style: listTitleStyle(e)),
@@ -123,11 +165,12 @@ class _MessagesViewerState extends State<MessagesViewer> {
     return e.key == _selectedConversationKey
         ? const TextStyle(color: CupertinoColors.darkBackgroundGray)
         : e.value.last.isNow
-        ? const TextStyle(color: Colors.black, fontWeight: FontWeight.bold)
-        : const TextStyle(color: Colors.black);
+            ? const TextStyle(color: Colors.black, fontWeight: FontWeight.bold)
+            : const TextStyle(color: Colors.black);
   }
 
-  ListView buildMobileContactList(AsyncSnapshot<Map<String, List<ConversationData>>> snapshot) {
+  ListView buildMobileContactList(
+      AsyncSnapshot<Map<String, List<ConversationData>>> snapshot) {
     return listBuilder(snapshot);
   }
 
@@ -140,17 +183,18 @@ class _MessagesViewerState extends State<MessagesViewer> {
               Expanded(
                 child: GenericConversation(
                   conversation: _selectedConversation!,
-                  scrollController: ScrollController(),
+                  scrollController: _scrollController,
                   showMarkAsEvidence: false,
                 ),
               ),
-              if(_selectedConversation!.last.conversation.last.name == 'Player' && !_selectedConversation!.last.conversation.last.isRevealed)
+              if (_selectedConversation!.last.conversation.last.name == 'Player' && 
+                  !_selectedConversation!.last.conversation.last.isRevealed)
                 responseContainer()
             ],
           ),
     );
   }
-  
+
   Container responseContainer() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -165,8 +209,9 @@ class _MessagesViewerState extends State<MessagesViewer> {
       ),
     );
   }
-  
+
   Expanded responseTextBox() {
+    WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToEnd());
     return Expanded(
       child: Container(
         padding: const EdgeInsets.all(8.0),
@@ -181,20 +226,26 @@ class _MessagesViewerState extends State<MessagesViewer> {
 
   Future<void> sendResponse() async {
     AnalyticsService().logPlayConversation(_selectedConversationKey!);
-    await widget.maestro.collectConversation(_selectedConversation!.last.conversation.last.id);
+    await widget.maestro
+        .collectConversation(_selectedConversation!.last.conversation.last.id);
     revealResponse();
-    await Future.delayed(Duration(seconds: 3));
     var newConversations = await widget.maestro.getConversations();
+    if (newConversations[_selectedConversationKey] != null && newConversations[_selectedConversationKey]!.last.conversation.last.name != 'Player') {
+      await Future.delayed(Duration(seconds: 3));
+    }
     setState(() {
       _selectedConversation = newConversations[_selectedConversationKey];
     });
+    _scrollToEnd();
   }
 
   void revealResponse() {
     setState(() {
       _selectedConversation!.last.conversation.last.isRevealed = true;
-      _selectedConversation!.last.conversation.add(
-        ConversationBubbleData("ellispis", "", "...", ConversationBubbleDataEngineType.text));
-      });
+      _selectedConversation!.last.conversation.add(ConversationBubbleData(
+          "ellispis", "", "...", ConversationBubbleDataEngineType.text));
+      WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToEnd());
+    });
+    
   }
 }
