@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:hacking_game_ui/load_savegame.dart';
 import 'package:hacking_game_ui/login_or_register.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
@@ -16,7 +17,7 @@ class GameMenu extends StatefulWidget {
 }
 
 class _GameMenuState extends State<GameMenu> {
-  List<String> languages = ["English", "French", "Spanish", "German"];
+  List<String> languages = ["English", "French", "Español"];
   String selectedLang = "English";
   bool isUserConnected = false;
   FirebaseAuth auth = FirebaseAuth.instance;
@@ -79,7 +80,8 @@ class _GameMenuState extends State<GameMenu> {
                     Icons.gamepad_rounded,
                     color: Colors.white,
                   ),
-                  Text(' New Game', style: TextStyle(color: Colors.white))
+                  Text(FlutterI18n.translate(context, "new_game"),
+                      style: TextStyle(color: Colors.white))
                 ],
               ),
             ),
@@ -99,7 +101,7 @@ class _GameMenuState extends State<GameMenu> {
                     Icons.file_download_rounded,
                     color: Colors.white,
                   ),
-                  Text(' Load Game', style: TextStyle(color: Colors.white))
+                  Text(FlutterI18n.translate(context, "load_game"), style: TextStyle(color: Colors.white))
                 ],
               ),
             ),
@@ -115,12 +117,11 @@ class _GameMenuState extends State<GameMenu> {
                             context: context,
                             builder: (BuildContext context) {
                               return AlertDialog(
-                                title: Text('Game saved'),
+                                title: Text(FlutterI18n.translate(context, "game_saved")),
                                 content: SingleChildScrollView(
                                   child: ListBody(
                                     children: <Widget>[
-                                      Text(
-                                          'Your game has been saved in the cloud.'),
+                                      Text(FlutterI18n.translate(context, "game_saved_cloud")),
                                     ],
                                   ),
                                 ),
@@ -140,12 +141,11 @@ class _GameMenuState extends State<GameMenu> {
                             context: context,
                             builder: (BuildContext context) {
                               return AlertDialog(
-                                title: Text('Game saved'),
+                                title: Text(FlutterI18n.translate(context, "game_saved")),
                                 content: SingleChildScrollView(
                                   child: ListBody(
                                     children: <Widget>[
-                                      Text(
-                                          'Your game has been saved locally.'),
+                                      Text(FlutterI18n.translate(context, "game_saved_locally")),
                                     ],
                                   ),
                                 ),
@@ -172,7 +172,7 @@ class _GameMenuState extends State<GameMenu> {
                           Icons.file_upload_rounded,
                           color: Colors.white,
                         ),
-                        Text(' Save Game',
+                        Text(FlutterI18n.translate(context, "save_game"),
                             style: TextStyle(color: Colors.white))
                       ],
                     ),
@@ -195,7 +195,7 @@ class _GameMenuState extends State<GameMenu> {
                           Icons.app_registration,
                           color: Colors.white,
                         ),
-                        Text('Register/login',
+                        Text(FlutterI18n.translate(context, "register_or_login"),
                             style: TextStyle(color: Colors.white))
                       ],
                     ),
@@ -210,7 +210,7 @@ class _GameMenuState extends State<GameMenu> {
                           Icons.account_circle_rounded,
                           color: Colors.white,
                         ),
-                        Text(' My Account',
+                        Text(FlutterI18n.translate(context, "my_account"),
                             style: TextStyle(color: Colors.white))
                       ],
                     ),
@@ -228,7 +228,7 @@ class _GameMenuState extends State<GameMenu> {
                           Icons.logout,
                           color: Colors.white,
                         ),
-                        Text(' Logout', style: TextStyle(color: Colors.white))
+                        Text(FlutterI18n.translate(context, "logout"), style: TextStyle(color: Colors.white))
                       ],
                     ),
                   )
@@ -242,13 +242,18 @@ class _GameMenuState extends State<GameMenu> {
               iconSize: 24,
               elevation: 16,
               style: TextStyle(color: Colors.white),
+              dropdownColor: Colors.black,
               underline: Container(
                 height: 2,
                 color: Colors.white,
               ),
-              onChanged: (String? newValue) {
+              onChanged: (String? newValue) async {
+                await FlutterI18n.refresh(
+                    context,
+                    Locale.fromSubtags(
+                        languageCode: newValue!.substring(0, 2)));
                 setState(() {
-                  selectedLang = newValue!;
+                  selectedLang = newValue;
                 });
               },
               items: languages.map<DropdownMenuItem<String>>((String value) {

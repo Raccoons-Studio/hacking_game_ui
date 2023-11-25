@@ -47,6 +47,7 @@ dependencies:
   firebase_auth: ^4.10.1
   cloud_firestore: ^4.9.3
   mockito: ^5.4.2
+  flutter_i18n: ^0.34.0
 
 dev_dependencies:
   flutter_test:
@@ -77,6 +78,7 @@ flutter:
   assets:
     - ../assets/
     - ../assets/images/
+    - i18n/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

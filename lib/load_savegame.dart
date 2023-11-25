@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:hacking_game_ui/engine/save_load_engine.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/maestro/maestro_story.dart';
@@ -34,23 +35,23 @@ class _LoadSaveGameState extends State<LoadSaveGame> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Confirm Delete'),
+          title: Text(FlutterI18n.translate(context, "confirm_delete")),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text('Are you sure you want to delete this savegame?'),
+                Text(FlutterI18n.translate(context, "confirm_delete_message")),
               ],
             ),
           ),
           actions: <Widget>[
             ElevatedButton(
-              child: Text('Cancel'),
+              child: Text(FlutterI18n.translate(context, "cancel")),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             ElevatedButton(
-              child: Text('Delete'),
+              child: Text(FlutterI18n.translate(context, "delete")),
               onPressed: () {
                 SavegameService().delete(id);
                 loadSaves();
@@ -77,7 +78,7 @@ class _LoadSaveGameState extends State<LoadSaveGame> {
       body: Center(
         child: gameSaves.isEmpty
             ? Text(
-                "Vous n'avez aucune sauvegarde pour le moment!",
+                FlutterI18n.translate(context, "no_save_yet"),
                 style: TextStyle(color: Colors.white),
               )
             : SizedBox(
@@ -87,7 +88,7 @@ class _LoadSaveGameState extends State<LoadSaveGame> {
                   itemBuilder: (context, index) {
                     return ListTile(
                       title: Text(
-                        gameSaves[index].name,
+                        "Savegame ${index + 1}",
                         style: TextStyle(color: Colors.white),
                       ),
                       subtitle: Text(

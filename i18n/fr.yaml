@@ -1,0 +1,22 @@
+new_game: Nouvelle partie
+logout: Déconnexion
+load_game: Charger partie
+game_saved: Parties enregistrées
+game_saved_cloud: Partie enregistrée dans le nuage
+game_saved_locally: Partie enregistrée localement. Pensez à enregistrer dans le nuage, en créant un compte.
+save_game: Enregistrer la partie
+register_or_login: Inscription ou connexion
+my_account: Mon compte
+email: E-mail
+password: Mot de passe
+register: Inscription
+login: Connexion
+password_forgotten: Mot de passe oublié
+register_successfully: Inscription réussie
+login_successfully: Connexion réussie
+reset_password_sent: Réinitialisation du mot de passe envoyée
+confirm_delete: Confirmer la suppression de la sauvegarde
+confirm_delete_message: Êtes-vous sûr de vouloir supprimer cette sauvegarde ?
+cancel: Annuler
+delete: Supprimer
+no_save_yet: Aucune sauvegarde pour le moment

@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 
 class LoginOrRegister extends StatefulWidget {
   @override
@@ -45,7 +46,7 @@ class _LoginOrRegisterState extends State<LoginOrRegister> {
                   controller: _emailController,
                   style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
-                    hintText: 'Email',
+                    hintText: FlutterI18n.translate(context, "email"),
                     hintStyle: TextStyle(color: Colors.white),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
@@ -61,8 +62,9 @@ class _LoginOrRegisterState extends State<LoginOrRegister> {
                 child: TextField(
                   controller: _passwordController,
                   style: TextStyle(color: Colors.white),
+                  obscureText: true,
                   decoration: InputDecoration(
-                    hintText: 'Password',
+                    hintText: FlutterI18n.translate(context, "password"),
                     hintStyle: TextStyle(color: Colors.white),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
@@ -75,19 +77,19 @@ class _LoginOrRegisterState extends State<LoginOrRegister> {
               onPressed: () {
                 _registerUser();
               },
-              child: Text("S'enregistrer", style: TextStyle(color: Colors.white)),
+              child: Text(FlutterI18n.translate(context, "register"), style: TextStyle(color: Colors.white)),
             ),
             TextButton(
               onPressed: () {
                 _loginUser();
               },
-              child: Text('Se connecter', style: TextStyle(color: Colors.white)),
+              child: Text(FlutterI18n.translate(context, "login"), style: TextStyle(color: Colors.white)),
             ),
             TextButton(
               onPressed: () {
                 _resetPassword();
               },
-              child: Text('Mot de passe oublié', style: TextStyle(color: Colors.white)),
+              child: Text(FlutterI18n.translate(context, "password_forgotten"), style: TextStyle(color: Colors.white)),
             ),
             SizedBox(height: 20),
             Text(
@@ -111,7 +113,7 @@ class _LoginOrRegisterState extends State<LoginOrRegister> {
 
       if (newUser != null) {
         setState(() {
-          _message = 'User registered successfully';
+          _message = FlutterI18n.translate(context, "registered_successfully");
         });
         Navigator.of(context).pop();
       }
@@ -132,7 +134,7 @@ class _LoginOrRegisterState extends State<LoginOrRegister> {
 
       if (user != null) {
         setState(() {
-          _message = 'User logged in successfully';
+          _message = FlutterI18n.translate(context, "login_successfully");
         });
         Navigator.of(context).pop();
       }
@@ -148,7 +150,7 @@ class _LoginOrRegisterState extends State<LoginOrRegister> {
     try {
       await _auth.sendPasswordResetEmail(email: _emailController.text);
       setState(() {
-        _message = 'Reset password mail sent';
+        _message = FlutterI18n.translate(context, "reset_password_sent");
       });
       
     } catch (e) {

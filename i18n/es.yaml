@@ -1,0 +1,22 @@
+new_game: Juego nuevo
+logout: Cerrar sesión
+load_game: Cargar juego
+game_saved: Juegos guardados
+game_saved_cloud: Juego guardado en la nube
+game_saved_locally: Juego guardado localmente. Piense en guardar en la nube, registrando una cuenta.
+save_game: Guardar juego
+register_or_login: Registrarse o iniciar sesión
+my_account: Mi cuenta
+email: Correo electrónico
+password: Contraseña
+register: Registrarse
+login: Iniciar sesión
+password_forgotten: Contraseña olvidada
+register_successfully: Registro exitoso
+login_successfully: Inicio de sesión exitoso
+reset_password_sent: Restablecer contraseña enviado
+confirm_delete: Confirmar borrado de juego guardado
+confirm_delete_message: ¿Está seguro de querer eliminar este juego guardado?
+cancel: Cancelar
+delete: Eliminar
+no_save_yet: No hay guardados aún

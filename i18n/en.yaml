@@ -1,0 +1,22 @@
+new_game: New game
+logout: Logout
+load_game: Load game
+game_saved: Games saved
+game_saved_cloud: Game saved in the cloud
+game_saved_locally: Game saved locally. Think about saving them in the cloud, registering an account.
+save_game: Save game
+register_or_login: Register or login
+my_account: My account
+email: Email
+password: Password
+register: Register
+login: Login
+password_forgotten: Password forgotten
+register_successfully: Register successfully
+login_successfully: Login successfully
+reset_password_sent: Reset password sent
+confirm_delete: Confirm delete savegame
+confirm_delete_message: Are you sure you want to delete this savegame?
+cancel: Cancel
+delete: Delete
+no_save_yet: No save yet
