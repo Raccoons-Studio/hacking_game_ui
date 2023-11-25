@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
       darkTheme: MacosThemeData.dark(),
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
-      home: kDebugMode ? MacOSDesktop(maestro: MaestroStory()) : GameMenu()
+      home: GameMenu()
     );
   }
 }

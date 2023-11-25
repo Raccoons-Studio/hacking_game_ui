@@ -406,12 +406,14 @@ class MaestroStory extends Maestro {
   }
 
   @override
-  Future<void> load(int slot) async {
-    StoryEngine story =
-        await SaveAndLoadEngine.loadStoryEngine("story.yml");
-        //await SaveAndLoadEngine.loadStoryEngine("penny_story.yml");
-    Player? p = await SaveAndLoadEngine.loadPlayer(slot);
-    p ??= getSamplePlayer();
+  Future<void> load(Player? p) async {
+    StoryEngine story = await SaveAndLoadEngine.loadStoryEngine("story.yml");
+    //await SaveAndLoadEngine.loadStoryEngine("penny_story.yml");
+    if (p == null) {
+      p = await SaveAndLoadEngine.loadPlayer(0);
+      p ??= getSamplePlayer();
+    }
+
     _dataBaseEngine = DataBaseEngine(story, p);
   }
 
@@ -572,7 +574,7 @@ class MaestroStory extends Maestro {
 
   @override
   Future<void> start() async {
-    await load(0);
+    await load(null);
     if (kDebugMode) {
       await goTo(1, 1, 16);
     } else {

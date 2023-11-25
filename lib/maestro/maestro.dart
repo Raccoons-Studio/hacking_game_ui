@@ -76,7 +76,7 @@ abstract class Maestro {
 
   Future<void> submitEvidences(String characterID);
 
-  Future<void> load(int load);
+  Future<void> load(Player? p);
 
   Future<bool> save(int slot);
 

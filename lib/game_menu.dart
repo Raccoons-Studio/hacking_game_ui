@@ -61,12 +61,14 @@ class _GameMenuState extends State<GameMenu> {
               ),
             ),
             TextButton(
-              onPressed: () {
+              onPressed: () async {
+                var maestro = MaestroStory();
+                await maestro.start();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => MacOSDesktop(
-                            maestro: MaestroStory(),
+                            maestro: maestro,
                           )),
                 );
               },

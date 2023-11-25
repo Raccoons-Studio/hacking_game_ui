@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hacking_game_ui/engine/save_load_engine.dart';
+import 'package:hacking_game_ui/maestro/maestro.dart';
+import 'package:hacking_game_ui/maestro/maestro_story.dart';
 import 'package:hacking_game_ui/providers/savegame_service.dart';
 
+import 'virtual_machine/virtual_desktop.dart';
+
 class LoadSaveGame extends StatefulWidget {
+  LoadSaveGame();
+
   @override
   _LoadSaveGameState createState() => _LoadSaveGameState();
 }
@@ -25,7 +31,7 @@ class _LoadSaveGameState extends State<LoadSaveGame> {
   Future<void> _confirmDeleteDialog(BuildContext context, String id) async {
     return showDialog<void>(
       context: context,
-      barrierDismissible: false, 
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Confirm Delete'),
@@ -77,31 +83,53 @@ class _LoadSaveGameState extends State<LoadSaveGame> {
             : SizedBox(
                 width: 600,
                 child: ListView.builder(
-                    itemCount: gameSaves.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(gameSaves[index].name, style: TextStyle(color: Colors.white),),
-                        subtitle: Text(
-                          'Week: ${gameSaves[index].week}, Day: ${gameSaves[index].day}, Hour: ${gameSaves[index].hour}',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        trailing: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            IconButton(
-                              icon: Icon(Icons.delete, color: Colors.white,),
-                              onPressed: () => _confirmDeleteDialog(context, gameSaves[index].id),
+                  itemCount: gameSaves.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(
+                        gameSaves[index].name,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      subtitle: Text(
+                        'Week: ${gameSaves[index].week}, Day: ${gameSaves[index].day}, Hour: ${gameSaves[index].hour}',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          IconButton(
+                            icon: Icon(
+                              Icons.delete,
+                              color: Colors.white,
                             ),
-                            IconButton(
-                              icon: Icon(Icons.arrow_forward_ios, color: Colors.white,),
-                              onPressed: () { /* implement your load function here */ } 
-                            ),
-                          ],
-                        ),
-                      );
-                    },
+                            onPressed: () => _confirmDeleteDialog(
+                                context, gameSaves[index].id),
+                          ),
+                          IconButton(
+                              icon: Icon(
+                                Icons.arrow_forward_ios,
+                                color: Colors.white,
+                              ),
+                              onPressed: () async {
+                                var maestro = MaestroStory();
+                                var save = await SavegameService()
+                                    .load(gameSaves[index].id);
+                                await maestro.load(save.player);
+                                await maestro.nextHour(false, false);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => MacOSDesktop(
+                                            maestro: maestro,
+                                          )),
+                                );
+                              }),
+                        ],
+                      ),
+                    );
+                  },
                 ),
-             ),
+              ),
       ),
     );
   }

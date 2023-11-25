@@ -100,7 +100,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
       }
       _maestroState = event;
     });
-    widget.maestro.start().then((value) {
+    widget.maestro.nextHour(false, false).then((value) {
       widget.maestro.getStory().then((value) {
         // Filter applications with enabledApplications
         applications = applications
