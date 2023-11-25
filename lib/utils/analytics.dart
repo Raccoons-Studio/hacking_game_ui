@@ -19,7 +19,7 @@ class AnalyticsService {
 
   void logOpenVirtualApp(String name) async {
     try {
-      await FirebaseAnalytics.instance.logEvent(name: 'open_virtual_app', parameters: {name: name});
+      await FirebaseAnalytics.instance.logEvent(name: 'open_virtual_app', parameters: {"virtual_app": name});
     } catch (e) {
       print(e);
     }
@@ -27,7 +27,7 @@ class AnalyticsService {
 
   void logPlayCinematic(String name) async {
     try {
-      await FirebaseAnalytics.instance.logEvent(name: 'play_cinematic', parameters: {name: name});
+      await FirebaseAnalytics.instance.logEvent(name: 'play_cinematic', parameters: {"cinematic": name});
       print("ok");
     } catch (e) {
       print(e);
@@ -36,7 +36,7 @@ class AnalyticsService {
 
   void logPlayConversation(String name) async {
     try {
-      await FirebaseAnalytics.instance.logEvent(name: 'play_conversation', parameters: {name: name});
+      await FirebaseAnalytics.instance.logEvent(name: 'play_conversation', parameters: {"conversation": name});
     } catch (e) {
       print(e);
     }
@@ -44,7 +44,7 @@ class AnalyticsService {
 
   void logNext(String name) async {
     try {
-      await FirebaseAnalytics.instance.logEvent(name: 'next', parameters: {name: name});
+      await FirebaseAnalytics.instance.logEvent(name: 'next', parameters: {"name": name});
     } catch (e) {
       print(e);
     }
