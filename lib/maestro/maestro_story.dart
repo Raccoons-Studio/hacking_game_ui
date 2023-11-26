@@ -575,11 +575,7 @@ class MaestroStory extends Maestro {
   @override
   Future<void> start() async {
     await load(null);
-    if (kDebugMode) {
-      await goTo(1, 1, 16);
-    } else {
-      await nextHour(false, false);
-    }
+    await nextHour(false, false);
   }
 
   @override
