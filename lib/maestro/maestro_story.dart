@@ -1,12 +1,12 @@
+import 'dart:convert';
 import 'dart:math';
+import 'package:crypto/crypto.dart';
 
-import 'package:flutter/foundation.dart';
 import 'package:hacking_game_ui/engine/database_engine.dart';
 import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/engine/player_engine.dart';
 import 'package:hacking_game_ui/engine/save_load_engine.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
-import 'package:hacking_game_ui/providers/mocks/sample_story.dart';
 import 'package:hacking_game_ui/providers/savegame_service.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_characters_selector.dart';
 import 'package:hacking_game_ui/virtual_machine/models/cinematic.dart';
@@ -17,6 +17,7 @@ import 'package:hacking_game_ui/virtual_machine/models/timeline_data.dart';
 
 class MaestroStory extends Maestro {
   DataBaseEngine? _dataBaseEngine;
+  Code? _prefixCode;
 
   void init(StoryEngine storyEngine, Player playerEngine) {
     _dataBaseEngine = DataBaseEngine(storyEngine, playerEngine);
@@ -408,13 +409,11 @@ class MaestroStory extends Maestro {
   @override
   Future<void> load(Player? p) async {
     StoryEngine story = await SaveAndLoadEngine.loadStoryEngine("story.yml");
-    //await SaveAndLoadEngine.loadStoryEngine("penny_story.yml");
-    if (p == null) {
-      p = await SaveAndLoadEngine.loadPlayer(0);
-      p ??= getSamplePlayer();
-    }
-
+    p ??= Player("sample_player", 1, 1, 7, [], [], [], [], [], [], {}, [],
+          nsfwLevel: 0);
     _dataBaseEngine = DataBaseEngine(story, p);
+    // Update prefix code if it exists
+    await getCodes();
   }
 
   @override
@@ -563,7 +562,7 @@ class MaestroStory extends Maestro {
   @override
   Future<bool> save(int slot) async {
     Player p = await _dataBaseEngine!.getPlayer();
-    SaveAndLoadEngine.savePlayer(p, slot);
+    SavegameService().saveLocalPlayer(p);
     // if user connected
     if (SavegameService().isUserConnected()) {
       SavegameService().save(p);
@@ -695,5 +694,64 @@ class MaestroStory extends Maestro {
   Future<void> collectConversation(String conversationID) async {
     Player p = await _dataBaseEngine!.getPlayer();
     p.revealedConversations.add(conversationID);
+  }
+
+  @override
+  Future<bool> addCode(String codeStr) async {
+    StoryEngine s = await _dataBaseEngine!.getStory();
+    Player p = await _dataBaseEngine!.getPlayer();
+    for (var code in s.codes) {
+      var bytes = utf8.encode(codeStr); // data being hashed
+      var digest = sha1.convert(bytes);
+      if (code.name == digest.toString()) {
+        p.codes.add(codeStr);
+        if (code.type == CodeType.prefix) {
+          _prefixCode = code;
+        }
+        return true;
+      }
+    }
+    return false;
+  }
+
+  @override
+  Future<List<Code>> getCodes() async {
+    StoryEngine s = await _dataBaseEngine!.getStory();
+    Player p = await _dataBaseEngine!.getPlayer();
+    List<Code> codes = [];
+    for (var code in s.codes) {
+      for (var codePlayer in p.codes) {
+        if (code.name == codePlayer) {
+          codes.add(code);
+          if (code.type == CodeType.prefix) {
+            _prefixCode = code;
+          }
+        }
+      }
+    }
+    return codes;
+  }
+
+  @override
+  Code? getPrefixCode() {
+    return _prefixCode;
+  }
+
+  @override
+  Future<bool> checkCodeAvailability() async {
+    StoryEngine s = await _dataBaseEngine!.getStory();
+    Player p = await _dataBaseEngine!.getPlayer();
+    for (var codePlayer in p.codes) {
+      bool isCodePlayerAvailable = false;
+      for (var code in s.codes) {
+        if (code.name == codePlayer) {
+          isCodePlayerAvailable = true;
+        }
+      }
+      if (!isCodePlayerAvailable) {
+        return false;
+      }
+    }
+    return true;
   }
 }

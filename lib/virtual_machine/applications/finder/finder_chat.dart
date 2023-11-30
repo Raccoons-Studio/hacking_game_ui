@@ -1,15 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hacking_game_ui/engine/model_engine.dart';
+import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/utils/game_date.dart';
+import 'package:hacking_game_ui/utils/image_code.dart';
 import 'package:hacking_game_ui/virtual_machine/common/evidence_switch.dart';
 import 'package:hacking_game_ui/virtual_machine/models/conversation_data.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 class FinderChat extends StatefulWidget {
+  final Maestro maestro;
   final Map<String, List<ConversationData>> conversations;
 
-  const FinderChat({Key? key, required this.conversations}) : super(key: key);
+  const FinderChat({Key? key, required this.conversations, required this.maestro}) : super(key: key);
 
   @override
   State<FinderChat> createState() => _FinderChatState();
@@ -49,7 +52,8 @@ class _FinderChatState extends State<FinderChat> {
                     child: _currentConversation != null
                         ? GenericConversation(
                             conversation: _currentConversation!,
-                            scrollController: ScrollController())
+                            scrollController: ScrollController(),
+                            maestro: widget.maestro,)
                         : Container(),
                   ),
                 ),
@@ -109,11 +113,13 @@ class _FinderChatState extends State<FinderChat> {
 
 class GenericConversation extends StatelessWidget {
   final ScrollController scrollController;
+  final Maestro maestro;
 
   const GenericConversation({
     Key? key,
     required this.conversation,
     required this.scrollController,
+    required this.maestro,
     this.showMarkAsEvidence = true,
   }) : super(key: key);
 
@@ -161,6 +167,7 @@ class GenericConversation extends StatelessWidget {
                 return ConversationBubble(
                   data: data,
                   isUser: isUser,
+                  maestro: maestro,
                 );
               },
             ),
@@ -176,6 +183,7 @@ class GenericConversation extends StatelessWidget {
 }
 
 class ConversationBubble extends StatelessWidget {
+  final Maestro maestro;
   final ConversationBubbleData data;
   final bool isUser;
 
@@ -183,6 +191,7 @@ class ConversationBubble extends StatelessWidget {
     Key? key,
     required this.data,
     required this.isUser,
+    required this.maestro,
   }) : super(key: key);
 
   @override
@@ -245,7 +254,7 @@ class ConversationBubble extends StatelessWidget {
             context: context,
             builder: (BuildContext context) {
               return Dialog(
-                child: Image.asset('images/' + data.content),
+                child: ImageWithCode('images/' + data.content, code: maestro.getPrefixCode()),
               );
             },
           );
@@ -254,7 +263,7 @@ class ConversationBubble extends StatelessWidget {
           constraints: BoxConstraints(
             maxHeight: 100,
           ),
-          child: Image.asset('images/' + data.content),
+          child: ImageWithCode('images/' + data.content),
         ),
       );
     }

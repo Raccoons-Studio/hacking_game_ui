@@ -1,3 +1,5 @@
+
+
 class Player {
   String name;
   int currentWeek;
@@ -9,6 +11,8 @@ class Player {
   List<String> solvedCases;
   List<String> currentCases;
   List<String> unlockedApplications;
+  List<String> codes;
+  Map<String, dynamic> variables;
   String lang;
   bool isDevModeEnable;
   int nsfwLevel;
@@ -24,6 +28,8 @@ class Player {
       this.currentCases,
       this.unlockedApplications,
       this.revealedConversations,
+      this.variables,
+      this.codes,
       {this.isDevModeEnable = false,
       this.nsfwLevel = 0,
       this.lang = 'en'});
@@ -39,7 +45,9 @@ class Player {
         solvedCases = List<String>.from(json["solvedCases"]),
         currentCases = List<String>.from(json["currentCases"]),
         revealedConversations = List<String>.from(json["revealedConversations"]),
+        variables = json['variables'],
         unlockedApplications = List<String>.from(json["unlockedApplications"]),
+        codes = List<String>.from(json["codes"]),
         lang = json['lang'],
         isDevModeEnable = json['isDevModeEnable'],
         nsfwLevel = json['nsfwLevel'];
@@ -51,10 +59,12 @@ class Player {
         'currentHour': currentHour,
         'revealedElements': revealedElements,
         'revealedConversations': revealedConversations,
+        'variables': variables,
         'elementsMarkedAsEvidence': elementsMarkedAsEvidence,
         'solvedCases': solvedCases,
         'currentCases': currentCases,
         'unlockedApplications': unlockedApplications,
+        'codes': codes,
         'lang': lang,
         'isDevModeEnable': isDevModeEnable,
         'nsfwLevel': nsfwLevel,

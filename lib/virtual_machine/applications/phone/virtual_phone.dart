@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/utils/game_icons.dart';
+import 'package:hacking_game_ui/utils/image_code.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_health.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_image.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_scrollable.dart';
@@ -86,11 +87,12 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
             child: Stack(
               fit: StackFit.expand,
               children: <Widget>[
-                Image.asset(
+                ImageWithCode(
                   _splashScreenVisible
                       ? "${widget.splashScreenImageUrl}"
                       : "${widget.backgroundImageUrl}",
                   fit: BoxFit.cover,
+                  code: widget.maestro.getPrefixCode(),
                 ),
                 if (_openedFile == null || _splashScreenVisible) ...[
                   buildHour(),
@@ -182,7 +184,10 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
           future: widget.maestro.getAssetContent(file),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return FinderImage(assetName: snapshot.data!);
+              return FinderImage(
+                assetName: snapshot.data!,
+                maestro: widget.maestro,
+              );
             }
             return const Center(child: CircularProgressIndicator());
           });
@@ -191,7 +196,10 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
       return FutureBuilder<Map<String, List<ConversationData>>>(
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return MobileFinderChat(conversations: snapshot.data!);
+              return MobileFinderChat(
+                conversations: snapshot.data!,
+                maestro: widget.maestro,
+              );
             }
             return const Center(child: CircularProgressIndicator());
           },
@@ -202,7 +210,10 @@ class _IPhoneFrameState extends State<IPhoneFrame> {
       return FutureBuilder<List<ScrollableData>>(
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return FinderScrollable(dataList: snapshot.data!);
+              return FinderScrollable(
+                dataList: snapshot.data!,
+                maestro: widget.maestro,
+              );
             }
             return const Center(child: CircularProgressIndicator());
           },

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
+import 'package:hacking_game_ui/utils/image_code.dart';
 import 'package:hacking_game_ui/virtual_machine/models/scrollable_data.dart';
 
 class SingleFans extends StatefulWidget {
@@ -126,7 +127,7 @@ class _SingleFansState extends State<SingleFans> {
               ),
               Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Image.asset("images/${dataList[index].asset}"),
+                child: ImageWithCode("images/${dataList[index].asset}", code: widget.maestro.getPrefixCode(),),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),

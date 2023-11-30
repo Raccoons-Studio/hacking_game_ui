@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/load_savegame.dart';
 import 'package:hacking_game_ui/login_or_register.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
@@ -21,6 +22,7 @@ class _GameMenuState extends State<GameMenu> {
   String selectedLang = "English";
   bool isUserConnected = false;
   FirebaseAuth auth = FirebaseAuth.instance;
+  List<String> _validCodes = [];
 
   @override
   void initState() {
@@ -65,13 +67,7 @@ class _GameMenuState extends State<GameMenu> {
               onPressed: () async {
                 var maestro = MaestroStory();
                 await maestro.start();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => MacOSDesktop(
-                            maestro: maestro,
-                          )),
-                );
+                _showCodePopup(maestro, _validCodes);
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -87,12 +83,10 @@ class _GameMenuState extends State<GameMenu> {
             ),
             TextButton(
               onPressed: () {
-                if (isUserConnected) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoadSaveGame()),
-                  );
-                }
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoadSaveGame()),
+                );
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -101,7 +95,8 @@ class _GameMenuState extends State<GameMenu> {
                     Icons.file_download_rounded,
                     color: Colors.white,
                   ),
-                  Text(FlutterI18n.translate(context, "load_game"), style: TextStyle(color: Colors.white))
+                  Text(FlutterI18n.translate(context, "load_game"),
+                      style: TextStyle(color: Colors.white))
                 ],
               ),
             ),
@@ -117,11 +112,13 @@ class _GameMenuState extends State<GameMenu> {
                             context: context,
                             builder: (BuildContext context) {
                               return AlertDialog(
-                                title: Text(FlutterI18n.translate(context, "game_saved")),
+                                title: Text(FlutterI18n.translate(
+                                    context, "game_saved")),
                                 content: SingleChildScrollView(
                                   child: ListBody(
                                     children: <Widget>[
-                                      Text(FlutterI18n.translate(context, "game_saved_cloud")),
+                                      Text(FlutterI18n.translate(
+                                          context, "game_saved_cloud")),
                                     ],
                                   ),
                                 ),
@@ -141,11 +138,13 @@ class _GameMenuState extends State<GameMenu> {
                             context: context,
                             builder: (BuildContext context) {
                               return AlertDialog(
-                                title: Text(FlutterI18n.translate(context, "game_saved")),
+                                title: Text(FlutterI18n.translate(
+                                    context, "game_saved")),
                                 content: SingleChildScrollView(
                                   child: ListBody(
                                     children: <Widget>[
-                                      Text(FlutterI18n.translate(context, "game_saved_locally")),
+                                      Text(FlutterI18n.translate(
+                                          context, "game_saved_locally")),
                                     ],
                                   ),
                                 ),
@@ -195,7 +194,8 @@ class _GameMenuState extends State<GameMenu> {
                           Icons.app_registration,
                           color: Colors.white,
                         ),
-                        Text(FlutterI18n.translate(context, "register_or_login"),
+                        Text(
+                            FlutterI18n.translate(context, "register_or_login"),
                             style: TextStyle(color: Colors.white))
                       ],
                     ),
@@ -228,7 +228,8 @@ class _GameMenuState extends State<GameMenu> {
                           Icons.logout,
                           color: Colors.white,
                         ),
-                        Text(FlutterI18n.translate(context, "logout"), style: TextStyle(color: Colors.white))
+                        Text(FlutterI18n.translate(context, "logout"),
+                            style: TextStyle(color: Colors.white))
                       ],
                     ),
                   )
@@ -267,6 +268,82 @@ class _GameMenuState extends State<GameMenu> {
           ],
         ),
       ),
+    );
+  }
+
+  void _showCodePopup(Maestro maestro, List<String> validCodes) {
+    TextEditingController _codeController = TextEditingController();
+    String _codeError = '';
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return StatefulBuilder(builder: (context, setState) {
+          return AlertDialog(
+            title: Text('Entrez votre code'),
+            scrollable: true,
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                    'Les codes vous permettent de débloquer des éléments spécifiques du jeu. Rendez-vous sur Patreon pour en débloquer un'),
+                Column(
+                  children: validCodes
+                      .map((e) => Text(
+                            e,
+                            style: TextStyle(color: Colors.green),
+                          ))
+                      .toList(),
+                ),
+                TextField(
+                  controller: _codeController,
+                  decoration: InputDecoration(
+                    errorText: _codeError.isNotEmpty ? _codeError : null,
+                    labelText: 'Code',
+                  ),
+                ),
+              ],
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: Text('Annuler'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              TextButton(
+                child: Text('Valider'),
+                onPressed: () async {
+                  String enteredCode = _codeController.text.trim();
+                  if (await maestro.addCode(enteredCode)) {
+                    setState(() {
+                      validCodes.add(enteredCode);
+                      _codeError =
+                          ''; // Reset the error message if the code is valid
+                    });
+                  } else {
+                    setState(() {
+                      _codeError = 'Code invalide';
+                    });
+                  }
+                },
+              ),
+              TextButton(
+                child: Text('Jouer'),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MacOSDesktop(
+                              maestro: maestro,
+                            )),
+                  );
+                },
+              ),
+            ],
+          );
+        });
+      },
     );
   }
 }

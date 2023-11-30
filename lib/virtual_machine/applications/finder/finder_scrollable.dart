@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hacking_game_ui/maestro/maestro.dart';
+import 'package:hacking_game_ui/utils/image_code.dart';
 import 'package:hacking_game_ui/virtual_machine/models/scrollable_data.dart';
 
 class FinderScrollable extends StatefulWidget {
+  final Maestro maestro;
   final List<ScrollableData> dataList;
 
-  const FinderScrollable({super.key, required this.dataList});
+  const FinderScrollable({super.key, required this.dataList, required this.maestro});
 
   @override
   State<FinderScrollable> createState() => _FinderScrollableState();
@@ -80,10 +83,11 @@ class _FinderScrollableState extends State<FinderScrollable> {
   Widget buildContent(int index) {
     if (widget.dataList[index].type == ScrollableType.socialMedia) {
       // Display the image fitting the screen
-      return Image.asset(
+      return ImageWithCode(
         widget.dataList[index].content,
         height: 200,
         fit: BoxFit.fitHeight,
+        code: widget.maestro.getPrefixCode(),
       );
     }
     return Text(

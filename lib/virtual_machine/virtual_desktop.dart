@@ -8,6 +8,7 @@ import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/providers/bugreport_service.dart';
 import 'package:hacking_game_ui/utils/analytics.dart';
 import 'package:hacking_game_ui/utils/game_date.dart';
+import 'package:hacking_game_ui/utils/image_code.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/cinematic/cinematic_display.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/end/end.dart';
@@ -330,6 +331,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
               }
               return CinematicWidget(
                   cinematic: snapshot.data!,
+                  maestro: widget.maestro,
                   onEndCinematic: () async {
                     if (!await widget.maestro.isElementsToDisplay()) {
                       var res = await widget.maestro.nextHour(false, true);
@@ -457,11 +459,12 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        Image.asset(
+        ImageWithCode(
           'wallpaper.jpg',
           fit: BoxFit.cover,
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
+          code: widget.maestro.getPrefixCode()
         ),
         Scaffold(
           backgroundColor: Colors.transparent,

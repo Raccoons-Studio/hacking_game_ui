@@ -30,8 +30,8 @@ class _StoryEditorCasesWidgetState extends State<StoryEditorCasesWidget> {
                 var cinematicID = const Uuid().v4();
                 widget.story.cases.add(CaseEngine(
                     const Uuid().v4(), widget.story.characters[0].ID, "", '', 1,
-                    resolution: CinematicEngine(cinematicID, cinematicID, 1, 1, 7, []),
-                    blackmail: ConversationEngine(const Uuid().v4(), '', 1, 1, 7, [])));
+                    resolution: CinematicEngine(cinematicID, cinematicID, 1, 1, 7, [], []),
+                    blackmail: ConversationEngine(const Uuid().v4(), '', 1, 1, 7, [], [])));
               });
             },
           ),
@@ -113,7 +113,7 @@ class _StoryEditorCasesWidgetState extends State<StoryEditorCasesWidget> {
                 onPressed: () {
                   setState(() {
                     caseEngine.resolution = CinematicEngine(
-                        '', '', caseEngine.week, 1, 7, [],
+                        '', '', caseEngine.week, 1, 7, [], [],
                         nsfwLevel: 0);
                   });
                 },
@@ -139,7 +139,7 @@ class _StoryEditorCasesWidgetState extends State<StoryEditorCasesWidget> {
                 onPressed: () {
                   setState(() {
                     caseEngine.blackmail!.conversation
-                        .add(ConversationBubbleDataEngine(Uuid().v4(), false, ''));
+                        .add(ConversationBubbleDataEngine(Uuid().v4(), false, '', []));
                   });
                 },
               )

@@ -185,6 +185,7 @@ class _MessagesViewerState extends State<MessagesViewer> {
                   conversation: _selectedConversation!,
                   scrollController: _scrollController,
                   showMarkAsEvidence: false,
+                  maestro: widget.maestro,
                 ),
               ),
               if (_selectedConversation!.last.conversation.last.name == 'Player' && 

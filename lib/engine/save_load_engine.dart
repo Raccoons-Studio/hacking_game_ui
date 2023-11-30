@@ -14,8 +14,9 @@ class Savegame {
   int day;
   int hour;
   Player player;
+  bool isLocal;
 
-  Savegame(this.id, this.date, this.name, this.week, this.day, this.hour, this.player);
+  Savegame(this.id, this.date, this.name, this.week, this.day, this.hour, this.player, this.isLocal);
 
   Savegame.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -24,6 +25,7 @@ class Savegame {
         week = json['week'],
         day = json['day'],
         hour = json['hour'],
+        isLocal = json['isLocal']??false,
         player = Player.fromJson(Map<String, dynamic>.from(json['player']));
 
   Map<String, dynamic> toJson() => {
@@ -34,6 +36,7 @@ class Savegame {
         'day': day,
         'hour': hour,
         'player': player.toJson(),
+        'isLocal': isLocal,
       };
 }
 
@@ -79,35 +82,6 @@ class SaveAndLoadEngine {
     } catch (e) {
       print(e);
     }
-    return StoryEngine("", "", "", [], [], [], [], [], [], []);
-  }
-
-  static Future<Player?> loadPlayer(int slot) async {
-    final prefs = await SharedPreferences.getInstance();
-    final playerJson = prefs.getString('player_$slot');
-    if (playerJson != null) {
-      return Player.fromJson(jsonDecode(playerJson));
-    }
-    return null;
-  }
-
-  static Future<void> savePlayer(Player player, int slot) async {
-    final prefs = await SharedPreferences.getInstance();
-    final playerJson = jsonEncode(player.toJson());
-    await prefs.setString('player_$slot', playerJson);
-  }
-
-  Future<List<int>> getPlayerSlots() async {
-    final prefs = await SharedPreferences.getInstance();
-    List<int> slots = [];
-    prefs.getKeys().forEach((key) {
-      if (key.startsWith('player_')) {
-        int? slot = int.tryParse(key.replaceFirst('player_', ''));
-        if (slot != null) {
-          slots.add(slot);
-        }
-      }
-    });
-    return slots;
+    return StoryEngine("", "", "", [], [], [], [], [], [], [], []);
   }
 }

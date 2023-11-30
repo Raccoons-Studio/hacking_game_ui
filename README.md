@@ -17,4 +17,4 @@ samples, guidance on mobile development, and a full API reference.
 
 TODO :
 - Ajouter la gestion des profils dans l'application SingleFans (nombre d'abonnés, argent gagné par semaine, etc...)
-- A la fin de la partie, s'inscrire à la newsletter
+- Ajouter la gestion des variables (conditions, variables)

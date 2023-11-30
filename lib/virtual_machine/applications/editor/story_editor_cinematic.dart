@@ -33,7 +33,7 @@ class _StoryEditorCinematicsWidgetState
             onPressed: () {
               setState(() {
                 var uid = const Uuid().v4();
-                widget.cinematics.add(CinematicEngine(uid, uid, 1, 1, 7, []));
+                widget.cinematics.add(CinematicEngine(uid, uid, 1, 1, 7, [], []));
               });
             },
           ),

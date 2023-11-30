@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_image.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/phone/phone_map.dart';
 import 'package:hacking_game_ui/virtual_machine/models/timeline_data.dart';
@@ -6,10 +7,11 @@ import 'package:hacking_game_ui/virtual_machine/models/timeline_data.dart';
 import 'finder_health.dart';
 
 class FinderTimeline extends StatefulWidget {
+  final Maestro maestro;
   final Function refreshTitle;
   final List<TimelineData> timelines;
 
-  const FinderTimeline({super.key, required this.timelines, required this.refreshTitle});
+  const FinderTimeline({super.key, required this.timelines, required this.refreshTitle, required this.maestro});
 
   @override
   _FinderTimelineState createState() => _FinderTimelineState();
@@ -75,7 +77,7 @@ class _FinderTimelineState extends State<FinderTimeline> {
     } else if (data.type == TimelineType.heartbeat) {
       return FinderHealth(bpm: data.value as int, hour: data.hour.toString(), calories: 345, exerciseMinutes: 23, steps: 4532,);
     } else if (data.type == TimelineType.image) {
-      return FinderImage(assetName: data.value as String);
+      return FinderImage(assetName: data.value as String, maestro: widget.maestro,);
     } else {
       return Container();
     }

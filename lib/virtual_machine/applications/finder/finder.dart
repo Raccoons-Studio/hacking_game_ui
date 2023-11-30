@@ -155,7 +155,7 @@ class _FinderApplicationState extends State<FinderApplication> {
       return FutureBuilder<List<TimelineData>>(
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return FinderTimeline(timelines: snapshot.data!, refreshTitle: setTitle);
+              return FinderTimeline(timelines: snapshot.data!, refreshTitle: setTitle, maestro: widget.maestro,);
             }
             return const Center(child: CircularProgressIndicator());
           },
@@ -167,7 +167,7 @@ class _FinderApplicationState extends State<FinderApplication> {
       return FutureBuilder<List<ScrollableData>>(
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return FinderScrollable(dataList: snapshot.data!);
+              return FinderScrollable(dataList: snapshot.data!, maestro: widget.maestro,);
             }
             return const Center(child: CircularProgressIndicator());
           },
@@ -178,7 +178,7 @@ class _FinderApplicationState extends State<FinderApplication> {
       return FutureBuilder<Map<String, List<ConversationData>>>(
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return FinderChat(conversations: snapshot.data!);
+              return FinderChat(conversations: snapshot.data!, maestro: widget.maestro,);
             }
             return const Center(child: CircularProgressIndicator());
           },

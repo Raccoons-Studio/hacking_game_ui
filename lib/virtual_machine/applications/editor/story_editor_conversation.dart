@@ -38,7 +38,7 @@ class _StoryEditorConversationWidgetState
                     widget.story.characters[0].ID,
                     1,
                     1,
-                    7, []));
+                    7, [], []));
               });
             },
           ),
@@ -147,7 +147,7 @@ class _StoryEditorConversationWidgetState
               onPressed: () {
                 setState(() {
                   conversation.conversation.add(
-                      ConversationBubbleDataEngine(Uuid().v4(), false, ''));
+                      ConversationBubbleDataEngine(Uuid().v4(), false, '', []));
                 });
               },
             ),
@@ -156,7 +156,7 @@ class _StoryEditorConversationWidgetState
               onPressed: () {
                 setState(() {
                   conversation.conversation.add(
-                      ConversationBubbleDataEngine(Uuid().v4(), false, '', type: ConversationBubbleDataEngineType.image));
+                      ConversationBubbleDataEngine(Uuid().v4(), false, '', [], type: ConversationBubbleDataEngineType.image));
                 });
               },
             ),
@@ -165,7 +165,7 @@ class _StoryEditorConversationWidgetState
               onPressed: () {
                 setState(() {
                   conversation.conversation.add(
-                      ConversationBubbleDataEngine(Uuid().v4(), false, '', type: ConversationBubbleDataEngineType.bank));
+                      ConversationBubbleDataEngine(Uuid().v4(), false, '', [], type: ConversationBubbleDataEngineType.bank));
                 });
               },
             ),

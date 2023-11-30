@@ -25,6 +25,7 @@ class _LoadSaveGameState extends State<LoadSaveGame> {
 
   loadSaves() async {
     gameSaves = await SavegameService().listSave();
+    gameSaves.addAll(await SavegameService().getLocalSaveGame());
     gameSaves.sort((a, b) => b.week.compareTo(a.week));
     setState(() {});
   }
@@ -113,10 +114,10 @@ class _LoadSaveGameState extends State<LoadSaveGame> {
                               ),
                               onPressed: () async {
                                 var maestro = MaestroStory();
-                                var save = await SavegameService()
-                                    .load(gameSaves[index].id);
+                                var save = gameSaves[index];
                                 await maestro.load(save.player);
                                 await maestro.nextHour(false, false);
+                                // TODO : Vérifier les codes, supprimer les codes inactifs et redemander les codes au joueur
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(

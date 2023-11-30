@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/finder/finder_chat.dart';
 import 'package:hacking_game_ui/virtual_machine/models/conversation_data.dart';
 
 class MobileFinderChat extends StatefulWidget {
+  final Maestro maestro;
   final Map<String, List<ConversationData>> conversations;
 
-  const MobileFinderChat({Key? key, required this.conversations})
+  const MobileFinderChat(
+      {Key? key, required this.conversations, required this.maestro})
       : super(key: key);
 
   @override
@@ -32,6 +35,7 @@ class _MobileFinderChatState extends State<MobileFinderChat> {
             ? GenericConversation(
                 conversation: _currentConversation!,
                 scrollController: _scrollController,
+                maestro: widget.maestro,
               )
             : buildContacts(widget.conversations));
   }

@@ -302,4 +302,12 @@ abstract class Maestro {
 
     return timeLines;
   }
+
+  Future<bool> addCode(String code);
+
+  Future<List<Code>> getCodes();
+
+  Future<bool> checkCodeAvailability();
+
+  Code? getPrefixCode();
 }

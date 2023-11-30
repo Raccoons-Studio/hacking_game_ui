@@ -126,7 +126,7 @@ class _StoryEditorTimelineWidgetState extends State<StoryEditorTimelineWidget> {
 
   CinematicEngine addCinematic(int week, int day) {
     var uid = const Uuid().v4();
-    var cinematic = CinematicEngine(uid, uid, week, day, 7, []);
+    var cinematic = CinematicEngine(uid, uid, week, day, 7, [], []);
     widget.story.cinematics.add(cinematic);
     setState(() {
       _timeLines = widget.maestro.createTimeLines(widget.story);
@@ -156,7 +156,8 @@ class _StoryEditorTimelineWidgetState extends State<StoryEditorTimelineWidget> {
               IconButton(
                 icon: Icon(Icons.play_arrow),
                 onPressed: () {
-                  widget.maestro.goTo(timeLine.week, timeLine.day, timeLine.hour);
+                  widget.maestro
+                      .goTo(timeLine.week, timeLine.day, timeLine.hour);
                 },
               ),
               IconButton(
@@ -636,8 +637,8 @@ class _StoryEditorTimelineWidgetState extends State<StoryEditorTimelineWidget> {
     );
   }
 
-  Future<void> _editConversation(
-      BuildContext context, StoryEngine story, ConversationEngine conversation) async {
+  Future<void> _editConversation(BuildContext context, StoryEngine story,
+      ConversationEngine conversation) async {
     await showDialog(
       context: context,
       barrierDismissible: false,
@@ -650,7 +651,8 @@ class _StoryEditorTimelineWidgetState extends State<StoryEditorTimelineWidget> {
     );
   }
 
-  Widget _buildConversationEditDialog(BuildContext context, StoryEngine story, ConversationEngine conversation) {
+  Widget _buildConversationEditDialog(BuildContext context, StoryEngine story,
+      ConversationEngine conversation) {
     return StatefulBuilder(
       builder: (context, setState) {
         return Scaffold(
@@ -667,7 +669,7 @@ class _StoryEditorTimelineWidgetState extends State<StoryEditorTimelineWidget> {
           ),
           body: ListView(
             children: <Widget>[
-                _buildConversationTile(context, setState, story, conversation),
+              _buildConversationTile(context, setState, story, conversation),
             ],
           ),
         );
@@ -676,79 +678,79 @@ class _StoryEditorTimelineWidgetState extends State<StoryEditorTimelineWidget> {
   }
 
   Widget _buildConversationTile(
-    BuildContext context,
-    void Function(void Function()) setState,
-    StoryEngine story,
-    ConversationEngine conversation) {
-  List<int> days = List<int>.generate(7, (int index) => index + 1);
-  List<int> weeks = List<int>.generate(10, (int index) => index + 1);
-  List<int> hours = [7, 10, 13, 16, 19, 22];
+      BuildContext context,
+      void Function(void Function()) setState,
+      StoryEngine story,
+      ConversationEngine conversation) {
+    List<int> days = List<int>.generate(7, (int index) => index + 1);
+    List<int> weeks = List<int>.generate(10, (int index) => index + 1);
+    List<int> hours = [7, 10, 13, 16, 19, 22];
 
-  return Card(
-    margin: const EdgeInsets.all(8.0),
-    child: Column(
-      children: <Widget>[
-        ListTile(
-          title: Text(
-            "${story.characters.firstWhere((character) => character.ID == conversation.characterID).name} W${conversation.week} ${getDayOfWeek(conversation.day)} ${conversation.hour}:00",
+    return Card(
+      margin: const EdgeInsets.all(8.0),
+      child: Column(
+        children: <Widget>[
+          ListTile(
+            title: Text(
+              "${story.characters.firstWhere((character) => character.ID == conversation.characterID).name} W${conversation.week} ${getDayOfWeek(conversation.day)} ${conversation.hour}:00",
+            ),
           ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            // Character dropdown
-            // Day dropdown
-            // Week dropdown
-            // Hour dropdown
-            // Checkbox for Is Name Revealed
-          ],
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: conversation.conversation
-              .map<Widget>(
-                (bubble) => _buildBubble(context, setState, bubble),
-              )
-              .toList(),
-        ),
-        ButtonBar(
-          alignment: MainAxisAlignment.start,
-          children: <Widget>[
-            ElevatedButton(
-              child: const Text('Add Bubble'),
-              onPressed: () {
-                setState(() {
-                  conversation.conversation.add(
-                      ConversationBubbleDataEngine(const Uuid().v4(), false, ''));
-                });
-              },
-            ),
-            ElevatedButton(
-              child: const Text('Add File'),
-              onPressed: () {
-                setState(() {
-                  conversation.conversation.add(ConversationBubbleDataEngine(
-                      const Uuid().v4(), false, '',
-                      type: ConversationBubbleDataEngineType.image));
-                });
-              },
-            ),
-            ElevatedButton(
-              child: const Text('Add Payment'),
-              onPressed: () {
-                setState(() {
-                  conversation.conversation.add(ConversationBubbleDataEngine(
-                      const Uuid().v4(), false, '',
-                      type: ConversationBubbleDataEngineType.bank));
-                });
-              },
-            ),
-          ],
-        ),
-      ],
-    ),
-  );
-}
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              // Character dropdown
+              // Day dropdown
+              // Week dropdown
+              // Hour dropdown
+              // Checkbox for Is Name Revealed
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: conversation.conversation
+                .map<Widget>(
+                  (bubble) => _buildBubble(context, setState, bubble),
+                )
+                .toList(),
+          ),
+          ButtonBar(
+            alignment: MainAxisAlignment.start,
+            children: <Widget>[
+              ElevatedButton(
+                child: const Text('Add Bubble'),
+                onPressed: () {
+                  setState(() {
+                    conversation.conversation.add(ConversationBubbleDataEngine(
+                        const Uuid().v4(), false, '', []));
+                  });
+                },
+              ),
+              ElevatedButton(
+                child: const Text('Add File'),
+                onPressed: () {
+                  setState(() {
+                    conversation.conversation.add(ConversationBubbleDataEngine(
+                        const Uuid().v4(), false, '', [],
+                        type: ConversationBubbleDataEngineType.image));
+                  });
+                },
+              ),
+              ElevatedButton(
+                child: const Text('Add Payment'),
+                onPressed: () {
+                  setState(() {
+                    conversation.conversation.add(ConversationBubbleDataEngine(
+                        const Uuid().v4(), false, '', [],
+                        type: ConversationBubbleDataEngineType.bank));
+                  });
+                },
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 
   Widget _buildBubble(
       BuildContext context,

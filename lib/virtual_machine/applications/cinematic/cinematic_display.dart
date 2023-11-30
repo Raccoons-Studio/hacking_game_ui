@@ -2,14 +2,18 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hacking_game_ui/engine/model_engine.dart';
+import 'package:hacking_game_ui/maestro/maestro.dart';
+import 'package:hacking_game_ui/utils/image_code.dart';
 import 'package:hacking_game_ui/virtual_machine/models/cinematic.dart';
 
 class CinematicWidget extends StatefulWidget {
   final Cinematic cinematic;
   final Function onEndCinematic;
+  final Maestro maestro;
 
   const CinematicWidget(
-      {Key? key, required this.cinematic, required this.onEndCinematic})
+      {Key? key, required this.cinematic, required this.onEndCinematic, required this.maestro})
       : super(key: key);
 
   @override
@@ -98,11 +102,13 @@ class _CinematicWidgetState extends State<CinematicWidget>
             color: Colors.black,
           )),
           Positioned.fill(
-            child: Image.asset(
+            child: ImageWithCode(
               "images/${widget.cinematic.cinematicSequences[sequencesIndex > 0 ? sequencesIndex - 1 : 0].cinematicAsset}",
+              code: widget.maestro.getPrefixCode(),
               fit: BoxFit.cover,
               errorBuilder: (BuildContext context, Object exception,
                   StackTrace? stackTrace) {
+                print(exception);
                 // Vérifiez si cinematic.cinematicDescription n'est pas nulle
                 if (widget.cinematic.cinematicSequences[sequencesIndex]
                             .cinematicDescription !=
@@ -146,8 +152,9 @@ class _CinematicWidgetState extends State<CinematicWidget>
           Positioned.fill(
             child: FadeTransition(
                 opacity: _controller,
-                child: Image.asset(
+                child: ImageWithCode(
                   "images/${widget.cinematic.cinematicSequences[sequencesIndex].cinematicAsset}",
+                  code: widget.maestro.getPrefixCode(),
                   fit: BoxFit.cover,
                   errorBuilder: (BuildContext context, Object exception,
                       StackTrace? stackTrace) {
