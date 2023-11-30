@@ -6,6 +6,7 @@ import 'package:hacking_game_ui/load_savegame.dart';
 import 'package:hacking_game_ui/login_or_register.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/maestro/maestro_story.dart';
+import 'package:hacking_game_ui/virtual_machine/applications/end/end.dart';
 import 'package:hacking_game_ui/virtual_machine/virtual_desktop.dart';
 
 class GameMenu extends StatefulWidget {
@@ -312,7 +313,8 @@ class _GameMenuState extends State<GameMenu> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                    'Les codes vous permettent de débloquer des éléments spécifiques du jeu. Rendez-vous sur Patreon pour en débloquer un'),
+                    'Les codes vous permettent de débloquer des éléments spécifiques du jeu. Rendez-vous sur Patreon pour en obtenir un !'),
+                PatreonLink(maestro: maestro),
                 Column(
                   children: validCodes
                       .map((code) => Row(

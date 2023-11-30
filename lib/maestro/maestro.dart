@@ -314,4 +314,6 @@ abstract class Maestro {
   Future<List<String>> getPlayerCodes();
 
   Future<void> removeCode(String codeStr);
+
+  Future<String> getPatreonCode();
 }

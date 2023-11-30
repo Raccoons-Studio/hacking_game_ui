@@ -343,7 +343,7 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                             setState(() {
                               _currentApplication = VirtualApplication('Settings', Icons.settings, Colors.grey, false);
                             });
-                          });
+                          }, widget.maestro);
                           return;
                         });
                       }
@@ -399,10 +399,11 @@ class _MacOSDesktopState extends State<MacOSDesktop> {
                             isBlackmailPlaying = false;
                             isCinematicPlaying = false;
                             _currentApplication = TheEndWidget(() {
+                              
                               setState(() {
                                 _currentApplication = VirtualApplication('Settings', Icons.settings, Colors.grey, false);
                               });
-                            });
+                            }, widget.maestro);
                           });
                           return;
                         case NextHourExceptionType.needToCollectConversation:

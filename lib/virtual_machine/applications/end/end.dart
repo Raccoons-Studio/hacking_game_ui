@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hacking_game_ui/maestro/maestro.dart';
 import 'package:hacking_game_ui/providers/newsletter_service.dart';
 import 'package:hacking_game_ui/virtual_machine/models/application.dart';
 import 'dart:html' as html;
 
 class TheEndWidget extends StatefulWidget implements VirtualApplication {
   Function _displaySettings;
-  TheEndWidget(this._displaySettings, {super.key});
+  Maestro maestro;
+  TheEndWidget(this._displaySettings, this.maestro, {super.key});
 
   @override
   State<TheEndWidget> createState() => _TheEndWidgetState();
@@ -104,19 +106,34 @@ class _TheEndWidgetState extends State<TheEndWidget> {
             ),
           ),
           SizedBox(height: 20),
-          InkWell(
-            onTap: () {
-              html.window.open('https://patreon.com/RaccoonStudio', 'new tab');
-            },
-            child: Text(
-              'Soutenez notre travail sur Patreon!',
-              style: const TextStyle(
-                  color: Colors.blue, decoration: TextDecoration.underline),
-              textAlign: TextAlign.center,
-            ),
-          ),
+          PatreonLink(maestro: widget.maestro),
         ],
       ),
     ));
+  }
+}
+
+class PatreonLink extends StatelessWidget {
+  final Maestro maestro;
+
+  const PatreonLink({
+    required this.maestro,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () async {
+        final link = await maestro.getPatreonCode();
+        html.window.open(link, 'new tab');
+      },
+      child: Text(
+        'Soutenez notre travail sur Patreon!',
+        style: const TextStyle(
+            color: Colors.blue, decoration: TextDecoration.underline),
+        textAlign: TextAlign.center,
+      ),
+    );
   }
 }

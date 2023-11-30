@@ -410,7 +410,7 @@ class MaestroStory extends Maestro {
   Future<void> load(Player? p) async {
     StoryEngine story = await SaveAndLoadEngine.loadStoryEngine("story.yml");
     p ??= Player("sample_player", 1, 1, 7, [], [], [], [], [], [], {}, [],
-          nsfwLevel: 0);
+        nsfwLevel: 0);
     _dataBaseEngine = DataBaseEngine(story, p);
     // Update prefix code if it exists
     await getCodes();
@@ -766,5 +766,10 @@ class MaestroStory extends Maestro {
       }
     }
     return true;
+  }
+
+  Future<String> getPatreonCode() async {
+    StoryEngine s = await _dataBaseEngine!.getStory();
+    return s.patreonLink;
   }
 }

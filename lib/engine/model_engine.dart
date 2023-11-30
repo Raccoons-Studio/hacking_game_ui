@@ -35,6 +35,7 @@ class StoryEngine {
   String storyID;
   String name;
   String description;
+  String patreonLink;
   List<CharacterEngine> characters;
   List<PlaceEngine> places;
   List<ElementEngine> elements;
@@ -48,6 +49,7 @@ class StoryEngine {
       this.storyID,
       this.name,
       this.description,
+      this.patreonLink,
       this.characters,
       this.places,
       this.elements,
@@ -62,6 +64,7 @@ class StoryEngine {
       'storyID': storyID,
       'name': name,
       'description': description,
+      'patreonLink': patreonLink,
       'characters': characters.map((x) => x.toMap()).toList(),
       'places': places.map((x) => x.toMap()).toList(),
       'elements': elements.map((x) => x.toMap()).toList(),
@@ -78,6 +81,7 @@ class StoryEngine {
       map['storyID'],
       map['name'],
       map['description'],
+      map['patreonLink'] ?? "",
       map['characters'] != null
           ? List<CharacterEngine>.from(
               map['characters']?.map((x) => CharacterEngine.fromMap(x)))

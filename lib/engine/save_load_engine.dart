@@ -82,6 +82,6 @@ class SaveAndLoadEngine {
     } catch (e) {
       print(e);
     }
-    return StoryEngine("", "", "", [], [], [], [], [], [], [], []);
+    return StoryEngine("", "", "", "", [], [], [], [], [], [], [], []);
   }
 }
