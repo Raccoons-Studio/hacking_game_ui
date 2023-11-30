@@ -310,4 +310,8 @@ abstract class Maestro {
   Future<bool> checkCodeAvailability();
 
   Code? getPrefixCode();
+
+  Future<List<String>> getPlayerCodes();
+
+  Future<void> removeCode(String codeStr);
 }

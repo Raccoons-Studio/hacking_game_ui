@@ -715,6 +715,13 @@ class MaestroStory extends Maestro {
   }
 
   @override
+  Future<void> removeCode(String codeStr) async {
+    StoryEngine s = await _dataBaseEngine!.getStory();
+    Player p = await _dataBaseEngine!.getPlayer();
+    p.codes.remove(codeStr);
+  }
+
+  @override
   Future<List<Code>> getCodes() async {
     StoryEngine s = await _dataBaseEngine!.getStory();
     Player p = await _dataBaseEngine!.getPlayer();
@@ -730,6 +737,12 @@ class MaestroStory extends Maestro {
       }
     }
     return codes;
+  }
+
+  @override
+  Future<List<String>> getPlayerCodes() async {
+    Player p = await _dataBaseEngine!.getPlayer();
+    return p.codes;
   }
 
   @override
