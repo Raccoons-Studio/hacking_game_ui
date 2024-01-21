@@ -5,7 +5,6 @@ import 'package:hacking_game_ui/engine/model_engine.dart';
 import 'package:hacking_game_ui/load_savegame.dart';
 import 'package:hacking_game_ui/login_or_register.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
-import 'package:hacking_game_ui/maestro/maestro_story.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/end/end.dart';
 import 'package:hacking_game_ui/virtual_machine/virtual_desktop.dart';
 
@@ -105,7 +104,7 @@ class _GameMenuState extends State<GameMenu> {
   TextButton buildNewGame(BuildContext context) {
     return TextButton(
       onPressed: () async {
-        var maestro = MaestroStory();
+        var maestro = Maestro();
         await maestro.start();
         _showCodePopup(maestro, _validCodes, () {
           Navigator.push(

@@ -30,8 +30,10 @@ class _StoryEditorCasesWidgetState extends State<StoryEditorCasesWidget> {
                 var cinematicID = const Uuid().v4();
                 widget.story.cases.add(CaseEngine(
                     const Uuid().v4(), widget.story.characters[0].ID, "", '', 1,
-                    resolution: CinematicEngine(cinematicID, cinematicID, 1, 1, 7, [], []),
-                    blackmail: ConversationEngine(const Uuid().v4(), '', 1, 1, 7, [], [])));
+                    resolution:
+                        CinematicEngine(cinematicID, cinematicID, 1, 1, 7, []),
+                    blackmail: ConversationEngine(
+                        const Uuid().v4(), '', 1, 1, 7, [])));
               });
             },
           ),
@@ -113,33 +115,35 @@ class _StoryEditorCasesWidgetState extends State<StoryEditorCasesWidget> {
                 onPressed: () {
                   setState(() {
                     caseEngine.resolution = CinematicEngine(
-                        '', '', caseEngine.week, 1, 7, [], [],
+                        '', '', caseEngine.week, 1, 7, [],
                         nsfwLevel: 0);
                   });
                 },
               ),
         ExpansionTile(
           title: const Text("Blackmail conversation"),
-          children: [caseEngine.blackmail != null
-              ? Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                        buildConversationHeader(),
-                      ] +
-                      caseEngine.blackmail!.conversation
-                          .map<Widget>((c) =>
-                              buildConversationBubble(c, caseEngine.blackmail!))
-                          .toList(),
-                )
-              : Container()],
+          children: [
+            caseEngine.blackmail != null
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                          buildConversationHeader(),
+                        ] +
+                        caseEngine.blackmail!.conversation
+                            .map<Widget>((c) => buildConversationBubble(
+                                c, caseEngine.blackmail!))
+                            .toList(),
+                  )
+                : Container()
+          ],
         ),
         caseEngine.blackmail != null
             ? ElevatedButton(
                 child: const Text('Add Conversation Bubble'),
                 onPressed: () {
                   setState(() {
-                    caseEngine.blackmail!.conversation
-                        .add(ConversationBubbleDataEngine(Uuid().v4(), false, '', []));
+                    caseEngine.blackmail!.conversation.add(
+                        ConversationBubbleDataEngine(Uuid().v4(), false, ''));
                   });
                 },
               )

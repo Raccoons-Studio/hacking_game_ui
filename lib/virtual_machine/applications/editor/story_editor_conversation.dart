@@ -38,7 +38,7 @@ class _StoryEditorConversationWidgetState
                     widget.story.characters[0].ID,
                     1,
                     1,
-                    7, [], []));
+                    7, []));
               });
             },
           ),
@@ -147,7 +147,7 @@ class _StoryEditorConversationWidgetState
               onPressed: () {
                 setState(() {
                   conversation.conversation.add(
-                      ConversationBubbleDataEngine(Uuid().v4(), false, '', []));
+                      ConversationBubbleDataEngine(Uuid().v4(), false, ''));
                 });
               },
             ),
@@ -155,8 +155,9 @@ class _StoryEditorConversationWidgetState
               child: const Text('Add File'),
               onPressed: () {
                 setState(() {
-                  conversation.conversation.add(
-                      ConversationBubbleDataEngine(Uuid().v4(), false, '', [], type: ConversationBubbleDataEngineType.image));
+                  conversation.conversation.add(ConversationBubbleDataEngine(
+                      Uuid().v4(), false, '',
+                      type: ConversationBubbleDataEngineType.image));
                 });
               },
             ),
@@ -164,8 +165,9 @@ class _StoryEditorConversationWidgetState
               child: const Text('Add Payment'),
               onPressed: () {
                 setState(() {
-                  conversation.conversation.add(
-                      ConversationBubbleDataEngine(Uuid().v4(), false, '', [], type: ConversationBubbleDataEngineType.bank));
+                  conversation.conversation.add(ConversationBubbleDataEngine(
+                      Uuid().v4(), false, '',
+                      type: ConversationBubbleDataEngineType.bank));
                 });
               },
             ),

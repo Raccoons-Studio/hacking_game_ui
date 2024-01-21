@@ -1,5 +1,7 @@
 import 'package:uuid/uuid.dart';
 
+import 'player_engine.dart';
+
 enum EvidenceType {
   microphone,
   bank,
@@ -110,8 +112,7 @@ class StoryEngine {
           ? List<String>.from(map['enabledApplications'])
           : [],
       map['codes'] != null
-          ? List<Code>.from(
-              map['codes']?.map((x) => Code.fromMap(x)))
+          ? List<Code>.from(map['codes']?.map((x) => Code.fromMap(x)))
           : [],
     );
   }
@@ -127,7 +128,8 @@ class Code {
   int? intValue;
   bool? boolValue;
 
-  Code(this.name, this.type, {this.level = 1 ,this.strValue, this.intValue, this.boolValue});
+  Code(this.name, this.type,
+      {this.level = 1, this.strValue, this.intValue, this.boolValue});
 
   Map<String, dynamic> toMap() {
     return {
@@ -340,12 +342,12 @@ class CinematicEngine {
   int hour;
   int nsfwLevel;
   String? description;
-  List<Condition> conditions;
+  List<Condition>? conditions;
   List<CinematicSequenceEngine> sequences;
 
-  CinematicEngine(this.ID, this.name, this.week, this.day, this.hour,
-      this.sequences, this.conditions,
-      {this.nsfwLevel = 0, this.description});
+  CinematicEngine(
+      this.ID, this.name, this.week, this.day, this.hour, this.sequences,
+      {this.nsfwLevel = 0, this.description, this.conditions});
 
   Map<String, dynamic> toMap() {
     return {
@@ -355,9 +357,10 @@ class CinematicEngine {
       'day': day,
       'hour': hour,
       'sequences':
-          sequences.isEmpty ? "" : sequences.map((x) => x.toMap()).toList(),
-      'conditions':
-          conditions.isEmpty ? "" : conditions.map((x) => x.toMap()).toList(),
+          sequences.isEmpty ? [] : sequences.map((x) => x.toMap()).toList(),
+      'conditions': conditions?.isEmpty ?? true
+          ? []
+          : conditions?.map((x) => x.toMap()).toList(),
       'nsfwLevel': nsfwLevel,
       'description': description,
     };
@@ -373,10 +376,115 @@ class CinematicEngine {
         List<CinematicSequenceEngine>.from(
             map['sequences']?.map((x) => CinematicSequenceEngine.fromMap(x)) ??
                 []),
-        List<Condition>.from(
+        conditions: List<Condition>.from(
             map['conditions']?.map((x) => Condition.fromMap(x)) ?? []),
         nsfwLevel: map['nsfwLevel'] ?? 0,
         description: map['description']);
+  }
+
+  bool isConditionsAreGood(Player player) {
+    if (conditions == null || conditions!.isEmpty) {
+      return true;
+    }
+    for (Condition condition in conditions!) {
+      if (!condition.isDefault) {
+        if (condition.operator == ConditionOperator.EQUAL) {
+          if (condition.strValue != null) {
+            if (player.variables[condition.variable] != condition.strValue) {
+              return false;
+            }
+          } else if (condition.intValue != null) {
+            if (player.variables[condition.variable] != condition.intValue) {
+              return false;
+            }
+          } else if (condition.boolValue != null) {
+            if (player.variables[condition.variable] != condition.boolValue) {
+              return false;
+            }
+          }
+        } else if (condition.operator == ConditionOperator.GREATER) {
+          if (condition.intValue != null) {
+            if (player.variables[condition.variable] <= condition.intValue!) {
+              return false;
+            }
+          }
+        } else if (condition.operator == ConditionOperator.LESS) {
+          if (condition.intValue != null) {
+            if (player.variables[condition.variable] >= condition.intValue!) {
+              return false;
+            }
+          }
+        } else if (condition.operator == ConditionOperator.GREATER_EQUAL) {
+          if (condition.intValue != null) {
+            if (player.variables[condition.variable] < condition.intValue!) {
+              return false;
+            }
+          }
+        } else if (condition.operator == ConditionOperator.LESS_EQUAL) {
+          if (condition.intValue != null) {
+            if (player.variables[condition.variable] > condition.intValue!) {
+              return false;
+            }
+          }
+        } else if (condition.operator == ConditionOperator.NOT) {
+          if (condition.boolValue != null) {
+            if (player.variables[condition.variable] == condition.boolValue) {
+              return false;
+            }
+          }
+        }
+      }
+    }
+    return true;
+  }
+}
+
+class Consequence {
+  String variable;
+  String? strValue;
+  int? intValue;
+  bool? boolValue;
+
+  Consequence(this.variable, {this.strValue, this.intValue, this.boolValue});
+
+  Map<String, dynamic> toMap() {
+    return {
+      'variable': variable,
+      'strValue': strValue,
+      'intValue': intValue,
+      'boolValue': boolValue,
+    };
+  }
+
+  static Consequence fromMap(Map<String, dynamic> map) {
+    return Consequence(
+      map['variable'],
+      strValue: map['strValue'],
+      intValue: map['intValue'],
+      boolValue: map['boolValue'],
+    );
+  }
+}
+
+class ChoiceConsequenceEngine {
+  String text;
+  List<Consequence> consequences;
+
+  ChoiceConsequenceEngine(this.text, this.consequences);
+
+  Map<String, dynamic> toMap() {
+    return {
+      'text': text,
+      'consequences': consequences.map((x) => x.toMap()).toList(),
+    };
+  }
+
+  static ChoiceConsequenceEngine fromMap(Map<String, dynamic> map) {
+    return ChoiceConsequenceEngine(
+      map['text'] ?? "",
+      List<Consequence>.from(
+          map['consequences']?.map((x) => Consequence.fromMap(x))),
+    );
   }
 }
 
@@ -384,9 +492,10 @@ class CinematicSequenceEngine {
   String cinematicAsset;
   String? cinematicDescription;
   List<CinematicConversationEngine> cinematicConversations;
+  List<ChoiceConsequenceEngine>? choices;
 
   CinematicSequenceEngine(this.cinematicAsset, this.cinematicConversations,
-      {this.cinematicDescription});
+      {this.cinematicDescription, this.choices});
 
   Map<String, dynamic> toMap() {
     return {
@@ -394,6 +503,7 @@ class CinematicSequenceEngine {
       'cinematicDescription': cinematicDescription,
       'cinematicConversations':
           cinematicConversations.map((x) => x.toMap()).toList(),
+      'choices': choices?.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -402,6 +512,10 @@ class CinematicSequenceEngine {
       map['cinematicAsset'] ?? "",
       List<CinematicConversationEngine>.from(map['cinematicConversations']
           ?.map((x) => CinematicConversationEngine.fromMap(x))),
+      choices: map['choices'] != null
+          ? List<ChoiceConsequenceEngine>.from(
+              map['choices']?.map((x) => ChoiceConsequenceEngine.fromMap(x)))
+          : null,
       cinematicDescription: map['cinematicDescription'],
     );
   }
@@ -435,12 +549,12 @@ class ConversationEngine {
   int day;
   int hour;
   bool isNameRevealed;
-  List<Condition> conditions;
+  List<Condition>? conditions;
   List<ConversationBubbleDataEngine> conversation;
 
   ConversationEngine(this.conversationID, this.characterID, this.week, this.day,
-      this.hour, this.conversation, this.conditions,
-      {this.isNameRevealed = false});
+      this.hour, this.conversation,
+      {this.isNameRevealed = false, this.conditions});
 
   Map<String, dynamic> toMap() {
     return {
@@ -451,7 +565,7 @@ class ConversationEngine {
       'hour': hour,
       'isNameRevealed': isNameRevealed,
       'conversation': conversation.map((bubble) => bubble.toMap()).toList(),
-      'conditions': conditions.map((bubble) => bubble.toMap()).toList(),
+      'conditions': conditions?.map((bubble) => bubble.toMap()).toList(),
     };
   }
 
@@ -468,7 +582,7 @@ class ConversationEngine {
                   ConversationBubbleDataEngine.fromMap(bubbleMap))
               .toList()
           : [],
-      map['conditions'] != null
+      conditions: map['conditions'] != null
           ? map['conditions']
               .map<Condition>((bubbleMap) => Condition.fromMap(bubbleMap))
               .toList()
@@ -484,19 +598,18 @@ class ConversationBubbleDataEngine {
   String ID;
   String content;
   bool isPlayer;
-  List<Condition> conditions;
+  List<Condition>? conditions;
   ConversationBubbleDataEngineType type;
 
-  ConversationBubbleDataEngine(
-      this.ID, this.isPlayer, this.content, this.conditions,
-      {this.type = ConversationBubbleDataEngineType.text});
+  ConversationBubbleDataEngine(this.ID, this.isPlayer, this.content,
+      {this.type = ConversationBubbleDataEngineType.text, this.conditions});
 
   Map<String, dynamic> toMap() {
     return {
       'id': ID,
       'content': content,
       'isPlayer': isPlayer,
-      'conditions': conditions.map((x) => x.toMap()).toList(),
+      'conditions': conditions?.map((x) => x.toMap()).toList(),
       'type': type.toString(),
     };
   }
@@ -506,7 +619,7 @@ class ConversationBubbleDataEngine {
       map['id'] ?? const Uuid().v4(),
       map['isPlayer'],
       map['content'],
-      map['conditions'] != null
+      conditions: map['conditions'] != null
           ? List<Condition>.from(
               map['conditions']?.map((x) => Condition.fromMap(x)))
           : [],

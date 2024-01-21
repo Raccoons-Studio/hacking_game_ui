@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:hacking_game_ui/engine/save_load_engine.dart';
 import 'package:hacking_game_ui/maestro/maestro.dart';
-import 'package:hacking_game_ui/maestro/maestro_story.dart';
 import 'package:hacking_game_ui/providers/savegame_service.dart';
 
 import 'virtual_machine/virtual_desktop.dart';
@@ -113,7 +112,7 @@ class _LoadSaveGameState extends State<LoadSaveGame> {
                                 color: Colors.white,
                               ),
                               onPressed: () async {
-                                var maestro = MaestroStory();
+                                var maestro = Maestro();
                                 var save = gameSaves[index];
                                 await maestro.load(save.player);
                                 await maestro.nextHour(false, false);

@@ -9,7 +9,8 @@ class StoryEditorCinematicsWidget extends StatefulWidget {
   final Maestro maestro;
   final List<CinematicEngine> cinematics;
 
-  const StoryEditorCinematicsWidget(this.story, this.maestro, this.cinematics, {super.key});
+  const StoryEditorCinematicsWidget(this.story, this.maestro, this.cinematics,
+      {super.key});
 
   @override
   _StoryEditorCinematicsWidgetState createState() =>
@@ -33,7 +34,7 @@ class _StoryEditorCinematicsWidgetState
             onPressed: () {
               setState(() {
                 var uid = const Uuid().v4();
-                widget.cinematics.add(CinematicEngine(uid, uid, 1, 1, 7, [], []));
+                widget.cinematics.add(CinematicEngine(uid, uid, 1, 1, 7, []));
               });
             },
           ),

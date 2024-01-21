@@ -9,13 +9,7 @@ import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_editor_timeline.dart';
 import 'package:hacking_game_ui/virtual_machine/applications/editor/story_utils.dart';
 
-enum EditorView {
-  Timeline,
-  Elements,
-  Cases,
-  Characters,
-  Conversation
-}
+enum EditorView { Timeline, Elements, Cases, Characters, Conversation }
 
 List<int> weeks = List<int>.generate(10, (index) => index + 1);
 List<int> days = List<int>.generate(7, (index) => index + 1);
@@ -147,7 +141,7 @@ class _StoryEditorState extends State<StoryEditor> {
   }
 
   check() async {
-    await Maestro.checkIntegrity(widget.story);
+    await widget.maestro.checkIntegrity(widget.story);
   }
 
   Widget buildCharactersList() {

@@ -126,7 +126,7 @@ class _StoryEditorTimelineWidgetState extends State<StoryEditorTimelineWidget> {
 
   CinematicEngine addCinematic(int week, int day) {
     var uid = const Uuid().v4();
-    var cinematic = CinematicEngine(uid, uid, week, day, 7, [], []);
+    var cinematic = CinematicEngine(uid, uid, week, day, 7, []);
     widget.story.cinematics.add(cinematic);
     setState(() {
       _timeLines = widget.maestro.createTimeLines(widget.story);
@@ -721,7 +721,7 @@ class _StoryEditorTimelineWidgetState extends State<StoryEditorTimelineWidget> {
                 onPressed: () {
                   setState(() {
                     conversation.conversation.add(ConversationBubbleDataEngine(
-                        const Uuid().v4(), false, '', []));
+                        const Uuid().v4(), false, ''));
                   });
                 },
               ),
@@ -730,7 +730,7 @@ class _StoryEditorTimelineWidgetState extends State<StoryEditorTimelineWidget> {
                 onPressed: () {
                   setState(() {
                     conversation.conversation.add(ConversationBubbleDataEngine(
-                        const Uuid().v4(), false, '', [],
+                        const Uuid().v4(), false, '',
                         type: ConversationBubbleDataEngineType.image));
                   });
                 },
@@ -740,7 +740,7 @@ class _StoryEditorTimelineWidgetState extends State<StoryEditorTimelineWidget> {
                 onPressed: () {
                   setState(() {
                     conversation.conversation.add(ConversationBubbleDataEngine(
-                        const Uuid().v4(), false, '', [],
+                        const Uuid().v4(), false, '',
                         type: ConversationBubbleDataEngineType.bank));
                   });
                 },
